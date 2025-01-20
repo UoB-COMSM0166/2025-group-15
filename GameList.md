@@ -1,4 +1,4 @@
-### Stikbold! A Dodgeball Adventure（躲避球大冒险）
+### 1.Stikbold! A Dodgeball Adventure（躲避球大冒险）
 
 #### **Introduction**  
 A game that combines dodgeball and combat, where players must dodge, throw, and strategize to defeat opponents. The game requires quick reflexes, teamwork, and fast decision-making, with its core gameplay focusing on balancing offense and defense. With simple controls and engaging gameplay, both beginners and seasoned players can quickly get into the game, making it suitable for all age groups.
