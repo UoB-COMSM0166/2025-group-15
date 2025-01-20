@@ -11,8 +11,6 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Group
 
-![image](https://github.com/user-attachments/assets/456f5945-f14e-496f-9c55-fc7c05bf7b85)  
-
 | Name         | E-mail                  | Username       |
 |--------------|-------------------------|----------------|
 | Lu Li        | tu24288@bristol.ac.uk   | cactus562      |
