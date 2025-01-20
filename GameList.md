@@ -63,3 +63,89 @@ By drawing inspiration from the classic dodgeball gameplay, the game will primar
    - Real-time display of scores, remaining time, and BOSS statuses to enhance player immersion.  
    - Randomly generated items and obstacles during gameplay.  
    - Trigger different celebratory animations after completing each level.s
+
+
+
+### 2. Traffic Theft
+
+#### **Introduction**  
+Traffic Theft is a fast-paced minigame in *Pummel Party* where players compete to score the most points within 3 minutes. Players must collect cash and gold from a building, cross a dangerous street with constant traffic, and deposit their loot at a scoring machine on the opposite side. Each cash pile is worth 1 point, and each gold bar is worth 2 points when successfully deposited. The challenge comes from the movement penalty — the more items you carry, the slower you move, making it harder to dodge traffic!
+#### **Game Video**  
+[Watch the game video here](https://www.youtube.com/watch?v=5Uo4A8mwS3w)
+---
+
+#### **Core Design Inspirations and Features**  
+1. **Accessible Gameplay:**  
+   - Simple controls for movement, item collection, and depositing.  
+   - Suitable for both beginners and experienced players, with an intuitive interface and clear feedback.  
+
+2. **Dynamic Challenges:**  
+   - Traffic mechanics introduce constant tension and excitement.  
+   - Strategic balance between greed (carrying more items) and caution (avoiding traffic).  
+
+3. **Multiple Zones with Unique Challenges:**  
+   - **Indoor Area:** Randomized item placement for replayability.  
+   - **Street Area:** Constant traffic with increasing difficulty.  
+   - **Deposit Area:** Clear indicators for scoring to guide players.  
+
+---
+
+#### **Core Gameplay and Design Ideas**  
+
+1. **Movement and Item Mechanics:**  
+   - Players can pick up multiple items but face reduced movement speed with each additional item.  
+   - Crossing the street requires timing and precision to avoid vehicles.  
+
+2. **Scoring System:**  
+   - **Cash piles:** Worth 1 point each.  
+   - **Gold bars:** Worth 2 points each.  
+   - Items must be deposited at the scoring machine to count.  
+
+3. **Traffic and Difficulty Progression:**  
+   - Traffic becomes faster and denser over time, increasing the challenge.  
+   - Different vehicle types with varying speeds and sizes keep the gameplay unpredictable.  
+
+4. **Visual and Audio Feedback:**  
+   - Real-time score updates and collision effects for immersive gameplay.  
+   - Pickup sounds, vehicle engine noises, and scoring effects enhance the experience.  
+
+---
+
+#### **Stage-based Challenges and Progression**  
+1. **Early Game:**  
+   - Low traffic density and slower vehicles allow players to adapt to mechanics.  
+
+2. **Mid-Game:**  
+   - Traffic frequency increases, requiring sharper reflexes and better timing.  
+
+3. **Late Game:**  
+   - Faster vehicles and more complex crossing patterns challenge advanced players.  
+
+---
+
+#### **Development and Improvement Ideas**  
+
+Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an engaging mix of skill, strategy, and excitement. Key development focuses include:
+
+1. **Core Gameplay Mechanics:**  
+   - Implementing smooth player movement and responsive collision detection.  
+   - Designing randomized item placement and traffic patterns for replayability.  
+
+2. **Level and Scenario Design:**  
+   - Introducing various layouts, such as narrower roads or additional obstacles.  
+   - Dynamic traffic systems with changing vehicle behaviors.  
+
+3. **Enhanced User Interaction:**  
+   - Real-time display of scores and timers for better immersion.  
+   - Adding celebratory animations upon level completion.  
+   - Introducing optional power-ups (e.g., temporary invincibility, speed boosts).  
+
+4. **Balancing Difficulty:**  
+   - Fine-tuning item spawn rates and traffic density for a fair yet challenging experience.  
+   - Providing multiple strategies for success, catering to different player skill levels.  
+
+---
+
+#### **Core Entertainment Value**  
+**Traffic Theft** creates a high-tension, competitive environment by combining risk vs. reward decision-making, obstacle avoidance, and time pressure. The simplicity of its mechanics, combined with its depth of strategy, makes it a versatile and enjoyable experience for players of all skill levels.
+
