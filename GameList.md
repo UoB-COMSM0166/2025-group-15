@@ -3,6 +3,9 @@
 #### **Introduction**  
 A game that combines dodgeball and combat, where players must dodge, throw, and strategize to defeat opponents. The game requires quick reflexes, teamwork, and fast decision-making, with its core gameplay focusing on balancing offense and defense. With simple controls and engaging gameplay, both beginners and seasoned players can quickly get into the game, making it suitable for all age groups.
 
+![IMG_6762](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6762.JPG?raw=true)
+![IMG_6763](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6763.JPG?raw=true)
+![IMG_6764](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6764.JPG?raw=true)
 ---
 
 #### **Core Design Inspirations and Features**  
