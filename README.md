@@ -11,14 +11,17 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Group
 
-Add a group photo here!
+![image](https://github.com/user-attachments/assets/456f5945-f14e-496f-9c55-fc7c05bf7b85)  
 
-- Group member 1, name, email, role
-- Group member 2, name, email, role
-- Group member 3, name, email, role
-- Group member 4, name, email, role
-- Group member 5, name, email, role
-- Group member 6, name, email, role
+| Name         | E-mail                  | Username       |
+|--------------|-------------------------|----------------|
+| Lu Li        | tu24288@bristol.ac.uk   | cactus562      |
+| Wei Liu      | ir24727@bristol.ac.uk   | ir24727        |
+| Shuxiao Shi  | ux24132@bristol.ac.uk   | Wentaa         |
+| Qinyuan Lu   | he24343@bristol.ac.uk   | mdfcsC         |
+| Ruirui Jia   | bl24729@bristol.ac.uk   | alpenglow1     |
+| Jinlong Xiao | qo242236@bristol.ac.uk  | yusheng2077    |
+
 
 ## Project Report
 
