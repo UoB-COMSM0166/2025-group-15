@@ -11,7 +11,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Group
 
-![Group 15]([https://github.com/UoB-COMSM0166/2025-group-15/blob/main/IMG_6600.JPG](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6600.JPG?raw=true))
+![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6600.JPG?raw=true)
 
 | Name         | E-mail                  | Username       |
 |--------------|-------------------------|----------------|
