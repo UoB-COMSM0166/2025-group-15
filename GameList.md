@@ -359,3 +359,146 @@ Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an en
 	- Unlock new customization options as players progress, creating a sense of achievement  
 
 
+# 6. Boxhead: 2Play Rooms
+
+## Game Genre
+**Action Shooter, Survival Game**
+> See the [game clip](Images\IMG_6765.JPG)
+
+---
+
+## Game Core Content
+
+### 1. Objective
+Survive as long as possible, eliminate as many zombies and demons as possible, unlock weapons, and face increasingly challenging waves of enemies.
+
+### 2. Modes
+- **Single-player Mode**: Fight alone against waves of enemies.
+- **Two-player Mode**: Team up with another player to survive longer and achieve higher scores.
+
+### 3. Available Maps
+The game offers **18 maps**, each uniquely designed to influence combat strategies.
+
+Examples:
+1. **Boxy Room**: A simple square map with minimal obstacles, suitable for beginners and quick practice.
+2. **Bridge Room**: Features a bridge in the center with enemy spawn points on both sides.
+
+---
+
+## Combat and Weapon System
+
+### 1. Weapon Types
+Players unlock weapons by accumulating kills. Key weapons include:
+
+- **Handgun**: Initial weapon, infinite ammo, low damage.
+- **Shotgun**: High area damage, ideal for close-range combat, slow firing rate.
+- **UZI SMG**: High fire rate, effective for groups, consumes ammo quickly.
+- **Rocket Launcher**: Explosive area damage, suitable for dense enemy groups or demons.
+- **Oil Barrel**: Persistent area attack, requires manual detonation to burn enemies.
+- **Landmine**: Placed on the ground, triggers for large area damage, useful for defense.
+- **Bomb**: Throwable, deals wide-area damage to a target location.
+- **Piercing Gun**: High-speed projectile that penetrates multiple enemies, limited ammo.
+- **Timed Landmine**: Remote detonation, large area damage.
+
+## Combat and Weapon System
+### 2. Weapon Upgrades
+- **Scoring System**: Players earn points by killing enemies, which can unlock or upgrade weapons.
+- **Upgrade Effects**:
+  - Increased damage.
+  - Faster firing rate.
+  - More ammo per reload.
+  - Expanded attack range for explosive weapons.
+- **Red Box Rewards**: 
+  - **Source**:
+    - Random drops from special zombies.
+    - Fixed spawn points.
+    - High kill streaks of regular zombies.
+  - **Possible Rewards**:
+    - Full ammo refills.
+    - Health restoration when low.
+    - New weapons unlocked upon collection.
+
+### 3. Attack Mechanism
+- Players move using the keyboard, and their facing direction determines the attack direction.
+- Switching weapons is essential to handle different enemies effectively.
+
+---
+
+## Enemy Types
+
+1. **Regular Zombies**: Move slowly, attack via close-range combat.
+2. **Special Zombies**: Move faster, capable of ranged attacks. Attack speed and weapon power increase as waves progress.
+
+---
+
+## Game Progression and Victory
+
+### 1. Wave System
+Enemies spawn in waves, with increasing numbers and difficulty. Players can strategize and replenish between waves.
+
+### 2. Victory Conditions
+The game is an open-ended survival challenge with no fixed endpoint. Players can consider the following as milestones:
+1. Surviving a certain number of waves (e.g., 20 waves).
+2. Achieving a high score (beating personal records).
+
+### 3. Defeat Conditions
+- Player's health drops to zero.
+- In two-player mode, one player can continue after the other dies.
+
+---
+
+## Improvement Directions
+
+### Core Features
+1. **Single-player Mode**: One character fighting continuously spawning enemies.
+2. **Single Map**: A compact map with obstacles for cover and movement.
+3. **Simplified Weapon System**: Retain essential weapons like Handgun, Shotgun, and Rocket Launcher with straightforward upgrade mechanics.
+4. **Simple Enemy Types**: Regular Zombies and a Boss with ranged attacks.
+5. **Wave System**: Enemy numbers and difficulty increase progressively.
+
+---
+
+## Key Development Modules
+
+### 1. Map Module
+- Design a simple square map with walls and obstacles.
+- Implement collision detection to prevent players or enemies from moving through walls.
+
+### 2. Player Module
+- **Movement**: Controlled by WASD keys, restricted to the map boundaries.
+- **Attack**: Spacebar to shoot in the facing direction, Q/E to switch weapons.
+- **Health**: Player loses health when attacked; game ends when health reaches zero.
+
+### 3. Enemy Module
+1. **Types**:
+   - **Regular Zombies**: Slow, close-range attackers.
+   - **Special Zombies**: Faster, ranged attackers with scaling difficulty.
+2. **Spawning**:
+   - Enemies spawn around the map with increasing numbers:
+     - Wave 1: 5 Regular Zombies, 1 Special Zombie.
+     - Wave 2: 10 Regular Zombies, 2 Special Zombies.
+3. **AI**: Enemies automatically track and pursue the player.
+
+### 4. Weapons and Upgrades Module
+- **Initial Weapons**:
+  - Handgun (infinite ammo, low damage).
+  - Shotgun (area damage).
+  - Rocket Launcher (explosive damage).
+  - Landmine (strategic placement).
+- **Upgrade Rules**:
+  - Points unlock weapons and upgrades (e.g., 500 points for Shotgun, 1000 for Rocket Launcher).
+  - Upgrades enhance weapon stats like damage, fire rate, and ammo capacity.
+
+### 5. Game Loop Module
+1. **Manage Waves**: Enemies spawn gradually; players must survive to progress.
+2. **Preparation Phase**: Short breaks between waves for strategizing.
+3. **Victory**: Survive a specific number of waves (e.g., 50 waves).
+4. **Defeat**: Health reaches zero.
+
+---
+
+## Optimizations and Expansions
+
+1. Add leaderboards to track high scores.
+2. Implement difficulty options (Easy, Normal, Hard).
+3. Expand with additional maps and enemy types to increase replayability.
