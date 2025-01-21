@@ -363,7 +363,7 @@ Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an en
 ### Game Genre
 **Action Shooter, Survival Game**   
 
-![IMG_6765](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6765.JPG)   
+> See the [game clip](https://www.crazymonkeygames.com/Boxhead-2Play-Rooms.html).   
 
 ### Game Core Content
 #### 1. Objective
@@ -410,7 +410,9 @@ Players unlock weapons by accumulating kills. Key weapons include:
   - **Possible Rewards**:
     - Full ammo refills.
     - Health restoration when low.
-    - New weapons unlocked upon collection.
+    - New weapons unlocked upon collection.    
+
+![IMG_6765](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6765.JPG)   
 
 #### 3. Attack Mechanism
 - Players move using the keyboard, and their facing direction determines the attack direction.
