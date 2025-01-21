@@ -1,12 +1,12 @@
 ## 1.Stikbold! A Dodgeball Adventure（躲避球大冒险）
-#### **Introduction**  
+### **Introduction**  
 A game that combines dodgeball and combat, where players must dodge, throw, and strategize to defeat opponents. The game requires quick reflexes, teamwork, and fast decision-making, with its core gameplay focusing on balancing offense and defense. With simple controls and engaging gameplay, both beginners and seasoned players can quickly get into the game, making it suitable for all age groups.
 
-![IMG_6762|300](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6762.JPG?raw=true)
-![IMG_6763|300](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6763.JPG?raw=true)
-![IMG_6764|300](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6764.JPG?raw=true)
+![IMG_6762](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6762.JPG?raw=true)
+![IMG_6763](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6763.JPG?raw=true)
+![IMG_6764](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6764.JPG?raw=true)
 
-#### **Core Design Inspirations and Features**  
+### **Core Design Inspirations and Features**  
 1. **Easy to play:**  
    - The core gameplay only involves character movement and throwing, avoiding complex rules.  
    - With an intuitive interface and clear feedback, players can quickly understand the gameplay and dive into the game.  
@@ -17,7 +17,7 @@ A game that combines dodgeball and combat, where players must dodge, throw, and 
      - **Time Challenge:** Defeat as many BOSSes as possible within a limited time.  
    - Different map settings (such as underwater scenes, sports arenas, etc.) provide diverse challenges for players.  
 
-#### **Core Gameplay and Design Ideas**  
+### **Core Gameplay and Design Ideas**  
 1. **Random Ball Throwing Mechanism:**  
    - The system throws balls from various directions with random trajectories, challenging the player's reflexes and strategy.  
    - As the game progresses, the speed and number of balls increase, adding tension to the gameplay.  
@@ -38,7 +38,7 @@ A game that combines dodgeball and combat, where players must dodge, throw, and 
    - **Victory:** Defeat all BOSSes or survive within the time limit.  
    - **Defeat:** The player runs out of lives or is hit multiple times by the thrown balls.  
 
-#### **Development and Improvement Ideas**  
+### **Development and Improvement Ideas**  
 By drawing inspiration from the classic dodgeball gameplay, the game will primarily focus on single-player mode, incorporating innovative designs with a random ball-throwing mechanism and BOSS-defeating objectives to offer progressively challenging experiences. The main innovative ideas include the following:
 
 1. **Core Mechanism Development:**  
@@ -58,13 +58,13 @@ By drawing inspiration from the classic dodgeball gameplay, the game will primar
    - Trigger different celebratory animations after completing each level.s
 
 ## 2. Traffic Theft
-#### **Introduction**  
+### **Introduction**  
 Traffic Theft is a fast-paced minigame in *Pummel Party* where players compete to score the most points within 3 minutes. Players must collect cash and gold from a building, cross a dangerous street with constant traffic, and deposit their loot at a scoring machine on the opposite side. Each cash pile is worth 1 point, and each gold bar is worth 2 points when successfully deposited. The challenge comes from the movement penalty — the more items you carry, the slower you move, making it harder to dodge traffic!
 
-#### **Game Video**  
+### **Game Video**  
 Watch the game video [here](https://www.youtube.com/watch?v=5Uo4A8mwS3w).
 
-#### **Core Design Inspirations and Features**  
+### **Core Design Inspirations and Features**  
 1. **Accessible Gameplay:**  
    - Simple controls for movement, item collection, and depositing.  
    - Suitable for both beginners and experienced players, with an intuitive interface and clear feedback.  
@@ -78,7 +78,7 @@ Watch the game video [here](https://www.youtube.com/watch?v=5Uo4A8mwS3w).
    - **Street Area:** Constant traffic with increasing difficulty.  
    - **Deposit Area:** Clear indicators for scoring to guide players.  
 
-#### **Core Gameplay and Design Ideas**  
+### **Core Gameplay and Design Ideas**  
 1. **Movement and Item Mechanics:**  
    - Players can pick up multiple items but face reduced movement speed with each additional item.  
    - Crossing the street requires timing and precision to avoid vehicles.  
@@ -96,7 +96,7 @@ Watch the game video [here](https://www.youtube.com/watch?v=5Uo4A8mwS3w).
    - Real-time score updates and collision effects for immersive gameplay.  
    - Pickup sounds, vehicle engine noises, and scoring effects enhance the experience.  
 
-#### **Stage-based Challenges and Progression**  
+### **Stage-based Challenges and Progression**  
 1. **Early Game:**  
    - Low traffic density and slower vehicles allow players to adapt to mechanics.  
 
@@ -106,7 +106,7 @@ Watch the game video [here](https://www.youtube.com/watch?v=5Uo4A8mwS3w).
 3. **Late Game:**  
    - Faster vehicles and more complex crossing patterns challenge advanced players.  
 
-#### **Development and Improvement Ideas**  
+### **Development and Improvement Ideas**  
 Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an engaging mix of skill, strategy, and excitement. Key development focuses include:
 
 1. **Core Gameplay Mechanics:**  
@@ -126,19 +126,19 @@ Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an en
    - Fine-tuning item spawn rates and traffic density for a fair yet challenging experience.  
    - Providing multiple strategies for success, catering to different player skill levels.  
 
-#### **Core Entertainment Value**  
+### **Core Entertainment Value**  
 **Traffic Theft** creates a high-tension, competitive environment by combining risk vs. reward decision-making, obstacle avoidance, and time pressure. The simplicity of its mechanics, combined with its depth of strategy, makes it a versatile and enjoyable experience for players of all skill levels.
 
 ## 3. Vector
-#### Introduction
+### Introduction
 - A side-scrolling parkour action game set in an urban environment
 - Players take on the role of an employee escaping from an evil corporation
 - Features dynamic parkour movements across city rooftops while evading security forces
 - Implements a simple three-directional control system for complex parkour actions
 
-See more in the [trailor](https://www.youtube.com/watch?v=vAbN2dIdOvE).
+> See more in the [trailor](https://www.youtube.com/watch?v=vAbN2dIdOvE).
 
-#### Core Design Inspirations and Features
+### Core Design Inspirations and Features
 1. **Intuitive Controls**
    - Only three directional controls: up, down, and right
    - Corresponds to jump/skill, slide, and sprint respectively
@@ -149,7 +149,7 @@ See more in the [trailor](https://www.youtube.com/watch?v=vAbN2dIdOvE).
    - Rich terrain design enhances exploration
    - Multiple path choices offer strategic options
 
-#### Core Gameplay and Design Ideas
+### Core Gameplay and Design Ideas
 1. **Action System Design**
    - Basic moves include jumping, sliding, and sprinting
    - Smooth transitions between different actions
@@ -170,7 +170,7 @@ See more in the [trailor](https://www.youtube.com/watch?v=vAbN2dIdOvE).
    - Mid stages: require move combinations and path selection
    - Late stages: complex terrain and intense pursuit
 
-#### Development and Improvement Ideas
+### Development and Improvement Ideas
 1. **Core Mechanism Development**
    - Implement smooth action transition system
    - Precise operation detection system
@@ -187,15 +187,15 @@ See more in the [trailor](https://www.youtube.com/watch?v=vAbN2dIdOvE).
    - Achievement system and unlockable content
 
 ## 4. Water Sort Puzzle
-#### Introduction
+### Introduction
 - A puzzle game based on color sorting mechanics
 - Players sort colored water blocks between containers
 - Each container has limited capacity and specific rules for mixing
 - Simple yet engaging gameplay suitable for casual players
 
-See the [game clip](https://www.youtube.com/watch?v=8yAxYHDOPMM).
+> See the [game clip](https://www.youtube.com/watch?v=8yAxYHDOPMM).
 
-#### Core Design Inspirations and Features
+### Core Design Inspirations and Features
 1. **Simple Mechanics**
    - Pour water between containers
    - Same-colored water blocks can mix
@@ -207,7 +207,7 @@ See the [game clip](https://www.youtube.com/watch?v=8yAxYHDOPMM).
    - Strategic planning required for optimal solutions
    - Multiple solution paths possible
 
-#### Core Gameplay and Design Ideas
+### Core Gameplay and Design Ideas
 1. **Puzzle Generation System**
    - Algorithmic generation of solvable puzzles
    - Balanced distribution of colors
@@ -228,7 +228,7 @@ See the [game clip](https://www.youtube.com/watch?v=8yAxYHDOPMM).
    - Mid stages: strategic planning required
    - Late stages: complex combinations and limited moves
 
-#### Development and Improvement Ideas
+### Development and Improvement Ideas
 1. **Core Mechanism Development**
    - Robust puzzle generation algorithm
    - Smooth pouring animations
@@ -245,15 +245,15 @@ See the [game clip](https://www.youtube.com/watch?v=8yAxYHDOPMM).
    - Visual hints system
 
 ## 5. Osmos
-#### Introduction
+### Introduction
 - A physics-based puzzle survival game set in space
 - Players control a small celestial body that must grow by absorbing smaller ones
 - Features unique propulsion mechanics and size-based gameplay
 - Combines strategy with survival elements
 
-See the [game clip](https://www.youtube.com/watch?v=hftJD4Yt_Dk).
+> See the [game clip](https://www.youtube.com/watch?v=hftJD4Yt_Dk).
 
-#### Core Design Inspirations and Features
+### Core Design Inspirations and Features
 1. **Physics-Based Gameplay**
    - Mass-based absorption mechanics
    - Momentum-based movement system
@@ -264,7 +264,7 @@ See the [game clip](https://www.youtube.com/watch?v=hftJD4Yt_Dk).
    - Strategic choice of targets
    - Risk vs reward decision making
 
-#### Core Gameplay and Design Ideas
+### Core Gameplay and Design Ideas
 1. **Physics System**
    - Accurate collision detection
    - Mass transfer mechanics
@@ -285,7 +285,7 @@ See the [game clip](https://www.youtube.com/watch?v=hftJD4Yt_Dk).
    - Mid stages: strategic growth required
    - Late stages: complex environmental challenges
 
-#### Development and Improvement Ideas
+### Development and Improvement Ideas
 1. **Core Mechanism Development**
    - Advanced physics simulation
    - Smooth size transition effects
