@@ -363,7 +363,7 @@ Inspired by fast-paced arcade-style games, **Traffic Theft** aims to offer an en
 ### Game Genre
 **Action Shooter, Survival Game**
 
-> See the ![game clip](Images\IMG_6765.JPG)
+> See the ![game clip](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6765.JPG)
 
 ### Game Core Content
 #### 1. Objective
