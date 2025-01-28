@@ -2,7 +2,7 @@
 
 ## 1. Traffic Theft
 
-![traffic theft concept](Images/traffic-theft.png)
+![traffic theft](Images/traffic-theft.png)
 
 ![traffic theft concept](Images/traffic-theft-concept.png)
 
