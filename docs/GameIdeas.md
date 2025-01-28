@@ -2,9 +2,9 @@
 
 ## 1. Traffic Theft
 
-![Uploading traffic_theft.JPG…]()
+![traffic theft](Images/traffic-theft.png)
 
-![Uploading traffic_theft_concept.JPG…]()
+![traffic theft concept](Images/traffic-theft-concept.png)
 
 
 
