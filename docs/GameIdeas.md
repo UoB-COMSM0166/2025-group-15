@@ -2,6 +2,10 @@
 
 ## 1. Traffic Theft
 
+![traffic theft concept](Images/traffic-theft.png)
+
+![traffic theft concept](Images/traffic-theft-concept.png)
+
 ### Game Overview
 Traffic Theft is a top-down competitive minigame designed for intense 3-minute matches. Players compete to collect valuables from a building and safely transport them across a busy street to score points.
 
