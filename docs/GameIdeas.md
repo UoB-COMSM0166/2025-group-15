@@ -9,51 +9,7 @@
 
 
 ### Game Overview
-Traffic Theft is a top-down competitive minigame designed for intense 3-minute matches. Players compete to collect valuables from a building and safely transport them across a busy street to score points.
-
-### Core Mechanics
-#### Movement & Collection System
-- Base movement speed is reduced with each item carried
-- Players can carry multiple items simultaneously
-- Strategic decision between carrying more items vs maintaining mobility
-
-#### Scoring System
-- Cash bundles: 1 point each
-- Gold bars: 2 points each
-- Points only count when successfully deposited
-- 3-minute time limit per round
-
-#### Traffic System
-- Dynamically spawning vehicles with varying speeds
-- Multiple lanes of traffic to navigate
-- Progressive difficulty - traffic becomes denser and faster over time
-- Collision with vehicles causes item drop
-
-### Game Environment
-1. **Collection Zone**
-   - Indoor area with checkered floor
-   - Randomly spawning valuables
-   - Multiple entry/exit points
-   - Safe zone from traffic
-
-2. **Traffic Zone**
-   - Multiple lanes of moving vehicles
-   - Variable vehicle sizes and speeds
-   - Dynamic difficulty scaling
-   - No safe spots - constant danger
-
-3. **Deposit Zone**
-   - Secure scoring area
-   - Multiple deposit points
-   - Visual feedback for successful deposits
-   - Safe zone from traffic
-
-### Player Experience Goals
-- Quick, intense rounds
-- Risk vs reward decision making
-- Competitive multiplayer interaction
-- Easy to learn, difficult to master
-- Clear feedback and scoring system
+Traffic Theft is a fast-paced minigame from Pummel Party where players have 3 minutes to collect cash and gold bars from a building, cross a dangerous street with constant traffic, and deposit their loot in a scoring machine on the opposite side. Each cash pile is worth 1 point, and each gold bar is worth 2 points. The game's challenge comes from the movement penalty - the more items you carry, the slower you move, making it harder to dodge traffic. This balance of risk and reward, combined with ever-changing traffic conditions, makes it an engaging game that's easy to learn but rich in strategy.
 
 ## 2. Vector
 
