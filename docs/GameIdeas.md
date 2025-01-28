@@ -57,6 +57,10 @@ Traffic Theft is a top-down competitive minigame designed for intense 3-minute m
 
 ## 2. Vector
 
+![traffic theft](../Images/Vector.png)
+
+![traffic theft concept](../Images/Vector_control.png)
+
 ### Game Overview
 Vector is a side-scrolling parkour action game focused on fluid movement and escape sequences. Players control an employee fleeing from an evil corporation using an innovative three-button control system.
 
