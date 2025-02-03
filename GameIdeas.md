@@ -21,4 +21,4 @@ Vector is a side-scrolling parkour action game where players take on the role of
 ### Our Version  
 Changed from gesture controls to tap controls;Removed special action triggers;Character position can be adjusted relative to the screen;Added left control key.
 
-See the [paper prototype](https://github.com/user-attachments/assets/64bcf28a-b845-450b-a4f7-b60127aef7df)
+See the [paper prototype](https://github.com/user-attachments/assets/0de531af-5797-4578-9241-6d03e68b9135)
