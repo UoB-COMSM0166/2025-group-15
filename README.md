@@ -9,6 +9,11 @@ Your game lives in the [/docs](/docs) folder, and is published using Github page
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 
+## Your Board
+
+Link to your board [PLAY HERE]![image](https://github.com/user-attachments/assets/12be1865-22ef-4177-9b3d-e1afb0778961)
+
+
 ## Your Group
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6600.JPG?raw=true)
