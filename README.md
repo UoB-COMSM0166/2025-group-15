@@ -11,7 +11,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Board
 
-Link to your board [PLAY HERE]![image](https://github.com/user-attachments/assets/12be1865-22ef-4177-9b3d-e1afb0778961)
+Link to your board [PLAY HERE](https://github.com/user-attachments/assets/12be1865-22ef-4177-9b3d-e1afb0778961)
 
 
 ## Your Group
