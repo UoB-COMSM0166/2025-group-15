@@ -25,7 +25,7 @@ Vector is a side-scrolling parkour action game where players take on the role of
 <!-- 待写描述 -->
 
 See the paper prototype below:  
-<!-- 待传视频 
+<!-- 待传视频 （小于10MB）
 <video width=400 controls>
   <source src= type=video/mp4>
 </video>
