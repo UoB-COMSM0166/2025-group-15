@@ -44,17 +44,11 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 ---
 #### User Stories & Acceptance Criteria
 <!-- 【DDL周六晚24点前】使用markdown的unordered list格式，操作方法：键入“-”后空格再写文字 -->
-- **As a** developer, **I want** to break down the game development process into modular components,  **so that** each team member can work independently on different parts of the game.  
-
-- **Given** a structured game development plan, **when** a team member starts working on a specific module,  **then** they should be able to develop, test, and integrate their module without being blocked by dependencies.  
-
-- **As a** developer, **I want** to design background music and various sound effects, **so that** players can experience greater immersion in the game.  
-
-- **Given** a specific game scene or event, **when** background music and sound effects are played, **then** they should match the atmosphere and enhance the player's engagement.  
-
-- **As a** developer, **I want** to implement high-quality artwork and animations, **so that** players can have a visually engaging and enjoyable experience.  
-
-- **Given** a game character, object, or environment,  **when** an animation or visual transition occurs, **then** it should be smooth, cohesive, and consistent with the game's artistic style.
+| User Story | Acceptance Criteria |
+|------------|---------------------|
+| **As a developer**, I want to break down the game development process into modular components, so that each team member can work independently on different parts of the game. | **Given** a structured game development plan, **when** a team member starts working on a specific module, **then** they should be able to develop, test, and integrate their module without being blocked by dependencies. |
+| **As a developer**, I want to design background music and various sound effects, so that players can experience greater immersion in the game. | **Given** a specific game scene or event, **when** background music and sound effects are played, **then** they should match the atmosphere and enhance the player's engagement. |
+| **As a developer**, I want to implement high-quality artwork and animations, so that players can have a visually engaging and enjoyable experience. | **Given** a game character, object, or environment, **when** an animation or visual transition occurs, **then** it should be smooth, cohesive, and consistent with the game's artistic style. |
 
 ---
 ##### Example: Breakdown
