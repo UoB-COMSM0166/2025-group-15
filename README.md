@@ -9,11 +9,6 @@ Your game lives in the [/docs](/docs) folder, and is published using Github page
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 
-## Your Board
-
-Link to your board [PLAY HERE](https://github.com/orgs/UoB-COMSM0166/projects/117)
-
-
 ## Your Group
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6600.JPG?raw=true)
@@ -27,6 +22,9 @@ Link to your board [PLAY HERE](https://github.com/orgs/UoB-COMSM0166/projects/11
 | Ruirui Jia   | bl24729@bristol.ac.uk   | alpenglow1     |
 | Jinlong Xiao | qo242236@bristol.ac.uk  | yusheng2077    |
 
+## Your Board
+
+See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 ## Project Report
 
@@ -39,6 +37,18 @@ Link to your board [PLAY HERE](https://github.com/orgs/UoB-COMSM0166/projects/11
 
 - 15% ~750 words
 - Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop? 
+
+#### Stakeholders
+<!-- 【DDL周六晚24点前】表格 -->
+
+#### User Stories & Acceptance Criteria
+<!-- 【DDL周六晚24点前】使用markdown的unordered list格式，操作方法：键入“-”后空格再写文字 -->
+
+##### Example: Breakdown
+<!-- 【DDL周六晚24点前】选一个user story来拆解成任务 -->
+
+#### Brief Reflection
+<!-- 【DDL周六晚24点前】待填充 -->
 
 ### Design
 
