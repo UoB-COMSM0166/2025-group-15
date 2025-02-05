@@ -85,8 +85,18 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 5. Development Sequence
 
-- Start with implementing the core difficulty system and level progression system as they form the game's foundation. Gradually incorporate feedback system features on top of this base. Finally, conduct comprehensive balance testing once the main game development is complete, making necessary adjustments based on feedback.
 - We could establish a parameter configuration system early in development to facilitate later debugging and balance adjustments.
+
+```mermaid
+flowchart LR
+    B[Core Difficulty System] --> E[Add Feedback System Features]
+    C[Level Progression System] --> E
+    E --> G[Conduct Balance Testing]
+    G --> H{Need Adjustments?}
+    H -->|Yes| I[Make Balance Adjustments]
+    I --> G
+    H -->|No| J[Development Complete]
+```
 
 #### Brief Reflection
 <!-- 【DDL周六晚24点前】待填充 -->
