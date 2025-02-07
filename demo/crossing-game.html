@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>过马路搬运游戏</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<script>
+let player = {
+    x: 700,
+    y: 300,
+    size: 20,
+    speed: 4,
+    lives: 3,
+    score: 0,
+    hasItem: false,
+    currentItem: null
+};
+
+let cars = {
+    lane1: [], // 向下行驶
+    lane2: []  // 向上行驶
+};
+
+let items = [];
+let deliveredItems = [];
+let gameTime = 60;
+let gameOver = false;
+let startTime;
+let keys = {};
+
+const LANE1_X = 300;
+const LANE2_X = 450;
+const MIN_CAR_DISTANCE = 150;
+const DELIVERY_START_Y = 100;
+const DELIVERY_X = 650;
+
+function setup() {
+    createCanvas(800, 600);
+    startTime = millis();
+    generateInitialItems();
+}
+
+function generateInitialItems() {
+    for(let i = 0; i < 5; i++) {
+        items.push({
+            x: random(50, 200),
+            y: 100 + i * 80,
+            value: floor(random(10, 50)),
+            size: 15
+        });
+    }
+}
+
+function canGenerateCar(lane, y, direction) {
+    const carArray = lane === 1 ? cars.lane1 : cars.lane2;
+    
+    // 检查是否有车在生成点附近
+    for (let car of carArray) {
+        if (direction > 0) {
+            // 向下行驶的车道，检查前方和后方的距离
+            const distance = y - car.y;
+            if (Math.abs(distance) < MIN_CAR_DISTANCE) return false;
+            // 防止新车超过前车
+            if (car.y < y && car.speed < carArray[carArray.length - 1]?.speed) return false;
+        } else {
+            // 向上行驶的车道，检查前方和后方的距离
+            const distance = car.y - y;
+            if (Math.abs(distance) < MIN_CAR_DISTANCE) return false;
+            // 防止新车超过前车
+            if (car.y > y && car.speed < carArray[carArray.length - 1]?.speed) return false;
+        }
+    }
+    return true;
+}
+
+function draw() {
+    background(200);
+    
+    // 绘制三个区域
+    fill(150);
+    rect(0, 0, 250, height); // 仓库
+    fill(100);
+    rect(250, 0, 300, height); // 马路
+    fill(150);
+    rect(550, 0, 250, height); // 目标区域
+
+    // 更新游戏时间
+    if (!gameOver) {
+        gameTime = 60 - floor((millis() - startTime) / 1000);
+    }
+    
+    // 生成车辆
+    if (frameCount % 60 === 0 && !gameOver) {
+        if (canGenerateCar(1, -50, 1)) {
+            cars.lane1.push({
+                x: LANE1_X,
+                y: -50,
+                speed: random(3, 7)
+            });
+        }
+        if (canGenerateCar(2, height + 50, -1)) {
+            cars.lane2.push({
+                x: LANE2_X,
+                y: height + 50,
+                speed: random(3, 7)
+            });
+        }
+    }
+    
+    // 绘制和更新车辆
+    for (let i = cars.lane1.length - 1; i >= 0; i--) {
+        let car = cars.lane1[i];
+        car.y += car.speed;
+        
+        fill(255, 0, 0);
+        rect(car.x, car.y, 30, 50);
+        
+        if (!gameOver && dist(player.x, player.y, car.x + 15, car.y + 25) < 30) {
+            handleCollision();
+        }
+        
+        if (car.y > height + 50) {
+            cars.lane1.splice(i, 1);
+        }
+    }
+    
+    for (let i = cars.lane2.length - 1; i >= 0; i--) {
+        let car = cars.lane2[i];
+        car.y -= car.speed;
+        
+        fill(255, 0, 0);
+        rect(car.x, car.y, 30, 50);
+        
+        if (!gameOver && dist(player.x, player.y, car.x + 15, car.y + 25) < 30) {
+            handleCollision();
+        }
+        
+        if (car.y < -100) {
+            cars.lane2.splice(i, 1);
+        }
+    }
+    
+    // 绘制货物
+    for (let item of items) {
+        fill(0, 255, 0);
+        rect(item.x, item.y, item.size, item.size);
+        fill(0);
+        textSize(12);
+        text(item.value, item.x, item.y - 5);
+    }
+    
+    // 绘制已交付的货物
+    for (let i = 0; i < deliveredItems.length; i++) {
+        let item = deliveredItems[i];
+        fill(0, 200, 0);
+        rect(DELIVERY_X, DELIVERY_START_Y + i * 30, 15, 15);
+        fill(0);
+        textSize(12);
+        text(item.value, DELIVERY_X, DELIVERY_START_Y + i * 30 - 5);
+    }
+    
+    // 绘制玩家
+    fill(0, 0, 255);
+    circle(player.x, player.y, player.size);
+    if (player.hasItem) {
+        fill(0, 255, 0);
+        rect(player.x - 5, player.y - 5, 10, 10);
+    }
+    
+    // 检查货物拾取和交付
+    if (!player.hasItem) {
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items[i];
+            if (dist(player.x, player.y, item.x, item.y) < 20) {
+                player.hasItem = true;
+                player.currentItem = item;
+                items.splice(i, 1);
+                break;
+            }
+        }
+    } else if (player.x > 600) {
+        player.score += player.currentItem.value;
+        deliveredItems.push(player.currentItem);
+        player.hasItem = false;
+        player.currentItem = null;
+        
+        // 只在所有货物都被搬运完后生成新的货物
+        if (items.length === 0) {
+            generateInitialItems();
+        }
+    }
+    
+    updatePlayerPosition();
+    
+    // 显示状态信息
+    fill(0);
+    textSize(20);
+    text(`分数: ${player.score}`, 20, 30);
+    text(`生命: ${player.lives}`, 20, 60);
+    text(`时间: ${gameTime}`, 20, 90);
+    
+    // 检查游戏结束
+    if (gameTime <= 0) {
+        gameOver = true;
+    }
+    
+    if (gameOver) {
+        fill(0, 0, 0, 150);
+        rect(0, 0, width, height);
+        fill(255);
+        textSize(32);
+        textAlign(CENTER);
+        text(`游戏结束!\n最终分数: ${player.score}`, width/2, height/2);
+        noLoop();
+    }
+}
+
+function handleCollision() {
+    player.lives--;
+    player.score = max(0, player.score - 20);
+    if (player.hasItem) {
+        items.push({
+            x: player.x,
+            y: player.y,
+            value: player.currentItem.value,
+            size: 15
+        });
+        player.hasItem = false;
+        player.currentItem = null;
+    }
+    player.x = 700;
+    player.y = 300;
+    if (player.lives <= 0) {
+        gameOver = true;
+    }
+}
+
+function keyPressed() {
+    keys[keyCode] = true;
+}
+
+function keyReleased() {
+    keys[keyCode] = false;
+}
+
+function updatePlayerPosition() {
+    if (!gameOver) {
+        if (keys[LEFT_ARROW]) {
+            player.x -= player.speed;
+        }
+        if (keys[RIGHT_ARROW]) {
+            player.x += player.speed;
+        }
+        if (keys[UP_ARROW]) {
+            player.y -= player.speed;
+        }
+        if (keys[DOWN_ARROW]) {
+            player.y += player.speed;
+        }
+        
+        // 确保玩家不会移出屏幕
+        player.x = constrain(player.x, 0, width);
+        player.y = constrain(player.y, 0, height);
+    }
+}
+</script>
+</body>
+</html>
