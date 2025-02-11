@@ -39,7 +39,7 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 - 15% ~750 words
 - Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
-# Stakeholder Analysis
+#### Stakeholder Analysis
 
 We applied the Onion Model to identify and analyze stakeholders involved in our game development:
 
