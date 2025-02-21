@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>过马路搬运游戏</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<script>
+// === 1. 游戏状态常量和配置 ===
+const GAME_STATES = {
+    MENU: 'menu',
+    PLAYING: 'playing',
+    PAUSED: 'paused',
+    LEVEL_COMPLETE: 'levelComplete',
+    GAME_OVER: 'gameOver',
+    LEVEL_SELECT: 'levelSelect',
+    HELP: 'help',
+    AUDIO: 'audio'
+};
+
+// 关卡配置
+// 1. 修改关卡配置
+const LEVEL_CONFIG = {
+    1: {
+        targetScore: 200,
+        speedMultiplier: 1,
+        hasObstacles: false,
+        speeds: {
+            slow: 2,
+            medium: 4,
+            fast: 6
+        },
+        carSpawnRates: {
+            slow: 180,
+            medium: 150,
+            fast: 120
+        }
+    },
+    2: {
+        targetScore: 200,
+        speedMultiplier: 1.2,
+        hasObstacles: false,
+        speeds: {
+            slow: 2.4,
+            medium: 4.8,
+            fast: 7.2
+        },
+        carSpawnRates: {
+            slow: 60,
+            medium: 45,
+            fast: 30
+        }
+    },
+    3: {
+        targetScore: 300,
+        speedMultiplier: 1.2,
+        hasObstacles: true,
+        speeds: {
+            slow: 2.4,
+            medium: 4.8,
+            fast: 7.2
+        },
+        carSpawnRates: {
+            slow: 60,
+            medium: 45,
+            fast: 60  // 增加间隔，降低生成频率
+        }
+    }
+};
+
+// 车道配置
+const LANES = {
+    SLOW: { x: 225, width: 100 },
+    MEDIUM: { x: 325, width: 100 },
+    FAST: { x: 425, width: 100 }
+};
+
+// 暂停菜单按钮
+const pauseButtons = {
+    resume: { x: 300, y: 250, w: 200, h: 40, text: "继续游戏" },
+    restart: { x: 300, y: 300, w: 200, h: 40, text: "重新开始" },
+    menu: { x: 300, y: 350, w: 200, h: 40, text: "返回主菜单" },
+    audio: { x: 300, y: 400, w: 200, h: 40, text: "音效设置" }
+};
+
+// === 2. 游戏状态和对象变量 ===
+let gameState = {
+    currentState: GAME_STATES.MENU,
+    currentLevel: 1,
+    unlockedLevels: 1,
+    isAudioEnabled: true,
+    volume: 0.5
+};
+
+// 玩家对象
+let player = {
+    x: 700,
+    y: 300,
+    size: 20,
+    speed: 4,
+    // 移除 lives: 3,
+    score: 0,
+    hasItem: false,
+    currentItem: null
+};
+
+// 游戏元素
+let cars = {
+    slow: [],
+    medium: [],
+    fast: []
+};
+
+let obstacles = [];
+let items = [];
+let deliveredItems = [];
+let gameTime = 60;
+let startTime;
+let keys = {};
+
+// === 3. 游戏初始化函数 ===
+function setup() {
+    createCanvas(800, 600);
+    loadGameProgress();
+    resetGame();
+}
+
+function loadGameProgress() {
+    const savedProgress = localStorage.getItem('gameProgress');
+    if (savedProgress) {
+        const progress = JSON.parse(savedProgress);
+        gameState.unlockedLevels = progress.unlockedLevels;
+    }
+}
+
+function saveGameProgress() {
+    localStorage.setItem('gameProgress', JSON.stringify({
+        unlockedLevels: gameState.unlockedLevels
+    }));
+}
+
+function resetGame() {
+    player.x = 700;
+    player.y = 300;
+    // 移除 player.lives = 3;
+    player.score = 0;
+    player.hasItem = false;
+    player.currentItem = null;
+    
+    cars = { slow: [], medium: [], fast: [] };
+    items = [];
+    deliveredItems = [];
+    gameTime = 60;
+    startTime = millis();
+    
+    if (gameState.currentLevel === 3) {
+        generateObstacles();
+    }
+    generateInitialItems();
+}
+
+
+function startNewGame(level) {
+    gameState.currentLevel = level;
+    gameState.currentState = GAME_STATES.PLAYING;
+    resetGame();
+}
+
+// 设置虚线样式的辅助函数
+function setLineDash(list) {
+    drawingContext.setLineDash(list);
+}
+
+// === 4. 车辆生成和管理函数 ===
+function generateCars() {
+    const config = LEVEL_CONFIG[gameState.currentLevel];
+    
+    // 为每个车道生成车辆
+    if (frameCount % config.carSpawnRates.slow === 0) {
+        generateCarInLane('slow', LANES.SLOW.x);
+    }
+    if (frameCount % config.carSpawnRates.medium === 0) {
+        generateCarInLane('medium', LANES.MEDIUM.x);
+    }
+    if (frameCount % config.carSpawnRates.fast === 0) {
+        generateCarInLane('fast', LANES.FAST.x);
+    }
+    
+    // 仅第二关和第三关有额外车辆生成几率
+    if (gameState.currentLevel >= 2) {
+        if (frameCount % 15 === 0 && random() < 0.5) {
+            const lane = random(['slow', 'medium', 'fast']);
+            const laneX = lane === 'slow' ? LANES.SLOW.x : 
+                         (lane === 'medium' ? LANES.MEDIUM.x : LANES.FAST.x);
+            generateCarInLane(lane, laneX);
+        }
+    }
+}
+
+function generateCarInLane(laneType, x) {
+    const config = LEVEL_CONFIG[gameState.currentLevel];
+    const speed = config.speeds[laneType];
+    
+    // 确定车辆方向
+    let direction = 1; // 默认向下行驶
+    
+    // 第二关和第三关中间车道反向
+    if ((gameState.currentLevel === 2 || gameState.currentLevel === 3) && laneType === 'medium') {
+        direction = -1; // 向上行驶
+    }
+    
+    // 根据方向设置车辆初始位置
+    const startY = direction === 1 ? -50 : height + 50;
+    
+    // 检查是否可以生成新车
+    const lastCar = cars[laneType][cars[laneType].length - 1];
+    if (lastCar && ((direction === 1 && lastCar.y < 100) || 
+                    (direction === -1 && lastCar.y > height - 100))) {
+        return;
+    }
+    
+    // 生成随机颜色
+    const carColors = [
+        [255, 0, 0],    // 红色
+        [0, 0, 255],    // 蓝色
+        [0, 180, 0],    // 绿色
+        [255, 165, 0],  // 橙色
+        [255, 0, 255],  // 紫色
+        [0, 255, 255],  // 青色
+        [255, 215, 0],  // 金色
+        [139, 69, 19]   // 棕色
+    ];
+    
+    const randomColorIndex = floor(random(carColors.length));
+    
+    cars[laneType].push({
+        x: x + 35, // 居中于车道
+        y: startY,
+        speed: speed,
+        width: 30,
+        height: 50,
+        direction: direction,
+        color: carColors[randomColorIndex]
+    });
+}
+function updateCars() {
+    Object.keys(cars).forEach(laneType => {
+        for (let i = cars[laneType].length - 1; i >= 0; i--) {
+            const car = cars[laneType][i];
+            // 根据方向更新位置
+            car.y += car.speed * car.direction;
+            
+            // 检查碰撞
+            if (checkCollision(car, player)) {
+                handleCollision();
+            }
+            
+            // 移除离开屏幕的车辆
+            if ((car.direction === 1 && car.y > height + 50) || 
+                (car.direction === -1 && car.y < -50)) {
+                cars[laneType].splice(i, 1);
+            }
+        }
+    });
+}
+
+// === 5. 物品系统和管理函数 ===
+function generateInitialItems() {
+    items = [];
+    for (let i = 0; i < 5; i++) {
+        items.push({
+            x: random(50, 150),
+            y: 100 + i * 80,
+            value: floor(random(10, 50)),
+            size: 15
+        });
+    }
+}
+
+function handleItemPickupDrop() {
+    if (!player.hasItem) {
+        // 尝试拾取物品
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items[i];
+            if (dist(player.x, player.y, item.x, item.y) < 30) {
+                player.hasItem = true;
+                player.currentItem = item;
+                items.splice(i, 1);
+                break;
+            }
+        }
+    } else if (player.x > 550) { // 使用更新后的边界
+        // 在目标区域放下物品
+        
+        // 确保积分被正确添加
+        console.log("送达物品，价值: " + player.currentItem.value);
+        player.score += player.currentItem.value;
+        console.log("当前总分: " + player.score);
+        
+        deliveredItems.push(player.currentItem);
+        player.hasItem = false;
+        player.currentItem = null;
+        
+        // 只有所有货物都被搬运完才生成新的货物
+        if (items.length === 0) {
+            generateInitialItems();
+        }
+        
+        // 检查是否达到关卡目标
+        checkLevelComplete();
+    } else {
+        // 在其他位置放下物品
+        dropItem();
+    }
+}
+
+function generateNewItem() {
+    // 生成一个新物品以补充搬运走的物品
+    items.push({
+        x: random(50, 150),
+        y: random(100, height - 100),
+        value: floor(random(10, 50)),
+        size: 15
+    });
+}
+
+function dropItem() {
+    items.push({
+        x: player.x,
+        y: player.y,
+        value: player.currentItem.value,
+        size: 15
+    });
+    player.hasItem = false;
+    player.currentItem = null;
+}
+
+// === 6. 障碍物系统 ===
+function generateObstacles() {
+    obstacles = [];
+    let possiblePositions = [];
+    
+    // 在虚线位置生成障碍物的可能位置
+    for (let y = 100; y < height - 100; y += 50) {
+        possiblePositions.push({ x: 325, y: y }); // 第一条虚线位置
+        possiblePositions.push({ x: 425, y: y }); // 第二条虚线位置
+    }
+    
+    // 随机选择3个不重叠的位置
+    for (let i = 0; i < 3; i++) {
+        if (possiblePositions.length === 0) break;
+        
+        const randomIndex = floor(random(possiblePositions.length));
+        const position = possiblePositions[randomIndex];
+        
+        obstacles.push({
+            x: position.x - 10,  // 障碍物位置微调，居中于虚线
+            y: position.y,
+            width: 20,  // 减小宽度
+            height: 60,  // 可以稍微增加高度
+            stripeCount: 6  // 条纹数量
+        });
+        
+        // 移除已选位置及其附近的位置
+        possiblePositions = possiblePositions.filter(pos => 
+            dist(pos.x, pos.y, position.x, position.y) > 100
+        );
+    }
+    
+    console.log("生成障碍物数量:", obstacles.length);
+}
+
+
+// === 7. 碰撞检测系统 ===
+function checkCollision(objA, objB) {
+    // 简单矩形碰撞检测
+    if (objB.size) {  // 玩家是圆形
+        return (
+            objB.x < objA.x + objA.width &&
+            objB.x + objB.size > objA.x &&
+            objB.y < objA.y + objA.height &&
+            objB.y + objB.size > objA.y
+        );
+    } else {
+        return (
+            objB.x < objA.x + objA.width &&
+            objB.x + objB.width > objA.x &&
+            objB.y < objA.y + objA.height &&
+            objB.y + objB.height > objA.y
+        );
+    }
+}
+
+function handleCollision() {
+    // 移除扣分逻辑
+    // player.score = Math.max(0, player.score - 20);
+    
+    if (player.hasItem) {
+        dropItem();
+    }
+    
+    resetPlayerPosition();
+}
+function resetPlayerPosition() {
+    player.x = 700;
+    player.y = 300;
+}
+
+function checkObstacleCollision() {
+    for (let obstacle of obstacles) {
+        if (
+            player.x < obstacle.x + obstacle.width &&
+            player.x + player.size > obstacle.x &&
+            player.y < obstacle.y + obstacle.height &&
+            player.y + player.size > obstacle.y
+        ) {
+            // 将玩家推回障碍物外
+            if (player.x < obstacle.x) {
+                player.x = obstacle.x - player.size;
+            } else if (player.x > obstacle.x) {
+                player.x = obstacle.x + obstacle.width;
+            }
+        }
+    }
+}
+
+// === 8. 界面绘制函数 ===
+function draw() {
+    switch (gameState.currentState) {
+        case GAME_STATES.MENU:
+            drawMainMenu();
+            break;
+        case GAME_STATES.PLAYING:
+            drawGame();
+            break;
+        case GAME_STATES.PAUSED:
+            drawGame();
+            drawPauseMenu();
+            break;
+        case GAME_STATES.LEVEL_COMPLETE:
+            drawGame();
+            drawLevelComplete();
+            break;
+        case GAME_STATES.GAME_OVER:
+            drawGame();
+            drawGameOver();
+            break;
+        case GAME_STATES.LEVEL_SELECT:
+            drawLevelSelect();
+            break;
+        case GAME_STATES.HELP:
+            drawHelpScreen();
+            break;
+        case GAME_STATES.AUDIO:
+            drawAudioSettings();
+            break;
+    }
+}
+
+function drawMainMenu() {
+    background(200);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    fill(0);
+    text("过马路搬运游戏", width/2, 100);
+    
+    // 绘制主菜单按钮
+    drawButton(width/2 - 100, 200, 200, 50, "开始游戏", true);
+    drawButton(width/2 - 100, 270, 200, 50, "选择关卡", true);
+    drawButton(width/2 - 100, 340, 200, 50, "帮助说明", true);
+}
+
+function drawLevelSelect() {
+    background(200);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    fill(0);
+    text("选择关卡", width/2, 100);
+    
+    for (let i = 1; i <= 3; i++) {
+        const isUnlocked = i <= gameState.unlockedLevels;
+        drawButton(
+            width/2 - 100,
+            150 + i * 70,
+            200,
+            50,
+            `第 ${i} 关${isUnlocked ? '' : ' (未解锁)'}`,
+            isUnlocked
+        );
+    }
+    
+    drawButton(width/2 - 100, 500, 200, 50, "返回主菜单", true);
+}
+
+function drawGame() {
+    background(200);
+    
+    // 绘制区域
+    fill(150);
+    rect(0, 0, 200, height); // 仓库
+    fill(100);
+    rect(200, 0, 350, height); // 马路
+    fill(150);
+    rect(550, 0, 250, height); // 目标区域
+    
+    // 绘制车道分隔线
+    drawLaneLines();
+    
+    // 更新和绘制游戏元素
+    if (gameState.currentState === GAME_STATES.PLAYING) {
+        updateGameElements();
+    }
+    
+    // 绘制玩家和其他元素
+    drawGameElements();
+    
+    // 显示游戏状态
+    drawGameStatus();
+}
+
+// 修改 drawLaneLines() 函数确保分隔线正确
+function drawLaneLines() {
+    stroke(255);
+    setLineDash([10, 10]); // 设置虚线样式
+    line(325, 0, 325, height); // 调整线的位置
+    line(425, 0, 425, height); // 调整线的位置
+    setLineDash([]);  // 重置为实线
+    noStroke();
+}
+
+
+function drawGameStatus() {
+    fill(0);
+    textSize(20);
+    textAlign(LEFT);
+    text(`分数: ${player.score}`, 20, 30);
+    text(`目标: ${LEVEL_CONFIG[gameState.currentLevel].targetScore}`, 20, 60);
+    // 移除 text(`生命: ${player.lives}`, 20, 90);
+    text(`时间: ${gameTime}`, 20, 90); // 调整位置
+    text(`关卡: ${gameState.currentLevel}`, 20, 120); // 调整位置
+}
+
+function updateGameElements() {
+    // 更新游戏时间
+    gameTime = 60 - floor((millis() - startTime) / 1000);
+    
+    // 生成车辆
+    if (frameCount % 60 === 0) {
+        generateCars();
+    }
+    
+    // 更新车辆位置
+    updateCars();
+    
+    // 更新玩家位置
+    updatePlayerPosition();
+    
+    // 检查游戏结束条件
+    checkGameStatus();
+}
+
+// 修改车辆绘制函数，确保车辆朝向与行驶方向一致
+function drawGameElements() {
+    // 绘制障碍物
+    if (gameState.currentLevel === 3) {
+        stroke(0); // 黑色边框
+        strokeWeight(1);
+        
+        obstacles.forEach(obs => {
+            // 绘制红白相间的路障
+            const stripeHeight = obs.height / obs.stripeCount;
+            
+            for (let i = 0; i < obs.stripeCount; i++) {
+                if (i % 2 === 0) {
+                    fill(255, 0, 0); // 红色条纹
+                } else {
+                    fill(255); // 白色条纹
+                }
+                
+                rect(
+                    obs.x, 
+                    obs.y + i * stripeHeight, 
+                    obs.width, 
+                    stripeHeight
+                );
+            }
+        });
+        noStroke(); // 重置，避免影响其他元素
+    }
+    
+    // 绘制车辆 - 使用各自的颜色并修正方向
+    noStroke();
+    Object.values(cars).forEach(lane => {
+        lane.forEach(car => {
+            // 使用车辆自身的颜色
+            fill(car.color[0], car.color[1], car.color[2]);
+            rect(car.x, car.y, car.width, car.height);
+            
+            // 根据车辆行驶方向添加细节
+            if (car.direction === 1) { // 向下行驶
+                // 前车灯（底部）
+                fill(255, 255, 0); // 黄色车灯
+                rect(car.x + 5, car.y + 40, 5, 5);
+                rect(car.x + 20, car.y + 40, 5, 5);
+                
+                // 后车灯（顶部）
+                fill(255, 0, 0); // 红色尾灯
+                rect(car.x + 5, car.y + 5, 5, 5);
+                rect(car.x + 20, car.y + 5, 5, 5);
+                
+                // 挡风玻璃（靠近车头）
+                fill(200, 200, 255);
+                rect(car.x + 5, car.y + 25, 20, 15);
+            } else { // 向上行驶
+                // 前车灯（顶部）
+                fill(255, 255, 0); // 黄色车灯
+                rect(car.x + 5, car.y + 5, 5, 5);
+                rect(car.x + 20, car.y + 5, 5, 5);
+                
+                // 后车灯（底部）
+                fill(255, 0, 0); // 红色尾灯
+                rect(car.x + 5, car.y + 40, 5, 5);
+                rect(car.x + 20, car.y + 40, 5, 5);
+                
+                // 挡风玻璃（靠近车头）
+                fill(200, 200, 255);
+                rect(car.x + 5, car.y + 10, 20, 15);
+            }
+        });
+    });
+    
+    // 绘制物品
+    drawItems();
+    
+    // 绘制玩家
+    drawPlayer();
+}
+
+function drawItems() {
+    // 绘制未搬运的物品
+    for (let item of items) {
+        fill(0, 255, 0);
+        rect(item.x, item.y, item.size, item.size);
+        fill(0);
+        textSize(12);
+        text(item.value, item.x, item.y - 5);
+    }
+    
+    // 绘制已交付的物品
+    for (let i = 0; i < deliveredItems.length; i++) {
+        let item = deliveredItems[i];
+        fill(0, 200, 0);
+        rect(650, 100 + i * 30, 15, 15);
+        fill(0);
+        textSize(12);
+        text(item.value, 650, 100 + i * 30 - 5);
+    }
+}
+
+function drawPlayer() {
+    fill(0, 0, 255);
+    circle(player.x, player.y, player.size);
+    
+    // 如果玩家有物品，绘制物品
+    if (player.hasItem) {
+        fill(0, 255, 0);
+        rect(player.x - 5, player.y - 5, 10, 10);
+    }
+}
+
+function drawPauseMenu() {
+    // 半透明背景
+    fill(0, 0, 0, 150);
+    rect(0, 0, width, height);
+    
+    // 暂停菜单窗口
+    fill(255);
+    rect(250, 200, 300, 300);
+    
+    textAlign(CENTER);
+    textSize(24);
+    fill(0);
+    text("游戏暂停", width/2, 230);
+    
+    // 绘制按钮
+    Object.values(pauseButtons).forEach(button => {
+        fill(200);
+        rect(button.x, button.y, button.w, button.h);
+        fill(0);
+        textSize(20);
+        text(button.text, button.x + button.w/2, button.y + button.h/2);
+    });
+}
+
+function drawLevelComplete() {
+    // 半透明背景
+    fill(0, 0, 0, 150);
+    rect(0, 0, width, height);
+    
+    // 显示对话框
+    fill(255);
+    rect(200, 150, 400, 300);
+    
+    textAlign(CENTER, CENTER);
+    fill(0);
+    textSize(24);
+    text("关卡完成！", width/2, 200);
+    text(`得分: ${player.score}`, width/2, 250);
+    
+    // 显示选项按钮
+    drawButton(250, 300, 300, 40, 
+        gameState.currentLevel < 3 ? "进入下一关" : "恭喜通关！", 
+        gameState.currentLevel < 3);
+    drawButton(250, 350, 300, 40, "重玩本关", true);
+    drawButton(250, 400, 300, 40, "返回主菜单", true);
+}
+
+function drawGameOver() {
+    // 半透明背景
+    fill(0, 0, 0, 150);
+    rect(0, 0, width, height);
+    
+    // 显示对话框
+    fill(255);
+    rect(200, 150, 400, 300);
+    
+    textAlign(CENTER, CENTER);
+    fill(0);
+    textSize(24);
+    text("游戏结束", width/2, 200);
+    text(`最终得分: ${player.score}`, width/2, 250);
+    text(`目标分数: ${LEVEL_CONFIG[gameState.currentLevel].targetScore}`, width/2, 280);
+    
+    drawButton(250, 350, 300, 40, "再试一次", true);
+    drawButton(250, 400, 300, 40, "返回主菜单", true);
+}
+
+function drawHelpScreen() {
+    background(200);
+    textAlign(LEFT);
+    textSize(20);
+    fill(0);
+    
+    let y = 100;
+    text("游戏说明：", 50, y);
+    y += 40;
+    text("- 使用方向键控制角色移动", 50, y);
+    y += 30;
+    text("- 空格键拾取/放下物品", 50, y);
+    y += 30;
+    text("- ESC键暂停游戏", 50, y);
+    y += 30;
+    text("- 避开车辆，将物品从左边运送到右边", 50, y);
+    y += 30;
+    text("- 被车撞到会回到起始位置", 50, y); // 修改了描述
+    y += 30;
+    text("- 达到目标分数即可通关", 50, y);
+    
+    drawButton(300, 500, 200, 40, "返回主菜单", true);
+}
+
+function drawAudioSettings() {
+    background(200);
+    textAlign(CENTER);
+    textSize(24);
+    fill(0);
+    text("音效设置", width/2, 100);
+    
+    text("音量: " + floor(gameState.volume * 100) + "%", width/2, 200);
+    
+    // 音量滑块
+    fill(150);
+    rect(250, 250, 300, 20);
+    fill(0, 0, 255);
+    rect(250, 250, 300 * gameState.volume, 20);
+    
+    // 音效开关
+    text("音效:", 300, 350);
+    fill(gameState.isAudioEnabled ? 0 : 255, 0, gameState.isAudioEnabled ? 255 : 0);
+    rect(400, 330, 100, 30);
+    fill(255);
+    text(gameState.isAudioEnabled ? "开启" : "关闭", 450, 350);
+    
+    drawButton(300, 500, 200, 40, "返回", true);
+}
+
+function drawButton(x, y, w, h, label, isActive) {
+    fill(isActive ? 255 : 150);
+    stroke(0);
+    rect(x, y, w, h);
+    fill(isActive ? 0 : 100);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text(label, x + w/2, y + h/2);
+}
+
+// === 9. 游戏流程控制函数 ===
+function checkGameStatus() {
+    // 检查时间是否结束
+    if (gameTime <= 0) {
+        gameState.currentState = GAME_STATES.GAME_OVER;
+        return;
+    }
+    
+    // 检查是否达到关卡目标
+    checkLevelComplete();
+}
+
+function checkLevelComplete() {
+    const config = LEVEL_CONFIG[gameState.currentLevel];
+    if (player.score >= config.targetScore) {
+        gameState.currentState = GAME_STATES.LEVEL_COMPLETE;
+        if (gameState.currentLevel === gameState.unlockedLevels) {
+            gameState.unlockedLevels = Math.min(3, gameState.unlockedLevels + 1);
+            saveGameProgress();
+        }
+    }
+}
+
+// === 10. 事件处理函数 ===
+function mouseClicked() {
+    switch (gameState.currentState) {
+        case GAME_STATES.MENU:
+            handleMainMenuClicks();
+            break;
+        case GAME_STATES.LEVEL_SELECT:
+            handleLevelSelectClicks();
+            break;
+        case GAME_STATES.PAUSED:
+            handlePauseMenuClicks();
+            break;
+        case GAME_STATES.LEVEL_COMPLETE:
+            handleLevelCompleteClicks();
+            break;
+        case GAME_STATES.GAME_OVER:
+            handleGameOverClicks();
+            break;
+        case GAME_STATES.HELP:
+            handleHelpScreenClicks();
+            break;
+        case GAME_STATES.AUDIO:
+            handleAudioSettingsClicks();
+            break;
+    }
+}
+
+function handleMainMenuClicks() {
+    if (isButtonClicked(width/2 - 100, 200, 200, 50)) {
+        startNewGame(1);
+    } else if (isButtonClicked(width/2 - 100, 270, 200, 50)) {
+        gameState.currentState = GAME_STATES.LEVEL_SELECT;
+    } else if (isButtonClicked(width/2 - 100, 340, 200, 50)) {
+        gameState.currentState = GAME_STATES.HELP;
+    }
+}
+
+function handleLevelSelectClicks() {
+    for (let i = 1; i <= 3; i++) {
+        if (i <= gameState.unlockedLevels && 
+            isButtonClicked(width/2 - 100, 150 + i * 70, 200, 50)) {
+            startNewGame(i);
+            return;
+        }
+    }
+    
+    if (isButtonClicked(width/2 - 100, 500, 200, 50)) {
+        gameState.currentState = GAME_STATES.MENU;
+    }
+}
+
+function handlePauseMenuClicks() {
+    if (isButtonClicked(pauseButtons.resume.x, pauseButtons.resume.y, pauseButtons.resume.w, pauseButtons.resume.h)) {
+        gameState.currentState = GAME_STATES.PLAYING;
+    } else if (isButtonClicked(pauseButtons.restart.x, pauseButtons.restart.y, pauseButtons.restart.w, pauseButtons.restart.h)) {
+        startNewGame(gameState.currentLevel);
+    } else if (isButtonClicked(pauseButtons.menu.x, pauseButtons.menu.y, pauseButtons.menu.w, pauseButtons.menu.h)) {
+        gameState.currentState = GAME_STATES.MENU;
+    } else if (isButtonClicked(pauseButtons.audio.x, pauseButtons.audio.y, pauseButtons.audio.w, pauseButtons.audio.h)) {
+        gameState.currentState = GAME_STATES.AUDIO;
+    }
+}
+
+function handleLevelCompleteClicks() {
+    if (gameState.currentLevel < 3 && isButtonClicked(250, 300, 300, 40)) {
+        startNewGame(gameState.currentLevel + 1);
+    } else if (isButtonClicked(250, 350, 300, 40)) {
+        startNewGame(gameState.currentLevel);
+    } else if (isButtonClicked(250, 400, 300, 40)) {
+        gameState.currentState = GAME_STATES.MENU;
+    }
+}
+
+function handleGameOverClicks() {
+    if (isButtonClicked(250, 350, 300, 40)) {
+        startNewGame(gameState.currentLevel);
+    } else if (isButtonClicked(250, 400, 300, 40)) {
+        gameState.currentState = GAME_STATES.MENU;
+    }
+}
+
+function handleHelpScreenClicks() {
+    if (isButtonClicked(300, 500, 200, 40)) {
+        gameState.currentState = GAME_STATES.MENU;
+    }
+}
+
+function handleAudioSettingsClicks() {
+    // 音量滑块点击
+    if (mouseY >= 250 && mouseY <= 270 && mouseX >= 250 && mouseX <= 550) {
+        gameState.volume = constrain((mouseX - 250) / 300, 0, 1);
+    }
+    
+    // 音效开关点击
+    if (mouseX >= 400 && mouseX <= 500 && mouseY >= 330 && mouseY <= 360) {
+        gameState.isAudioEnabled = !gameState.isAudioEnabled;
+    }
+    
+    // 返回按钮
+    if (isButtonClicked(300, 500, 200, 40)) {
+        gameState.currentState = GAME_STATES.PAUSED;
+    }
+}
+
+function keyPressed() {
+    keys[keyCode] = true;
+    
+    if (keyCode === ESCAPE && 
+        (gameState.currentState === GAME_STATES.PLAYING || 
+         gameState.currentState === GAME_STATES.PAUSED)) {
+        gameState.currentState = gameState.currentState === GAME_STATES.PLAYING ? 
+            GAME_STATES.PAUSED : GAME_STATES.PLAYING;
+    }
+    
+    if (keyCode === 32 && gameState.currentState === GAME_STATES.PLAYING) {
+        handleItemPickupDrop();
+    }
+}
+
+function keyReleased() {
+    keys[keyCode] = false;
+}
+
+// === 11. 辅助函数 ===
+function isButtonClicked(x, y, w, h) {
+    return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h;
+}
+
+function updatePlayerPosition() {
+    if (keys[LEFT_ARROW]) {
+        player.x = Math.max(0, player.x - player.speed);
+    }
+    if (keys[RIGHT_ARROW]) {
+        player.x = Math.min(width - player.size, player.x + player.speed);
+    }
+    if (keys[UP_ARROW]) {
+        player.y = Math.max(0, player.y - player.speed);
+    }
+    if (keys[DOWN_ARROW]) {
+        player.y = Math.min(height - player.size, player.y + player.speed);
+    }
+    
+    // 检查与障碍物的碰撞
+    if (gameState.currentLevel === 3) {
+        checkObstacleCollision();
+    }
+}
+</script>
+</body>
+</html>
