@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>过马路搬运游戏</title>
+    <title>过马路搬运游戏 - 测试版</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
@@ -31,8 +31,16 @@ const GAME_STATES = {
     AUDIO: 'audio'
 };
 
+// === 添加测试模式常量 ===
+const GAME_MODE = {
+    NORMAL: 'normal',
+    TESTING: 'testing'
+};
+
+// 设置当前游戏模式为测试模式
+let currentGameMode = GAME_MODE.TESTING; // 改成 NORMAL 可以切换回正常模式
+
 // 关卡配置
-// 1. 修改关卡配置
 const LEVEL_CONFIG = {
     1: {
         targetScore: 200,
@@ -76,7 +84,7 @@ const LEVEL_CONFIG = {
         carSpawnRates: {
             slow: 60,
             medium: 45,
-            fast: 60  // 增加间隔，降低生成频率
+            fast: 60
         }
     }
 };
@@ -100,7 +108,7 @@ const pauseButtons = {
 let gameState = {
     currentState: GAME_STATES.MENU,
     currentLevel: 1,
-    unlockedLevels: 1,
+    unlockedLevels: currentGameMode === GAME_MODE.TESTING ? 3 : 1, // 测试模式下解锁所有关卡
     isAudioEnabled: true,
     volume: 0.5
 };
@@ -111,7 +119,6 @@ let player = {
     y: 300,
     size: 20,
     speed: 4,
-    // 移除 lives: 3,
     score: 0,
     hasItem: false,
     currentItem: null
@@ -127,7 +134,7 @@ let cars = {
 let obstacles = [];
 let items = [];
 let deliveredItems = [];
-let gameTime = 60;
+let gameTime = currentGameMode === GAME_MODE.TESTING ? 10000 : 60;
 let startTime;
 let keys = {};
 
@@ -142,7 +149,7 @@ function loadGameProgress() {
     const savedProgress = localStorage.getItem('gameProgress');
     if (savedProgress) {
         const progress = JSON.parse(savedProgress);
-        gameState.unlockedLevels = progress.unlockedLevels;
+        gameState.unlockedLevels = currentGameMode === GAME_MODE.TESTING ? 3 : progress.unlockedLevels;
     }
 }
 
@@ -155,7 +162,6 @@ function saveGameProgress() {
 function resetGame() {
     player.x = 700;
     player.y = 300;
-    // 移除 player.lives = 3;
     player.score = 0;
     player.hasItem = false;
     player.currentItem = null;
@@ -163,7 +169,10 @@ function resetGame() {
     cars = { slow: [], medium: [], fast: [] };
     items = [];
     deliveredItems = [];
-    gameTime = 60;
+    
+    // 根据模式设置游戏时间
+    gameTime = currentGameMode === GAME_MODE.TESTING ? 10000 : 60;
+    
     startTime = millis();
     
     if (gameState.currentLevel === 3) {
@@ -171,7 +180,6 @@ function resetGame() {
     }
     generateInitialItems();
 }
-
 
 function startNewGame(level) {
     gameState.currentLevel = level;
@@ -256,6 +264,7 @@ function generateCarInLane(laneType, x) {
         color: carColors[randomColorIndex]
     });
 }
+
 function updateCars() {
     Object.keys(cars).forEach(laneType => {
         for (let i = cars[laneType].length - 1; i >= 0; i--) {
@@ -383,7 +392,6 @@ function generateObstacles() {
     console.log("生成障碍物数量:", obstacles.length);
 }
 
-
 // === 7. 碰撞检测系统 ===
 function checkCollision(objA, objB) {
     // 简单矩形碰撞检测
@@ -405,15 +413,13 @@ function checkCollision(objA, objB) {
 }
 
 function handleCollision() {
-    // 移除扣分逻辑
-    // player.score = Math.max(0, player.score - 20);
-    
     if (player.hasItem) {
         dropItem();
     }
     
     resetPlayerPosition();
 }
+
 function resetPlayerPosition() {
     player.x = 700;
     player.y = 300;
@@ -477,6 +483,13 @@ function drawMainMenu() {
     fill(0);
     text("过马路搬运游戏", width/2, 100);
     
+    // 测试模式标识
+    if (currentGameMode === GAME_MODE.TESTING) {
+        textSize(18);
+        fill(0, 128, 0); // 绿色
+        text("测试模式已启用：无限时间 | 所有关卡解锁", width/2, 140);
+    }
+    
     // 绘制主菜单按钮
     drawButton(width/2 - 100, 200, 200, 50, "开始游戏", true);
     drawButton(width/2 - 100, 270, 200, 50, "选择关卡", true);
@@ -490,8 +503,16 @@ function drawLevelSelect() {
     fill(0);
     text("选择关卡", width/2, 100);
     
+    // 在测试模式下显示所有关卡都已解锁
+    if (currentGameMode === GAME_MODE.TESTING) {
+        textSize(20);
+        fill(0, 128, 0); // 绿色
+        text("测试模式：所有关卡已解锁", width/2, 140);
+    }
+    
     for (let i = 1; i <= 3; i++) {
-        const isUnlocked = i <= gameState.unlockedLevels;
+        // 测试模式下所有关卡都可以选择
+        const isUnlocked = currentGameMode === GAME_MODE.TESTING ? true : i <= gameState.unlockedLevels;
         drawButton(
             width/2 - 100,
             150 + i * 70,
@@ -531,7 +552,6 @@ function drawGame() {
     drawGameStatus();
 }
 
-// 修改 drawLaneLines() 函数确保分隔线正确
 function drawLaneLines() {
     stroke(255);
     setLineDash([10, 10]); // 设置虚线样式
@@ -541,21 +561,27 @@ function drawLaneLines() {
     noStroke();
 }
 
-
 function drawGameStatus() {
     fill(0);
     textSize(20);
     textAlign(LEFT);
     text(`分数: ${player.score}`, 20, 30);
     text(`目标: ${LEVEL_CONFIG[gameState.currentLevel].targetScore}`, 20, 60);
-    // 移除 text(`生命: ${player.lives}`, 20, 90);
-    text(`时间: ${gameTime}`, 20, 90); // 调整位置
-    text(`关卡: ${gameState.currentLevel}`, 20, 120); // 调整位置
+    
+    // 显示游戏模式
+    if (currentGameMode === GAME_MODE.TESTING) {
+        fill(0, 128, 0); // 绿色
+        text(`测试模式`, 20, 90);
+        fill(0);
+    }
+    
+    text(`时间: ${gameTime}`, 20, 120);
+    text(`关卡: ${gameState.currentLevel}`, 20, 150);
 }
 
 function updateGameElements() {
     // 更新游戏时间
-    gameTime = 60 - floor((millis() - startTime) / 1000);
+    gameTime = currentGameMode === GAME_MODE.TESTING ? 10000 : 60 - floor((millis() - startTime) / 1000);
     
     // 生成车辆
     if (frameCount % 60 === 0) {
@@ -572,7 +598,6 @@ function updateGameElements() {
     checkGameStatus();
 }
 
-// 修改车辆绘制函数，确保车辆朝向与行驶方向一致
 function drawGameElements() {
     // 绘制障碍物
     if (gameState.currentLevel === 3) {
@@ -769,6 +794,17 @@ function drawHelpScreen() {
     y += 30;
     text("- 达到目标分数即可通关", 50, y);
     
+    // 测试模式标识
+    if (currentGameMode === GAME_MODE.TESTING) {
+        y += 40;
+        fill(0, 128, 0); // 绿色
+        text("测试模式特性：", 50, y);
+        y += 30;
+        text("- 游戏时间：10000秒", 50, y);
+        y += 30;
+        text("- 所有关卡已解锁", 50, y);
+    }
+    
     drawButton(300, 500, 200, 40, "返回主菜单", true);
 }
 
@@ -824,7 +860,7 @@ function checkLevelComplete() {
     const config = LEVEL_CONFIG[gameState.currentLevel];
     if (player.score >= config.targetScore) {
         gameState.currentState = GAME_STATES.LEVEL_COMPLETE;
-        if (gameState.currentLevel === gameState.unlockedLevels) {
+        if (gameState.currentLevel === gameState.unlockedLevels && currentGameMode !== GAME_MODE.TESTING) {
             gameState.unlockedLevels = Math.min(3, gameState.unlockedLevels + 1);
             saveGameProgress();
         }
@@ -870,7 +906,8 @@ function handleMainMenuClicks() {
 
 function handleLevelSelectClicks() {
     for (let i = 1; i <= 3; i++) {
-        if (i <= gameState.unlockedLevels && 
+        // 测试模式下可以选择任何关卡
+        if ((currentGameMode === GAME_MODE.TESTING || i <= gameState.unlockedLevels) && 
             isButtonClicked(width/2 - 100, 150 + i * 70, 200, 50)) {
             startNewGame(i);
             return;
