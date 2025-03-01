@@ -130,11 +130,107 @@ The iterative process of defining requirements taught us the importance of clear
 
 - 15% ~750 words
 - System architecture. Class diagrams, behavioural diagrams.
-### Class Diagram
+#### Class Diagram
+
+Main Classes and Their Functions:
+
+1. Game: The core class of the game, managing the game state, current level, selected character, game progress, and various systems (such as CarSystem, ItemSystem, ObstacleSystem). It provides methods to handle game logic and draw the game.
+
+2. CarSystem: Manages the cars in the game. It generates, updates, and draws the cars, and also handles collision detection with the cars.
+
+3. ItemSystem: Manages the items in the game, generating, updating, and drawing the items, and handling item pickup and drop.
+
+4. ObstacleSystem: Manages the obstacles in the game, responsible for generating obstacles, updating them, checking for collisions, and drawing them.
+
+5. UiManager: Handles the user interface, including the main menu, character selection, pause menu, etc. It manages interactions with buttons and menus.
+
+6. Player: The player class, representing the player's state in the game, including position, speed, score, and the items they carry. It is responsible for updating the player state and interacting with items.
+
+7. Car: Represents a car in the game, with basic properties such as position, speed, direction, etc. It provides methods for updating and drawing the car.
+
+8. Item: Represents an item in the game, with properties like position, value, and size. It is responsible for drawing the item and displaying interaction states.
+
+9. Obstacle: Represents an obstacle in the game, with properties like position, size, etc., and provides a method to draw the obstacle.
+
+10. CollisionDetector: Responsible for detecting collisions in the game, including player-to-obstacle, player-to-item, and player-to-car collisions.
+
+11. Button: Represents a button in the UI, with properties like position, size, and label. It provides methods for drawing and checking if the button has been clicked.
+
+12. AssetManager: Manages the game's resources, such as images and sounds.
+
+13. GameStorage: Manages game progress saving and loading.
+
+14. Settings: Manages game settings, such as whether audio is enabled and the volume level.
+
+15. GameStates: A class representing different game states, such as Menu, Character Select, Playing, Paused, Level Complete, Game Over, Level Select, Help, and Audio.
+
+16. Lanes: Represents the lanes in the game, defining different lane speeds (such as Slow, Medium, Fast).
+
+17. PauseButtons: Buttons in the pause menu, providing functions like resume, restart, return to the main menu, and toggle audio.
+
+18. GameMode: Defines the game's modes, such as Normal and Testing mode.
+
+19. LevelConfig: Game level configuration, defining settings for different levels (such as levels 1, 2, 3).
+
+Relationships Between Classes:
+
+- Game is the central class and connects to several subsystems: CarSystem, ItemSystem, ObstacleSystem, UiManager, and GameStorage. It controls game states (GameStates), modes (GameMode), and levels (LevelConfig).
+  
+- CarSystem, ItemSystem, and ObstacleSystem are associated with their respective entities (Car, Item, Obstacle) and all depend on CollisionDetector for collision detection.
+
+- UiManager manages the game's user interface elements (such as Button), and interacts with the game state, mode (GameStates, GameMode), and player (Player).
+
+- GameStorage is tightly coupled with GameMode to provide game saving and loading functionality.
+
+- AssetManager manages game resources and connects to the main game (main) and GameMode.
+
 ![classDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true)
 
-### Sequence Diagram
+#### Sequence Diagram
+
+This sequence diagram represents the game flow and interactions between different components of the game. It covers the major events from game startup, level selection, gameplay mechanics, game over conditions, and additional features like help, pause, and cheating mode.
+
+Key Components & Flow:
+
+1. Game Startup
+
+	•	The player opens the game, which initializes the menu (MenuPage).  
+	•	UiManager sets up the UI and displays buttons such as "Start Game", "Select Level", "Help", and "Cheating Mode".
+
+2. Starting a Game
+
+	•	When the player clicks "Start Game", they are navigated to the CharacterSelectPage to choose a character.  
+	•	After selection, the game starts by creating a new game instance in GamePage and initializing the level.
+
+3. In-Game Interactions
+
+	•	The game listens for player input (move(direction)).  
+	•	Collision detection is performed against obstacles and cars:  
+	 - If a collision occurs, the game triggers a "Game Over" state and returns to the menu.  
+	 - If no collision occurs, the game updates the score and checks for level completion.  
+	 - If the player completes the level, they advance to the next level.  
+
+4. Level Selection
+
+	•	Players can also choose "Select Level" from the main menu.  
+	•	This leads to LevelSelectPage, where the player picks a level before selecting a character.  
+	•	The game then starts at the selected level.  
+
+5. Game Help
+
+	•	If the player selects "Help", they are taken to the HelpPage to read instructions.  
+	•	After viewing, they return to the main menu.  
+
+6. Pause Menu
+
+	•	Pressing the "Esc" key opens the PauseMenu, allowing the player to resume the game.
+
+7. Cheating Mode
+
+	•	If the player activates "Cheating Mode", UiManager enables cheats in GamePage, displaying a message confirming activation.
+
 ![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
+
 ### Implementation
 
 - 15% ~750 words
