@@ -130,7 +130,11 @@ The iterative process of defining requirements taught us the importance of clear
 
 - 15% ~750 words
 - System architecture. Class diagrams, behavioural diagrams.
+### Class Diagram
+![classDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true)
 
+### Sequence Diagram
+![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
 ### Implementation
 
 - 15% ~750 words
