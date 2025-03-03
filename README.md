@@ -310,7 +310,7 @@ Communication was our foundation from the start. We established clear response e
 
 In our project, we use a Kanban Board as our project management methodology due to its key advantages:
 
-1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Backlog, In Progress, Review, Done), allowing team members to understand project status at a glance.
+1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Todo, lagging behind, In Progress, Done), allowing team members to understand project status at a glance.
 
 2.**Work-in-Progress Limits:** Our Kanban implementation includes WIP limits for each column, preventing bottlenecks and ensuring steady workflow throughout the project lifecycle.
 
