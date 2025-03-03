@@ -302,9 +302,37 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
 
 ### Process
 
-- 15% ~750 words
+Our team's collaborative journey throughout this project combined structured face-to-face interaction with efficient digital coordination. We prioritized in-person engagement through bi-weekly team discussions while maintaining digital tools to track progress between meetings. This balanced approach leveraged the benefits of direct communication while ensuring consistent documentation and task management.
 
-- Teamwork. How did you work together, what tools did you use. Did you have team roles? Reflection on how you worked together.
+Communication was our foundation from the start. We established clear response expectations across different channels—committing to 24-hour maximum response times for important matters while allowing focus time for deep work. For conflict resolution, we developed a structured approach of documenting perspectives, evaluating options against project objectives, and making decisions through consensus where possible, with a voting system for more complex issues.
+
+#### Kanban Board
+
+In our project, we use a Kanban Board as our project management methodology due to its key advantages:
+
+1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Backlog, In Progress, Review, Done), allowing team members to understand project status at a glance.
+2.**Work-in-Progress Limits:** Our Kanban implementation includes WIP limits for each column, preventing bottlenecks and ensuring steady workflow throughout the project lifecycle.
+3.**Flexible Prioritization:** Kanban allows us to reprioritize tasks without disrupting the entire workflow, making it adaptable to changing project requirements.
+Additionally, our Kanban board integrates task assignments, deadlines, and priority indicators for each card, providing comprehensive information for team coordination. Overall, Kanban's visual approach and flexibility make it an ideal choice for our project management.
+（Figure Kanban Board Implementation）
+
+
+#### Bi-Weekly Team Discussions
+
+We conduct face-to-face team meetings twice a week to facilitate collaboration and project coordination due to several benefits:
+
+1.**Enhanced Communication:** In-person discussions allow for immediate feedback, nuanced conversation, and non-verbal cues that improve understanding among team members.
+2.**Structured Problem-Solving:** Our bi-weekly sessions follow a consistent format with designated time for progress updates, blockers discussion, and collaborative solution development.
+3.**Team Cohesion:** Regular face-to-face interaction strengthens team relationships and builds trust, leading to more effective collaboration throughout the project.
+Additionally, these discussions are documented with meeting minutes shared in our common repository, ensuring that decisions and action items are tracked systematically. Overall, our twice-weekly in-person meetings serve as critical touchpoints for alignment and momentum in our project execution.
+
+#### Reflection on Our Collaborative Experience
+
+Our collaboration revealed several key insights:
+Our diverse backgrounds provided rich problem-solving perspectives, while transparent communication built trust among team members. Our adaptive planning helped navigate unexpected challenges effectively.
+Initially, time zone differences complicated synchronous communication for team members studying abroad. We addressed this by recording meetings and implementing asynchronous decision-making when appropriate. Cultural differences occasionally led to misunderstandings about expectations, which we resolved through explicit conversations about working styles.
+As the project progressed, we improved in documenting decisions and their rationales, creating valuable context for future reference. We became more efficient at determining when to work individually versus collaboratively, optimizing our collective productivity.
+This collaborative experience strengthened both our project outcomes and individual capabilities. The attention we paid to establishing clear processes, utilizing appropriate tools, and maintaining open communication created a foundation for effective teamwork. The skills developed extend beyond the project itself, providing valuable professional competencies for our future endeavors.
 
 ### Conclusion
 
