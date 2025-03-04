@@ -35,19 +35,12 @@ export class CollisionDetector {
 static handleObstacleCollisions(player, obstacles) {
   for (const obstacle of obstacles) {
     if (this.checkPlayerRectCollision(player, obstacle)) {
-      // Handle left-right collision (already implemented)
-      if (player.x + player.width / 2 < obstacle.x + obstacle.width / 2) {
-        player.x = obstacle.x - player.width; // Push player to the left of the obstacle
-      } else if (player.x > obstacle.x + obstacle.width) {
-        player.x = obstacle.x + obstacle.width; // Push player to the right of the obstacle
-      }
-
-      // Handle top-bottom collision
-      if (player.y + player.height / 2 < obstacle.y + obstacle.height / 2) {
-        player.y = obstacle.y - player.height; // Push player to the top of the obstacle
-      } else if (player.y > obstacle.y + obstacle.height) {
-        player.y = obstacle.y + obstacle.height; // Push player to the bottom of the obstacle
-      }
+        // Handle left-right collision (already implemented)
+        if (player.x < obstacle.x ) {
+          player.x = obstacle.x - player.width; // Push player to the left of the obstacle
+        } else if (player.x > obstacle.x) {
+          player.x = obstacle.x + obstacle.width; // Push player to the right of the obstacle
+        }
 
       return true;
     }
