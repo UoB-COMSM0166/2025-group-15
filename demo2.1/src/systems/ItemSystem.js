@@ -16,8 +16,11 @@ export class ItemSystem {
 
   generateInitialItems() {
     this.items = [];
+    // Generate items in warehouse area (left side)
+    const warehouseWidth = width * 0.3;
+    
     for (let i = 0; i < 5; i++) {
-      this.items.push(new Item(random(50, 150), 100 + i * 80));
+      this.items.push(new Item(random(50, warehouseWidth - 50), 100 + i * 80));
     }
   }
 

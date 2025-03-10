@@ -10,9 +10,14 @@ export const LevelConfig = {
             fast: 6
         },
         carSpawnRates: {
-            slow: 180,
-            medium: 150,
-            fast: 120
+            slow: 20, // Further reduced spawn rates
+            medium: 18,
+            fast: 15
+        },
+        reverseLanes: {
+            slow: true, // Make the slow lane reversed in level 1
+            medium: false,
+            fast: false
         }
     },
     2: {
@@ -25,9 +30,14 @@ export const LevelConfig = {
             fast: 7.2
         },
         carSpawnRates: {
-            slow: 60,
-            medium: 45,
-            fast: 30
+            slow: 18, // Further reduced spawn rates
+            medium: 15,
+            fast: 12
+        },
+        reverseLanes: {
+            slow: false,
+            medium: true, // Keep the medium lane reversed in level 2
+            fast: false
         }
     },
     3: {
@@ -40,9 +50,14 @@ export const LevelConfig = {
             fast: 7.2
         },
         carSpawnRates: {
-            slow: 60,
-            medium: 45,
-            fast: 60
+            slow: 15, // Further reduced spawn rates
+            medium: 12,
+            fast: 10
+        },
+        reverseLanes: {
+            slow: false,
+            medium: true, // Keep the medium lane reversed in level 3
+            fast: false
         }
     }
 };

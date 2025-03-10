@@ -3,8 +3,9 @@ export class Car {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.width = 30;
-        this.height = 50;
+        // Increase car size - make them 50% larger
+        this.width = 45;  // Increased from 30
+        this.height = 75; // Increased from 50
         this.direction = direction || 1; // 1 = down, -1 = up
         this.carType = floor(random(7)); // random car type
     }
@@ -39,7 +40,7 @@ export class Car {
             push(); // start new coordinate system
             translate(this.x + this.width / 2, this.y + this.height / 2);
             rotate(PI); // rotate 180 degrees
-            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // 向上行驶
+            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // up direction
             pop(); // restore coordinate system
         }
     }

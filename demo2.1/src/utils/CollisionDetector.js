@@ -16,7 +16,9 @@ export class CollisionDetector {
 
   // Check if player is in delivery zone
   static isInDeliveryZone(player) {
-    return player.x > 550;
+    // Use proportional calculation based on canvas size
+    const deliveryStart = width * 0.7; // Start of delivery zone (right side)
+    return player.x > deliveryStart;
   }
 
   // Check for collision between player and all cars
@@ -31,10 +33,10 @@ export class CollisionDetector {
     return false;
   }
 
-// Check for collision between player and obstacles
-static handleObstacleCollisions(player, obstacles) {
-  for (const obstacle of obstacles) {
-    if (this.checkPlayerRectCollision(player, obstacle)) {
+  // Check for collision between player and obstacles
+  static handleObstacleCollisions(player, obstacles) {
+    for (const obstacle of obstacles) {
+      if (this.checkPlayerRectCollision(player, obstacle)) {
         // Handle left-right collision (already implemented)
         if (player.x < obstacle.x ) {
           player.x = obstacle.x - player.width; // Push player to the left of the obstacle
@@ -42,9 +44,9 @@ static handleObstacleCollisions(player, obstacles) {
           player.x = obstacle.x + obstacle.width; // Push player to the right of the obstacle
         }
 
-      return true;
+        return true;
+      }
     }
+    return false;
   }
-  return false;
-}
 }

@@ -3,10 +3,11 @@ import { CarSystem } from "../systems/CarSystem.js";
 import { ItemSystem } from "../systems/ItemSystem.js";
 import { ObstacleSystem } from "../systems/ObstacleSystem.js";
 import { UiManager } from "../ui/UiManager.js";
-import { GameStates } from "../config/Constants.js";
+import { GameStates, getLaneConfiguration, getGameAreas } from "../config/Constants.js";
 import { GameMode } from "../config/GameMode.js";
 import { LevelConfig } from "../config/LevelConfig.js";
 import { GameStorage } from "../utils/GameStorage.js";
+import { Item } from "../entities/Item.js";  // Add Item import for use in handleCarCollision
 
 export class Game {
   constructor() {
@@ -18,7 +19,8 @@ export class Game {
     if (currentGameMode === GameMode.TESTING) {
       this.unlockedLevels = 3;
     } else {
-      this.unlockedLevels = this.loadGameProgress();
+      // 直接调用 GameStorage 类的静态方法
+      this.unlockedLevels = GameStorage.loadGameProgress();
     }
 
     this.isAudioEnabled = true;
@@ -33,10 +35,15 @@ export class Game {
     this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
     this.startTime = 0;
     this.keys = {};
+    
+    // Get dynamic lanes based on canvas size
+    this.updateGameDimensions();
   }
 
-  loadGameProgress() {
-    this.unlockedLevels = GameStorage.loadGameProgress();
+  // Add method to update game dimensions when canvas size changes
+  updateGameDimensions() {
+    this.lanes = getLaneConfiguration(width, height);
+    this.gameAreas = getGameAreas(width, height);
   }
 
   saveGameProgress() {
@@ -91,8 +98,11 @@ export class Game {
     // Update player position
     this.player.update(this.keys);
 
-    // Check obstacle collisions for level 3
+    // Always update and check obstacles for level 3
     if (this.currentLevel === 3) {
+      // Explicitly log and call obstacle update to ensure it's happening
+      console.log("Level 3 - updating obstacles");
+      this.obstacleSystem.update(); 
       this.obstacleSystem.checkCollisions(this.player);
     }
 
@@ -101,6 +111,8 @@ export class Game {
   }
 
   handleCarCollision() {
+    // Revert to the original method which used itemSystem to handle item drop
+    // This ensures compatibility with the existing game logic
     if (this.player.hasItem) {
       this.itemSystem.handleItemPickupDrop(this.player);
     }
@@ -138,13 +150,18 @@ export class Game {
   drawGame() {
     background(200);
 
-    // Draw game areas
+    // Update dimensions in case of window resize
+    this.updateGameDimensions();
+
+    // Draw game areas with proportional sizing
+    const areas = this.gameAreas;
+    
     fill(150);
-    rect(0, 0, 200, height); // Warehouse
+    rect(0, 0, areas.warehouse.width, height); // Warehouse
     fill(100);
-    rect(200, 0, 350, height); // Road
+    rect(areas.road.start, 0, areas.road.width, height); // Road
     fill(150);
-    rect(550, 0, 250, height); // Delivery area
+    rect(areas.delivery.start, 0, areas.delivery.width, height); // Delivery area
 
     // Draw lane dividers
     this.drawLaneLines();
@@ -162,10 +179,13 @@ export class Game {
   }
 
   drawLaneLines() {
+    const roadStart = this.gameAreas.road.start;
+    const laneWidth = this.lanes.SLOW.width;
+    
     stroke(255);
     this.setLineDash([10, 10]); // Set dashed line style
-    line(325, 0, 325, height);
-    line(425, 0, 425, height);
+    line(roadStart + laneWidth, 0, roadStart + laneWidth, height);
+    line(roadStart + laneWidth * 2, 0, roadStart + laneWidth * 2, height);
     this.setLineDash([]); // Reset to solid line
     noStroke();
   }
@@ -204,8 +224,8 @@ export class Game {
           : GameStates.PLAYING;
     }
 
-    if (keyCode === 32 && this.currentState === GameStates.PLAYING) {
-      // Space key for item interaction
+    if ((keyCode === 32 || keyCode === 69) && this.currentState === GameStates.PLAYING) {
+      // Space key or 'E' for item interaction
       const itemDelivered = this.itemSystem.handleItemPickupDrop(this.player);
       if (itemDelivered) {
         this.checkLevelComplete();
@@ -243,6 +263,9 @@ export class Game {
       case GameStates.AUDIO:
         this.uiManager.handleAudioSettingsClicks(mouseX, mouseY);
         break;
+      case GameStates.SETTINGS:
+        this.uiManager.handleSettingsScreenClicks(mouseX, mouseY);
+        break;
     }
   }
 
@@ -277,6 +300,9 @@ export class Game {
         break;
       case GameStates.AUDIO:
         this.uiManager.drawAudioSettings();
+        break;
+      case GameStates.SETTINGS:
+        this.uiManager.drawSettingsScreen();
         break;
     }
   }

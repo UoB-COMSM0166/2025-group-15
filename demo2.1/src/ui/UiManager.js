@@ -1,5 +1,5 @@
 import { Button } from "./components/Button.js";
-import { GameStates } from "../config/Constants.js";
+import { GameStates, getGameAreas } from "../config/Constants.js";
 import { LevelConfig } from "../config/LevelConfig.js";
 import { GameMode } from "../config/GameMode.js";
 import { Player } from "../entities/Player.js";
@@ -17,8 +17,9 @@ export class UiManager {
     this.buttons.mainMenu = [
       new Button(width / 2 - 100, 200, 200, 50, "Start Game", true),
       new Button(width / 2 - 100, 270, 200, 50, "Select Level", true),
-      new Button(width / 2 - 100, 340, 200, 50, "Help", true),
-      new Button(width / 2 - 100, 410, 200, 50, "Cheating Mode", true),
+      new Button(width / 2 - 100, 340, 200, 50, "Settings", true),
+      new Button(width / 2 - 100, 410, 200, 50, "Help", true),
+      new Button(width / 2 - 100, 480, 200, 50, "Cheating Mode", true),
     ];
 
     // Character selection buttons
@@ -37,34 +38,42 @@ export class UiManager {
       new Button(width / 2 - 100, 500, 200, 50, "Return to Main Menu", true),
     ];
 
+    // Settings menu buttons
+    this.buttons.settings = [
+      new Button(width / 2 - 100, 400, 200, 50, "Audio Settings", true),
+      new Button(width / 2 - 100, 470, 200, 50, "Return to Main Menu", true),
+    ];
+
     // Pause menu buttons
     this.buttons.pause = [
-      new Button(300, 250, 200, 40, "Continue Game", true),
-      new Button(300, 300, 200, 40, "Restart", true),
-      new Button(300, 350, 200, 40, "Return to Main Menu", true),
-      new Button(300, 400, 200, 40, "Audio Settings", true),
+      new Button(width / 2 - 100, height / 2 - 60, 200, 40, "Continue Game", true),
+      new Button(width / 2 - 100, height / 2, 200, 40, "Restart", true),
+      new Button(width / 2 - 100, height / 2 + 60, 200, 40, "Return to Main Menu", true),
+      new Button(width / 2 - 100, height / 2 + 120, 200, 40, "Settings", true),
     ];
 
     // Level complete buttons
     this.buttons.levelComplete = [
-      new Button(250, 300, 300, 40, "Next Level", true),
-      new Button(250, 350, 300, 40, "Replay Level", true),
-      new Button(250, 400, 300, 40, "Return to Main Menu", true),
+      new Button(width / 2 - 150, height / 2, 300, 40, "Next Level", true),
+      new Button(width / 2 - 150, height / 2 + 60, 300, 40, "Replay Level", true),
+      new Button(width / 2 - 150, height / 2 + 120, 300, 40, "Return to Main Menu", true),
     ];
 
     // Game over buttons
     this.buttons.gameOver = [
-      new Button(250, 350, 300, 40, "Try Again", true),
-      new Button(250, 400, 300, 40, "Return to Main Menu", true),
+      new Button(width / 2 - 150, height / 2 + 50, 300, 40, "Try Again", true),
+      new Button(width / 2 - 150, height / 2 + 110, 300, 40, "Return to Main Menu", true),
     ];
 
     // Help screen button
     this.buttons.help = [
-      new Button(300, 500, 200, 40, "Return to Main Menu", true),
+      new Button(width / 2 - 100, height - 100, 200, 40, "Return to Main Menu", true),
     ];
 
     // Audio settings button
-    this.buttons.audio = [new Button(300, 500, 200, 40, "Return", true)];
+    this.buttons.audio = [
+      new Button(width / 2 - 100, height - 100, 200, 40, "Return", true)
+    ];
   }
 
   updateLevelSelectButtons() {
@@ -80,6 +89,7 @@ export class UiManager {
       }`;
     }
   }
+  
   updateLevelCompleteButtons() {
     // Update "Next Level" button if on the final level
     const isLastLevel = this.game.currentLevel >= 3;
@@ -96,10 +106,16 @@ export class UiManager {
       this.game.currentState = GameStates.CHARACTER_SELECT;
     } else if (this.buttons.mainMenu[1].isClicked(mx, my)) {
       this.game.currentState = GameStates.LEVEL_SELECT;
+      this.updateLevelSelectButtons();
     } else if (this.buttons.mainMenu[2].isClicked(mx, my)) {
-      this.game.currentState = GameStates.HELP;
+      this.game.currentState = GameStates.SETTINGS;
     } else if (this.buttons.mainMenu[3].isClicked(mx, my)) {
+      this.game.currentState = GameStates.HELP;
+    } else if (this.buttons.mainMenu[4].isClicked(mx, my)) {
       currentGameMode = GameMode.TESTING;
+      // Visual feedback for mode change
+      this.buttons.mainMenu[4].label = currentGameMode === GameMode.TESTING ? 
+        "Normal Mode" : "Cheating Mode";
     }
   }
 
@@ -124,7 +140,8 @@ export class UiManager {
       this.selectedCharacter = "option2";
     } else if (this.buttons.characterSelect[2].isClicked(mx, my)) {
       if (this.selectedCharacter) {
-        this.game.player = new Player(700, 300, this.selectedCharacter); // instantiate player
+        // Player position will be set in the Player constructor based on canvas size
+        this.game.player = new Player(null, null, this.selectedCharacter); // instantiate player
         this.game.startNewGame(this.game.selectedLevel); // start game with selected level
       }
     } else if (this.buttons.characterSelect[3].isClicked(mx, my)) {
@@ -140,11 +157,13 @@ export class UiManager {
     } else if (this.buttons.pause[2].isClicked(mx, my)) {
       this.game.currentState = GameStates.MENU;
     } else if (this.buttons.pause[3].isClicked(mx, my)) {
-      this.game.currentState = GameStates.AUDIO;
+      this.game.currentState = GameStates.SETTINGS;
     }
   }
 
   handleLevelCompleteClicks(mx, my) {
+    this.updateLevelCompleteButtons();
+    
     if (
       this.game.currentLevel < 3 &&
       this.buttons.levelComplete[0].isClicked(mx, my)
@@ -171,38 +190,52 @@ export class UiManager {
     }
   }
 
+  handleSettingsScreenClicks(mx, my) {
+    if (this.buttons.settings[0].isClicked(mx, my)) {
+      this.game.currentState = GameStates.AUDIO;
+    } else if (this.buttons.settings[1].isClicked(mx, my)) {
+      this.game.currentState = GameStates.MENU;
+    }
+  }
+
   handleAudioSettingsClicks(mx, my) {
     // Volume slider click
-    if (my >= 250 && my <= 270 && mx >= 250 && mx <= 550) {
-      this.game.volume = constrain((mx - 250) / 300, 0, 1);
+    const sliderX = width / 2 - 150;
+    const sliderWidth = 300;
+    
+    if (my >= height / 2 - 10 && my <= height / 2 + 10 && mx >= sliderX && mx <= sliderX + sliderWidth) {
+      this.game.volume = constrain((mx - sliderX) / sliderWidth, 0, 1);
     }
 
     // Audio toggle click
-    if (mx >= 400 && mx <= 500 && my >= 330 && my <= 360) {
+    const toggleX = width / 2 - 50;
+    const toggleY = height / 2 + 60;
+    if (mx >= toggleX && mx <= toggleX + 100 && my >= toggleY - 15 && my <= toggleY + 15) {
       this.game.isAudioEnabled = !this.game.isAudioEnabled;
     }
 
     // Return button
     if (this.buttons.audio[0].isClicked(mx, my)) {
-      this.game.currentState = GameStates.PAUSED;
+      const prevState = this.game.prevState || GameStates.SETTINGS;
+      this.game.currentState = prevState;
     }
   }
 
   drawMainMenu() {
     background(200);
     textAlign(CENTER, CENTER);
-    textSize(32);
+    textSize(36);
     fill(0);
-    text("Road Crossing Game", width / 2, 100);
+    text("Road Crossing Game", width / 2, height * 0.15);
 
     // Testing mode indicator
     if (currentGameMode === GameMode.TESTING) {
-      textSize(18);
+      textSize(20);
       fill(0, 128, 0); // Green
       text(
         "Testing Mode Enabled: Unlimited Time | All Levels Unlocked",
         width / 2,
-        140
+        height * 0.22
       );
     }
 
@@ -215,17 +248,15 @@ export class UiManager {
   drawCharacterSelect() {
     background(200);
     textAlign(CENTER, CENTER);
-    textSize(32);
+    textSize(36);
     fill(0);
-    text("Select Your Character", width / 2, 100);
+    text("Select Your Character", width / 2, height * 0.15);
 
-    // draw character images
-    //fill(0, 0, 255);
-    //circle(width / 2 - 100, 250, 50);
-    image(assetManager.getImage("player1"), width / 2 - 150, 200, 100, 100);
-    //fill(255, 0, 0);
-    //circle(width / 2 + 100, 250, 50);
-    image(assetManager.getImage("player2"), width / 2 + 50, 200, 100, 100);
+    // Draw character images
+    const charSize = Math.min(100, height * 0.15);
+    const charY = height * 0.3;
+    image(assetManager.getImage("player1"), width / 2 - 150, charY, charSize, charSize);
+    image(assetManager.getImage("player2"), width / 2 + 50, charY, charSize, charSize);
 
     // Draw character select buttons
     for (let i = 0; i < this.buttons.characterSelect.length; i++) {
@@ -253,15 +284,15 @@ export class UiManager {
 
     background(200);
     textAlign(CENTER, CENTER);
-    textSize(32);
+    textSize(36);
     fill(0);
-    text("Select Level", width / 2, 100);
+    text("Select Level", width / 2, height * 0.15);
 
     // Testing mode indicator
     if (currentGameMode === GameMode.TESTING) {
       textSize(20);
       fill(0, 128, 0); // Green
-      text("Testing Mode: All Levels Unlocked", width / 2, 140);
+      text("Testing Mode: All Levels Unlocked", width / 2, height * 0.22);
     }
 
     // Draw level select buttons
@@ -277,12 +308,12 @@ export class UiManager {
 
     // Pause menu window
     fill(255);
-    rect(250, 200, 300, 300);
+    rect(width / 2 - 175, height / 2 - 150, 350, 330);
 
     textAlign(CENTER);
-    textSize(24);
+    textSize(28);
     fill(0);
-    text("Game Paused", width / 2, 230);
+    text("Game Paused", width / 2, height / 2 - 100);
 
     // Draw buttons
     for (const button of this.buttons.pause) {
@@ -291,19 +322,25 @@ export class UiManager {
   }
 
   drawLevelComplete() {
+    // Update buttons for level complete screen
+    this.updateLevelCompleteButtons();
+    
     // Semi-transparent background
     fill(0, 0, 0, 150);
     rect(0, 0, width, height);
 
     // Dialog box
+    const boxWidth = Math.min(400, width * 0.8);
+    const boxHeight = Math.min(300, height * 0.5);
     fill(255);
-    rect(200, 150, 400, 300);
+    rect(width / 2 - boxWidth/2, height / 2 - boxHeight/2, boxWidth, boxHeight);
 
     textAlign(CENTER, CENTER);
     fill(0);
+    textSize(28);
+    text("Level Complete!", width / 2, height / 2 - 70);
     textSize(24);
-    text("Level Complete!", width / 2, 200);
-    text(`Score: ${this.game.player.score}`, width / 2, 250);
+    text(`Score: ${this.game.player.score}`, width / 2, height / 2 - 30);
 
     // Draw buttons
     for (const button of this.buttons.levelComplete) {
@@ -317,18 +354,21 @@ export class UiManager {
     rect(0, 0, width, height);
 
     // Dialog box
+    const boxWidth = Math.min(400, width * 0.8);
+    const boxHeight = Math.min(300, height * 0.5);
     fill(255);
-    rect(200, 150, 400, 300);
+    rect(width / 2 - boxWidth/2, height / 2 - boxHeight/2, boxWidth, boxHeight);
 
     textAlign(CENTER, CENTER);
     fill(0);
-    textSize(24);
-    text("Game Over", width / 2, 200);
-    text(`Final Score: ${this.game.player.score}`, width / 2, 250);
+    textSize(28);
+    text("Game Over", width / 2, height / 2 - 70);
+    textSize(20);
+    text(`Final Score: ${this.game.player.score}`, width / 2, height / 2 - 30);
     text(
       `Target Score: ${LevelConfig[this.game.currentLevel].targetScore}`,
       width / 2,
-      280
+      height / 2
     );
 
     // Draw buttons
@@ -339,88 +379,153 @@ export class UiManager {
 
   drawHelpScreen() {
     background(200);
+    
+    // Title
+    textAlign(CENTER, CENTER);
+    textSize(36);
+    fill(0);
+    text("Game Instructions", width / 2, height * 0.1);
+    
+    // Instructions
     textAlign(LEFT);
     textSize(20);
     fill(0);
-
-    let y = 100;
-    text("Game Instructions:", 50, y);
-    y += 40;
-    text("- Use arrow keys to move character", 50, y);
-    y += 30;
-    text("- Press space to pick up/drop items", 50, y);
-    y += 30;
-    text("- Press ESC to pause the game", 50, y);
-    y += 30;
-    text("- Avoid cars and carry items from left to right", 50, y);
-    y += 30;
-    text("- If hit by a car, you'll return to start position", 50, y);
-    y += 30;
-    text("- Reach the target score to complete the level", 50, y);
+    
+    const leftMargin = width * 0.1;
+    const lineHeight = 30;
+    let y = height * 0.2;
+    
+    text("- Use arrow keys or WASD to move character", leftMargin, y); y += lineHeight;
+    text("- Press SPACE or E to pick up/drop items", leftMargin, y); y += lineHeight;
+    text("- Press ESC to pause the game", leftMargin, y); y += lineHeight;
+    text("- Avoid cars and carry items from left to right", leftMargin, y); y += lineHeight;
+    text("- Heavier items (higher value) slow you down", leftMargin, y); y += lineHeight;
+    text("- If hit by a car, you'll return to start position", leftMargin, y); y += lineHeight;
+    text("- Reach the target score to complete the level", leftMargin, y); y += lineHeight;
 
     // Testing mode features
     if (currentGameMode === GameMode.TESTING) {
-      y += 40;
+      y += lineHeight;
       fill(0, 128, 0); // Green
-      text("Testing Mode Features:", 50, y);
-      y += 30;
-      text("- Game Time: 10000 seconds", 50, y);
-      y += 30;
-      text("- All levels unlocked", 50, y);
+      text("Testing Mode Features:", leftMargin, y); y += lineHeight;
+      text("- Game Time: 10000 seconds", leftMargin, y); y += lineHeight;
+      text("- All levels unlocked", leftMargin, y);
     }
 
     // Draw return button
     this.buttons.help[0].draw();
   }
 
-  drawAudioSettings() {
+  drawSettingsScreen() {
     background(200);
-    textAlign(CENTER);
-    textSize(24);
+    textAlign(CENTER, CENTER);
+    textSize(36);
     fill(0);
-    text("Audio Settings", width / 2, 100);
+    text("Settings", width / 2, height * 0.15);
 
-    text("Volume: " + floor(this.game.volume * 100) + "%", width / 2, 200);
+    // Draw buttons
+    for (const button of this.buttons.settings) {
+      button.draw();
+    }
+  }
+
+  drawAudioSettings() {
+    // Store the previous state if coming from pause menu
+    if (this.game.currentState === GameStates.PAUSED) {
+      this.game.prevState = GameStates.PAUSED;
+    }
+    
+    background(200);
+    textAlign(CENTER, CENTER);
+    textSize(36);
+    fill(0);
+    text("Audio Settings", width / 2, height * 0.15);
+
+    textSize(24);
+    text("Volume: " + floor(this.game.volume * 100) + "%", width / 2, height * 0.35);
 
     // Volume slider
+    const sliderX = width / 2 - 150;
+    const sliderWidth = 300;
+    
     fill(150);
-    rect(250, 250, 300, 20);
+    rect(sliderX, height / 2 - 10, sliderWidth, 20);
     fill(0, 0, 255);
-    rect(250, 250, 300 * this.game.volume, 20);
+    rect(sliderX, height / 2 - 10, sliderWidth * this.game.volume, 20);
 
     // Audio toggle
-    text("Audio:", 300, 350);
+    text("Audio:", width / 2 - 100, height / 2 + 60);
     fill(
       this.game.isAudioEnabled ? 0 : 255,
       0,
       this.game.isAudioEnabled ? 255 : 0
     );
-    rect(400, 330, 100, 30);
+    rect(width / 2 - 50, height / 2 + 45, 100, 30);
     fill(255);
-    text(this.game.isAudioEnabled ? "ON" : "OFF", 450, 350);
+    text(this.game.isAudioEnabled ? "ON" : "OFF", width / 2, height / 2 + 60);
 
     // Draw return button
     this.buttons.audio[0].draw();
   }
 
   drawGameStatus() {
+    // Get the game areas to position UI elements
+    const areas = getGameAreas(width, height);
+    
+    // Background for status area on the left
+    fill(150, 150, 150, 100);
+    rect(0, 0, areas.warehouse.width, 220);
+    
+    // Background for score and level on the right
+    fill(150, 150, 150, 100);
+    rect(areas.delivery.start, 0, areas.delivery.width, 100);
+    
     fill(0);
     textSize(20);
     textAlign(LEFT);
-    // Show game mode
+    
+    const leftPadding = 20;
+    const rightPadding = areas.delivery.start + 20;
+    
+    // Show game mode on the left
     if (currentGameMode === GameMode.TESTING) {
       fill(0, 128, 0); // Green
-      text(`Testing Mode`, 20, 30);
+      text(`Testing Mode`, leftPadding, 30);
       fill(0);
     } else {
       fill(0, 128, 0); // Green
-      text(`Normal Mode`, 20, 30);
+      text(`Normal Mode`, leftPadding, 30);
       fill(0);
     }
-    text(`Score: ${this.game.player.score}`, 20, 90);
-    text(`Target: ${LevelConfig[this.game.currentLevel].targetScore}`, 20, 60);
-
-    text(`Time: ${this.game.gameTime}`, 20, 120);
-    text(`Level: ${this.game.currentLevel}`, 20, 150);
+    
+    // Level info moved to left side, above time
+    text(`Level: ${this.game.currentLevel}`, leftPadding, 60);
+    
+    // Game time on the left
+    text(`Time: ${this.game.gameTime}`, leftPadding, 90);
+    
+    // If player is carrying an item, show its weight and speed on the left
+    if (this.game.player && this.game.player.hasItem) {
+      text(`Weight: ${this.game.player.currentItem.weight.toFixed(1)}`, leftPadding, 120);
+      text(`Speed: ${this.game.player.speed.toFixed(1)}`, leftPadding, 150);
+    }
+    
+    // Score info on the right
+    text(`Score: ${this.game.player.score}`, rightPadding, 30);
+    text(`Target: ${LevelConfig[this.game.currentLevel].targetScore}`, rightPadding, 60);
+    
+    // Draw audio indicator at top-right
+    const audioImg = this.game.isAudioEnabled ? 
+      assetManager.getImage("volumeOn") : 
+      assetManager.getImage("volumeOff");
+    if (audioImg) {
+      image(audioImg, width - 50, 20, 30, 30);
+    }
+    
+    // Draw pause button at top-right
+    const pauseImg = assetManager.getImage("pause");
+    if (pauseImg) {
+      image(pauseImg, width - 90, 20, 30, 30);
+    }
   }
 }

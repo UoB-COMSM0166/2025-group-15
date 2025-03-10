@@ -1,10 +1,11 @@
 export class Player {
   constructor(x, y, playerOption = "option1") {
-    this.x = x || 700;
-    this.y = y || 300;
+    this.x = x || (width * 0.7 + (width * 0.3) / 2); // Default to middle of delivery area
+    this.y = y || height / 2;
     this.width = 50;
     this.height = 50;
-    this.speed = 4;
+    this.baseSpeed = 2.67; // Reduced from 4 to 2.67 (2/3 of original)
+    this.speed = this.baseSpeed;
     this.score = 0;
     this.hasItem = false;
     this.currentItem = null;
@@ -13,31 +14,41 @@ export class Player {
   }
 
   reset() {
-    this.x = 700;
-    this.y = 300;
+    // Position player at the right side of delivery area
+    const playerX = width * 0.7 + (width * 0.3) / 2; // Middle of delivery area
+    const playerY = height / 2;
+    
+    this.x = playerX;
+    this.y = playerY;
+    this.speed = this.baseSpeed;
     this.score = 0;
     this.hasItem = false;
     this.currentItem = null;
   }
 
   resetPosition() {
-    this.x = 700;
-    this.y = 300;
+    // Position player at the right side of delivery area
+    const playerX = width * 0.7 + (width * 0.3) / 2; // Middle of delivery area
+    const playerY = height / 2;
+    
+    this.x = playerX;
+    this.y = playerY;
   }
 
   update(keys) {
-    if (keys[LEFT_ARROW]) {
+    // Check both arrow keys and WASD keys
+    if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
       this.x = Math.max(0, this.x - this.speed);
       this.isFlipped = false;
     }
-    if (keys[RIGHT_ARROW]) {
+    if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
       this.x = Math.min(width - this.width, this.x + this.speed);
       this.isFlipped = true;
     }
-    if (keys[UP_ARROW]) {
+    if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
       this.y = Math.max(0, this.y - this.speed);
     }
-    if (keys[DOWN_ARROW]) {
+    if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
       this.y = Math.min(height - this.height, this.y + this.speed);
     }
   }
@@ -88,19 +99,26 @@ export class Player {
     // Draw item if player has one
     if (this.hasItem) {
       fill(0, 255, 0);
-      rect(this.x+10, this.y + 20, 10, 10);
+      // Draw item with size based on weight if player has one
+      const itemSize = 10 * (0.8 + this.currentItem.weight * 0.1);
+      rect(this.x + 10, this.y + 20, itemSize, itemSize);
     }
   }
 
   pickupItem(item) {
     this.hasItem = true;
     this.currentItem = item;
+    // Adjust speed based on item weight
+    // Keep the same formula but with reduced base speed
+    this.speed = this.baseSpeed / (0.7 + item.weight * 0.15);
   }
 
   dropItem() {
     const droppedItem = this.currentItem;
     this.hasItem = false;
     this.currentItem = null;
+    // Reset speed
+    this.speed = this.baseSpeed;
     return droppedItem;
   }
 
@@ -109,6 +127,8 @@ export class Player {
     this.score += deliveredItem.value;
     this.hasItem = false;
     this.currentItem = null;
+    // Reset speed
+    this.speed = this.baseSpeed;
     return deliveredItem;
   }
 }

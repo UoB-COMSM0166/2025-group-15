@@ -13,30 +13,32 @@ export class ObstacleSystem {
 
     generateObstacles() {
         this.obstacles = [];
-        let possiblePositions = [];
         
-        // Create possible positions along lane dividers
-        for (let y = 100; y < height - 100; y += 50) {
-            possiblePositions.push({ x: 325, y: y }); // First divider
-            possiblePositions.push({ x: 425, y: y }); // Second divider
-        }
+        // Get road information
+        const roadStart = width * 0.3;
+        const laneWidth = (width * 0.4) / 3;
         
-        // Choose 3 non-overlapping positions
-        for (let i = 0; i < 3; i++) {
-            if (possiblePositions.length === 0) break;
-            
-            const randomIndex = floor(random(possiblePositions.length));
-            const position = possiblePositions[randomIndex];
-            
-            this.obstacles.push(new Obstacle(position.x - 10, position.y));
-            
-            // Remove chosen position and nearby positions
-            possiblePositions = possiblePositions.filter(pos => 
-                dist(pos.x, pos.y, position.x, position.y) > 100
-            );
-        }
+        // Get x-coordinates for lane dividers
+        const firstDividerX = roadStart + laneWidth;
+        const secondDividerX = roadStart + laneWidth * 2;
+        
+        // Adjust initial positions to account for doubled height
+        // Position them so they're more centered in the play area
+        
+        // First lane divider - single obstacle
+        this.obstacles.push(new Obstacle(firstDividerX - 10, height * 0.25, true, 1, 1.0));
+        
+        // Second lane divider - single obstacle
+        this.obstacles.push(new Obstacle(secondDividerX - 10, height * 0.5, true, -1, 1.1));
         
         console.log("Generated obstacles: ", this.obstacles.length);
+    }
+
+    update() {
+        // Update all obstacles
+        for (const obstacle of this.obstacles) {
+            obstacle.update();
+        }
     }
 
     checkCollisions(player) {
