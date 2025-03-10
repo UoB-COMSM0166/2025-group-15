@@ -71,9 +71,12 @@ export class Game {
     if (this.currentLevel === 3) {
       this.obstacleSystem.generateObstacles();
     }
+    
+    // Generate initial cars to ensure there are cars at start
+    this.carSystem.generateInitialCars();
   }
 
-  update() {
+update() {
     if (this.currentState !== GameStates.PLAYING) return;
 
     // Update game time
@@ -82,10 +85,9 @@ export class Game {
         ? 10000
         : 60 - floor((millis() - this.startTime) / 1000);
 
-    // Generate cars
-    if (frameCount % 60 === 0) {
-      this.carSystem.generateCars(frameCount);
-    }
+    // Generate cars every frame instead of every 60 frames
+    // This is more reliable and ensures the car generator is called frequently
+    this.carSystem.generateCars(frameCount);
 
     // Update cars and check for collisions
     const carCollision = this.carSystem.update(this.player);
@@ -100,8 +102,6 @@ export class Game {
 
     // Always update and check obstacles for level 3
     if (this.currentLevel === 3) {
-      // Explicitly log and call obstacle update to ensure it's happening
-      console.log("Level 3 - updating obstacles");
       this.obstacleSystem.update(); 
       this.obstacleSystem.checkCollisions(this.player);
     }

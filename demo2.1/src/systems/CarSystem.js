@@ -17,22 +17,36 @@ export class CarSystem {
       medium: 0,
       fast: 0
     };
-    // Set random interval range with lower maximum
+    
+    // Set minimum spawn interval (approx 0.8s at 60fps)
+    this.minSpawnInterval = 48;
+    
+    // Set random interval range with wider variation
     this.spawnIntervalRange = {
-      min: 10,    // Minimum frames between spawns
-      max: 25     // Maximum frames between spawns - reduced to prevent long gaps
+      min: 60,    // Increased minimum interval (1 second at 60fps)
+      max: 180    // Max is 3 seconds at 60fps
     };
-    // Set absolute maximum waiting time - force car generation after this many frames
-    this.maxWaitingTime = 30;
+    
+    // Set maximum waiting time to a more reasonable value
+    this.maxWaitingTime = 240;  // 4 seconds max without cars
+    
     // Store current spawn intervals for each lane
     this.currentSpawnIntervals = {
       slow: this.getRandomSpawnInterval(),
       medium: this.getRandomSpawnInterval(),
       fast: this.getRandomSpawnInterval()
     };
-    // Guaranteed periodic spawning (backup to ensure consistent traffic)
-    this.guaranteedSpawnInterval = 40;
-    this.timeSinceLastGuaranteedSpawn = 0;
+    
+    // Add some randomness to initial spawn times
+    this.timeSinceLastCarGeneration.slow = floor(random(0, 30));
+    this.timeSinceLastCarGeneration.medium = floor(random(0, 30));
+    this.timeSinceLastCarGeneration.fast = floor(random(0, 30));
+    
+    // Track the last time any car was generated
+    this.framesSinceLastAnyCar = 0;
+    
+    // Initialize with some cars
+    this.initialCarsGenerated = false;
   }
 
   reset() {
@@ -41,17 +55,19 @@ export class CarSystem {
       medium: [],
       fast: [],
     };
+    // Reset with random values to avoid synchronization
     this.timeSinceLastCarGeneration = {
-      slow: 0,
-      medium: 0,
-      fast: 0
+      slow: floor(random(0, 30)),
+      medium: floor(random(0, 30)),
+      fast: floor(random(0, 30))
     };
     this.currentSpawnIntervals = {
       slow: this.getRandomSpawnInterval(),
       medium: this.getRandomSpawnInterval(),
       fast: this.getRandomSpawnInterval()
     };
-    this.timeSinceLastGuaranteedSpawn = 0;
+    this.framesSinceLastAnyCar = 0;
+    this.initialCarsGenerated = false;
   }
 
   // Helper method to get random spawn interval
@@ -59,50 +75,94 @@ export class CarSystem {
     return floor(random(this.spawnIntervalRange.min, this.spawnIntervalRange.max));
   }
 
+  // Method to generate initial cars when game starts
+  generateInitialCars() {
+    if (!this.initialCarsGenerated) {
+      const config = LevelConfig[this.game.currentLevel];
+      const lanes = this.game.lanes;
+      
+      // Generate initial cars with different starting positions
+      if (random() < 0.7) {
+        this.generateCarInLane("slow", lanes.SLOW.x, config);
+      }
+      
+      if (random() < 0.5) {
+        this.generateCarInLane("medium", lanes.MEDIUM.x, config);
+      }
+      
+      if (random() < 0.6) {
+        this.generateCarInLane("fast", lanes.FAST.x, config);
+      }
+      
+      this.initialCarsGenerated = true;
+    }
+  }
+
   generateCars(frameCount) {
     const config = LevelConfig[this.game.currentLevel];
     const lanes = this.game.lanes;
+    
+    // Ensure there are initial cars
+    this.generateInitialCars();
 
     // Update timers for each lane
     this.timeSinceLastCarGeneration.slow++;
     this.timeSinceLastCarGeneration.medium++;
     this.timeSinceLastCarGeneration.fast++;
-    this.timeSinceLastGuaranteedSpawn++;
+    this.framesSinceLastAnyCar++;
 
-    // Generate cars based on random intervals or force generation if max waiting time is reached
-    if (this.timeSinceLastCarGeneration.slow >= this.currentSpawnIntervals.slow || 
-        this.timeSinceLastCarGeneration.slow >= this.maxWaitingTime) {
-      this.generateCarInLane("slow", lanes.SLOW.x, config);
-      this.timeSinceLastCarGeneration.slow = 0;
-      this.currentSpawnIntervals.slow = this.getRandomSpawnInterval();
-    }
-    
-    if (this.timeSinceLastCarGeneration.medium >= this.currentSpawnIntervals.medium || 
-        this.timeSinceLastCarGeneration.medium >= this.maxWaitingTime) {
-      this.generateCarInLane("medium", lanes.MEDIUM.x, config);
-      this.timeSinceLastCarGeneration.medium = 0;
-      this.currentSpawnIntervals.medium = this.getRandomSpawnInterval();
-    }
-    
-    if (this.timeSinceLastCarGeneration.fast >= this.currentSpawnIntervals.fast || 
-        this.timeSinceLastCarGeneration.fast >= this.maxWaitingTime) {
-      this.generateCarInLane("fast", lanes.FAST.x, config);
-      this.timeSinceLastCarGeneration.fast = 0;
-      this.currentSpawnIntervals.fast = this.getRandomSpawnInterval();
+    // Only attempt to generate cars if the minimum interval has passed
+    if (this.framesSinceLastAnyCar >= this.minSpawnInterval) {
+      let carGenerated = false;
+      
+      // Check each lane for generation
+      if (this.timeSinceLastCarGeneration.slow >= this.currentSpawnIntervals.slow || 
+          this.timeSinceLastCarGeneration.slow >= this.maxWaitingTime) {
+        if (this.generateCarInLane("slow", lanes.SLOW.x, config)) {
+          this.timeSinceLastCarGeneration.slow = 0;
+          this.currentSpawnIntervals.slow = this.getRandomSpawnInterval();
+          carGenerated = true;
+        }
+      }
+      
+      if (this.timeSinceLastCarGeneration.medium >= this.currentSpawnIntervals.medium || 
+          this.timeSinceLastCarGeneration.medium >= this.maxWaitingTime) {
+        // Only try to generate if we haven't already generated a car this frame or if enough time passed
+        if (!carGenerated || this.framesSinceLastAnyCar >= this.minSpawnInterval * 2) {
+          if (this.generateCarInLane("medium", lanes.MEDIUM.x, config)) {
+            this.timeSinceLastCarGeneration.medium = 0;
+            this.currentSpawnIntervals.medium = this.getRandomSpawnInterval();
+            carGenerated = true;
+          }
+        }
+      }
+      
+      if (this.timeSinceLastCarGeneration.fast >= this.currentSpawnIntervals.fast || 
+          this.timeSinceLastCarGeneration.fast >= this.maxWaitingTime) {
+        // Only try to generate if we haven't already generated cars or if enough time passed
+        if (!carGenerated || this.framesSinceLastAnyCar >= this.minSpawnInterval * 3) {
+          if (this.generateCarInLane("fast", lanes.FAST.x, config)) {
+            this.timeSinceLastCarGeneration.fast = 0;
+            this.currentSpawnIntervals.fast = this.getRandomSpawnInterval();
+            carGenerated = true;
+          }
+        }
+      }
+      
+      // Reset timer if any car was generated
+      if (carGenerated) {
+        this.framesSinceLastAnyCar = 0;
+      }
     }
 
-    // Guaranteed periodic car generation to ensure consistent traffic flow
-    if (this.timeSinceLastGuaranteedSpawn >= this.guaranteedSpawnInterval) {
-      const randomLane = ["slow", "medium", "fast"][floor(random(3))];
-      this.generateCarInLane(randomLane, lanes[randomLane.toUpperCase()].x, config);
-      this.timeSinceLastGuaranteedSpawn = 0;
-    }
-
-    // Additional cars for higher levels
-    if (this.game.currentLevel >= 2 && frameCount % 15 === 0 && random() < 0.7) {
+    // Additional cars for higher levels with reduced probability
+    if (this.game.currentLevel >= 2 && frameCount % 90 === 0 && random() < 0.3 && 
+        this.framesSinceLastAnyCar >= this.minSpawnInterval) {
       const lane = random(["slow", "medium", "fast"]);
       const laneX = lanes[lane.toUpperCase()].x;
-      this.generateCarInLane(lane, laneX, config);
+      if (this.generateCarInLane(lane, laneX, config)) {
+        this.framesSinceLastAnyCar = 0;
+      }
     }
   }
 
@@ -127,7 +187,7 @@ export class CarSystem {
       ((direction === 1 && lastCar.y < 100) ||
         (direction === -1 && lastCar.y > height - 100))
     ) {
-      return;
+      return false;
     }
 
     // Calculate lane width and center position
@@ -140,6 +200,8 @@ export class CarSystem {
     // Create and add the new car at the center of the lane
     const newCar = new Car(centerX, startY, speed, direction);
     this.cars[laneType].push(newCar);
+    
+    return true;
   }
 
   update(player) {
