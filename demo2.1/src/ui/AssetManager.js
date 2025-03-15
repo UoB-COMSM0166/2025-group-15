@@ -18,8 +18,8 @@ export class AssetManager {
       this.images["cargo1"] = loadImage("./assets/delivery-box-45.png");
       //car images
       this.images["car1"] = loadImage("./assets/s-blue-van.svg");
-      this.images["car2"] = loadImage("./assets/南-轿车-红.png");
-      this.images["car3"] = loadImage("./assets/南-公交车-橙.png");
+      this.images["car2"] = loadImage("./assets/s-red-fireEngine.svg");
+      this.images["car3"] = loadImage("./assets/s-bus-orange.png");
       this.images["car4"] = loadImage("./assets/s-blue-truck.svg");
       this.images["car5"] = loadImage("./assets/s-darkBlue-van.svg");
       this.images["car6"] = loadImage("./assets/s-grey-saloon.svg");
