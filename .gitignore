@@ -1,2 +1,5 @@
 # garbage from Mac
 .DS_Store
+
+# config from IDE
+.idea
