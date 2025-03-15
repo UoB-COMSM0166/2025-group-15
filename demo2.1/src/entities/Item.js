@@ -12,8 +12,8 @@ export class Item {
     }
 
     draw() {
-        // Size proportional to weight
-        const displaySize = this.size * (0.8 + this.weight * 0.1);
+        // fixed size for item
+        const displaySize = this.size;
         
         fill(0, 255, 0);
         rect(this.x, this.y, displaySize, displaySize);
