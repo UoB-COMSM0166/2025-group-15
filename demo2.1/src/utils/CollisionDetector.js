@@ -3,8 +3,8 @@ export class CollisionDetector {
   static checkPlayerRectCollision(player, rect) {
     return (
       player.x < rect.x + rect.width && // player left edge < car right edge
-      player.x + player.width > rect.x &&// player right edge > car left edge
-      player.y+player.height/2 < rect.y + rect.height &&// player half bottom edge < car bottom edge
+      player.x + player.width > rect.x && // player right edge > car left edge
+      player.y + player.height / 3 < rect.y + rect.height && // player 2 third top edge < car bottom edge
       player.y + player.height > rect.y // player bottom edge > car top edge
     );
   }
