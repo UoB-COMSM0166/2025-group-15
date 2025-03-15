@@ -11,7 +11,14 @@ export class CollisionDetector {
 
   // Check if player is in picking distance of an item
   static checkPlayerItemProximity(player, item) {
-    return dist(player.x, player.y, item.x, item.y) < 30;
+    // logic changed to similar with checkPlayerRectCollision()
+    const itemSize = item.size || 15;
+    return (
+      item.x < player.x + player.width &&
+      item.x + itemSize > player.x &&
+      item.y < player.y + player.height &&
+      item.y + itemSize > player.y
+    );
   }
 
   // Check if player is in delivery zone
