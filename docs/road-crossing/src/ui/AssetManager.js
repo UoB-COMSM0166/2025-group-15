@@ -2,15 +2,19 @@ export class AssetManager {
     constructor() {
       this.images = {};
       this.sounds = {};
+
+      // map of all the levels and their background images
+      this.levelBackgrounds = {
+        1: "City_background.png",
+        2: "Desert_background.png",
+        3: "Beach_background.png"
+      };
     }
   
     preload() {
       // background image
       this.images["mainBg"] = loadImage("./assets/scene/Home.png");
-      this.images["level1Bg"] = loadImage("./assets/scene/City_background.png");
-      // this.images["level2Bg"] = loadImage("./assets/scene/Desert_background.png");
-      // this.images["level3Bg"] = loadImage("./assets/scene/Beach_background.png");
-  
+      
       // sounds
       this.sounds["bgMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");
   
@@ -38,6 +42,41 @@ export class AssetManager {
       //pause image
       this.images["pause"] = loadImage("./assets/pause-button_normal.svg");
   
+    }
+
+    loadLevelBackground(level) {
+      const bgKey = `level${level}Bg`;
+
+      // if bg image is already loaded, return true
+      if (this.images[bgKey]) {
+        return true;
+      }
+
+      const bgFileName = this.levelBackgrounds[level];
+      if (!bgFileName) {
+        console.error(`Failed to load level ${level} background`);
+        return false;
+      }
+
+      // load bg image
+      console.log(`Loading level ${level} background: ${bgFileName}`);
+
+      const imageLoaded = (img) => {
+        this.images[bgKey] = img;
+      }
+
+      const imageError = (err) => {
+        console.error(`Failed to load level ${level} background: ${bgFileName}`);
+      }
+
+      loadImage(`./assets/scene/${bgFileName}`, imageLoaded, imageError);
+
+      // return false to indicate that bg image is not yet loaded
+      return false;
+    }
+
+    getLevelBackground(level) {
+      return this.images[`level${level}Bg`];
     }
   
     getImage(name) {

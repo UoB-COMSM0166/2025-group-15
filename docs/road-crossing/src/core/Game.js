@@ -54,6 +54,10 @@ export class Game {
   startNewGame(level) {
     this.currentLevel = level;
     this.currentState = GameStates.PLAYING;
+
+    // preload current level background
+    assetManager.loadLevelBackground(this.currentLevel);
+
     this.resetGame();
   }
 
@@ -150,13 +154,14 @@ update() {
 
   drawGame() {
     // Draw background of every level, default is 200
-    let bgImageName = `level${this.currentLevel}Bg`;
-    let bgImage = assetManager.getImage(bgImageName);
+    const bgImage = assetManager.getLevelBackground(this.currentLevel);
 
     if (bgImage) {
       image(bgImage, 0, 0, width, height);
     } else {
-      background(200);
+      background(200); // Default background if image not found
+      // try to load background image if it's not already loaded
+      if (!assetManager.loadLevelBackground(this.currentLevel)) {}
     }
 
     // Update dimensions in case of window resize
