@@ -222,7 +222,8 @@ export class UiManager {
   }
 
   drawMainMenu() {
-    background(200);
+    image(assetManager.getImage("mainBg"), 0, 0, width, height);
+
     textAlign(CENTER, CENTER);
     textSize(36);
     fill(0);

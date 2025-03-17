@@ -8,6 +8,7 @@ import { GameMode } from "../config/GameMode.js";
 import { LevelConfig } from "../config/LevelConfig.js";
 import { GameStorage } from "../utils/GameStorage.js";
 import { Item } from "../entities/Item.js";  // Add Item import for use in handleCarCollision
+import { AssetManager } from "../ui/AssetManager.js";
 
 export class Game {
   constructor() {
@@ -148,7 +149,15 @@ update() {
   }
 
   drawGame() {
-    background(200);
+    // Draw background of every level, default is 200
+    let bgImageName = `level${this.currentLevel}Bg`;
+    let bgImage = assetManager.getImage(bgImageName);
+
+    if (bgImage) {
+      image(bgImage, 0, 0, width, height);
+    } else {
+      background(200);
+    }
 
     // Update dimensions in case of window resize
     this.updateGameDimensions();
@@ -156,12 +165,12 @@ update() {
     // Draw game areas with proportional sizing
     const areas = this.gameAreas;
     
-    fill(150);
-    rect(0, 0, areas.warehouse.width, height); // Warehouse
-    fill(100);
-    rect(areas.road.start, 0, areas.road.width, height); // Road
-    fill(150);
-    rect(areas.delivery.start, 0, areas.delivery.width, height); // Delivery area
+    // fill(150);
+    // rect(0, 0, areas.warehouse.width, height); // Warehouse
+    // fill(100);
+    // rect(areas.road.start, 0, areas.road.width, height); // Road
+    // fill(150);
+    // rect(areas.delivery.start, 0, areas.delivery.width, height); // Delivery area
 
     // Draw lane dividers
     this.drawLaneLines();

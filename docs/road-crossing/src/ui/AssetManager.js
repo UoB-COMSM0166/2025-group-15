@@ -6,7 +6,10 @@ export class AssetManager {
   
     preload() {
       // background image
-      this.images["mainBg"] = loadImage("./assets/mainBg.jpg");
+      this.images["mainBg"] = loadImage("./assets/scene/Home.png");
+      this.images["level1Bg"] = loadImage("./assets/scene/City_background.png");
+      // this.images["level2Bg"] = loadImage("./assets/scene/Desert_background.png");
+      // this.images["level3Bg"] = loadImage("./assets/scene/Beach_background.png");
   
       // sounds
       this.sounds["bgMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");
