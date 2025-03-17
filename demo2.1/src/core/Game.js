@@ -196,6 +196,11 @@ update() {
       this.obstacleSystem.draw();
     }
 
+    // Draw delivery zone
+    const deliveryZone = getDeliveryZone();
+    fill(deliveryZone.color);
+    rect(deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
+
     // Draw cars
     this.carSystem.draw();
 
@@ -204,11 +209,6 @@ update() {
 
     // Draw player
     this.player.draw();
-
-    // Draw delivery zone
-    const deliveryZone = getDeliveryZone();
-    fill(deliveryZone.color);
-    rect(deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
   }
 
   setLineDash(list) {

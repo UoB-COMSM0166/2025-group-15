@@ -32,13 +32,13 @@ export class Item {
             // Get delivery area position
             const deliveryZone = getDeliveryZone();
             // Stacked display above the drop zone
-            const displayX = deliveryZone.x;
-            const displayY = deliveryZone.y - 40 - i * 30;
+            const displayX = deliveryZone.x + 10;
+            const displayY = deliveryZone.y + 10 - i * 15;
             
             rect(displayX, displayY, 15, 15);
             fill(0);
-            textSize(12);
-            text(item.value, displayX, displayY - 5);
+            // textSize(12);
+            // text(item.value, displayX, displayY - 5);
         }
     }
 }
