@@ -3,3 +3,6 @@
 
 # config from IDE
 .idea
+
+# config from editor
+.vscode

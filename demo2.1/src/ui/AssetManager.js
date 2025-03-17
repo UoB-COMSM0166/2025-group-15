@@ -13,7 +13,7 @@ export class AssetManager {
   
       // player images
       this.images["player1"] = loadImage("./assets/Character1_Walking.png");
-        this.images["player2"] = loadImage("./assets/Character2_Walking.png");
+      this.images["player2"] = loadImage("./assets/Character2_Walking.png");
       // item images
       this.images["cargo1"] = loadImage("./assets/delivery-box-45.png");
       //car images
@@ -24,6 +24,10 @@ export class AssetManager {
       this.images["car5"] = loadImage("./assets/s-darkBlue-van.svg");
       this.images["car6"] = loadImage("./assets/s-grey-saloon.svg");
       this.images["car7"] = loadImage("./assets/s-white-truck-2.png");
+      // cargo images
+      this.images["cargoUncollected"] = loadImage("./assets/cargo/delivery-box-45.png");
+      // delivery zone images
+      this.images["cargoBase"] = loadImage("./assets/cargo/overlook-base-column.png");
   
       //volume images
       this.images["volumeOn"] = loadImage("./assets/speaker_normal.svg");

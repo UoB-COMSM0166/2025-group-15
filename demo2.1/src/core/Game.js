@@ -200,6 +200,7 @@ update() {
     const deliveryZone = getDeliveryZone();
     fill(deliveryZone.color);
     rect(deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
+    image(assetManager.getImage("cargoBase"), deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
 
     // Draw cars
     this.carSystem.draw();
