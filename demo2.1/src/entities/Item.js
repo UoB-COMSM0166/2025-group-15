@@ -1,3 +1,5 @@
+import { getDeliveryZone } from "../config/Constants.js";
+
 export class Item {
     constructor(x, y, value) {
         this.x = x;
@@ -28,13 +30,15 @@ export class Item {
             fill(0, 200, 0);
             
             // Get delivery area position
-            const deliveryX = width * 0.7 + 50; // Position in delivery area
-            const startY = height * 0.3; // Start from 30% down the screen
+            const deliveryZone = getDeliveryZone();
+            // Stacked display above the drop zone
+            const displayX = deliveryZone.x;
+            const displayY = deliveryZone.y - 40 - i * 30;
             
-            rect(deliveryX, startY + i * 30, 15, 15);
+            rect(displayX, displayY, 15, 15);
             fill(0);
             textSize(12);
-            text(item.value, deliveryX, startY + i * 30 - 5);
+            text(item.value, displayX, displayY - 5);
         }
     }
 }

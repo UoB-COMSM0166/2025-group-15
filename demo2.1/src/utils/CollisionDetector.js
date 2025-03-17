@@ -1,3 +1,5 @@
+import { getDeliveryZone } from "../config/Constants.js";
+
 export class CollisionDetector {
   // Check collision between player and car
   static checkPlayerRectCollision(player, rect) {
@@ -12,7 +14,7 @@ export class CollisionDetector {
   // Check if player is in picking distance of an item
   static checkPlayerItemProximity(player, item) {
     // logic changed to similar with checkPlayerRectCollision()
-    const itemSize = item.size || 15;
+    const itemSize = item.size;
     return (
       item.x < player.x + player.width &&
       item.x + itemSize > player.x &&
@@ -23,9 +25,14 @@ export class CollisionDetector {
 
   // Check if player is in delivery zone
   static isInDeliveryZone(player) {
-    // Use proportional calculation based on canvas size
-    const deliveryStart = width * 0.7; // Start of delivery zone (right side)
-    return player.x > deliveryStart;
+    const deliveryZone = getDeliveryZone();
+    // logic changed to similar with checkPlayerRectCollision()
+    return (
+      player.x < deliveryZone.x + deliveryZone.size &&
+      player.x + player.width > deliveryZone.x &&
+      player.y < deliveryZone.y + deliveryZone.size &&
+      player.y + player.height > deliveryZone.y
+    );
   }
 
   // Check for collision between player and all cars

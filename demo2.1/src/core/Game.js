@@ -3,7 +3,7 @@ import { CarSystem } from "../systems/CarSystem.js";
 import { ItemSystem } from "../systems/ItemSystem.js";
 import { ObstacleSystem } from "../systems/ObstacleSystem.js";
 import { UiManager } from "../ui/UiManager.js";
-import { GameStates, getLaneConfiguration, getGameAreas } from "../config/Constants.js";
+import { GameStates, getLaneConfiguration, getGameAreas, getDeliveryZone } from "../config/Constants.js";
 import { GameMode } from "../config/GameMode.js";
 import { LevelConfig } from "../config/LevelConfig.js";
 import { GameStorage } from "../utils/GameStorage.js";
@@ -204,6 +204,11 @@ update() {
 
     // Draw player
     this.player.draw();
+
+    // Draw delivery zone
+    const deliveryZone = getDeliveryZone();
+    fill(deliveryZone.color);
+    rect(deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
   }
 
   setLineDash(list) {
