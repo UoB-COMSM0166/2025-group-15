@@ -2,8 +2,8 @@ export class Player {
   constructor(x, y, playerOption = "option1") {
     this.x = x || (width * 0.7 + (width * 0.3) / 2); // Default to middle of delivery area
     this.y = y || height / 2;
-    this.width = 50;
-    this.height = 50;
+    this.width = 30;
+    this.height = 97 / 42 * this.width; // 97/42 is the aspect ratio of the player image
     this.baseSpeed = 2.67; // Reduced from 4 to 2.67 (2/3 of original)
     this.speed = this.baseSpeed;
     this.score = 0;
@@ -58,7 +58,7 @@ export class Player {
     push(); // Save current drawing style
     if (this.playerOption === "option1") {
       if (this.isFlipped) {
-        scale(-1, 1); // flip horizontally
+        scale(-1, 1); // flip horizontally, first parameter is for x-axis, second is for y-axis, 
         image(
           assetManager.getImage("player1"),
           -this.x - this.width, // flipped x coordinate

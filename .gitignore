@@ -1,2 +1,8 @@
 # garbage from Mac
 .DS_Store
+
+# config from IDE
+.idea
+
+# config from editor
+.vscode

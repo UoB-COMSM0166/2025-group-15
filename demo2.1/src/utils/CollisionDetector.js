@@ -1,24 +1,38 @@
+import { getDeliveryZone } from "../config/Constants.js";
+
 export class CollisionDetector {
   // Check collision between player and car
   static checkPlayerRectCollision(player, rect) {
     return (
       player.x < rect.x + rect.width && // player left edge < car right edge
-      player.x + player.width > rect.x &&// player right edge > car left edge
-      player.y+player.height/2 < rect.y + rect.height &&// player half bottom edge < car bottom edge
+      player.x + player.width > rect.x && // player right edge > car left edge
+      player.y + player.height / 3 < rect.y + rect.height && // player 2 third top edge < car bottom edge
       player.y + player.height > rect.y // player bottom edge > car top edge
     );
   }
 
   // Check if player is in picking distance of an item
   static checkPlayerItemProximity(player, item) {
-    return dist(player.x, player.y, item.x, item.y) < 30;
+    // logic changed to similar with checkPlayerRectCollision()
+    const itemSize = item.size;
+    return (
+      item.x < player.x + player.width &&
+      item.x + itemSize > player.x &&
+      item.y < player.y + player.height &&
+      item.y + itemSize > player.y
+    );
   }
 
   // Check if player is in delivery zone
   static isInDeliveryZone(player) {
-    // Use proportional calculation based on canvas size
-    const deliveryStart = width * 0.7; // Start of delivery zone (right side)
-    return player.x > deliveryStart;
+    const deliveryZone = getDeliveryZone();
+    // logic changed to similar with checkPlayerRectCollision()
+    return (
+      player.x < deliveryZone.x + deliveryZone.size &&
+      player.x + player.width > deliveryZone.x &&
+      player.y < deliveryZone.y + deliveryZone.size &&
+      player.y + player.height > deliveryZone.y
+    );
   }
 
   // Check for collision between player and all cars

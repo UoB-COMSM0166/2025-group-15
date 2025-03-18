@@ -20,6 +20,7 @@ function setup() {
   const canvasWidth = Math.floor(windowWidth * 0.8);
   const canvasHeight = Math.floor(windowHeight * 0.9);
   
+  // p5.js createCanvas function, set canvas size, auto add two global var: width, height
   createCanvas(canvasWidth, canvasHeight);
   game = new Game();
 }

@@ -51,3 +51,17 @@ export const PauseButtons = {
     menu: { text: "Return to Main Menu" },
     settings: { text: "Settings" }
 };
+
+// Function to get delivery Zone
+export function getDeliveryZone() {
+    const deliveryZoneX = width * 0.7 + (width * 0.3) / 2; // same as player start position
+    const deliveryZoneY = height / 2;
+    const deliveryZoneSize = 45; // temp value, should be set based on delivery spot size
+    const color = [255, 255, 0, 128]; // temp value, should be set based on delivery spot color
+    return {
+        x: deliveryZoneX,
+        y: deliveryZoneY,
+        size: deliveryZoneSize,
+        color: color
+    };
+}

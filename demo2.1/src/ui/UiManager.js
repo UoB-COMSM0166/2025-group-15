@@ -24,10 +24,10 @@ export class UiManager {
 
     // Character selection buttons
     this.buttons.characterSelect = [
-      new Button(width / 2 - 150, 300, 100, 50, "Option1", true),
-      new Button(width / 2 + 55, 300, 100, 50, "Option2", true),
-      new Button(width / 2 - 100, 430, 240, 50, "Start Game", true),
-      new Button(width / 2 - 100, 500, 240, 50, "Return to Main Menu", true),
+      new Button(width / 3 - 50, 460, 100, 50, "Option1", true),
+      new Button(width / 3 * 2 - 50, 460, 100, 50, "Option2", true),
+      new Button(width / 2 - 100, 530, 200, 50, "Start Game", true),
+      new Button(width / 2 - 100, 600, 200, 50, "Return to Main Menu", true),
     ];
 
     // Level selection buttons - initially all false
@@ -253,10 +253,16 @@ export class UiManager {
     text("Select Your Character", width / 2, height * 0.15);
 
     // Draw character images
-    const charSize = Math.min(100, height * 0.15);
-    const charY = height * 0.3;
-    image(assetManager.getImage("player1"), width / 2 - 150, charY, charSize, charSize);
-    image(assetManager.getImage("player2"), width / 2 + 50, charY, charSize, charSize);
+    const player1Img = assetManager.getImage("player1");
+    const player2Img = assetManager.getImage("player2");
+    const charSize = height * 0.4; // Set character size to half of the screen height
+    // Calculate character image's width based on aspect ratio
+    const player1Width = charSize * (player1Img.width / player1Img.height);
+    const player2Width = charSize * (player2Img.width / player2Img.height);
+    const charY = height * 0.22; // set vertical location for character images in the screen
+    // Insert images for player1 and player2
+    image(assetManager.getImage("player1"), width / 3 - player2Width / 2, charY, player1Width, charSize);
+    image(assetManager.getImage("player2"), width / 3 * 2 - player2Width / 2, charY, player2Width, charSize);
 
     // Draw character select buttons
     for (let i = 0; i < this.buttons.characterSelect.length; i++) {
