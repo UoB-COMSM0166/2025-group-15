@@ -5,34 +5,97 @@ export class ItemSystem {
     constructor() {
         this.items = [];
         this.deliveredItems = [];
-        this.maxItems = 5; // maximum 5 item
-        this.pickedItemsCount = 0; 
-        this.itemGenerationStarted = false; 
+        this.maxItems = 5;
+        this.pickedItemsCount = 0;
+        this.itemGenerationStarted = false;
+
+       
+        this.generateInitialItems();
+    }
+
+    reset() {
+        this.items = [];
+        this.deliveredItems = [];
+        this.pickedItemsCount = 0;
+        this.itemGenerationStarted = false;
+
+      
+        this.generateInitialItems();
+    }
+
+    generateInitialItems() {
+        this.items = [];
+        const warehouseWidth = width * 0.3;
+
+        for (let i = 0; i < this.maxItems; i++) {
+            let newItem;
+            let attempts = 0;
+            do {
+                let newX = random(50, warehouseWidth - 50);
+                let newY = random(100, 400);
+                newItem = new Item(newX, newY);
+                attempts++;
+            } while (this.isOverlapping(newItem) && attempts < 10);
+
+            if (attempts < 10) {
+                this.items.push(newItem);
+            }
+        }
+
+        console.log("Initial items generated:", this.items);
     }
 
     scheduleNewItem() {
         if (!this.itemGenerationStarted && this.pickedItemsCount >= 2) { 
-            this.itemGenerationStarted = true; // only once
-            this.spawnItem();
+            this.itemGenerationStarted = true; 
+
+            console.log("🎯 Picked 2 items, waiting 5-10 seconds before starting item generation...");
+
+            //延迟 5-10 秒后才开始循环生成货物
+            setTimeout(() => {
+                console.log("Starting item generation after delay...");
+                this.spawnItem();
+            }, random(5000, 10000)); 
         }
     }
 
     spawnItem() {
         if (this.items.length < this.maxItems) { 
             const warehouseWidth = width * 0.3;
-            const newItem = new Item(random(50, warehouseWidth - 50), 100);
-            this.items.push(newItem);
+            let newItem;
+            let attempts = 0;
 
-            console.log("New item generated:", newItem);
+            do {
+                let newX = random(50, warehouseWidth - 50);
+                let newY = random(100, 400); 
+                newItem = new Item(newX, newY);
+                attempts++;
+            } while (this.isOverlapping(newItem) && attempts < 10);
+
+            if (attempts < 10) {
+                this.items.push(newItem);
+                console.log("New item generated:", newItem);
+            } else {
+                console.warn("Unable to place new item after 10 attempts, skipping...");
+            }
         }
 
-        //next generation（5~10s）
+        //After each generation of goods, wait 5-10 seconds before continuing to generate
         setTimeout(() => this.spawnItem(), random(5000, 10000));
+    }
+
+    isOverlapping(newItem) {
+        for (const item of this.items) {
+            let distance = Math.sqrt((newItem.x - item.x) ** 2 + (newItem.y - item.y) ** 2);
+            if (distance < 50) { 
+                return true;
+            }
+        }
+        return false;
     }
 
     handleItemPickupDrop(player) {
         if (!player.hasItem) {
-            // Try to pick up an item
             for (let i = this.items.length - 1; i >= 0; i--) {
                 let item = this.items[i];
                 if (CollisionDetector.checkPlayerItemProximity(player, item)) {
@@ -40,13 +103,12 @@ export class ItemSystem {
                     this.items.splice(i, 1);
                     this.pickedItemsCount++;
 
-                    //New goods are generated only after 2 goods have been picked up
+                    // 只有当拾取了 2 个货物时，才启动 `scheduleNewItem()`（等待 5-10 秒后才生成新货物）
                     if (this.pickedItemsCount === 2) {
-                        console.log("Picked 2 items, starting item generation...");
                         this.scheduleNewItem();
                     }
 
-                    break; 
+                    break;
                 }
             }
         } 
@@ -59,22 +121,25 @@ export class ItemSystem {
                 this.scheduleNewItem();
             }
 
-            return true; // Item was delivered
+            return true;
         } 
         else {
-            // Drop item somewhere else
             const droppedItem = player.dropItem();
             this.items.push(new Item(player.x, player.y, droppedItem.value));
         }
 
-        return false; // No item was delivered
+        return false;
     }
 
     draw() {
+        if (this.items.length === 0) {
+            console.warn("⚠ Warning: No items to draw!");
+        }
+
         for (const item of this.items) {
             item.draw();
         }
+
         Item.drawDelivered(this.deliveredItems);
     }
 }
-
