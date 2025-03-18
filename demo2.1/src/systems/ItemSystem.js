@@ -2,6 +2,7 @@
 import { Item } from "../entities/Item.js";
 import { CollisionDetector } from "../utils/CollisionDetector.js";
 
+
 export class ItemSystem {
   constructor() {
     this.items = [];
@@ -23,6 +24,21 @@ export class ItemSystem {
       this.items.push(new Item(random(50, warehouseWidth - 50), 100 + i * 80));
     }
   }
+
+  attemptPickup(player) {
+    if (!player.hasItem) { 
+        for (let i = this.items.length - 1; i >= 0; i--) {
+            let item = this.items[i];
+            if (player.canPickupItem(item)) { // 只有在 50px 范围内才能拾取
+                player.pickupItem(item);
+                this.items.splice(i, 1);
+                break;
+            }
+        }
+    }
+  }
+
+
 
   handleItemPickupDrop(player) {
     if (!player.hasItem) {
@@ -66,3 +82,4 @@ export class ItemSystem {
     Item.drawDelivered(this.deliveredItems);
   }
 }
+

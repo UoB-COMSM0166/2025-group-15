@@ -1,11 +1,11 @@
 // Level configuration
 export const LevelConfig = {
     1: {
-        targetScore: 200,
+        targetScore: 150,
         speedMultiplier: 1,
         hasObstacles: false,
         speeds: {
-            slow: 2,
+            slow: 3,
             medium: 4,
             fast: 6
         },
@@ -25,7 +25,7 @@ export const LevelConfig = {
         speedMultiplier: 1.2,
         hasObstacles: false,
         speeds: {
-            slow: 2.4,
+            slow: 3.6,
             medium: 4.8,
             fast: 7.2
         },
@@ -41,11 +41,11 @@ export const LevelConfig = {
         }
     },
     3: {
-        targetScore: 300,
+        targetScore: 200,
         speedMultiplier: 1.2,
         hasObstacles: true,
         speeds: {
-            slow: 2.4,
+            slow: 3.6,
             medium: 4.8,
             fast: 7.2
         },

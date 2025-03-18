@@ -13,6 +13,7 @@ export class Player {
     this.isFlipped = false; // if player is flipped
   }
 
+
   reset() {
     // Position player at the right side of delivery area
     const playerX = width * 0.7 + (width * 0.3) / 2; // Middle of delivery area
@@ -131,4 +132,17 @@ export class Player {
     this.speed = this.baseSpeed;
     return deliveredItem;
   }
+
+
+  canPickupItem(item) {
+    let distance = Math.sqrt((this.x - item.x) ** 2 + (this.y - item.y) ** 2);
+    return distance < 50; // 设定拾取范围
+}
+
+pickupItem(item) {
+  this.hasItem = true;
+  this.currentItem = item;
+  this.speed = this.baseSpeed / (0.7 + item.weight * 0.15);
+}
+
 }
