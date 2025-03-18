@@ -1,85 +1,80 @@
-//import
 import { Item } from "../entities/Item.js";
 import { CollisionDetector } from "../utils/CollisionDetector.js";
 
-
 export class ItemSystem {
-  constructor() {
-    this.items = [];
-    this.deliveredItems = [];
-  }
-
-  reset() {
-    this.items = [];
-    this.deliveredItems = [];
-    this.generateInitialItems();
-  }
-
-  generateInitialItems() {
-    this.items = [];
-    // Generate items in warehouse area (left side)
-    const warehouseWidth = width * 0.3;
-    
-    for (let i = 0; i < 5; i++) {
-      this.items.push(new Item(random(50, warehouseWidth - 50), 100 + i * 80));
+    constructor() {
+        this.items = [];
+        this.deliveredItems = [];
+        this.maxItems = 5; // maximum 5 item
+        this.pickedItemsCount = 0; 
+        this.itemGenerationStarted = false; 
     }
-  }
 
-  attemptPickup(player) {
-    if (!player.hasItem) { 
-        for (let i = this.items.length - 1; i >= 0; i--) {
-            let item = this.items[i];
-            if (player.canPickupItem(item)) { // 只有在 50px 范围内才能拾取
-                player.pickupItem(item);
-                this.items.splice(i, 1);
-                break;
+    scheduleNewItem() {
+        if (!this.itemGenerationStarted && this.pickedItemsCount >= 2) { 
+            this.itemGenerationStarted = true; // only once
+            this.spawnItem();
+        }
+    }
+
+    spawnItem() {
+        if (this.items.length < this.maxItems) { 
+            const warehouseWidth = width * 0.3;
+            const newItem = new Item(random(50, warehouseWidth - 50), 100);
+            this.items.push(newItem);
+
+            console.log("New item generated:", newItem);
+        }
+
+        //next generation（5~10s）
+        setTimeout(() => this.spawnItem(), random(5000, 10000));
+    }
+
+    handleItemPickupDrop(player) {
+        if (!player.hasItem) {
+            // Try to pick up an item
+            for (let i = this.items.length - 1; i >= 0; i--) {
+                let item = this.items[i];
+                if (CollisionDetector.checkPlayerItemProximity(player, item)) {
+                    player.pickupItem(item);
+                    this.items.splice(i, 1);
+                    this.pickedItemsCount++;
+
+                    //New goods are generated only after 2 goods have been picked up
+                    if (this.pickedItemsCount === 2) {
+                        console.log("Picked 2 items, starting item generation...");
+                        this.scheduleNewItem();
+                    }
+
+                    break; 
+                }
             }
+        } 
+        else if (CollisionDetector.isInDeliveryZone(player)) { 
+            console.log("Delivered item, value: " + player.currentItem.value);
+            const deliveredItem = player.deliverItem();
+            this.deliveredItems.push(deliveredItem);
+
+            if (this.items.length === 0) {
+                this.scheduleNewItem();
+            }
+
+            return true; // Item was delivered
+        } 
+        else {
+            // Drop item somewhere else
+            const droppedItem = player.dropItem();
+            this.items.push(new Item(player.x, player.y, droppedItem.value));
         }
+
+        return false; // No item was delivered
     }
-  }
 
-
-
-  handleItemPickupDrop(player) {
-    if (!player.hasItem) {
-      // Try to pick up an item
-      for (let i = this.items.length - 1; i >= 0; i--) {
-        let item = this.items[i];
-        if (CollisionDetector.checkPlayerItemProximity(player, item)) {
-          player.pickupItem(item);
-          this.items.splice(i, 1);
-          break;
+    draw() {
+        for (const item of this.items) {
+            item.draw();
         }
-      }
-    } else if (CollisionDetector.isInDeliveryZone(player)) {
-      // Deliver item in delivery zone
-      console.log("Delivered item, value: " + player.currentItem.value);
-      const deliveredItem = player.deliverItem();
-      this.deliveredItems.push(deliveredItem);
-
-      // Generate new items if all are delivered
-      if (this.items.length === 0) {
-        this.generateInitialItems();
-      }
-
-      return true; // Item was delivered
-    } else {
-      // Drop item somewhere else
-      const droppedItem = player.dropItem();
-      this.items.push(new Item(player.x, player.y, droppedItem.value));
+        Item.drawDelivered(this.deliveredItems);
     }
-
-    return false; // No item was delivered
-  }
-
-  draw() {
-    // Draw items waiting to be picked up
-    for (const item of this.items) {
-      item.draw();
-    }
-
-    // Draw delivered items
-    Item.drawDelivered(this.deliveredItems);
-  }
 }
 
