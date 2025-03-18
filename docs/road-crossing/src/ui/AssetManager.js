@@ -44,35 +44,66 @@ export class AssetManager {
   
     }
 
+    // loadLevelBackground(level) {
+    //   const bgKey = `level${level}Bg`;
+
+    //   // if bg image is already loaded, return true
+    //   if (this.images[bgKey]) {
+    //     return true;
+    //   }
+
+    //   const bgFileName = this.levelBackgrounds[level];
+    //   if (!bgFileName) {
+    //     console.error(`Failed to load level ${level} background`);
+    //     return false;
+    //   }
+
+    //   // load bg image
+    //   console.log(`Loading level ${level} background: ${bgFileName}`);
+
+    //   const imageLoaded = (img) => {
+    //     this.images[bgKey] = img;
+    //   }
+
+    //   const imageError = (err) => {
+    //     console.error(`Failed to load level ${level} background: ${bgFileName}`);
+    //   }
+
+    //   loadImage(`./assets/scene/${bgFileName}`, imageLoaded, imageError);
+
+    //   // return false to indicate that bg image is not yet loaded
+    //   return false;
+    // }
     loadLevelBackground(level) {
       const bgKey = `level${level}Bg`;
-
-      // if bg image is already loaded, return true
+    
+      // if bg image is already loaded, return resolved Promise
       if (this.images[bgKey]) {
-        return true;
+        return Promise.resolve(true);
       }
-
+    
       const bgFileName = this.levelBackgrounds[level];
       if (!bgFileName) {
         console.error(`Failed to load level ${level} background`);
-        return false;
+        return Promise.resolve(false);
       }
-
-      // load bg image
+    
       console.log(`Loading level ${level} background: ${bgFileName}`);
-
-      const imageLoaded = (img) => {
-        this.images[bgKey] = img;
-      }
-
-      const imageError = (err) => {
-        console.error(`Failed to load level ${level} background: ${bgFileName}`);
-      }
-
-      loadImage(`./assets/scene/${bgFileName}`, imageLoaded, imageError);
-
-      // return false to indicate that bg image is not yet loaded
-      return false;
+      
+      // return Promise to indicate that bg image is not yet loaded
+      return new Promise((resolve) => {
+        loadImage(
+          `./assets/scene/${bgFileName}`, 
+          (img) => {
+            this.images[bgKey] = img;
+            resolve(true);
+          }, 
+          (err) => {
+            console.error(`Failed to load level ${level} background: ${bgFileName}`, err);
+            resolve(false);
+          }
+        );
+      });
     }
 
     getLevelBackground(level) {
