@@ -51,11 +51,11 @@ export class ItemSystem {
 
             console.log("🎯 Picked 2 items, waiting 5-10 seconds before starting item generation...");
 
-            //延迟 5-10 秒后才开始循环生成货物
+            //A delay of 12-15 seconds before the cycle starts to generate goods
             setTimeout(() => {
                 console.log("Starting item generation after delay...");
                 this.spawnItem();
-            }, random(5000, 10000)); 
+            }, random(8000, 10000)); 
         }
     }
 
@@ -81,7 +81,7 @@ export class ItemSystem {
         }
 
         //After each generation of goods, wait 5-10 seconds before continuing to generate
-        setTimeout(() => this.spawnItem(), random(5000, 10000));
+        setTimeout(() => this.spawnItem(), random(8000, 10000));
     }
 
     isOverlapping(newItem) {
@@ -103,7 +103,7 @@ export class ItemSystem {
                     this.items.splice(i, 1);
                     this.pickedItemsCount++;
 
-                    // 只有当拾取了 2 个货物时，才启动 `scheduleNewItem()`（等待 5-10 秒后才生成新货物）
+                    // 'scheduleNewItem()' is started only when 2 goods are picked up 
                     if (this.pickedItemsCount === 2) {
                         this.scheduleNewItem();
                     }
@@ -143,3 +143,4 @@ export class ItemSystem {
         Item.drawDelivered(this.deliveredItems);
     }
 }
+
