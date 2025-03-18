@@ -40,8 +40,8 @@ export class UiManager {
 
     // Settings menu buttons
     this.buttons.settings = [
-      new Button(width / 2 - 100, 400, 200, 50, "Audio Settings", true),
-      new Button(width / 2 - 100, 470, 200, 50, "Return to Main Menu", true),
+      new Button(width / 2 - 100, 400, 240, 50, "Audio Settings", true),
+      new Button(width / 2 - 100, 470, 240, 50, "Return to Main Menu", true),
     ];
 
     // Pause menu buttons
