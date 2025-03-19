@@ -19,7 +19,7 @@ Vector is a side-scrolling parkour action game where players take on the role of
 <img src="Images/Vector_control.png" width=800 alt="vector controls">
 
 ### Our Version  
-Changed from gesture controls to tap controls; Removed special action triggers; Character position can be adjusted relative to the screen; Added left control key.
+<!-- 待写描述 -->
 
 See the paper prototype.  
 <!-- 待传视频 （小于10MB，传到issues，方法见https://zade23.github.io/2024/04/26/【Git】在README-md中展示视频的方案/index.html）
