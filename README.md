@@ -316,7 +316,8 @@ In our project, we use a Kanban Board as our project management methodology due 
 
 3.**Flexible Prioritization:** Kanban allows us to reprioritize tasks without disrupting the entire workflow, making it adaptable to changing project requirements.
 Additionally, our Kanban board integrates task assignments, deadlines, and priority indicators for each card, providing comprehensive information for team coordination. Overall, Kanban's visual approach and flexibility make it an ideal choice for our project management.
-![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true)
+（Figure Kanban Board Implementation）
+
 
 #### Bi-Weekly Team Discussions
 
