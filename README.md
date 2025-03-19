@@ -39,7 +39,7 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 - 15% ~750 words
 - Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
-#### Stakeholder Analysis
+### Stakeholder Analysis
 
 We applied the Onion Model to identify and analyze stakeholders involved in our game development:
 
@@ -115,16 +115,7 @@ flowchart LR
 ```
 
 #### Brief Reflection
-
-Through our game development process, our team has gained valuable experience in requirements analysis and project management. In terms of Epics, we learned how to break down large game development tasks into manageable modules, enabling team members to work in parallel. This modular approach improved our development efficiency.
-
-For user stories, we adopted the format 'As a player, I want to adjust the background music volume or completely mute it so that I can focus on the game without being distracted by the music' to capture different stakeholders' needs. In game development, we considered both player requirements (such as game progress saving, difficulty progression, and volume control) and development team's needs (like modular development, sound design, and animation implementation). This comprehensive approach helped us maintain focus on user experience and technical feasibility.
-
-For acceptance criteria, we used the Given-When-Then format to define completion standards. This helped us maintain clear objectives and provided guidelines for testing. In designing the difficulty system, we detailed acceptance criteria for each feature, ensuring testability and verifiability.
-
-In understanding our application's context, we employed the Onion Model for stakeholder analysis, giving us a comprehensive view from core development team to end users. This helped us maintain awareness of various stakeholder needs throughout development.
-
-The iterative process of defining requirements taught us the importance of clear communication and documentation. Well-defined requirements not only guide development but also serve as a foundation for testing and evaluation. This experience has helped us complete the current project and laid a foundation for future development.
+<!-- 【DDL周六晚24点前】待填充 -->
 
 ### Design
 
