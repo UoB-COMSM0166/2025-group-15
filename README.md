@@ -21,11 +21,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Shuxiao Shi  | <ux24132@bristol.ac.uk>   | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
-| Jinlong Xiao | <qo242236@bristol.ac.uk>  | yusheng2077    |
 
-## Your Board
-
-See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 ## Project Report
 
