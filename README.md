@@ -311,9 +311,7 @@ Communication was our foundation from the start. We established clear response e
 In our project, we use a Kanban Board as our project management methodology due to its key advantages:
 
 1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Backlog, In Progress, Review, Done), allowing team members to understand project status at a glance.
-
 2.**Work-in-Progress Limits:** Our Kanban implementation includes WIP limits for each column, preventing bottlenecks and ensuring steady workflow throughout the project lifecycle.
-
 3.**Flexible Prioritization:** Kanban allows us to reprioritize tasks without disrupting the entire workflow, making it adaptable to changing project requirements.
 Additionally, our Kanban board integrates task assignments, deadlines, and priority indicators for each card, providing comprehensive information for team coordination. Overall, Kanban's visual approach and flexibility make it an ideal choice for our project management.
 （Figure Kanban Board Implementation）
@@ -324,9 +322,7 @@ Additionally, our Kanban board integrates task assignments, deadlines, and prior
 We conduct face-to-face team meetings twice a week to facilitate collaboration and project coordination due to several benefits:
 
 1.**Enhanced Communication:** In-person discussions allow for immediate feedback, nuanced conversation, and non-verbal cues that improve understanding among team members.
-
 2.**Structured Problem-Solving:** Our bi-weekly sessions follow a consistent format with designated time for progress updates, blockers discussion, and collaborative solution development.
-
 3.**Team Cohesion:** Regular face-to-face interaction strengthens team relationships and builds trust, leading to more effective collaboration throughout the project.
 Additionally, these discussions are documented with meeting minutes shared in our common repository, ensuring that decisions and action items are tracked systematically. Overall, our twice-weekly in-person meetings serve as critical touchpoints for alignment and momentum in our project execution.
 
