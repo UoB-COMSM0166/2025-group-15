@@ -26,22 +26,22 @@ export class UiManager {
     this.buttons.characterSelect = [
       new Button(width / 3 - 50, 460, 100, 50, "Option1", true),
       new Button(width / 3 * 2 - 50, 460, 100, 50, "Option2", true),
-      new Button(width / 2 - 100, 530, 200, 50, "Start Game", true),
-      new Button(width / 2 - 100, 600, 200, 50, "Return to Main Menu", true),
+      new Button(width / 2 - 100, 530, 240, 50, "Start Game", true),
+      new Button(width / 2 - 100, 600, 240, 50, "Return to Main Menu", true),
     ];
 
     // Level selection buttons - initially all false
     this.buttons.levelSelect = [
-      new Button(width / 2 - 100, 220, 200, 50, "Level 1", false),
-      new Button(width / 2 - 100, 290, 200, 50, "Level 2", false),
-      new Button(width / 2 - 100, 360, 200, 50, "Level 3", false),
-      new Button(width / 2 - 100, 500, 200, 50, "Return to Main Menu", true),
+      new Button(width / 2 - 100, 220, 220, 50, "Level 1", false),
+      new Button(width / 2 - 100, 290, 220, 50, "Level 2", false),
+      new Button(width / 2 - 100, 360, 220, 50, "Level 3", false),
+      new Button(width / 2 - 100, 500, 220, 50, "Return to Main Menu", true),
     ];
 
     // Settings menu buttons
     this.buttons.settings = [
-      new Button(width / 2 - 100, 400, 200, 50, "Audio Settings", true),
-      new Button(width / 2 - 100, 470, 200, 50, "Return to Main Menu", true),
+      new Button(width / 2 - 100, 400, 240, 50, "Audio Settings", true),
+      new Button(width / 2 - 100, 470, 240, 50, "Return to Main Menu", true),
     ];
 
     // Pause menu buttons
@@ -67,7 +67,7 @@ export class UiManager {
 
     // Help screen button
     this.buttons.help = [
-      new Button(width / 2 - 100, height - 100, 200, 40, "Return to Main Menu", true),
+      new Button(width / 2 - 100, height - 100, 240, 40, "Return to Main Menu", true),
     ];
 
     // Audio settings button
