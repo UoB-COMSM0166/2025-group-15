@@ -270,8 +270,7 @@ After developing the core mechanics of the game, we conducted user evaluations b
 
 9. **Weight and Speed Relationship:** Currently, cargo weight does not affect movement speed, leading players to prioritize high-value cargos and resulting in a lack of strategic diversity. It is recommended to introduce a weight-speed correlation mechanism, where heavier cargos slow down movement speed, and add weight indicators (e.g., color coding) to increase strategic depth and gameplay variety.
 
-
-#### Quantitative Evaluations
+##### Heuristic Evaluation
 
 We also analysed and evaluated the testers' feedback based on Nielsen's heuristic principles and documented our findings in the Heuristic Evaluation Table below.
 
@@ -298,6 +297,84 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
   - High Priority (Severity ≥ 3.0): Address the background contrast deficiency (3.7) in the next iteration.
 
   - Controversial Design: For counterintuitive lane speed differences (Severity = 2.3), enhance user onboarding (e.g., add a warning: "Caution: High-speed right lane!") or recalibrate speeds to balance challenge and rationality.
+
+#### Quantitative Evaluations
+
+We collected data from 10 participants who completed tasks under both easy and difficult conditions, to exam how task difficulty affects both user workload and system usability.
+
+We use NASA TLX and SUS to measure separately, and use the [Wilcoxon signed-rank test](https://www.statology.org/wilcoxon-signed-rank-test-calculator/) to determine statistical significance of differences between conditions, with α=0.05 as the threshold for significance.
+
+##### [The NASA Task Load Index](./Images/NASA_TLX-template.png)
+
+The table below presents participants' ratings across six dimensions of workload, as well as calculated overall workload scores:
+
+|User|Difficulty|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|Score|
+|---|---|---|---|---|---|---|---|---|
+|User 1|Easy|13|6|12|13|10|6|45.00|
+|User 1|Difficult|14|7|15|7|13|6|46.67|
+|User 2|Easy|11|9|5|14|16|7|46.67|
+|User 2|Difficult|11|9|8|14|17|7|50.00|
+|User 3|Easy|19|18|11|4|13|10|57.50|
+|User 3|Difficult|20|20|12|2|11|11|58.33|
+|User 4|Easy|13|15|7|1|15|11|46.67|
+|User 4|Difficult|13|16|7|1|16|13|50.00|
+|User 5|Easy|12|7|12|11|10|10|46.67|
+|User 5|Difficult|15|12|16|14|14|18|69.17|
+|User 6|Easy|8|12|11|10|11|9|45.83|
+|User 6|Difficult|10|18|14|12|14|12|61.67|
+|User 7|Easy|5|10|12|11|6|2|33.33|
+|User 7|Difficult|7|8|11|13|9|3|37.50|
+|User 8|Easy|9|16|12|8|11|11|50.83|
+|User 8|Difficult|13|20|10|6|9|15|55.83|
+|User 9|Easy|3|5|8|1|5|2|15.00|
+|User 9|Difficult|7|8|14|13|15|10|50.83|
+|User 10|Easy|3|8|14|18|9|1|39.17|
+|User 10|Difficult|5|9|15|17|9|3|43.33|
+
+*W test statistic = 0*  
+*Number of non-tied pairs (n) = 10*
+
+> All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using ((scale value - 1) * 5).
+
+##### [System Usability Survey](./Images/SUS-template.png)
+
+|User|Difficulty|Q1|Q2|Q3|Q4|Q5|Q6|Q7|Q8|Q9|Q10|Score|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|User 1|Easy|4|2|4|1|5|1|5|1|4|2|87.5|
+|User 1|Difficult|4|2|5|1|5|1|5|1|5|1|95.0|
+|User 2|Easy|4|3|5|2|2|1|4|2|4|1|75.0|
+|User 2|Difficult|4|4|5|2|2|2|4|2|4|1|70.0|
+|User 3|Easy|3|2|3|4|4|1|5|3|3|1|67.5|
+|User 3|Difficult|3|2|3|4|4|1|5|3|3|1|67.5|
+|User 4|Easy|3|1|4|2|4|2|4|2|5|1|80.0|
+|User 4|Difficult|3|1|4|2|4|2|4|2|5|1|80.0|
+|User 5|Easy|3|2|4|1|4|2|5|2|4|1|80.0|
+|User 5|Difficult|3|2|3|1|4|2|5|2|4|1|77.5|
+|User 6|Easy|3|2|4|4|3|3|4|3|4|1|62.5|
+|User 6|Difficult|3|3|3|4|3|4|3|3|4|2|50.0|
+|User 7|Easy|3|1|5|1|4|2|5|1|5|1|90.0|
+|User 7|Difficult|3|1|5|1|4|2|5|1|5|1|90.0|
+|User 8|Easy|3|2|4|3|4|4|3|3|5|1|65.0|
+|User 8|Difficult|4|4|3|4|5|1|2|2|3|2|60.0|
+|User 9|Easy|3|2|4|2|4|1|4|2|5|2|77.5|
+|User 9|Difficult|3|2|2|3|2|2|2|3|3|2|50.0|
+|User 10|Easy|2|1|5|1|3|2|4|3|5|1|77.5|
+|User 10|Difficult|1|1|5|1|3|2|5|3|5|1|77.5|
+
+*W test statistic = 4*  
+*Number of non-tied pairs (n) = 6*
+
+> Values for Q1-Q10 represent ratings on the 5-point SUS scale. The Score column is calculated according to SUS methodology: (score-1) for odd-numbered items, (5-score) for even-numbered items, sum multiplied by 2.5.
+
+##### Findings
+
+The results of our study indicate:
+
+- The difficult condition successfully created a more challenging experience, with all participants reporting significantly increased workload, confirming the effectiveness of our difficulty manipulation.
+- Despite the increased challenge, the fundamental usability of the system remained robust, with no statistically significant decline in SUS scores. This suggests the system maintains its intuitive operation and accessibility even under more demanding conditions.
+- Individual differences in adaptability were observed, with some users (particularly User 9) showing dramatic changes in both workload and usability metrics, highlighting varying resilience to increased difficulty among users.
+
+In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
 
 ### Process
 
