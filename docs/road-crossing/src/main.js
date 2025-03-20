@@ -17,8 +17,8 @@ window.currentGameMode = GameMode.NORMAL;
 // p5.js setup function - increase canvas size to fill 80% of the window
 function setup() {
   // Calculate canvas size to fill 80% of window width and 90% of window height
-  const canvasWidth = Math.floor(windowWidth * 0.8);
-  const canvasHeight = Math.floor(windowHeight * 0.9);
+  const canvasHeight = Math.floor(windowHeight);
+  const canvasWidth = Math.floor(canvasHeight * 4 / 3); // 4:3 aspect ratio
   
   // p5.js createCanvas function, set canvas size, auto add two global var: width, height
   createCanvas(canvasWidth, canvasHeight);
@@ -27,8 +27,8 @@ function setup() {
 
 // p5.js window resize function
 function windowResized() {
-  const canvasWidth = Math.floor(windowWidth * 0.8);
-  const canvasHeight = Math.floor(windowHeight * 0.9);
+  const canvasHeight = Math.floor(windowHeight);
+  const canvasWidth = Math.floor(canvasHeight * 4 / 3);
   resizeCanvas(canvasWidth, canvasHeight);
 }
 
