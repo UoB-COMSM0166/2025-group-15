@@ -21,7 +21,11 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Shuxiao Shi  | <ux24132@bristol.ac.uk>   | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
+| Jinlong Xiao | <qo242236@bristol.ac.uk>  | yusheng2077    |
 
+## Your Board
+
+See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 ## Project Report
 
@@ -35,8 +39,17 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - 15% ~750 words
 - Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
-#### Stakeholders
-<!-- 【DDL周六晚24点前】表格 -->
+#### Stakeholder Analysis
+
+We applied the Onion Model to identify and analyze stakeholders involved in our game development:
+
+| Layer | Stakeholder | Description |
+|-------|------------|-------------|
+| Core Layer | Development Team | Responsible for game design, programming, art creation, and initial testing |
+| Inner Layer | Project Supervisors | Guide development process and evaluate project quality, providing critical feedback |
+| Middle Layer | Beta Testers | Early players who test gameplay mechanics and provide feedback on user experience |
+| Outer Layer | Target Players | Final users who will play the completed game |
+| Outer Layer | Platform Provider | Distribution platform (e.g., Steam, App Store) hosting the game |
 
 #### User Stories & Acceptance Criteria
 <!-- 【DDL周六晚24点前】格式如下，表格 -->
@@ -102,7 +115,16 @@ flowchart LR
 ```
 
 #### Brief Reflection
-<!-- 【DDL周六晚24点前】待填充 -->
+
+Through our game development process, our team has gained valuable experience in requirements analysis and project management. In terms of Epics, we learned how to break down large game development tasks into manageable modules, enabling team members to work in parallel. This modular approach improved our development efficiency.
+
+For user stories, we adopted the format 'As a player, I want to adjust the background music volume or completely mute it so that I can focus on the game without being distracted by the music' to capture different stakeholders' needs. In game development, we considered both player requirements (such as game progress saving, difficulty progression, and volume control) and development team's needs (like modular development, sound design, and animation implementation). This comprehensive approach helped us maintain focus on user experience and technical feasibility.
+
+For acceptance criteria, we used the Given-When-Then format to define completion standards. This helped us maintain clear objectives and provided guidelines for testing. In designing the difficulty system, we detailed acceptance criteria for each feature, ensuring testability and verifiability.
+
+In understanding our application's context, we employed the Onion Model for stakeholder analysis, giving us a comprehensive view from core development team to end users. This helped us maintain awareness of various stakeholder needs throughout development.
+
+The iterative process of defining requirements taught us the importance of clear communication and documentation. Well-defined requirements not only guide development but also serve as a foundation for testing and evaluation. This experience has helped us complete the current project and laid a foundation for future development.
 
 ### Design
 
@@ -280,9 +302,40 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
 
 ### Process
 
-- 15% ~750 words
+Our team's collaborative journey throughout this project combined structured face-to-face interaction with efficient digital coordination. We prioritized in-person engagement through bi-weekly team discussions while maintaining digital tools to track progress between meetings. This balanced approach leveraged the benefits of direct communication while ensuring consistent documentation and task management.
 
-- Teamwork. How did you work together, what tools did you use. Did you have team roles? Reflection on how you worked together.
+Communication was our foundation from the start. We established clear response expectations across different channels—committing to 24-hour maximum response times for important matters while allowing focus time for deep work. For conflict resolution, we developed a structured approach of documenting perspectives, evaluating options against project objectives, and making decisions through consensus where possible, with a voting system for more complex issues.
+
+#### Kanban Board
+
+In our project, we use a Kanban Board as our project management methodology due to its key advantages:
+
+1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Todo, lagging behind, In Progress, Done), allowing team members to understand project status at a glance.
+
+2.**Work-in-Progress Limits:** Our Kanban implementation includes WIP limits for each column, preventing bottlenecks and ensuring steady workflow throughout the project lifecycle.
+
+3.**Flexible Prioritization:** Kanban allows us to reprioritize tasks without disrupting the entire workflow, making it adaptable to changing project requirements.
+Additionally, our Kanban board integrates task assignments, deadlines, and priority indicators for each card, providing comprehensive information for team coordination. Overall, Kanban's visual approach and flexibility make it an ideal choice for our project management.
+![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true)
+
+#### Bi-Weekly Team Discussions
+
+We conduct face-to-face team meetings twice a week to facilitate collaboration and project coordination due to several benefits:
+
+1.**Enhanced Communication:** In-person discussions allow for immediate feedback, nuanced conversation, and non-verbal cues that improve understanding among team members.
+
+2.**Structured Problem-Solving:** Our bi-weekly sessions follow a consistent format with designated time for progress updates, blockers discussion, and collaborative solution development.
+
+3.**Team Cohesion:** Regular face-to-face interaction strengthens team relationships and builds trust, leading to more effective collaboration throughout the project.
+Additionally, these discussions are documented with meeting minutes shared in our common repository, ensuring that decisions and action items are tracked systematically. Overall, our twice-weekly in-person meetings serve as critical touchpoints for alignment and momentum in our project execution.
+
+#### Reflection on Our Collaborative Experience
+
+Our collaboration revealed several key insights:
+Our diverse backgrounds provided rich problem-solving perspectives, while transparent communication built trust among team members. Our adaptive planning helped navigate unexpected challenges effectively.
+Initially, time zone differences complicated synchronous communication for team members studying abroad. We addressed this by recording meetings and implementing asynchronous decision-making when appropriate. Cultural differences occasionally led to misunderstandings about expectations, which we resolved through explicit conversations about working styles.
+As the project progressed, we improved in documenting decisions and their rationales, creating valuable context for future reference. We became more efficient at determining when to work individually versus collaboratively, optimizing our collective productivity.
+This collaborative experience strengthened both our project outcomes and individual capabilities. The attention we paid to establishing clear processes, utilizing appropriate tools, and maintaining open communication created a foundation for effective teamwork. The skills developed extend beyond the project itself, providing valuable professional competencies for our future endeavors.
 
 ### Conclusion
 
