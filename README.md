@@ -2,6 +2,16 @@
 
 2025 COMSM0166 group 15
 
+## Contents of The Report
+
+[Introduction](#introduction)  
+[Requirement](#requirements)  
+[Design](#design)  
+[Implementation](#implementation)  
+[Evaluation](#evaluation)  
+[Process](#process)  
+[Conclution](#conclusion)  
+
 ## Your Game
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
@@ -34,9 +44,6 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 - Describe your game, what is based on, what makes it novel?
 
 ### Requirements
-
-- 15% ~750 words
-- Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
 #### Stakeholder Analysis
 
@@ -127,8 +134,6 @@ The iterative process of defining requirements taught us the importance of clear
 
 ### Design
 
-- 15% ~750 words
-- System architecture. Class diagrams, behavioural diagrams.
 #### Class Diagram
 
 Main Classes and Their Functions:
@@ -334,7 +339,7 @@ The table below presents participants' ratings across six dimensions of workload
 *W test statistic = 0*  
 *Number of non-tied pairs (n) = 10*
 
-> All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using ((scale value - 1) * 5).
+> All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
 
 ##### [System Usability Survey](./Images/SUS-template.png)
 
@@ -375,6 +380,8 @@ The results of our study indicate:
 - Individual differences in adaptability were observed, with some users (particularly User 9) showing dramatic changes in both workload and usability metrics, highlighting varying resilience to increased difficulty among users.
 
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
+
+#### Code Testing
 
 ### Process
 
