@@ -17,20 +17,20 @@ window.currentGameMode = GameMode.NORMAL;
 // p5.js setup function - increase canvas size to fill 80% of the window
 function setup() {
   // Calculate canvas size to fill 80% of window width and 90% of window height
-  const canvasWidth = Math.floor(windowWidth * 0.8);
-  const canvasHeight = Math.floor(windowHeight * 0.9);
+  // const canvasWidth = Math.floor(windowWidth * 0.8);
+  // const canvasHeight = Math.floor(windowHeight * 0.9);
   
   // p5.js createCanvas function, set canvas size, auto add two global var: width, height
-  createCanvas(canvasWidth, canvasHeight);
+  createCanvas(1000,750);
   game = new Game();
 }
 
 // p5.js window resize function
-function windowResized() {
-  const canvasWidth = Math.floor(windowWidth * 0.8);
-  const canvasHeight = Math.floor(windowHeight * 0.9);
-  resizeCanvas(canvasWidth, canvasHeight);
-}
+// function windowResized() {
+//   const canvasWidth = Math.floor(windowWidth * 0.8);
+//   const canvasHeight = Math.floor(windowHeight * 0.9);
+//   resizeCanvas(canvasWidth, canvasHeight);
+// }
 
 // p5.js draw function
 function draw() {
@@ -52,7 +52,7 @@ function keyReleased() {
 
 window.preload = preload;
 window.setup = setup;
-window.windowResized = windowResized;
+//window.windowResized = windowResized;
 window.draw = draw;
 window.mouseClicked = mouseClicked;
 window.keyPressed = keyPressed;
