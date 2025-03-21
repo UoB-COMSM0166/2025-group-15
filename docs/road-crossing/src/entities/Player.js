@@ -109,12 +109,12 @@ export class Player {
 
     if (this.isHit) {
       if (this.playerOption === "option1") {
-        // 使用倒地图片，保持宽高比
-        const lyingScale = this.width / 30; // 保持与正常图片相同的比例
+        // Use inverted images and keep the aspect ratio
+        const lyingScale = this.width / 30; // Keep the same proportions as the normal picture
         const drawWidth = this.lyingWidth * lyingScale;
         const drawHeight = this.lyingHeight * lyingScale;
         
-        // 使用CORNER模式绘制，与行走图片保持一致
+        // Drawing using CORNER mode, consistent with walking pictures
         imageMode(CORNER);
         
         image(
@@ -125,12 +125,12 @@ export class Player {
           drawHeight
         );
       } else if (this.playerOption === "option2") {
-        // 角色2倒地图片
-        const lyingScale = this.width / 30; // 保持与正常图片相同的比例
+        // Falling down Picture of character2
+        const lyingScale = this.width / 30; 
         const drawWidth = this.lyingWidth * lyingScale;
         const drawHeight = this.lyingHeight * lyingScale;
         
-        // 使用CORNER模式绘制，与行走图片保持一致
+      
         imageMode(CORNER);
         
         image(
@@ -142,7 +142,7 @@ export class Player {
         );
       }
     } else if (this.playerOption === "option1") {
-      imageMode(CORNER); // 恢复原始模式
+      imageMode(CORNER); // Restore original mode
       
       // Get aspect ratio information for both image types
       const walkingRatio = assetManager.images["player1WalkingRatio"] || { ratio: 97/42 };
@@ -151,9 +151,9 @@ export class Player {
       // Choose different images based on whether player is holding an item
       if (this.hasItem) {
         if (this.isFlipped) {
-          scale(-1, 1); // 水平翻转
+          scale(-1, 1); // Horizontal Flip
           
-          // 根据动画帧选择不同的图片
+          // Select different images according to the animation frame
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player1WalkingWithCargo"),
@@ -172,7 +172,7 @@ export class Player {
             );
           }
         } else {
-          // 根据动画帧选择不同的图片
+          
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player1WalkingWithCargo"),
@@ -266,7 +266,7 @@ export class Player {
               
               image(
                 assetManager.getImage("player1SideView"),
-                -this.x - drawWidth, // 根据实际宽度调整翻转坐标
+                -this.x - drawWidth, // Adjust the flip coordinates according to the actual width
                 this.y,
                 drawWidth,
                 drawHeight
@@ -283,7 +283,7 @@ export class Player {
             
             image(
               assetManager.getImage("player1SideView"),
-              -this.x - drawWidth, // 根据实际宽度调整翻转坐标
+              -this.x - drawWidth, 
               this.y,
               drawWidth,
               drawHeight
@@ -293,7 +293,7 @@ export class Player {
         }
       }
     } else if (this.playerOption === "option2") {
-      imageMode(CORNER); // 恢复原始模式
+      imageMode(CORNER); 
       
       // Get aspect ratio information for both image types
       const walkingRatio = assetManager.images["player2WalkingRatio"] || { ratio: 97/42 };
@@ -302,9 +302,9 @@ export class Player {
       // Choose different images based on whether player is holding an item
       if (this.hasItem) {
         if (this.isFlipped) {
-          scale(-1, 1); // 水平翻转
+          scale(-1, 1); 
           
-          // 根据动画帧选择不同的图片
+          
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player2WalkingWithCargo"),
@@ -323,7 +323,7 @@ export class Player {
             );
           }
         } else {
-          // 根据动画帧选择不同的图片
+          
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player2WalkingWithCargo"),
@@ -417,7 +417,7 @@ export class Player {
               
               image(
                 assetManager.getImage("player2SideView"),
-                -this.x - drawWidth, // 根据实际宽度调整翻转坐标
+                -this.x - drawWidth, 
                 this.y,
                 drawWidth,
                 drawHeight
@@ -434,7 +434,7 @@ export class Player {
             
             image(
               assetManager.getImage("player2SideView"),
-              -this.x - drawWidth, // 根据实际宽度调整翻转坐标
+              -this.x - drawWidth, 
               this.y,
               drawWidth,
               drawHeight
@@ -446,7 +446,7 @@ export class Player {
     }
     pop(); // restore drawing style
 
-    // 不再需要绘制物品矩形，因为使用持有物品的图片
+    
   }
 
   pickupItem(item) {
