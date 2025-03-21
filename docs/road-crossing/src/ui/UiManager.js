@@ -535,4 +535,53 @@ export class UiManager {
       image(pauseImg, width - 90, 20, 30, 30);
     }
   }
+  
+  // 检查暂停按钮是否被点击
+  checkPauseButtonClick(mx, my) {
+    // 暂停按钮位置
+    const pauseButtonX = width - 90;
+    const pauseButtonY = 20;
+    const pauseButtonSize = 30;
+    
+    // 检查鼠标点击是否在暂停按钮范围内
+    if (mx >= pauseButtonX && mx <= pauseButtonX + pauseButtonSize &&
+        my >= pauseButtonY && my <= pauseButtonY + pauseButtonSize) {
+      // 切换游戏状态
+      if (this.game.currentState === GameStates.PLAYING) {
+        this.game.currentState = GameStates.PAUSED;
+      } else if (this.game.currentState === GameStates.PAUSED) {
+        this.game.currentState = GameStates.PLAYING;
+      }
+      return true;
+    }
+    return false;
+  }
+  
+  checkAudioButtonClick(mx, my) {
+    const audioButtonX = width - 50;
+    const audioButtonY = 20;
+    const audioButtonSize = 30;
+    
+    if (mx >= audioButtonX && mx <= audioButtonX + audioButtonSize &&
+        my >= audioButtonY && my <= audioButtonY + audioButtonSize) {
+      this.toggleAudio();
+      return true;
+    }
+    return false;
+  }
+  
+  toggleAudio() {
+    this.game.isAudioEnabled = !this.game.isAudioEnabled;
+    const bgMusic = assetManager.getSound("bgMusic");
+    
+    if (this.game.isAudioEnabled) {
+      if (bgMusic && !bgMusic.isPlaying()) {
+        bgMusic.loop();
+      }
+    } else {
+      if (bgMusic && bgMusic.isPlaying()) {
+        bgMusic.pause();
+      }
+    }
+  }
 }

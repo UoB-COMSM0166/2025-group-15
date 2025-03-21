@@ -20,7 +20,6 @@ export class Game {
     if (currentGameMode === GameMode.TESTING) {
       this.unlockedLevels = 3;
     } else {
-      // 直接调用 GameStorage 类的静态方法
       this.unlockedLevels = GameStorage.loadGameProgress();
     }
 
@@ -53,12 +52,20 @@ export class Game {
 
   startNewGame(level) {
     this.currentLevel = level;
-    this.currentState = GameStates.PLAYING;
-
+    
     // preload current level background
     assetManager.loadLevelBackground(this.currentLevel);
-
+    
     this.resetGame();
+    this.currentState = GameStates.PLAYING;
+      
+    // If audio is enabled, play background music
+    if (this.isAudioEnabled) {
+      const bgMusic = assetManager.getSound("bgMusic");
+      if (bgMusic && !bgMusic.isPlaying()) {
+        bgMusic.loop();
+      }
+    }
   }
 
   resetGame() {
@@ -258,6 +265,18 @@ update() {
   }
 
   handleMouseClicked() {
+    // Check if pause button is clicked
+    if (this.currentState === GameStates.PLAYING) {
+      if (this.uiManager.checkPauseButtonClick(mouseX, mouseY)) {
+        return; // If pause button is clicked, do not process other clicks
+      }
+      
+      // Check if audio button is clicked
+      if (this.uiManager.checkAudioButtonClick(mouseX, mouseY)) {
+        return; // If audio button is clicked, do not process other clicks
+      }
+    }
+    
     switch (this.currentState) {
       case GameStates.MENU:
         this.uiManager.handleMainMenuClicks(mouseX, mouseY);
