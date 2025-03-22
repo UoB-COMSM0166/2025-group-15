@@ -5,7 +5,7 @@ export class AssetManager {
 
       // map of all the levels and their background images
       this.levelBackgrounds = {
-        1: "Map001-big.png",
+        1: "Map001.png",
         2: "Map002.png",
         3: "Map003.png",
       };
