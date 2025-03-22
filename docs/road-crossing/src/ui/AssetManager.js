@@ -21,6 +21,171 @@ export class AssetManager {
       // player images
       this.images["player1"] = loadImage("./assets/Character1_Walking.png");
       this.images["player2"] = loadImage("./assets/Character2_Walking.png");
+      
+      // Load left-facing walking image
+      loadImage("./assets/character 1/Character1_Walking.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player1Walking"] = img; // Walking image
+        // Save original aspect ratio for comparison
+        this.images["player1WalkingRatio"] = {
+          width: img.width,
+          height: img.height,
+          ratio: img.width / img.height
+        };
+      });
+      
+      // Load right-facing image
+      loadImage("./assets/character 1/Character1_Side_View.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player1SideView"] = img; // Right-facing image
+        // Save original aspect ratio for correct rendering
+        this.images["player1SideViewRatio"] = {
+          width: img.width,
+          height: img.height,
+          ratio: img.width / img.height
+        };
+      });
+      
+      // Load character 2 left-facing walking image
+      loadImage("./assets/character 2/Character2_Walking.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player2Walking"] = img; // Walking image
+        // Save original aspect ratio
+        this.images["player2WalkingRatio"] = {
+          width: img.width,
+          height: img.height,
+          ratio: img.width / img.height
+        };
+      });
+      
+      // Load character 2 right-facing image
+      loadImage("./assets/character 2/Character2_Side_View.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player2SideView"] = img; // Right-facing image
+        // Save original aspect ratio
+        this.images["player2SideViewRatio"] = {
+          width: img.width,
+          height: img.height,
+          ratio: img.width / img.height
+        };
+      });
+      
+      // Load lying down image and process transparency
+      loadImage("./assets/character 1/Character1_Lying_Down.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player1Lying"] = img;
+      });
+      
+      // Load character 2 lying down image and process transparency
+      loadImage("./assets/character 2/Character2_Lying_Down.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player2Lying"] = img;
+      });
+      
+      // Load standing with cargo image and process transparency
+      loadImage("./assets/character 1/Character1_Standing_With_Cargo.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player1WithCargo"] = img;
+      });
+      
+      // Load walking with cargo image and process transparency
+      loadImage("./assets/character 1/Character1_Walking_With_Cargo.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player1WalkingWithCargo"] = img;
+      });
+      
+      // Load character 2 standing with cargo image and process transparency
+      loadImage("./assets/character 2/Character2_Standing_With_Cargo.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player2WithCargo"] = img;
+      });
+      
+      // Load character 2 walking with cargo image and process transparency
+      loadImage("./assets/character 2/Character2_Walking_With_Cargo.png", (img) => {
+        img.loadPixels();
+        // Remove white background
+        for (let i = 0; i < img.pixels.length; i += 4) {
+          // If the pixel is white or close to white, make it completely transparent
+          if (img.pixels[i] > 240 && img.pixels[i+1] > 240 && img.pixels[i+2] > 240) {
+            img.pixels[i+3] = 0; // Set alpha channel to 0 (completely transparent)
+          }
+        }
+        img.updatePixels();
+        this.images["player2WalkingWithCargo"] = img;
+      });
+      
       // item images
       this.images["cargo1"] = loadImage("./assets/delivery-box-45.png");
       //car images

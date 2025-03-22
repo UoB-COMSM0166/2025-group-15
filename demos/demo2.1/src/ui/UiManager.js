@@ -26,8 +26,8 @@ export class UiManager {
     this.buttons.characterSelect = [
       new Button(width / 3 - 50, 460, 100, 50, "Option1", true),
       new Button(width / 3 * 2 - 50, 460, 100, 50, "Option2", true),
-      new Button(width / 2 - 100, 530, 200, 50, "Start Game", true),
-      new Button(width / 2 - 100, 600, 200, 50, "Return to Main Menu", true),
+      new Button(width / 2 - 100, 530, 240, 50, "Start Game", true),
+      new Button(width / 2 - 100, 600, 240, 50, "Return to Main Menu", true),
     ];
 
     // Level selection buttons - initially all false

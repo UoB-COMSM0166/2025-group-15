@@ -2,6 +2,17 @@
 
 2025 COMSM0166 group 15
 
+## Contents of The Report
+
+[Introduction](#introduction)  
+[Requirement](#requirements)  
+[Sustainability](#sustainability)
+[Design](#design)  
+[Implementation](#implementation)  
+[Evaluation](#evaluation)  
+[Process](#process)  
+[Conclution](#conclusion)  
+
 ## Your Game
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
@@ -12,7 +23,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Group
 
-![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/IMG_6600.JPG?raw=true)
+![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/WechatIMG84.jpg)
 
 | Name         | E-mail                  | Username       |
 |--------------|-------------------------|----------------|
@@ -21,7 +32,6 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Shuxiao Shi  | <ux24132@bristol.ac.uk>   | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
-| Jinlong Xiao | <qo242236@bristol.ac.uk>  | yusheng2077    |
 
 ## Your Board
 
@@ -35,9 +45,6 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 - Describe your game, what is based on, what makes it novel?
 
 ### Requirements
-
-- 15% ~750 words
-- Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
 #### Stakeholder Analysis
 
@@ -58,6 +65,7 @@ We applied the Onion Model to identify and analyze stakeholders involved in our 
 | **As a developer**, I want to break down the game development process into modular components, so that each team member can work independently on different parts of the game. | **Given** a structured game development plan, **when** a team member starts working on a specific module, **then** they should be able to develop, test, and integrate their module without being blocked by dependencies. |
 | **As a developer**, I want to design background music and various sound effects, so that players can experience greater immersion in the game. | **Given** a specific game scene or event, **when** background music and sound effects are played, **then** they should match the atmosphere and enhance the player's engagement. |
 | **As a developer**, I want to implement high-quality artwork and animations, so that players can have a visually engaging and enjoyable experience. | **Given** a game character, object, or environment, **when** an animation or visual transition occurs, **then** it should be smooth, cohesive, and consistent with the game's artistic style. |
+| **As a developer**, I want the game to consume minimal computing resources during idle states, so that it runs more efficiently and reduces unnecessary energy usage. | **Given** the game is paused or in a low-activity state, **when** no major animations or updates are occurring, **then** background processes should reduce activity to save energy. |
 | **As a player**, I want to continue my game from the latest progress I‘ve arrived so that I can play whenever it suits me without losing progress. |**Given** I have made progress in the game, **when** I exit the game, **then** my progress should be saved automatically. |
 | **As a player**, I want the game difficulty to gradually increase from easy to hard so that I can improve my skills step by step while maintaining the challenge and fun of the game. | **Given** that I am playing the game, **when** I complete a level, **then**  the next level should have a higher difficulty compared to the previous one. |
 | **As a player**, I want the game to have help information pages so that I can refer to them whenever I need. | **Given** that I am in the game, **when** I press the help button, **then** I should be able to access the help information pages at any time during the game and the content should be clear and provide relevant instructions on how to play the game. |
@@ -67,6 +75,7 @@ We applied the Onion Model to identify and analyze stakeholders involved in our 
 | **As a player**, I want to experience a game where the difficulty level increases over time, so that the game becomes more interesting and soul-stirring as I become accustomed to the current difficulty. | **Given** the game has started, **when** player accumulates points above target threshold, **then** increase traffic density and speed according to difficulty curve.<br><br>**Given** current difficulty level, **when** player performance drops significantly, **then** maintain current difficulty until performance improves.<br><br>**Given** maximum difficulty reached, **when** player continues performing well, **then** maintain challenge without becoming impossible. |
 | **As a player**, I need the ability to pause gameplay at any moment, allowing me to handle real-life interruptions and resume from where I left off. | **Given** active gameplay, **when** pause button pressed, **then** freeze all game elements and display pause menu.<br><br>**Given** game is paused, **when** resume selected, **then** restore exact game state and continue timer.<br><br>**Given** game is paused, **when** quit selected, **then** save current score and return to main menu. |
 | **As a player**, I desire a score tracking and comparison system where I can measure my performance against others, fueling my competitive drive. | **Given** game completion, **when** score submitted, **then** save to leaderboard with player name and timestamp.<br><br>**Given** leaderboard view, **when** filtering options selected, **then** display relevant scores (daily/weekly/all-time).<br><br>**Given** new high score achieved, **when** game ends, **then** highlight achievement and offer sharing options. |
+| **As a player**, I want to see eco-friendly vehicle types in the game, so that I become more aware of green transportation options. | **Given** the game level is loaded, **when** vehicles are rendered on the road, **then** a portion of them should be displayed as bikes, electric cars, or other low-emission vehicles. |
 
 
 ##### Example: Breakdown of Game Difficulty System Design
@@ -126,10 +135,33 @@ In understanding our application's context, we employed the Onion Model for stak
 
 The iterative process of defining requirements taught us the importance of clear communication and documentation. Well-defined requirements not only guide development but also serve as a foundation for testing and evaluation. This experience has helped us complete the current project and laid a foundation for future development.
 
+### Sustainability
+
+#### 1. Sustainability Analysis
+
+Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's potential sustainability impacts across five key dimensions:
+
+| **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
+|------------------------------|----------------------|--------------------------|
+| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players’ reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
+| **Social** | Does the game support community or inclusivity? | The character customization feature can increase player sense of belonging. Adding diverse character appearances may help players from different backgrounds feel more included. |
+| **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | Vehicles in the game can be designed as bicycles, electric cars, or other low-emission transport options. This can subtly promote awareness of green transportation and carbon reduction. |
+| **Economic** | Does the game promote economic value or efficient resource use? | While not directly tied to real-world economics, the game encourages efficient transport behavior (e.g., avoiding collisions and optimizing paths), which mirrors efficient resource use. |
+| **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
+
+#### 2. Green Software Patterns
+
+We have reviewed the Green Software Foundation’s Green Software Patterns and identified the following three that apply to our game:
+
+1. **Avoid Polling** – Instead of using continuous polling techniques (such as `setInterval` or checking conditions on every frame), our game uses efficient, frame-based updates. For example, cars are only generated every 60 frames (`frameCount % 60 === 0`) instead of every frame, which reduces unnecessary CPU usage and improves energy efficiency.
+
+2. **Green Defaults** – The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
+
+3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
+
+
 ### Design
 
-- 15% ~750 words
-- System architecture. Class diagrams, behavioural diagrams.
 #### Class Diagram
 
 Main Classes and Their Functions:
@@ -271,8 +303,7 @@ After developing the core mechanics of the game, we conducted user evaluations b
 
 9. **Weight and Speed Relationship:** Currently, cargo weight does not affect movement speed, leading players to prioritize high-value cargos and resulting in a lack of strategic diversity. It is recommended to introduce a weight-speed correlation mechanism, where heavier cargos slow down movement speed, and add weight indicators (e.g., color coding) to increase strategic depth and gameplay variety.
 
-
-#### Quantitative Evaluations
+##### Heuristic Evaluation
 
 We also analysed and evaluated the testers' feedback based on Nielsen's heuristic principles and documented our findings in the Heuristic Evaluation Table below.
 
@@ -299,6 +330,86 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
   - High Priority (Severity ≥ 3.0): Address the background contrast deficiency (3.7) in the next iteration.
 
   - Controversial Design: For counterintuitive lane speed differences (Severity = 2.3), enhance user onboarding (e.g., add a warning: "Caution: High-speed right lane!") or recalibrate speeds to balance challenge and rationality.
+
+#### Quantitative Evaluations
+
+We collected data from 10 participants who completed tasks under both easy and difficult conditions, to exam how task difficulty affects both user workload and system usability.
+
+We use NASA TLX and SUS to measure separately, and use the [Wilcoxon signed-rank test](https://www.statology.org/wilcoxon-signed-rank-test-calculator/) to determine statistical significance of differences between conditions, with α=0.05 as the threshold for significance.
+
+##### [The NASA Task Load Index](./Images/NASA_TLX-template.png)
+
+The table below presents participants' ratings across six dimensions of workload, as well as calculated overall workload scores:
+
+|User|Difficulty|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|Score|
+|---|---|---|---|---|---|---|---|---|
+|User 1|Easy|13|6|12|13|10|6|45.00|
+|User 1|Difficult|14|7|15|7|13|6|46.67|
+|User 2|Easy|11|9|5|14|16|7|46.67|
+|User 2|Difficult|11|9|8|14|17|7|50.00|
+|User 3|Easy|19|18|11|4|13|10|57.50|
+|User 3|Difficult|20|20|12|2|11|11|58.33|
+|User 4|Easy|13|15|7|1|15|11|46.67|
+|User 4|Difficult|13|16|7|1|16|13|50.00|
+|User 5|Easy|12|7|12|11|10|10|46.67|
+|User 5|Difficult|15|12|16|14|14|18|69.17|
+|User 6|Easy|8|12|11|10|11|9|45.83|
+|User 6|Difficult|10|18|14|12|14|12|61.67|
+|User 7|Easy|5|10|12|11|6|2|33.33|
+|User 7|Difficult|7|8|11|13|9|3|37.50|
+|User 8|Easy|9|16|12|8|11|11|50.83|
+|User 8|Difficult|13|20|10|6|9|15|55.83|
+|User 9|Easy|3|5|8|1|5|2|15.00|
+|User 9|Difficult|7|8|14|13|15|10|50.83|
+|User 10|Easy|3|8|14|18|9|1|39.17|
+|User 10|Difficult|5|9|15|17|9|3|43.33|
+
+*W test statistic = 0*  
+*Number of non-tied pairs (n) = 10*
+
+> All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
+
+##### [System Usability Survey](./Images/SUS-template.png)
+
+|User|Difficulty|Q1|Q2|Q3|Q4|Q5|Q6|Q7|Q8|Q9|Q10|Score|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|User 1|Easy|4|2|4|1|5|1|5|1|4|2|87.5|
+|User 1|Difficult|4|2|5|1|5|1|5|1|5|1|95.0|
+|User 2|Easy|4|3|5|2|2|1|4|2|4|1|75.0|
+|User 2|Difficult|4|4|5|2|2|2|4|2|4|1|70.0|
+|User 3|Easy|3|2|3|4|4|1|5|3|3|1|67.5|
+|User 3|Difficult|3|2|3|4|4|1|5|3|3|1|67.5|
+|User 4|Easy|3|1|4|2|4|2|4|2|5|1|80.0|
+|User 4|Difficult|3|1|4|2|4|2|4|2|5|1|80.0|
+|User 5|Easy|3|2|4|1|4|2|5|2|4|1|80.0|
+|User 5|Difficult|3|2|3|1|4|2|5|2|4|1|77.5|
+|User 6|Easy|3|2|4|4|3|3|4|3|4|1|62.5|
+|User 6|Difficult|3|3|3|4|3|4|3|3|4|2|50.0|
+|User 7|Easy|3|1|5|1|4|2|5|1|5|1|90.0|
+|User 7|Difficult|3|1|5|1|4|2|5|1|5|1|90.0|
+|User 8|Easy|3|2|4|3|4|4|3|3|5|1|65.0|
+|User 8|Difficult|4|4|3|4|5|1|2|2|3|2|60.0|
+|User 9|Easy|3|2|4|2|4|1|4|2|5|2|77.5|
+|User 9|Difficult|3|2|2|3|2|2|2|3|3|2|50.0|
+|User 10|Easy|2|1|5|1|3|2|4|3|5|1|77.5|
+|User 10|Difficult|1|1|5|1|3|2|5|3|5|1|77.5|
+
+*W test statistic = 4*  
+*Number of non-tied pairs (n) = 6*
+
+> Values for Q1-Q10 represent ratings on the 5-point SUS scale. The Score column is calculated according to SUS methodology: (score-1) for odd-numbered items, (5-score) for even-numbered items, sum multiplied by 2.5.
+
+##### Findings
+
+The results of our study indicate:
+
+- The difficult condition successfully created a more challenging experience, with all participants reporting significantly increased workload, confirming the effectiveness of our difficulty manipulation.
+- Despite the increased challenge, the fundamental usability of the system remained robust, with no statistically significant decline in SUS scores. This suggests the system maintains its intuitive operation and accessibility even under more demanding conditions.
+- Individual differences in adaptability were observed, with some users (particularly User 9) showing dramatic changes in both workload and usability metrics, highlighting varying resilience to increased difficulty among users.
+
+In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
+
+#### Code Testing
 
 ### Process
 

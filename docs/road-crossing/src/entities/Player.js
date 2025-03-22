@@ -29,8 +29,24 @@ export class Player {
     this.score = 0;
     this.hasItem = false;
     this.currentItem = null;
-    this.playerOption = playerOption || "option1";
-    this.isFlipped = false;
+    this.playerOption = playerOption || "option1"; // default character option1
+    this.isFlipped = false; // if player is flipped
+    this.isHit = false; // Whether hit by a car
+    this.hitTime = 0; // Time when hit
+    this.hitDuration = 300; // Duration of lying down (milliseconds)
+    // Lying down image aspect ratio
+    this.lyingWidth = 97;
+    this.lyingHeight = 42;
+    this.respawnX = 0; // Respawn position X
+    this.respawnY = 0; // Respawn position Y
+    
+    // Walking animation related
+    this.animationFrame = 0; // Current animation frame
+    this.walkingDelay = 200; // Walking animation frame switch delay (milliseconds)
+    this.lastFrameTime = 0; // Last frame switch time
+    this.isMoving = false; // Whether is moving
+    this.lastX = x; // Last frame X coordinate
+    this.lastY = y; // Last frame Y coordinate
   }
 
   reset() {
@@ -39,18 +55,27 @@ export class Player {
     this.relativeY = deliveryZone.y / height;
     this.x = deliveryZone.x - scaler.scale(30);
     this.y = deliveryZone.y;
-    
+    this.respawnX = this.x;
+    this.respawnY = this.y;
+
     this.speed = this.baseSpeed;
     this.score = 0;
     this.hasItem = false;
     this.currentItem = null;
+    this.isHit = false;
+    this.animationFrame = 0;
+    this.lastFrameTime = 0;
   }
 
   resetPosition() {
     this.relativeX = 0.85; // 70% + 15% of the remaining width
     this.relativeY = 0.5;  // middle of height
-    this.x = width * this.relativeX;
-    this.y = height * this.relativeY;
+    this.respawnX = width * this.relativeX;
+    this.respawnY = height * this.relativeY;
+
+    // Set hit state, but keep current position
+    this.isHit = true;
+    this.hitTime = millis();
   }
 
   updateSizeAndPosition() {
@@ -64,6 +89,21 @@ export class Player {
   }
 
   update(keys) {
+    // Save previous frame position to detect movement
+    this.lastX = this.x;
+    this.lastY = this.y;
+    
+    // Check if hit state is over
+    if (this.isHit) {
+      if (millis() - this.hitTime > this.hitDuration) {
+        this.isHit = false;
+        // After hit state ends, teleport to respawn point
+        this.x = this.respawnX;
+        this.y = this.respawnY;
+      }
+      return; // Can't move in hit state
+    }
+
     // Check both arrow keys and WASD keys
     if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
       this.relativeX = Math.max(0, this.relativeX - this.speed / width);
@@ -83,63 +123,377 @@ export class Player {
       this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed / height);
       this.y = height * this.relativeY;
     }
+
+    // Detect whether moving
+    this.isMoving = (this.x !== this.lastX || this.y !== this.lastY);
+    
+    // Update animation frame
+    if (this.isMoving) {
+      const currentTime = millis();
+      if (currentTime - this.lastFrameTime > this.walkingDelay) {
+        this.animationFrame = (this.animationFrame + 1) % 2; // Toggle between 0 and 1
+        this.lastFrameTime = currentTime;
+      }
+    } else {
+      this.animationFrame = 0; // Reset to standing frame when not moving
+    }
+    
+    // Detect whether moving
+    this.isMoving = (this.x !== this.lastX || this.y !== this.lastY);
+    
+    // Update animation frame
+    if (this.isMoving) {
+      const currentTime = millis();
+      if (currentTime - this.lastFrameTime > this.walkingDelay) {
+        this.animationFrame = (this.animationFrame + 1) % 2; // Toggle between 0 and 1
+        this.lastFrameTime = currentTime;
+      }
+    } else {
+      this.animationFrame = 0; // Reset to standing frame when not moving
+    }
   }
 
   draw() {
     push(); // Save current drawing style
-    if (this.playerOption === "option1") {
-      if (this.isFlipped) {
-        scale(-1, 1); // flip horizontally, first parameter is for x-axis, second is for y-axis, 
+
+    if (this.isHit) {
+      if (this.playerOption === "option1") {
+        // Use inverted images and keep the aspect ratio
+        const lyingScale = this.width / 30; // Keep the same proportions as the normal picture
+        const drawWidth = this.lyingWidth * lyingScale;
+        const drawHeight = this.lyingHeight * lyingScale;
+        
+        // Drawing using CORNER mode, consistent with walking pictures
+        imageMode(CORNER);
+        
         image(
-          assetManager.getImage("player1"),
-          -this.x - this.width, // flipped x coordinate
-          this.y,
-          this.width,
-          this.height
-        );
-      } else {
-        image(
-          assetManager.getImage("player1"),
+          assetManager.getImage("player1Lying"),
           this.x,
           this.y,
-          this.width,
-          this.height
+          drawWidth,
+          drawHeight
+        );
+      } else if (this.playerOption === "option2") {
+        // Falling down Picture of character2
+        const lyingScale = this.width / 30; 
+        const drawWidth = this.lyingWidth * lyingScale;
+        const drawHeight = this.lyingHeight * lyingScale;
+        
+      
+        imageMode(CORNER);
+        
+        image(
+          assetManager.getImage("player2Lying"),
+          this.x,
+          this.y,
+          drawWidth,
+          drawHeight
         );
       }
-    } else if (this.playerOption === "option2") {
-      if (this.isFlipped) {
-        scale(-1, 1); // flip horizontally  
-        image(
-          assetManager.getImage("player2"),
-          -this.x - this.width, // flipped x coordinate
-          this.y,
-          this.width,
-          this.height
-        );
+    } else if (this.playerOption === "option1") {
+      imageMode(CORNER); // Restore original mode
+      
+      // Get aspect ratio information for both image types
+      const walkingRatio = assetManager.images["player1WalkingRatio"] || { ratio: 97/42 };
+      const sideViewRatio = assetManager.images["player1SideViewRatio"] || { ratio: walkingRatio.ratio };
+      
+      // Choose different images based on whether player is holding an item
+      if (this.hasItem) {
+        if (this.isFlipped) {
+          scale(-1, 1); // Horizontal Flip
+          
+          // Select different images according to the animation frame
+          if (this.isMoving && this.animationFrame === 1) {
+            image(
+              assetManager.getImage("player1WalkingWithCargo"),
+              -this.x - this.width, // flipped x coordinate
+              this.y,
+              this.width,
+              this.height
+            );
+          } else {
+            image(
+              assetManager.getImage("player1WithCargo"),
+              -this.x - this.width, // flipped x coordinate
+              this.y,
+              this.width,
+              this.height
+            );
+          }
+        } else {
+          
+          if (this.isMoving && this.animationFrame === 1) {
+            image(
+              assetManager.getImage("player1WalkingWithCargo"),
+              this.x,
+              this.y,
+              this.width,
+              this.height
+            );
+          } else {
+            image(
+              assetManager.getImage("player1WithCargo"),
+              this.x,
+              this.y,
+              this.width,
+              this.height
+            );
+          }
+        }
       } else {
-        image(
-          assetManager.getImage("player2"),
-          this.x,
-          this.y,
-          this.width,
-          this.height
-        );
+        // Walking animation when not carrying items
+        if (this.isFlipped) {
+          // Facing right - use right-facing image, alternating when moving
+          if (this.isMoving) {
+            // Alternate between two images based on animation frame
+            if (this.animationFrame === 0) {
+              // First frame - use right-facing image
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * sideViewRatio.ratio;
+              
+              image(
+                assetManager.getImage("player1SideView"),
+                this.x,
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+            } else {
+              // Second frame - use flipped left-facing walking image
+              push();
+              scale(-1, 1); // Horizontal flip
+              
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * walkingRatio.ratio;
+              
+              image(
+                assetManager.getImage("player1Walking"),
+                -this.x - drawWidth, 
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+              pop(); // Restore transformation
+            }
+          } else {
+            // Static - use right-facing standing image
+            const drawHeight = this.height;
+            const drawWidth = drawHeight * sideViewRatio.ratio;
+            
+            image(
+              assetManager.getImage("player1SideView"),
+              this.x,
+              this.y,
+              drawWidth,
+              drawHeight
+            );
+          }
+        } else {
+          // Facing left - alternate between walking image and flipped right-facing image
+          if (this.isMoving) {
+            // Alternate between two images based on animation frame
+            if (this.animationFrame === 0) {
+              // First frame - use walking image
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * walkingRatio.ratio;
+              
+              image(
+                assetManager.getImage("player1Walking"),
+                this.x,
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+            } else {
+              // Second frame - flip right-facing image
+              push();
+              scale(-1, 1); // Horizontal flip
+              
+              // Calculate size based on SideView image ratio
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * sideViewRatio.ratio;
+              
+              image(
+                assetManager.getImage("player1SideView"),
+                -this.x - drawWidth, // Adjust the flip coordinates according to the actual width
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+              pop(); // Restore transformation to avoid affecting subsequent drawing
+            }
+          } else {
+            // Static - use right-facing standing image, but flipped
+            push();
+            scale(-1, 1); // Horizontal flip
+            
+            const drawHeight = this.height;
+            const drawWidth = drawHeight * sideViewRatio.ratio;
+            
+            image(
+              assetManager.getImage("player1SideView"),
+              -this.x - drawWidth, 
+              this.y,
+              drawWidth,
+              drawHeight
+            );
+            pop(); // Restore transformation
+          }
+        }
+      }
+    } else if (this.playerOption === "option2") {
+      imageMode(CORNER); 
+      
+      // Get aspect ratio information for both image types
+      const walkingRatio = assetManager.images["player2WalkingRatio"] || { ratio: 97/42 };
+      const sideViewRatio = assetManager.images["player2SideViewRatio"] || { ratio: walkingRatio.ratio };
+      
+      // Choose different images based on whether player is holding an item
+      if (this.hasItem) {
+        if (this.isFlipped) {
+          scale(-1, 1); 
+          
+          
+          if (this.isMoving && this.animationFrame === 1) {
+            image(
+              assetManager.getImage("player2WalkingWithCargo"),
+              -this.x - this.width, // flipped x coordinate
+              this.y,
+              this.width,
+              this.height
+            );
+          } else {
+            image(
+              assetManager.getImage("player2WithCargo"),
+              -this.x - this.width, // flipped x coordinate
+              this.y,
+              this.width,
+              this.height
+            );
+          }
+        } else {
+          
+          if (this.isMoving && this.animationFrame === 1) {
+            image(
+              assetManager.getImage("player2WalkingWithCargo"),
+              this.x,
+              this.y,
+              this.width,
+              this.height
+            );
+          } else {
+            image(
+              assetManager.getImage("player2WithCargo"),
+              this.x,
+              this.y,
+              this.width,
+              this.height
+            );
+          }
+        }
+      } else {
+        // Walking animation when not carrying items
+        if (this.isFlipped) {
+          // Facing right - use right-facing image, alternating when moving
+          if (this.isMoving) {
+            // Alternate between two images based on animation frame
+            if (this.animationFrame === 0) {
+              // First frame - use right-facing image
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * sideViewRatio.ratio;
+              
+              image(
+                assetManager.getImage("player2SideView"),
+                this.x,
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+            } else {
+              // Second frame - use flipped left-facing walking image
+              push();
+              scale(-1, 1); // Horizontal flip
+              
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * walkingRatio.ratio;
+              
+              image(
+                assetManager.getImage("player2Walking"),
+                -this.x - drawWidth, // 根据实际宽度调整翻转坐标
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+              pop(); // Restore transformation
+            }
+          } else {
+            // Static - use right-facing standing image
+            const drawHeight = this.height;
+            const drawWidth = drawHeight * sideViewRatio.ratio;
+            
+            image(
+              assetManager.getImage("player2SideView"),
+              this.x,
+              this.y,
+              drawWidth,
+              drawHeight
+            );
+          }
+        } else {
+          // Facing left - alternate between walking image and flipped right-facing image
+          if (this.isMoving) {
+            // Alternate between two images based on animation frame
+            if (this.animationFrame === 0) {
+              // First frame - use walking image
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * walkingRatio.ratio;
+              
+              image(
+                assetManager.getImage("player2Walking"),
+                this.x,
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+            } else {
+              // Second frame - flip right-facing image
+              push();
+              scale(-1, 1); // Horizontal flip
+              
+              // Calculate size based on SideView image ratio
+              const drawHeight = this.height;
+              const drawWidth = drawHeight * sideViewRatio.ratio;
+              
+              image(
+                assetManager.getImage("player2SideView"),
+                -this.x - drawWidth, 
+                this.y,
+                drawWidth,
+                drawHeight
+              );
+              pop(); // Restore transformation to avoid affecting subsequent drawing
+            }
+          } else {
+            // Static - use right-facing standing image, but flipped
+            push();
+            scale(-1, 1); // Horizontal flip
+            
+            const drawHeight = this.height;
+            const drawWidth = drawHeight * sideViewRatio.ratio;
+            
+            image(
+              assetManager.getImage("player2SideView"),
+              -this.x - drawWidth, 
+              this.y,
+              drawWidth,
+              drawHeight
+            );
+            pop(); // Restore transformation
+          }
+        }
       }
     }
     pop(); // restore drawing style
-
-    // Draw item if player has one
-    if (this.hasItem) {
-      // if (this.playerOption === "option1") {
-      //   image(assetManager.getImage("player1Pickup"), this.x, this.y, this.width, this.height);
-      // } else {
-      //   image(assetManager.getImage("player2Pickup"), this.x, this.y, this.width, this.height);
-      // }
-      fill(0, 255, 0);
-      // Draw item with size based on weight if player has one
-      const itemSize = 10 * (0.8 + this.currentItem.weight * 0.1);
-      rect(this.x + 10, this.y + 20, itemSize, itemSize);
-    }
   }
 
   pickupItem(item) {

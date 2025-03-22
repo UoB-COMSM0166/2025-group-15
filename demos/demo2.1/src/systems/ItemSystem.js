@@ -17,8 +17,9 @@ export class ItemSystem {
         this.items = [];
         this.deliveredItems = [];
         this.pickedItemsCount = 0;
-        this.itemGenerationStarted = false;
 
+        this.itemGenerationStarted = false;
+        clearTimeout(this.spawnItemTimeout);
       
         this.generateInitialItems();
     }
@@ -49,9 +50,9 @@ export class ItemSystem {
         if (!this.itemGenerationStarted && this.pickedItemsCount >= 2) { 
             this.itemGenerationStarted = true; 
 
-            console.log("🎯 Picked 2 items, waiting 5-10 seconds before starting item generation...");
+            console.log("Picked 2 items, waiting 8-10 seconds before starting item generation...");
 
-            //A delay of 12-15 seconds before the cycle starts to generate goods
+            //A delay of 8-10 seconds before the cycle starts to generate goods
             setTimeout(() => {
                 console.log("Starting item generation after delay...");
                 this.spawnItem();
@@ -80,8 +81,8 @@ export class ItemSystem {
             }
         }
 
-        //After each generation of goods, wait 5-10 seconds before continuing to generate
-        setTimeout(() => this.spawnItem(), random(8000, 10000));
+        //After each generation of goods, wait 8-10 seconds before continuing to generate
+        this.spawnItemTimeout = setTimeout(() => this.spawnItem(), random(8000, 10000));
     }
 
     isOverlapping(newItem) {
@@ -133,7 +134,7 @@ export class ItemSystem {
 
     draw() {
         if (this.items.length === 0) {
-            console.warn("⚠ Warning: No items to draw!");
+            console.warn("Warning: No items to draw!");
         }
 
         for (const item of this.items) {
