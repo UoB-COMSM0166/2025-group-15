@@ -7,8 +7,6 @@
 [Introduction](#introduction)  
 [Requirement](#requirements)  
 [Sustainability](#sustainability)
-  [Sustainability Analysis](#1-sustainability-analysis)
-  [Green Software Patterns](#2-green-software-patterns)
 [Design](#design)  
 [Implementation](#implementation)  
 [Evaluation](#evaluation)  
