@@ -4,7 +4,7 @@ export class Player {
   // reference value in ideal design
   static designWidth = 30;
   static designHeight = 97 / 42 * Player.designWidth; // 970/420 is the aspect ratio of the player image
-  static designBaseSpeed = 3.5; // add from 2.67 to 3.5 after reducing from 4 to 2.67 (2/3 of original)
+  static designBaseSpeed = 0.0035; // relative speed, based on the width of the screen
 
   constructor(x, y, playerOption = "option1") {
     //if no position available, set player at the right side of delivery area
@@ -113,21 +113,21 @@ export class Player {
 
     // Check both arrow keys and WASD keys
     if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
-      this.relativeX = Math.max(0, this.relativeX - this.speed / width);
+      this.relativeX = Math.max(0, this.relativeX - this.speed);
       this.x = width * this.relativeX;
       this.isFlipped = false;
     }
     if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
-      this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed / width);
+      this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed);
       this.x = width * this.relativeX;
       this.isFlipped = true;
     }
     if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
-      this.relativeY = Math.max(0, this.relativeY - this.speed / height);
+      this.relativeY = Math.max(0, this.relativeY - this.speed);
       this.y = height * this.relativeY;
     }
     if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
-      this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed / height);
+      this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed);
       this.y = height * this.relativeY;
     }
 
