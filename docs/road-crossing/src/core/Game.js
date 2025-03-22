@@ -20,8 +20,12 @@ export class Game {
     if (currentGameMode === GameMode.TESTING) {
       this.unlockedLevels = 3;
     } else {
+      // directly call the static method of GameStorage class
       this.unlockedLevels = GameStorage.loadGameProgress();
     }
+
+    // clear progress before starting a new game
+    GameStorage.clearProgress();
 
     this.isAudioEnabled = true;
     this.volume = 0.5;
@@ -42,8 +46,25 @@ export class Game {
 
   // Add method to update game dimensions when canvas size changes
   updateGameDimensions() {
-    this.lanes = getLaneConfiguration(width, height);
-    this.gameAreas = getGameAreas(width, height);
+    this.lanes = getLaneConfiguration();
+    this.gameAreas = getGameAreas();
+
+    // update buttons size when updating game dimensions
+    if (this.uiManager) {
+      this.uiManager.updateAllButtons();
+    }
+    if (this.player) {
+      this.player.updateSizeAndPosition();
+    }
+    if (this.carSystem) {
+      this.carSystem.updateSizeAndPosition();
+    }
+    if (this.itemSystem) {
+      this.itemSystem.update();
+    }
+    if (this.obstacleSystem) {
+      this.obstacleSystem.update();
+    }
   }
 
   saveGameProgress() {
@@ -174,8 +195,8 @@ update() {
     // Update dimensions in case of window resize
     this.updateGameDimensions();
 
-    // Draw game areas with proportional sizing
-    const areas = this.gameAreas;
+    // // Draw game areas with proportional sizing
+    // const areas = this.gameAreas;
     
     // fill(150);
     // rect(0, 0, areas.warehouse.width, height); // Warehouse
@@ -204,7 +225,7 @@ update() {
     const laneWidth = this.lanes.SLOW.width;
     
     stroke(255);
-    this.setLineDash([10, 10]); // Set dashed line style
+    this.setLineDash([scaler.scale(10), scaler.scale(10)]); // Set dashed line style
     line(roadStart + laneWidth, 0, roadStart + laneWidth, height);
     line(roadStart + laneWidth * 2, 0, roadStart + laneWidth * 2, height);
     this.setLineDash([]); // Reset to solid line

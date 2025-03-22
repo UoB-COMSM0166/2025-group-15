@@ -27,4 +27,8 @@ export class GameStorage {
       );
     }
   }
+
+  static clearProgress() {
+    localStorage.removeItem("gameProgress");
+  }
 }

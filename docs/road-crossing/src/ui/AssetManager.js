@@ -13,7 +13,7 @@ export class AssetManager {
   
     preload() {
       // background image
-      this.images["mainBg"] = loadImage("./assets/scene/Home.png");
+      this.images["mainBg"] = loadImage("./assets/scene/Home3.jpg");
       
       // sounds
       this.sounds["bgMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");

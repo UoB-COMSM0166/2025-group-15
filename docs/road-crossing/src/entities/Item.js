@@ -4,8 +4,10 @@ export class Item {
     constructor(x, y, value) {
         this.x = x;
         this.y = y;
+        this.relativeX = x / width; // store relative position
+        this.relativeY = y / height;
         this.value = value || floor(random(10, 50));
-        this.size = 25;
+        this.designSize = 25; // default size for item in ideal design
         
         // Calculate weight based on value (between 1 and 5)
         // Higher value items are heavier
@@ -14,35 +16,38 @@ export class Item {
     }
 
     draw() {
-        // fixed size for item
-        const displaySize = this.size;
+        // fixed size for item, with scaler to adjust based on canvas size
+        const displaySize = scaler.scale(this.designSize);
         
-        // fill(0, 255, 0); // set cargo rectangle color to green
-        // rect(this.x, this.y, displaySize, displaySize);
         image(assetManager.getImage("cargoUncollected"), this.x, this.y, displaySize, displaySize);
 
         fill(0); // set text color to black
-        textSize(12);
-        text(this.value, this.x, this.y - 5);
+        textSize(scaler.getFontSize(12)); // set font size based on canvas size
+        text(this.value, this.x, this.y);
+        textAlign(CENTER, TOP); // text alignment to center top of the item image
     }
 
     static drawDelivered(items) {
         for (let i = 0; i < items.length; i++) {
-            let item = items[i];
-            // fill(0, 200, 0);
-            
             // Get delivery area position
             const deliveryZone = getDeliveryZone();
             // Stacked display above the drop zone
-            const displayX = deliveryZone.x + 10;
-            const displayY = deliveryZone.y + 5 - i * 18;
+            const displayX = deliveryZone.x + scaler.scale(10);
+            const displayY = deliveryZone.y + scaler.scale(5) - i * scaler.scale(18);
+            const displaySize = scaler.scale(25);
             
-            // rect(displayX, displayY, 15, 15);
-            image(assetManager.getImage("cargoUncollected"), displayX, displayY, 25, 25);
-
-            // fill(0);
-            // textSize(12);
-            // text(item.value, displayX, displayY - 5);
+            image(assetManager.getImage("cargoUncollected"), displayX, displayY, displaySize, displaySize);
         }
+    }
+
+    update() {
+        // Update position based on relative coordinates
+        this.x = width * this.relativeX;
+        this.y = height * this.relativeY;
+        
+        fill(0); // set text color to black
+        textSize(scaler.getFontSize(12)); // set font size based on canvas size
+        text(this.value, this.x, this.y);
+        textAlign(CENTER, TOP); // text alignment to center top of the item image
     }
 }

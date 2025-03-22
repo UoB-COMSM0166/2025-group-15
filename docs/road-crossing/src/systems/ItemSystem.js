@@ -142,9 +142,14 @@ export class ItemSystem {
             item.draw();
         }
 
+        // Draw delivered items
         Item.drawDelivered(this.deliveredItems);
     }
+
+    update() {
+        // update item position based on canvas size, size auto-updated in Item.draw()
+        for (const item of this.items) {
+        item.update();
+        }
+    }
 }
-
-
-

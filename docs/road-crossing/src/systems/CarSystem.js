@@ -178,21 +178,25 @@ export class CarSystem {
     }
 
     // Set starting position based on direction
-    const startY = direction === 1 ? -75 : height + 75; // Adjusted for larger car size
+    // Adjusted for larger car size
+    let startY = -scaler.scale(75);
+    if (direction === -1) {
+      startY = height + scaler.scale(75);
+    }
+    // const startY = direction === 1 ? -75 : height + 75; // Adjusted for larger car size
 
     // Check if we can generate a new car (avoid too close cars)
     const lastCar = this.cars[laneType][this.cars[laneType].length - 1];
-    if (
-      lastCar &&
-      ((direction === 1 && lastCar.y < 100) ||
-        (direction === -1 && lastCar.y > height - 100))
+    if (lastCar && 
+      ((direction === 1 && lastCar.y < scaler.scale(100)) ||
+       (direction === -1 && lastCar.y > height - scaler.scale(100)))
     ) {
       return false;
     }
 
     // Calculate lane width and center position
     const laneWidth = this.game.lanes[laneType.toUpperCase()].width;
-    const carWidth = 45; // This should match the car width in Car.js
+    const carWidth = scaler.scale(Car.designWidth); // This should match the car width in Car.js
     
     // Position car in the center of its lane
     const centerX = x + (laneWidth - carWidth) / 2;
@@ -202,6 +206,14 @@ export class CarSystem {
     this.cars[laneType].push(newCar);
     
     return true;
+  }
+
+  updateSizeAndPosition() {
+    Object.keys(this.cars).forEach((laneType) => {
+      this.cars[laneType].forEach((car) => {
+        car.update();
+      });
+    });
   }
 
   update(player) {

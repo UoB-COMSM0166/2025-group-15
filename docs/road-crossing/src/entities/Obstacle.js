@@ -1,11 +1,26 @@
 export class Obstacle {
+    // // set obstacle size and position in ideal design
+    // static designWidth = 20;
+    // static designHeight = 200;
+    // static designStripeCount = 12;
+    // static designRelativePosition = [0.423, 0.567];
+
     constructor(x, y, movable = false, moveDirection = 1, moveSpeed = 0.5) {
         this.x = x;
         this.y = y;
-        this.width = 20;
-        this.height = 120; // Doubled from 60 to 120
+
+        // Store coordinates and size in ideal design
+        this.designWidth = 20;
+        this.designHeight = 200; // increase height from 120 to 200
+        this.relativeX = this.x / width;
+        this.relativeY = this.y / height;
+    
         this.stripeCount = 12; // Doubled from 6 to 12 to maintain proportion
         
+        // Get scaled obstacle size
+        this.width = scaler.scale(this.designWidth);
+        this.height = scaler.scale(this.designHeight);
+
         // Add movement-related properties
         this.movable = movable;
         this.moveDirection = moveDirection; // 1 means down, -1 means up
@@ -14,12 +29,21 @@ export class Obstacle {
     }
 
     update() {
+        // Update obstacle size based on scaling
+        this.width = scaler.scale(this.designWidth);
+        this.height = scaler.scale(this.designHeight);
+        // update obstacle x coordinate based on scaling
+        this.x = width * this.relativeX;
+        // this.moveSpeed = this.moveSpeed * scaler.unit;
+
         // Only move if movable is true
         if (this.movable) {
-            this.y += this.moveSpeed * this.moveDirection;
+            this.relativeY += this.moveSpeed / scaler.referenceHeight * this.moveDirection;
+            this.y = height * this.relativeY;
             
             // Change direction when reaching screen edges with margins
-            if (this.y <= 50 || this.y + this.height >= height - 50) {
+            const margin = scaler.scale(50);
+            if (this.y <= margin || this.y + this.height >= height - margin) {
                 this.moveDirection *= -1;
             }
         }

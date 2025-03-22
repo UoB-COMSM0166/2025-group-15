@@ -21,11 +21,11 @@ export const GameKeys = {
 };
 
 // Function to get lane configurations based on canvas size
-export function getLaneConfiguration(width, height) {
+export function getLaneConfiguration() {
     // Calculate lanes based on proportions
     // Road is approx 40% of screen width
-    const roadWidth = width * 0.4;
-    const roadStart = width * 0.3;
+    const roadWidth = scaler.scale(400);
+    const roadStart = scaler.scale(300);
     const laneWidth = roadWidth / 3;
     
     return {
@@ -36,11 +36,20 @@ export function getLaneConfiguration(width, height) {
 }
 
 // Dynamically calculate game areas dimensions
-export function getGameAreas(width, height) {
+export function getGameAreas() {
     return {
-        warehouse: { start: 0, width: width * 0.3 },
-        road: { start: width * 0.3, width: width * 0.4 },
-        delivery: { start: width * 0.7, width: width * 0.3 }
+        warehouse: {
+            start: 0,
+            width: scaler.scale(300)
+        },
+        road: {
+            start: scaler.scale(300),
+            width: scaler.scale(400)
+        },
+        delivery: {
+            start: scaler.scale(700),
+            width: scaler.scale(300)
+        }
     };
 }
 
@@ -54,9 +63,12 @@ export const PauseButtons = {
 
 // Function to get delivery Zone
 export function getDeliveryZone() {
-    const deliveryZoneX = width * 0.7 + (width * 0.3) / 2; // same as player start position
-    const deliveryZoneY = height / 2;
-    const deliveryZoneSize = 45; // temp value, should be set based on delivery spot size
+    const deliveryZoneX = scaler.scale(800);
+    const deliveryZoneY = scaler.scale(350);
+    const deliveryZoneSize = scaler.scale(45);
+    // const deliveryZoneX = width * 0.7 + (width * 0.3) / 2; // same as player start position
+    // const deliveryZoneY = height / 2;
+    // const deliveryZoneSize = 45; // temp value, should be set based on delivery spot size
     const color = [255, 255, 0, 128]; // temp value, should be set based on delivery spot color
     return {
         x: deliveryZoneX,
