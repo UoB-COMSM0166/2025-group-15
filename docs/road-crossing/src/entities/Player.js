@@ -74,7 +74,7 @@ export class Player {
     this.respawnX = deliveryZone.x - scaler.scale(30);
     this.respawnY = deliveryZone.y;
 
-    // Set hit state and record hit time, but keep current position
+    // Set hit state and record hit time, but keep current position and direction
     this.isHit = true;
     this.hitTime = millis();
   }
@@ -156,32 +156,61 @@ export class Player {
         const drawHeight = this.lyingHeight;
         
         // Drawing using CORNER mode, consistent with walking pictures
+
         imageMode(CORNER);
         
-        image(
-          assetManager.getImage("player1Lying"),
-          this.x,
-          this.y,
-          drawWidth,
-          drawHeight
-        );
+        if (this.isFlipped) {
+          push();
+          scale(-1, 1);
+          image(
+            assetManager.getImage("player1Lying"),
+            -this.x - drawWidth, 
+            this.y,
+            drawWidth,
+            drawHeight
+          );
+          pop();
+        } else {
+
+          image(
+            assetManager.getImage("player1Lying"),
+            this.x,
+            this.y,
+            drawWidth,
+            drawHeight
+          );
+        }
       } else if (this.playerOption === "option2") {
-        // Falling down Picture of character2
-        const drawWidth = this.lyingWidth;
-        const drawHeight = this.lyingHeight;
+
+        const lyingScale = this.width / 30; 
+        const drawWidth = this.lyingWidth * lyingScale;
+        const drawHeight = this.lyingHeight * lyingScale;
         
         imageMode(CORNER);
         
-        image(
-          assetManager.getImage("player2Lying"),
-          this.x,
-          this.y,
-          drawWidth,
-          drawHeight
-        );
+        if (this.isFlipped) {
+          push();
+          scale(-1, 1); 
+          image(
+            assetManager.getImage("player2Lying"),
+            -this.x - drawWidth, 
+            this.y,
+            drawWidth,
+            drawHeight
+          );
+          pop();
+        } else {
+          image(
+            assetManager.getImage("player2Lying"),
+            this.x,
+            this.y,
+            drawWidth,
+            drawHeight
+          );
+        }
       }
     } else if (this.playerOption === "option1") {
-      imageMode(CORNER); // Restore original mode
+      imageMode(CORNER); 
       
       // Get aspect ratio information for both image types
       const walkingRatio = assetManager.images["player1WalkingRatio"] || { ratio: 97/42 };
