@@ -6,6 +6,9 @@
 
 [Introduction](#introduction)  
 [Requirement](#requirements)  
+[Sustainability](#sustainability)
+  [Sustainability Analysis](#1-sustainability-analysis)
+  [Green Software Patterns](#2-green-software-patterns)
 [Design](#design)  
 [Implementation](#implementation)  
 [Evaluation](#evaluation)  
@@ -64,6 +67,7 @@ We applied the Onion Model to identify and analyze stakeholders involved in our 
 | **As a developer**, I want to break down the game development process into modular components, so that each team member can work independently on different parts of the game. | **Given** a structured game development plan, **when** a team member starts working on a specific module, **then** they should be able to develop, test, and integrate their module without being blocked by dependencies. |
 | **As a developer**, I want to design background music and various sound effects, so that players can experience greater immersion in the game. | **Given** a specific game scene or event, **when** background music and sound effects are played, **then** they should match the atmosphere and enhance the player's engagement. |
 | **As a developer**, I want to implement high-quality artwork and animations, so that players can have a visually engaging and enjoyable experience. | **Given** a game character, object, or environment, **when** an animation or visual transition occurs, **then** it should be smooth, cohesive, and consistent with the game's artistic style. |
+| **As a developer**, I want the game to consume minimal computing resources during idle states, so that it runs more efficiently and reduces unnecessary energy usage. | **Given** the game is paused or in a low-activity state, **when** no major animations or updates are occurring, **then** background processes should reduce activity to save energy. |
 | **As a player**, I want to continue my game from the latest progress I‘ve arrived so that I can play whenever it suits me without losing progress. |**Given** I have made progress in the game, **when** I exit the game, **then** my progress should be saved automatically. |
 | **As a player**, I want the game difficulty to gradually increase from easy to hard so that I can improve my skills step by step while maintaining the challenge and fun of the game. | **Given** that I am playing the game, **when** I complete a level, **then**  the next level should have a higher difficulty compared to the previous one. |
 | **As a player**, I want the game to have help information pages so that I can refer to them whenever I need. | **Given** that I am in the game, **when** I press the help button, **then** I should be able to access the help information pages at any time during the game and the content should be clear and provide relevant instructions on how to play the game. |
@@ -73,6 +77,7 @@ We applied the Onion Model to identify and analyze stakeholders involved in our 
 | **As a player**, I want to experience a game where the difficulty level increases over time, so that the game becomes more interesting and soul-stirring as I become accustomed to the current difficulty. | **Given** the game has started, **when** player accumulates points above target threshold, **then** increase traffic density and speed according to difficulty curve.<br><br>**Given** current difficulty level, **when** player performance drops significantly, **then** maintain current difficulty until performance improves.<br><br>**Given** maximum difficulty reached, **when** player continues performing well, **then** maintain challenge without becoming impossible. |
 | **As a player**, I need the ability to pause gameplay at any moment, allowing me to handle real-life interruptions and resume from where I left off. | **Given** active gameplay, **when** pause button pressed, **then** freeze all game elements and display pause menu.<br><br>**Given** game is paused, **when** resume selected, **then** restore exact game state and continue timer.<br><br>**Given** game is paused, **when** quit selected, **then** save current score and return to main menu. |
 | **As a player**, I desire a score tracking and comparison system where I can measure my performance against others, fueling my competitive drive. | **Given** game completion, **when** score submitted, **then** save to leaderboard with player name and timestamp.<br><br>**Given** leaderboard view, **when** filtering options selected, **then** display relevant scores (daily/weekly/all-time).<br><br>**Given** new high score achieved, **when** game ends, **then** highlight achievement and offer sharing options. |
+| **As a player**, I want to see eco-friendly vehicle types in the game, so that I become more aware of green transportation options. | **Given** the game level is loaded, **when** vehicles are rendered on the road, **then** a portion of them should be displayed as bikes, electric cars, or other low-emission vehicles. |
 
 
 ##### Example: Breakdown of Game Difficulty System Design
@@ -131,6 +136,31 @@ For acceptance criteria, we used the Given-When-Then format to define completion
 In understanding our application's context, we employed the Onion Model for stakeholder analysis, giving us a comprehensive view from core development team to end users. This helped us maintain awareness of various stakeholder needs throughout development.
 
 The iterative process of defining requirements taught us the importance of clear communication and documentation. Well-defined requirements not only guide development but also serve as a foundation for testing and evaluation. This experience has helped us complete the current project and laid a foundation for future development.
+
+### Sustainability
+
+#### 1. Sustainability Analysis
+
+Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's potential sustainability impacts across five key dimensions:
+
+| **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
+|------------------------------|----------------------|--------------------------|
+| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players’ reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
+| **Social** | Does the game support community or inclusivity? | The character customization feature can increase player sense of belonging. Adding diverse character appearances may help players from different backgrounds feel more included. |
+| **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | Vehicles in the game can be designed as bicycles, electric cars, or other low-emission transport options. This can subtly promote awareness of green transportation and carbon reduction. |
+| **Economic** | Does the game promote economic value or efficient resource use? | While not directly tied to real-world economics, the game encourages efficient transport behavior (e.g., avoiding collisions and optimizing paths), which mirrors efficient resource use. |
+| **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
+
+#### 2. Green Software Patterns
+
+We have reviewed the Green Software Foundation’s Green Software Patterns and identified the following three that apply to our game:
+
+1. **Avoid Polling** – Instead of using continuous polling techniques (such as `setInterval` or checking conditions on every frame), our game uses efficient, frame-based updates. For example, cars are only generated every 60 frames (`frameCount % 60 === 0`) instead of every frame, which reduces unnecessary CPU usage and improves energy efficiency.
+
+2. **Green Defaults** – The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
+
+3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
+
 
 ### Design
 
