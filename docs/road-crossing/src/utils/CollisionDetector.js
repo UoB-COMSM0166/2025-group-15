@@ -1,7 +1,7 @@
 import { getDeliveryZone } from "../config/Constants.js";
 
 export class CollisionDetector {
-  // Check collision between player and car
+  // Check collision between player and car / obstacle
   static checkPlayerRectCollision(player, rect) {
     // use relative coordinates for collision detection
     const playerRelativeX = player.x / width;
@@ -67,12 +67,23 @@ export class CollisionDetector {
   static handleObstacleCollisions(player, obstacles) {
     for (const obstacle of obstacles) {
       if (this.checkPlayerRectCollision(player, obstacle)) {
-        // Handle left-right collision (already implemented)
-        if (player.x < obstacle.x ) {
-          player.x = obstacle.x - player.width; // Push player to the left of the obstacle
-        } else if (player.x > obstacle.x) {
-          player.x = obstacle.x + obstacle.width; // Push player to the right of the obstacle
+        // if collision, push player to the side with less horizontal penetration
+        // calculate relative position between player and obstacle
+        const playerRight = player.x + player.width;
+        const obstacleRight = obstacle.x + obstacle.width;
+        // calculate horizontal penetration distance between player and obstacle
+        const leftPenetration = obstacleRight - player.x; // player.x is the left edge of player
+        const rightPenetration = playerRight - obstacle.x; // obstacle.x is the right edge of obstacle
+        // push player to the side with less penetration
+        if (leftPenetration < rightPenetration) {
+          player.x = obstacleRight; // push player to the right side of obstacle
+        } else {
+          player.x = obstacle.x - player.width; // push player to the left side of obstacle
         }
+
+        // update relative position of player
+        player.relativeX = player.x / width;
+        player.relativeY = player.y / height;
 
         return true;
       }

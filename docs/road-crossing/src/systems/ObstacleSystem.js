@@ -26,10 +26,10 @@ export class ObstacleSystem {
         // Position them so they're more centered in the play area
         
         // First lane divider - single obstacle
-        this.obstacles.push(new Obstacle(firstDividerX - 10, height * 0.25, true, 1, 1.0));
+        this.obstacles.push(new Obstacle(firstDividerX - scaler.scale(10), height * 0.25, true, 1, 1.0));
         
         // Second lane divider - single obstacle
-        this.obstacles.push(new Obstacle(secondDividerX - 10, height * 0.5, true, -1, 1.1));
+        this.obstacles.push(new Obstacle(secondDividerX - scaler.scale(10), height * 0.5, true, -1, 1.1));
         
         console.log("Generated obstacles: ", this.obstacles.length);
     }
