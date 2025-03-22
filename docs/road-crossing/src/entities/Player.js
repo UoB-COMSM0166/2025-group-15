@@ -1,25 +1,45 @@
+import { getDeliveryZone } from "../config/Constants.js";
+
 export class Player {
+  // reference value in ideal design
+  static designWidth = 30;
+  static designHeight = 97 / 42 * Player.designWidth; // 970/420 is the aspect ratio of the player image
+  static designBaseSpeed = 3.5; // add from 2.67 to 3.5 after reducing from 4 to 2.67 (2/3 of original)
+
   constructor(x, y, playerOption = "option1") {
-    this.x = x || (width * 0.7 + (width * 0.3) / 2); // Default to middle of delivery area
-    this.y = y || height / 2;
-    this.width = 30;
-    this.height = 97 / 42 * this.width; // 97/42 is the aspect ratio of the player image
-    this.baseSpeed = 2.67; // Reduced from 4 to 2.67 (2/3 of original)
+    //if no position available, set player at the right side of delivery area
+    if (x !== null && y !== null) {
+      this.relativeX = x / width;  // store relative position
+      this.relativeY = y / height;
+      this.x = x;
+      this.y = y;
+    } else {
+      // default position at left of delivery zone
+      const deliveryZone = getDeliveryZone();
+      this.relativeX = (deliveryZone.x - scaler.scale(30)) / width;
+      this.relativeY = deliveryZone.y / height;
+      this.x = deliveryZone.x - scaler.scale(30);
+      this.y = deliveryZone.y;
+    }
+
+    this.width = scaler.scale(Player.designWidth);
+    this.height = scaler.scale(Player.designHeight);
+    this.baseSpeed = Player.designBaseSpeed;
     this.speed = this.baseSpeed;
     this.score = 0;
     this.hasItem = false;
     this.currentItem = null;
-    this.playerOption = playerOption || "option1"; // default character option1
-    this.isFlipped = false; // if player is flipped
+    this.playerOption = playerOption || "option1";
+    this.isFlipped = false;
   }
 
   reset() {
-    // Position player at the right side of delivery area
-    const playerX = width * 0.7 + (width * 0.3) / 2; // Middle of delivery area
-    const playerY = height / 2;
+    const deliveryZone = getDeliveryZone();
+    this.relativeX = (deliveryZone.x - scaler.scale(30)) / width;
+    this.relativeY = deliveryZone.y / height;
+    this.x = deliveryZone.x - scaler.scale(30);
+    this.y = deliveryZone.y;
     
-    this.x = playerX;
-    this.y = playerY;
     this.speed = this.baseSpeed;
     this.score = 0;
     this.hasItem = false;
@@ -27,29 +47,41 @@ export class Player {
   }
 
   resetPosition() {
-    // Position player at the right side of delivery area
-    const playerX = width * 0.7 + (width * 0.3) / 2; // Middle of delivery area
-    const playerY = height / 2;
+    this.relativeX = 0.85; // 70% + 15% of the remaining width
+    this.relativeY = 0.5;  // middle of height
+    this.x = width * this.relativeX;
+    this.y = height * this.relativeY;
+  }
+
+  updateSizeAndPosition() {
+    // Update player size based on scaling
+    this.width = scaler.scale(Player.designWidth);
+    this.height = scaler.scale(Player.designHeight);
     
-    this.x = playerX;
-    this.y = playerY;
+    // Update position based on relative coordinates
+    this.x = width * this.relativeX;
+    this.y = height * this.relativeY;
   }
 
   update(keys) {
     // Check both arrow keys and WASD keys
     if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
-      this.x = Math.max(0, this.x - this.speed);
+      this.relativeX = Math.max(0, this.relativeX - this.speed / width);
+      this.x = width * this.relativeX;
       this.isFlipped = false;
     }
     if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
-      this.x = Math.min(width - this.width, this.x + this.speed);
+      this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed / width);
+      this.x = width * this.relativeX;
       this.isFlipped = true;
     }
     if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
-      this.y = Math.max(0, this.y - this.speed);
+      this.relativeY = Math.max(0, this.relativeY - this.speed / height);
+      this.y = height * this.relativeY;
     }
     if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
-      this.y = Math.min(height - this.height, this.y + this.speed);
+      this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed / height);
+      this.y = height * this.relativeY;
     }
   }
 
@@ -98,6 +130,11 @@ export class Player {
 
     // Draw item if player has one
     if (this.hasItem) {
+      // if (this.playerOption === "option1") {
+      //   image(assetManager.getImage("player1Pickup"), this.x, this.y, this.width, this.height);
+      // } else {
+      //   image(assetManager.getImage("player2Pickup"), this.x, this.y, this.width, this.height);
+      // }
       fill(0, 255, 0);
       // Draw item with size based on weight if player has one
       const itemSize = 10 * (0.8 + this.currentItem.weight * 0.1);
@@ -108,9 +145,9 @@ export class Player {
   pickupItem(item) {
     this.hasItem = true;
     this.currentItem = item;
-    // Adjust speed based on item weight
-    // Keep the same formula but with reduced base speed
-    this.speed = this.baseSpeed / (0.7 + item.weight * 0.15);
+    // Adjust speed based on item weight - speed decreases as weight increases
+    // With weight range 1-5, speed will be between 3.5 and 2.0
+    this.speed = this.baseSpeed * (1 - item.weight * 0.1);
   }
 
   dropItem() {

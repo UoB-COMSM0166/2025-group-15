@@ -3,23 +3,39 @@ import { getDeliveryZone } from "../config/Constants.js";
 export class CollisionDetector {
   // Check collision between player and car
   static checkPlayerRectCollision(player, rect) {
+    // use relative coordinates for collision detection
+    const playerRelativeX = player.x / width;
+    const playerRelativeY = player.y / height;
+    const playerRelativeWidth = player.width / width;
+    const playerRelativeHeight = player.height / height;
+    
+    const rectRelativeX = rect.x / width;
+    const rectRelativeY = rect.y / height;
+    const rectRelativeWidth = rect.width / width;
+    const rectRelativeHeight = rect.height / height;
+    
     return (
-      player.x < rect.x + rect.width && // player left edge < car right edge
-      player.x + player.width > rect.x && // player right edge > car left edge
-      player.y + player.height / 3 < rect.y + rect.height && // player 2 third top edge < car bottom edge
-      player.y + player.height > rect.y // player bottom edge > car top edge
+      playerRelativeX < rectRelativeX + rectRelativeWidth && // player left edge < car right edge
+      playerRelativeX + playerRelativeWidth > rectRelativeX && // player right edge > car left edge
+      playerRelativeY + (playerRelativeHeight / 3) < rectRelativeY + rectRelativeHeight && // player 2 third top edge < car bottom edge
+      playerRelativeY + playerRelativeHeight > rectRelativeY // player bottom edge > car top edge
     );
   }
 
   // Check if player is in picking distance of an item
   static checkPlayerItemProximity(player, item) {
-    // logic changed to similar with checkPlayerRectCollision()
-    const itemSize = item.size;
+    // use relative coordinates for picking distance detection
+    const itemSize = scaler.scale(item.designSize);
+    const playerRelativeX = player.x / width;
+    const playerRelativeY = player.y / height;
+    const playerRelativeWidth = player.width / width;
+    const playerRelativeHeight = player.height / height;
+    
     return (
-      item.x < player.x + player.width &&
-      item.x + itemSize > player.x &&
-      item.y < player.y + player.height &&
-      item.y + itemSize > player.y
+      item.relativeX < playerRelativeX + playerRelativeWidth &&
+      item.relativeX + (itemSize / width) > playerRelativeX &&
+      item.relativeY < playerRelativeY + playerRelativeHeight &&
+      item.relativeY + (itemSize / height) > playerRelativeY
     );
   }
 

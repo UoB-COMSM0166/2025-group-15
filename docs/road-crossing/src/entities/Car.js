@@ -1,17 +1,33 @@
 export class Car {
+    // set car size in ideal design
+    static designWidth = 45;
+    static designHeight = 75;
+
     constructor(x, y, speed, direction) {
         this.x = x;
         this.y = y;
+        this.relativeX = x / width; // store relative position
+        this.relativeY = y / height;
         this.speed = speed;
-        // Increase car size - make them 50% larger
-        this.width = 45;  // Increased from 30
-        this.height = 75; // Increased from 50
+        this.relativeSpeed = speed / scaler.referenceHeight; // store relative speed
+
+        // get scaled car size
+        this.width = scaler.scale(Car.designWidth);
+        this.height = scaler.scale(Car.designHeight);
+
         this.direction = direction || 1; // 1 = down, -1 = up
         this.carType = floor(random(7)); // random car type
     }
 
     update() {
-        this.y += this.speed * this.direction;
+        // update relative position
+        this.relativeY += this.relativeSpeed * this.direction;
+        this.y = height * this.relativeY;
+        this.x = width * this.relativeX; // update actual X position
+
+        // update car size based on scaling
+        this.width = scaler.scale(Car.designWidth);
+        this.height = scaler.scale(Car.designHeight);
     }
 
     draw() {
@@ -46,7 +62,7 @@ export class Car {
     }
 
     isOffScreen() {
-        return (this.direction === 1 && this.y > height + 50) || 
-               (this.direction === -1 && this.y < -50);
+        return (this.direction === 1 && this.relativeY > 1 + scaler.scale(75) / height) || 
+               (this.direction === -1 && this.relativeY < -scaler.scale(75) / height);
     }
 }

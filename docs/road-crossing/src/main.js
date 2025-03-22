@@ -1,3 +1,9 @@
+import { UnitScaler } from "./utils/UnitScaler.js";
+
+// Create a global UnitScaler instance to be used by other classes, set reference size to 1000x750
+window.scaler = new UnitScaler(1000, 750);
+// window.scaler.resize(windowHeight * 4 / 3, windowHeight);
+
 import { Game } from "./core/Game.js";
 import { GameMode } from "./config/GameMode.js";
 import { AssetManager } from "./ui/AssetManager.js";
@@ -16,20 +22,31 @@ window.currentGameMode = GameMode.NORMAL;
 
 // p5.js setup function - increase canvas size to fill 80% of the window
 function setup() {
-  // Calculate canvas size to fill 80% of window width and 90% of window height
-  const canvasHeight = Math.floor(windowHeight);
-  const canvasWidth = Math.floor(canvasHeight * 4 / 3); // 4:3 aspect ratio
+  const canvasHeight = Math.max(window.innerHeight, 600);
+  const canvasWidth = Math.max(canvasHeight * 4 / 3, 800); // 4:3 aspect ratio
   
   // p5.js createCanvas function, set canvas size, auto add two global var: width, height
   createCanvas(canvasWidth, canvasHeight);
+
+  // initialize the UnitScaler instance
+  window.scaler.resize(canvasWidth, canvasHeight);
+
   game = new Game();
 }
 
 // p5.js window resize function
 function windowResized() {
-  const canvasHeight = Math.floor(windowHeight);
-  const canvasWidth = Math.floor(canvasHeight * 4 / 3);
+  const canvasHeight = Math.max(window.innerHeight, 600);
+  const canvasWidth = Math.max(canvasHeight * 4 / 3, 800);
   resizeCanvas(canvasWidth, canvasHeight);
+
+  // update the UnitScaler instance
+  window.scaler.resize(canvasWidth, canvasHeight);
+
+  // update game dimensions
+  if (game) {
+    game.updateGameDimensions();
+  }
 }
 
 // p5.js draw function
