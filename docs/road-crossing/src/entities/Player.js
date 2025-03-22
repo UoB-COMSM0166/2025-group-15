@@ -20,6 +20,9 @@ export class Player {
       this.relativeY = deliveryZone.y / height;
       this.x = deliveryZone.x - scaler.scale(30);
       this.y = deliveryZone.y;
+      // Respawn position is the same as the initial position
+      this.respawnX = this.x;
+      this.respawnY = this.y;
     }
 
     this.width = scaler.scale(Player.designWidth);
@@ -35,18 +38,16 @@ export class Player {
     this.hitTime = 0; // Time when hit
     this.hitDuration = 300; // Duration of lying down (milliseconds)
     // Lying down image aspect ratio
-    this.lyingWidth = 97;
-    this.lyingHeight = 42;
-    this.respawnX = 0; // Respawn position X
-    this.respawnY = 0; // Respawn position Y
-    
+    this.lyingWidth = this.height;
+    this.lyingHeight = this.width;
+
     // Walking animation related
     this.animationFrame = 0; // Current animation frame
     this.walkingDelay = 200; // Walking animation frame switch delay (milliseconds)
     this.lastFrameTime = 0; // Last frame switch time
     this.isMoving = false; // Whether is moving
-    this.lastX = x; // Last frame X coordinate
-    this.lastY = y; // Last frame Y coordinate
+    this.lastX = this.x; // Last frame X coordinate (already scaled)
+    this.lastY = this.y; // Last frame Y coordinate (already scaled)
   }
 
   reset() {
@@ -68,12 +69,12 @@ export class Player {
   }
 
   resetPosition() {
-    this.relativeX = 0.85; // 70% + 15% of the remaining width
-    this.relativeY = 0.5;  // middle of height
-    this.respawnX = width * this.relativeX;
-    this.respawnY = height * this.relativeY;
+    // record the respawn position
+    const deliveryZone = getDeliveryZone();
+    this.respawnX = deliveryZone.x - scaler.scale(30);
+    this.respawnY = deliveryZone.y;
 
-    // Set hit state, but keep current position
+    // Set hit state and record hit time, but keep current position
     this.isHit = true;
     this.hitTime = millis();
   }
@@ -82,7 +83,9 @@ export class Player {
     // Update player size based on scaling
     this.width = scaler.scale(Player.designWidth);
     this.height = scaler.scale(Player.designHeight);
-    
+    this.lyingWidth = this.height;
+    this.lyingHeight = this.width;
+
     // Update position based on relative coordinates
     this.x = width * this.relativeX;
     this.y = height * this.relativeY;
@@ -92,15 +95,19 @@ export class Player {
     // Save previous frame position to detect movement
     this.lastX = this.x;
     this.lastY = this.y;
-    
+
     // Check if hit state is over
     if (this.isHit) {
       if (millis() - this.hitTime > this.hitDuration) {
         this.isHit = false;
         // After hit state ends, teleport to respawn point
+        this.relativeX = this.respawnX / width;
+        this.relativeY = this.respawnY / height;
+        // Update position immediately so the walking animation can be played in respawn position rather than the hit position
         this.x = this.respawnX;
         this.y = this.respawnY;
       }
+      this.isMoving = false; // Keep isMoving false during hit state
       return; // Can't move in hit state
     }
 
@@ -137,20 +144,6 @@ export class Player {
     } else {
       this.animationFrame = 0; // Reset to standing frame when not moving
     }
-    
-    // Detect whether moving
-    this.isMoving = (this.x !== this.lastX || this.y !== this.lastY);
-    
-    // Update animation frame
-    if (this.isMoving) {
-      const currentTime = millis();
-      if (currentTime - this.lastFrameTime > this.walkingDelay) {
-        this.animationFrame = (this.animationFrame + 1) % 2; // Toggle between 0 and 1
-        this.lastFrameTime = currentTime;
-      }
-    } else {
-      this.animationFrame = 0; // Reset to standing frame when not moving
-    }
   }
 
   draw() {
@@ -159,9 +152,8 @@ export class Player {
     if (this.isHit) {
       if (this.playerOption === "option1") {
         // Use inverted images and keep the aspect ratio
-        const lyingScale = this.width / 30; // Keep the same proportions as the normal picture
-        const drawWidth = this.lyingWidth * lyingScale;
-        const drawHeight = this.lyingHeight * lyingScale;
+        const drawWidth = this.lyingWidth;
+        const drawHeight = this.lyingHeight;
         
         // Drawing using CORNER mode, consistent with walking pictures
         imageMode(CORNER);
@@ -175,11 +167,9 @@ export class Player {
         );
       } else if (this.playerOption === "option2") {
         // Falling down Picture of character2
-        const lyingScale = this.width / 30; 
-        const drawWidth = this.lyingWidth * lyingScale;
-        const drawHeight = this.lyingHeight * lyingScale;
+        const drawWidth = this.lyingWidth;
+        const drawHeight = this.lyingHeight;
         
-      
         imageMode(CORNER);
         
         image(
