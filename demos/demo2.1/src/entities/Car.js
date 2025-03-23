@@ -1,52 +1,41 @@
+import { CAR_PROPERTIES } from "../config/Constants.js";
+
 export class Car {
-    constructor(x, y, speed, direction) {
+    constructor(x, y, speed, direction, carType) {
         this.x = x;
         this.y = y;
-        this.speed = speed;
-        // Increase car size - make them 50% larger
-        this.width = 45;  // Increased from 30
-        this.height = 75; // Increased from 50
+        this.speed = speed; // Use the lane speed directly
+        this.carType = carType; // Car type must be provided
+        
+        // Get properties for this car type
+        const properties = CAR_PROPERTIES[this.carType];
+        this.width = properties.width;
+        this.height = properties.height;
+        
         this.direction = direction || 1; // 1 = down, -1 = up
-        this.carType = floor(random(7)); // random car type
     }
 
+    // Other methods remain the same
     update() {
         this.y += this.speed * this.direction;
     }
 
     draw() {
-        // get car image based on car type
-        let carImg;
-        if (this.carType === 0) {
-            carImg = assetManager.getImage("car1");
-        } else if (this.carType === 1) {
-            carImg = assetManager.getImage("car2");
-        } else if(this.carType === 2) {
-            carImg = assetManager.getImage("car3");
-        }else if(this.carType === 3) {
-            carImg = assetManager.getImage("car4");
-        } else if(this.carType === 4) {
-            carImg = assetManager.getImage("car5");
-        } else if(this.carType === 5) {
-            carImg = assetManager.getImage("car6");
-        } else if(this.carType === 6) {
-            carImg = assetManager.getImage("car7");
-        }
+        let carImg = assetManager.getImage(this.carType);
 
-        // draw car image
         if (this.direction === 1) {
-            image(carImg, this.x, this.y, this.width, this.height); // down direction
+            image(carImg, this.x, this.y, this.width, this.height); // Down direction
         } else {
-            push(); // start new coordinate system
+            push();
             translate(this.x + this.width / 2, this.y + this.height / 2);
-            rotate(PI); // rotate 180 degrees
-            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // up direction
-            pop(); // restore coordinate system
+            rotate(PI);
+            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // Up direction
+            pop();
         }
     }
 
     isOffScreen() {
-        return (this.direction === 1 && this.y > height + 50) || 
-               (this.direction === -1 && this.y < -50);
+        return (this.direction === 1 && this.y > height + this.height) || 
+               (this.direction === -1 && this.y < -this.height);
     }
 }
