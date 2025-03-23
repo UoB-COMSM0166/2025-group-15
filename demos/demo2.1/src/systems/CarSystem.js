@@ -1,4 +1,5 @@
 //import
+import { CAR_CATEGORIES, CAR_PROPERTIES } from "../config/Constants.js";
 import { Car } from "../entities/Car.js";
 import { CollisionDetector } from "../utils/CollisionDetector.js";
 import { LevelConfig } from "../config/LevelConfig.js";
@@ -167,38 +168,47 @@ export class CarSystem {
   }
 
   generateCarInLane(laneType, x, config) {
-    const speed = config.speeds[laneType];
+    const speed = config.speeds[laneType]; // Use the lane speed from LevelConfig
 
-    // Determine car direction based on the level configuration
-    let direction = 1; // Default direction is down
-    
-    // Check if this lane should be reversed for this level
+    // Determine car direction
+    let direction = 1;
     if (config.reverseLanes && config.reverseLanes[laneType]) {
-      direction = -1;
+        direction = -1;
     }
 
-    // Set starting position based on direction
-    const startY = direction === 1 ? -75 : height + 75; // Adjusted for larger car size
+    // Select car type based on lane type
+    let carTypes;
+    if (laneType === "slow") {
+        carTypes = CAR_CATEGORIES.SLOW_LANE;
+    } else if (laneType === "medium") {
+        carTypes = CAR_CATEGORIES.MEDIUM_LANE;
+    } else if (laneType === "fast") {
+        carTypes = CAR_CATEGORIES.FAST_LANE;
+    }
+    
+    // Randomly select a car type from the appropriate category
+    const carType = carTypes[floor(random(carTypes.length))];
+    const carProperties = CAR_PROPERTIES[carType];
+    
+    // Set starting position based on direction and car height
+    const startY = direction === 1 ? -carProperties.height : height + carProperties.height;
 
-    // Check if we can generate a new car (avoid too close cars)
+    // Check if there's enough space for a new car
     const lastCar = this.cars[laneType][this.cars[laneType].length - 1];
     if (
       lastCar &&
-      ((direction === 1 && lastCar.y < 100) ||
-        (direction === -1 && lastCar.y > height - 100))
+      ((direction === 1 && lastCar.y < lastCar.height + 25) ||
+        (direction === -1 && lastCar.y > height - lastCar.height - 25))
     ) {
       return false;
     }
 
     // Calculate lane width and center position
     const laneWidth = this.game.lanes[laneType.toUpperCase()].width;
-    const carWidth = 45; // This should match the car width in Car.js
+    const centerX = x + (laneWidth - carProperties.width) / 2;
     
-    // Position car in the center of its lane
-    const centerX = x + (laneWidth - carWidth) / 2;
-    
-    // Create and add the new car at the center of the lane
-    const newCar = new Car(centerX, startY, speed, direction);
+    // Create and add the new car
+    const newCar = new Car(centerX, startY, speed, direction, carType);
     this.cars[laneType].push(newCar);
     
     return true;
