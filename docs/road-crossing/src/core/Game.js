@@ -188,8 +188,12 @@ update() {
     // Draw game elements
     this.drawGameElements();
 
+
     // Show game status
-    this.uiManager.drawGameStatus();
+    //this.uiManager.drawGameStatus();
+    this.drawStatusBar();  // 🔹 添加状态栏
+
+
   }
 
   drawLaneLines() {
@@ -225,6 +229,55 @@ update() {
     // Draw player
     this.player.draw();
   }
+
+
+   // 🔹 新增状态栏绘制方法
+   drawStatusBar() {
+
+    const barHeight = 39;
+    fill(0,0,0,150);
+    //fill(60, 140, 60, 220); // 绿色-半透明背景
+    noStroke();
+    rect(0, 0, width, barHeight);
+    
+    fill(255);
+    textSize(18);
+    textAlign(CENTER, CENTER);
+
+    // 设定按钮区域宽度（假设按钮在最右侧，两个按钮各 50px 间隔 10px）
+    const buttonAreaWidth = 50 * 2 + 20; // 2 个按钮 + 10px 间距
+
+    // 计算状态信息可用的区域（屏幕宽度减去右侧按钮区域）
+    const availableWidth = width - buttonAreaWidth;
+
+    // 计算状态信息均匀分布的位置 
+    const sections = 4; // 4 个信息块：Level, Time, Score, Target
+    const sectionWidth = availableWidth / sections;
+    
+    // 绘制状态信息（避开右侧按钮区域）
+    text(`Level: ${this.currentLevel}`, sectionWidth * 0.5, barHeight / 2);
+    text(`Time: ${floor(this.gameTime)}`, sectionWidth * 1.5, barHeight / 2);
+    text(`Score: ${this.player ? this.player.score : 0}`, sectionWidth * 2.5, barHeight / 2);
+    text(`Target: ${LevelConfig[this.currentLevel].targetScore}`, sectionWidth * 3.5, barHeight / 2);
+
+
+    // 显示音量和暂停按钮（缩小按钮尺寸）
+    const buttonSize = 24;  // 调整按钮大小（原来 30x30，现在 24x24）
+
+    const audioImg = this.isAudioEnabled ? assetManager.getImage("volumeOn") : assetManager.getImage("volumeOff");
+    if (audioImg) {
+      image(audioImg, width - 70, 8, buttonSize, buttonSize);   
+    }
+
+    const pauseImg = assetManager.getImage("pause");
+    if (pauseImg) {
+      image(pauseImg, width - 35, 8, buttonSize, buttonSize);  
+    }
+
+
+  }
+
+  
 
   setLineDash(list) {
     drawingContext.setLineDash(list);
@@ -327,3 +380,4 @@ update() {
     }
   }
 }
+
