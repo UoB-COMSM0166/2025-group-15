@@ -1,68 +1,40 @@
+import { CAR_PROPERTIES } from "../config/Constants.js";
+
 export class Car {
-    // set car size in ideal design
-    static designWidth = 45;
-    static designHeight = 75;
-
-    constructor(x, y, speed, direction) {
-        this.x = x;
-        this.y = y;
-        this.relativeX = x / width; // store relative position
-        this.relativeY = y / height;
-        this.speed = speed;
-        this.relativeSpeed = speed / scaler.referenceHeight; // store relative speed
-
-        // get scaled car size
-        this.width = scaler.scale(Car.designWidth);
-        this.height = scaler.scale(Car.designHeight);
-
-        this.direction = direction || 1; // 1 = down, -1 = up
-        this.carType = floor(random(7)); // random car type
-    }
-
-    update() {
-        // update relative position
-        this.relativeY += this.relativeSpeed * this.direction;
-        this.y = height * this.relativeY;
-        this.x = width * this.relativeX; // update actual X position
-
-        // update car size based on scaling
-        this.width = scaler.scale(Car.designWidth);
-        this.height = scaler.scale(Car.designHeight);
-    }
-
-    draw() {
-        // get car image based on car type
-        let carImg;
-        if (this.carType === 0) {
-            carImg = assetManager.getImage("car1");
-        } else if (this.carType === 1) {
-            carImg = assetManager.getImage("car2");
-        } else if(this.carType === 2) {
-            carImg = assetManager.getImage("car3");
-        }else if(this.carType === 3) {
-            carImg = assetManager.getImage("car4");
-        } else if(this.carType === 4) {
-            carImg = assetManager.getImage("car5");
-        } else if(this.carType === 5) {
-            carImg = assetManager.getImage("car6");
-        } else if(this.carType === 6) {
-            carImg = assetManager.getImage("car7");
+    constructor(x, y, speed, direction, carType) {
+            this.x = x;
+            this.y = y;
+            this.speed = speed; // Use the lane speed directly
+            this.carType = carType; // Car type must be provided
+            
+            // Get properties for this car type
+            const properties = CAR_PROPERTIES[this.carType];
+            this.width = properties.width;
+            this.height = properties.height;
+            
+            this.direction = direction || 1; // 1 = down, -1 = up
+        }
+    
+        // Other methods remain the same
+        update() {
+            this.y += this.speed * this.direction;
         }
 
-        // draw car image
+    draw() {
+        let carImg = assetManager.getImage(this.carType);
+
         if (this.direction === 1) {
-            image(carImg, this.x, this.y, this.width, this.height); // down direction
+            image(carImg, this.x, this.y, this.width, this.height); // Down direction
         } else {
-            push(); // start new coordinate system
+            push();
             translate(this.x + this.width / 2, this.y + this.height / 2);
-            rotate(PI); // rotate 180 degrees
-            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // up direction
-            pop(); // restore coordinate system
+            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // Up direction
+            pop();
         }
     }
 
     isOffScreen() {
-        return (this.direction === 1 && this.relativeY > 1 + scaler.scale(75) / height) || 
-               (this.direction === -1 && this.relativeY < -scaler.scale(75) / height);
+        return (this.direction === 1 && this.y > height + this.height) || 
+               (this.direction === -1 && this.y < -this.height);
     }
 }
