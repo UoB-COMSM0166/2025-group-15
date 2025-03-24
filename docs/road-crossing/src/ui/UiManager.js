@@ -25,18 +25,18 @@ export class UiManager {
       characterSelect: [
         {x: 350 - 100 / 2, y: 460, w: 100, h: 50, label: "Option1"}, // should align vertically with character selection images in drawCharacterSelect()
         {x: 650 - 100 / 2, y: 460, w: 100, h: 50, label: "Option2"}, // should align vertically with character selection images in drawCharacterSelect()
-        {x: 400, y: 530, w: 200, h: 50, label: "Start Game"},
-        {x: 400, y: 600, w: 200, h: 50, label: "Return to Main Menu"},
+        {x: 400, y: 530, w: 220, h: 50, label: "Start Game"},
+        {x: 400, y: 600, w: 220, h: 50, label: "Return to Main Menu"},
       ],
       levelSelect: [
-        {x: 400, y: 220, w: 200, h: 50, label: "Level 1"},
-        {x: 400, y: 290, w: 200, h: 50, label: "Level 2"},
-        {x: 400, y: 360, w: 200, h: 50, label: "Level 3"},
-        {x: 400, y: 500, w: 200, h: 50, label: "Return to Main Menu"},
+        {x: 400, y: 220, w: 220, h: 50, label: "Level 1"},
+        {x: 400, y: 290, w: 220, h: 50, label: "Level 2"},
+        {x: 400, y: 360, w: 220, h: 50, label: "Level 3"},
+        {x: 400, y: 500, w: 220, h: 50, label: "Return to Main Menu"},
       ],
       settings: [
-        {x: 400, y: 400, w: 200, h: 50, label: "Audio Settings"},
-        {x: 400, y: 470, w: 200, h: 50, label: "Return to Main Menu"},
+        {x: 400, y: 400, w: 220, h: 50, label: "Audio Settings"},
+        {x: 400, y: 470, w: 220, h: 50, label: "Return to Main Menu"},
       ],
       pause: [
         {x: 400, y: 310, w: 200, h: 40, label: "Continue Game"},
@@ -54,7 +54,7 @@ export class UiManager {
         {x: 350, y: 455, w: 300, h: 40, label: "Return to Main Menu"},
       ],
       help: [
-        {x: 400, y: 650, w: 200, h: 40, label: "Return to Main Menu"},
+        {x: 400, y: 650, w: 240, h: 40, label: "Return to Main Menu"},
       ],
       audio: [
         {x: 400, y: 650, w: 200, h: 40, label: "Return"},
@@ -157,11 +157,28 @@ export class UiManager {
     } else if (this.buttons.mainMenu[3].isClicked(mx, my)) {
       this.game.currentState = GameStates.HELP;
     } else if (this.buttons.mainMenu[4].isClicked(mx, my)) {
-      currentGameMode = GameMode.TESTING;
-      // Visual feedback for mode change
+      if (currentGameMode === GameMode.TESTING) {
+          currentGameMode = GameMode.NORMAL;
+          console.log("change to: Normal Mode");
+      } else {
+          currentGameMode = GameMode.TESTING;
+          console.log("change to: Testing Mode");
+      }
+  
+      //Dynamically update button text
       this.buttons.mainMenu[4].label = currentGameMode === GameMode.TESTING ? 
-        "Normal Mode" : "Cheating Mode";
-    }
+          "Normal Mode" : "Cheating Mode";
+  
+      // Call resetGame() to make sure the pattern takes effect
+      this.game.resetGame();
+  }
+  
+    // else if (this.buttons.mainMenu[4].isClicked(mx, my)) {
+    //   currentGameMode = GameMode.TESTING;
+    //   // Visual feedback for mode change
+    //   this.buttons.mainMenu[4].label = currentGameMode === GameMode.TESTING ? 
+    //     "Normal Mode" : "Cheating Mode";
+    // }
   }
 
   handleLevelSelectClicks(mx, my) {
@@ -275,6 +292,14 @@ export class UiManager {
     text("Road Crossing Game", scaler.centerX, scaler.scale(112));
     // text("Road Crossing Game", width / 2, height * 0.15);
 
+    //show current model
+    if (this.game.currentGameMode === GameMode.TESTING) {
+      fill(0, 128, 0);  // 绿色
+      textSize(30);  // 文字大小
+      text("Testing Mode Enabled: Unlimited Time | All Levels Unlocked", width / 2, height * 0.22);
+    }
+
+
     // Testing mode indicator
     if (currentGameMode === GameMode.TESTING) {
       textSize(scaler.getFontSize(20));
@@ -351,7 +376,7 @@ export class UiManager {
 
     // Testing mode indicator
     if (currentGameMode === GameMode.TESTING) {
-      textSize(20);
+      textSize(30);
       fill(0, 128, 0); // Green
       text(
         "Testing Mode Enabled: Unlimited Time | All Levels Unlocked",

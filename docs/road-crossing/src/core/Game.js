@@ -18,7 +18,11 @@ export class Game {
 
     // Explicitly set unlocked levels based on game mode
     if (currentGameMode === GameMode.TESTING) {
-      this.unlockedLevels = 3;
+      //this.unlockedLevels = 3;
+
+      // Default: Normal Mode
+      this.currentGameMode = GameMode.NORMAL;  
+      
     } else {
       // directly call the static method of GameStorage class
       this.unlockedLevels = GameStorage.loadGameProgress();
@@ -89,11 +93,42 @@ export class Game {
     }
   }
 
+
   resetGame() {
     this.player.reset();
     this.carSystem.reset();
     this.itemSystem.reset();
     this.obstacleSystem.reset();
+
+    //  Make sure the game time is updated correctly each time you switch modes
+    if (currentGameMode === GameMode.TESTING) {
+        this.gameTime = 10000;  // Cheating Mode - Infinite time
+    } else {
+        this.gameTime = 60;  //Normal Mode - 60s
+    }
+
+    console.log(`reset game - current modek: ${currentGameMode}, setting time: ${this.gameTime}`);
+
+    this.startTime = millis();
+
+    if (this.currentLevel === 3) {
+        this.obstacleSystem.generateObstacles();
+    }
+
+    this.carSystem.generateInitialCars();
+}
+
+  resetGame() {
+
+    console.log("Reset the current mode in the game:", this.currentGameMode);
+
+    this.player.reset();
+    this.carSystem.reset();
+    this.itemSystem.reset();
+    this.obstacleSystem.reset();
+
+    console.log("Reset successfully: current model:", this.currentGameMode);
+
 
     // Set game time based on mode
     this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
