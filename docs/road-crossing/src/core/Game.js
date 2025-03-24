@@ -217,7 +217,8 @@ update() {
     this.drawGameElements();
 
     // Show game status
-    this.uiManager.drawGameStatus();
+    //this.uiManager.drawGameStatus();
+    this.drawStatusBar();  // new top status
   }
 
   drawLaneLines() {
@@ -254,6 +255,52 @@ update() {
     this.player.draw();
   }
 
+
+
+   //new top status bar
+   drawStatusBar() {
+
+    const barHeight = 45;
+    fill(0,0,0,150);
+    //fill(60, 140, 60, 220); // green
+    noStroke();
+    rect(0, 0, width, barHeight);
+    
+    fill(255);
+    textSize(20);
+    textAlign(CENTER, CENTER);
+
+    // Set the button area width
+    const buttonAreaWidth = 50 * 2 + 20; 
+
+    //status information area(screen width minus right button area)
+    const availableWidth = width - buttonAreaWidth;
+
+    const sections = 4; // Level, Time, Score, Target
+    const sectionWidth = availableWidth / sections;
+    
+    //
+    text(`Level: ${this.currentLevel}`, sectionWidth * 0.5, barHeight / 2);
+    text(`Time: ${floor(this.gameTime)}`, sectionWidth * 1.5, barHeight / 2);
+    text(`Score: ${this.player ? this.player.score : 0}`, sectionWidth * 2.5, barHeight / 2);
+    text(`Target: ${LevelConfig[this.currentLevel].targetScore}`, sectionWidth * 3.5, barHeight / 2);
+
+
+   
+    const buttonSize = 24;  // Adjust button size (originally 30x30, now 24x24)
+
+    const audioImg = this.isAudioEnabled ? assetManager.getImage("volumeOn") : assetManager.getImage("volumeOff");
+    if (audioImg) {
+      image(audioImg, width - 70, 8, buttonSize, buttonSize);   
+    }
+
+    const pauseImg = assetManager.getImage("pause");
+    if (pauseImg) {
+      image(pauseImg, width - 35, 8, buttonSize, buttonSize);  
+    }
+  }
+
+
   setLineDash(list) {
     drawingContext.setLineDash(list);
   }
@@ -286,6 +333,40 @@ update() {
   }
 
   handleMouseClicked() {
+    const btnSize = 24;  // button size
+      const margin = 10;   // button margin
+      const volumeX = width - 70; // Volume button X coordinates
+      const pauseX = width - 35;  // Pause button X coordinates
+      const btnY = 8; //Button Y coordinate (near the top)）
+  
+      //Detect the mouse click directly in the volume button area
+      if (
+          mouseX >= volumeX &&
+          mouseX <= volumeX + btnSize &&
+          mouseY >= btnY &&
+          mouseY <= btnY + btnSize
+      ) {
+          this.isAudioEnabled = !this.isAudioEnabled; // change volume status
+          console.log("Audio button is clicked, current status:", this.isAudioEnabled ? "on" : "off");
+          return;
+      }
+  
+      //Detect the mouse click directly in the pause button area
+      if (
+          mouseX >= pauseX &&
+          mouseX <= pauseX + btnSize &&
+          mouseY >= btnY &&
+          mouseY <= btnY + btnSize
+      ) {
+          this.currentState =
+              this.currentState === GameStates.PLAYING
+                  ? GameStates.PAUSED
+                  : GameStates.PLAYING;
+          console.log("Pause button is clicked, current status:", this.currentState);
+          return;
+      }
+
+
     // Check if pause button is clicked
     if (this.currentState === GameStates.PLAYING) {
       if (this.uiManager.checkPauseButtonClick(mouseX, mouseY)) {

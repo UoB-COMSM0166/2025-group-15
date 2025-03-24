@@ -535,70 +535,72 @@ export class UiManager {
     this.buttons.audio[0].draw();
   }
 
-  drawGameStatus() {
-    // Get the game areas to position UI elements
-    const areas = getGameAreas();
+  // drawGameStatus() {
+  //   // Get the game areas to position UI elements
+  //   const areas = getGameAreas();
     
-    // Background for status area on the left
-    fill(150, 150, 150, 100);
-    rect(0, 0, areas.warehouse.width, scaler.scale(220));
+  //   // Background for status area on the left
+  //   fill(150, 150, 150, 100);
+  //   rect(0, 0, areas.warehouse.width, scaler.scale(220));
     
-    // Background for score and level on the right
-    fill(150, 150, 150, 100);
-    rect(areas.delivery.start, 0, areas.delivery.width, scaler.scale(100));
+  //   // Background for score and level on the right
+  //   fill(150, 150, 150, 100);
+  //   rect(areas.delivery.start, 0, areas.delivery.width, scaler.scale(100));
     
-    fill(0);
-    textSize(scaler.getFontSize(20));
-    textAlign(LEFT);
+  //   fill(0);
+  //   textSize(scaler.getFontSize(20));
+  //   textAlign(LEFT);
     
-    const leftPadding = scaler.scale(20);
-    const rightPadding = areas.delivery.start + scaler.scale(20);
+  //   const leftPadding = scaler.scale(20);
+  //   const rightPadding = areas.delivery.start + scaler.scale(20);
     
-    // Show game mode on the left
-    if (currentGameMode === GameMode.TESTING) {
-      fill(0, 128, 0); // Green
-      text(`Testing Mode`, leftPadding, scaler.scale(30));
-      fill(0);
-    } else {
-      fill(0, 128, 0); // Green
-      text(`Normal Mode`, leftPadding, scaler.scale(30));
-      fill(0);
-    }
+  //   // Show game mode on the left
+  //   if (currentGameMode === GameMode.TESTING) {
+  //     fill(0, 128, 0); // Green
+  //     text(`Testing Mode`, leftPadding, scaler.scale(30));
+  //     fill(0);
+  //   } else {
+  //     fill(0, 128, 0); // Green
+  //     text(`Normal Mode`, leftPadding, scaler.scale(30));
+  //     fill(0);
+  //   }
     
-    // Level info moved to left side, above time
-    text(`Level: ${this.game.currentLevel}`, leftPadding, scaler.scale(60));
+  //   // Level info moved to left side, above time
+  //   text(`Level: ${this.game.currentLevel}`, leftPadding, scaler.scale(60));
     
-    // Game time on the left
-    text(`Time: ${this.game.gameTime}`, leftPadding, scaler.scale(90));
+  //   // Game time on the left
+  //   text(`Time: ${this.game.gameTime}`, leftPadding, scaler.scale(90));
     
-    // If player is carrying an item, show its weight and speed on the left
-    if (this.game.player && this.game.player.hasItem) {
-      text(`Weight: ${this.game.player.currentItem.weight.toFixed(1)}`, leftPadding, scaler.scale(120));
-      text(`Speed: ${this.game.player.speed.toFixed(1)}`, leftPadding, scaler.scale(150));
-    }
+  //   // If player is carrying an item, show its weight and speed on the left
+  //   if (this.game.player && this.game.player.hasItem) {
+  //     text(`Weight: ${this.game.player.currentItem.weight.toFixed(1)}`, leftPadding, scaler.scale(120));
+  //     text(`Speed: ${this.game.player.speed.toFixed(1)}`, leftPadding, scaler.scale(150));
+  //   }
     
-    // Score info on the right
-    text(`Score: ${this.game.player.score}`, rightPadding, scaler.scale(30));
-    text(`Target: ${LevelConfig[this.game.currentLevel].targetScore}`, rightPadding, scaler.scale(60));
+  //   // Score info on the right
+  //   text(`Score: ${this.game.player.score}`, rightPadding, scaler.scale(30));
+  //   text(`Target: ${LevelConfig[this.game.currentLevel].targetScore}`, rightPadding, scaler.scale(60));
     
-    // Draw audio indicator at top-right
-    const audioImg = this.game.isAudioEnabled ? 
-      assetManager.getImage("volumeOn") : 
-      assetManager.getImage("volumeOff");
-    if (audioImg) {
-      const iconSize = scaler.scale(30);
-      const iconX = scaler.scale(950);
-      const iconY = scaler.scale(20);
-      image(audioImg, iconX, iconY, iconSize, iconSize);
-    }
+  //   // Draw audio indicator at top-right
+  //   const audioImg = this.game.isAudioEnabled ? 
+  //     assetManager.getImage("volumeOn") : 
+  //     assetManager.getImage("volumeOff");
+  //   if (audioImg) {
+  //     const iconSize = scaler.scale(30);
+  //     const iconX = scaler.scale(950);
+  //     const iconY = scaler.scale(20);
+  //     image(audioImg, iconX, iconY, iconSize, iconSize);
+  //   }
     
-    // Draw pause button at top-right
-    const pauseImg = assetManager.getImage("pause");
-    if (pauseImg) {
-      const iconSize = scaler.scale(30);
-      const iconX = scaler.scale(900);
-      const iconY = scaler.scale(20);
-      image(pauseImg, iconX, iconY, iconSize, iconSize);
-    }
-  }
+  //   // Draw pause button at top-right
+  //   const pauseImg = assetManager.getImage("pause");
+  //   if (pauseImg) {
+  //     const iconSize = scaler.scale(30);
+  //     const iconX = scaler.scale(900);
+  //     const iconY = scaler.scale(20);
+  //     image(pauseImg, iconX, iconY, iconSize, iconSize);
+  //   }
+  // }
+
+  
 }
