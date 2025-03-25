@@ -603,5 +603,4 @@ export class UiManager {
 
     // textAlign(LEFT, BASELINE);
   }
-  
 }
