@@ -45,9 +45,9 @@ export class Item {
         this.x = width * this.relativeX;
         this.y = height * this.relativeY;
         
-        fill(0); // set text color to black
-        textSize(scaler.getFontSize(12)); // set font size based on canvas size
-        text(this.value, this.x, this.y);
-        textAlign(CENTER, TOP); // text alignment to center top of the item image
+        // fill(0); // set text color to black
+        // textSize(scaler.getFontSize(12)); // set font size based on canvas size
+        // text(this.value, this.x, this.y);
+        // textAlign(CENTER, TOP); // text alignment to center top of the item image
     }
 }
