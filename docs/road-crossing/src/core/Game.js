@@ -15,6 +15,8 @@ export class Game {
     this.currentState = GameStates.MENU;
     this.currentLevel = 1;
     this.selectedCharacter = "option1"; // default character option1
+    this.previousState = null;
+    this.lastCollisionFrame = -999;
 
     // Explicitly set unlocked levels based on game mode
     if (currentGameMode === GameMode.TESTING) {
@@ -36,7 +38,7 @@ export class Game {
 
     this.player = null;
     this.carSystem = new CarSystem(this);
-    this.itemSystem = new ItemSystem();
+    this.itemSystem = new ItemSystem(this);
     this.obstacleSystem = new ObstacleSystem();
     this.uiManager = new UiManager(this);
 
@@ -77,23 +79,105 @@ export class Game {
 
   startNewGame(level) {
     this.currentLevel = level;
-    
-    // preload current level background
+  
+    // Load background image for the current level
     assetManager.loadLevelBackground(this.currentLevel);
-    
+  
+    // Reset game state and systems
     this.resetGame();
     this.currentState = GameStates.PLAYING;
-      
-    // If audio is enabled, play background music
+  
+    // Play background music for this level if audio is enabled
     if (this.isAudioEnabled) {
-      const bgMusic = assetManager.getSound("bgMusic");
-      if (bgMusic && !bgMusic.isPlaying()) {
-        bgMusic.loop();
+      const musicKey = `bgMusic${this.currentLevel}`;
+      const music = assetManager.getSound(musicKey);
+  
+      // Stop previously playing music, if any
+      if (this.currentMusic && this.currentMusic.isPlaying()) {
+        this.currentMusic.stop();
+      }
+  
+      if (music) {
+        music.setLoop(true);          // Enable looping
+        music.setVolume(this.volume);       // Set default volume (can be adjusted later)
+        music.play();                 // Start playback
+        this.currentMusic = music;    // Save reference for later control
+      } else {
+        console.warn(`Background music not found for key: ${musicKey}`);
+      }
+    }
+  }
+  
+  stopCurrentMusic() {
+    if (this.currentMusic && this.currentMusic.isPlaying()) {
+      this.currentMusic.stop();
+      this.currentMusic = null;
+    }
+  }
+  
+  playClickSound() {
+    if (this.isAudioEnabled) {
+      const clickSound = assetManager.getSound("click");
+      if (clickSound) clickSound.play();
+    }
+  }
+
+  playBoxDropSound() {
+    if (this.isAudioEnabled) {
+      const sound = assetManager.getSound("boxDrop");
+      if (sound) {
+        sound.setVolume(1.0); 
+        sound.play();
+      }
+    }
+  }
+  
+  playPickupSound() {
+    if (this.isAudioEnabled) {
+      const sound = assetManager.getSound("boxPick");
+      if (sound) {
+        sound.setVolume(2.0);
+        sound.play();
+      }
+    }
+  }
+  
+  playCollisionSound() {
+    if (this.isAudioEnabled) {
+      const sound = assetManager.getSound("collision");
+      if (sound) {
+        sound.setVolume(2.0);
+        sound.play();
       }
     }
   }
 
+  playLevelWinSound() {
+    if (this.isAudioEnabled) {
+      const sfx = assetManager.getSound("levelWin");
+      if (sfx) {
+        sfx.setVolume(0.8);
+        sfx.play();
+      }
+    }
+  }
+  
+  playLevelFailSound() {
+    if (this.isAudioEnabled) {
+      const sfx = assetManager.getSound("levelFail");
+      if (sfx) {
+        sfx.setVolume(0.8);
+        sfx.play();
+      }
+    }
+  }
 
+  updateMusicVolume() {
+    if (this.currentMusic) {
+      this.currentMusic.setVolume(this.volume);
+    }
+  }
+  
   resetGame() {
     this.player.reset();
     this.carSystem.reset();
@@ -179,19 +263,29 @@ update() {
   }
 
   handleCarCollision() {
-    // Revert to the original method which used itemSystem to handle item drop
-    // This ensures compatibility with the existing game logic
+    const currentFrame = frameCount || 0;
+
+    if (currentFrame - this.lastCollisionFrame > 60) {
+    this.playCollisionSound?.();
+    this.lastCollisionFrame = currentFrame;
+    }
+
     if (this.player.hasItem) {
-      this.itemSystem.handleItemPickupDrop(this.player);
+    this.itemSystem.handleItemPickupDrop(this.player);
     }
 
     this.player.resetPosition();
   }
 
+
   checkGameStatus() {
     // Check if time is up
     if (this.gameTime <= 0) {
       this.currentState = GameStates.GAME_OVER;
+      if (this.currentMusic?.isPlaying()) {
+        this.currentMusic.stop();
+      }
+      this.playLevelFailSound?.();
       return;
     }
 
@@ -203,6 +297,10 @@ update() {
     const config = LevelConfig[this.currentLevel];
     if (this.player.score >= config.targetScore) {
       this.currentState = GameStates.LEVEL_COMPLETE;
+      if (this.currentMusic?.isPlaying()) {
+        this.currentMusic.stop();
+      }
+      this.playLevelWinSound?.();
 
       // Unlock next level if not already unlocked
       if (
@@ -252,8 +350,7 @@ update() {
     this.drawGameElements();
 
     // Show game status
-    //this.uiManager.drawGameStatus();
-    this.drawStatusBar();  // new top status
+    this.uiManager.drawGameStatus();
   }
 
   drawLaneLines() {
@@ -289,52 +386,6 @@ update() {
     // Draw player
     this.player.draw();
   }
-
-
-
-   //new top status bar
-   drawStatusBar() {
-
-    const barHeight = 45;
-    fill(0,0,0,150);
-    //fill(60, 140, 60, 220); // green
-    noStroke();
-    rect(0, 0, width, barHeight);
-    
-    fill(255);
-    textSize(20);
-    textAlign(CENTER, CENTER);
-
-    // Set the button area width
-    const buttonAreaWidth = 50 * 2 + 20; 
-
-    //status information area(screen width minus right button area)
-    const availableWidth = width - buttonAreaWidth;
-
-    const sections = 4; // Level, Time, Score, Target
-    const sectionWidth = availableWidth / sections;
-    
-    //
-    text(`Level: ${this.currentLevel}`, sectionWidth * 0.5, barHeight / 2);
-    text(`Time: ${floor(this.gameTime)}`, sectionWidth * 1.5, barHeight / 2);
-    text(`Score: ${this.player ? this.player.score : 0}`, sectionWidth * 2.5, barHeight / 2);
-    text(`Target: ${LevelConfig[this.currentLevel].targetScore}`, sectionWidth * 3.5, barHeight / 2);
-
-
-   
-    const buttonSize = 24;  // Adjust button size (originally 30x30, now 24x24)
-
-    const audioImg = this.isAudioEnabled ? assetManager.getImage("volumeOn") : assetManager.getImage("volumeOff");
-    if (audioImg) {
-      image(audioImg, width - 70, 8, buttonSize, buttonSize);   
-    }
-
-    const pauseImg = assetManager.getImage("pause");
-    if (pauseImg) {
-      image(pauseImg, width - 35, 8, buttonSize, buttonSize);  
-    }
-  }
-
 
   setLineDash(list) {
     drawingContext.setLineDash(list);
@@ -382,7 +433,13 @@ update() {
           mouseY <= btnY + btnSize
       ) {
           this.isAudioEnabled = !this.isAudioEnabled; // change volume status
-          console.log("Audio button is clicked, current status:", this.isAudioEnabled ? "on" : "off");
+        if (!this.isAudioEnabled && this.currentMusic?.isPlaying()) {
+          this.currentMusic.stop(); 
+        } else if (this.isAudioEnabled && this.currentMusic) {
+            this.currentMusic.setVolume(this.volume); 
+            this.currentMusic.play();                
+          }
+          console.log("Audio button toggled:", this.isAudioEnabled ? "ON" : "OFF");
           return;
       }
   
@@ -414,6 +471,7 @@ update() {
       }
     }
     
+
     switch (this.currentState) {
       case GameStates.MENU:
         this.uiManager.handleMainMenuClicks(mouseX, mouseY);
@@ -443,6 +501,7 @@ update() {
         this.uiManager.handleSettingsScreenClicks(mouseX, mouseY);
         break;
     }
+    this.previousState = this.currentState;
   }
 
   draw() {

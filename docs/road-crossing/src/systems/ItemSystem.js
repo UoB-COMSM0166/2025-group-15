@@ -3,7 +3,8 @@ import { Item } from "../entities/Item.js";
 import { CollisionDetector } from "../utils/CollisionDetector.js";
 
 export class ItemSystem {
-    constructor() {
+    constructor(game) {
+        this.game = game;
         this.items = [];
         this.deliveredItems = [];
         this.maxItems = 5;
@@ -102,6 +103,7 @@ export class ItemSystem {
                 let item = this.items[i];
                 if (CollisionDetector.checkPlayerItemProximity(player, item)) {
                     player.pickupItem(item);
+                    this.game.playPickupSound?.();
                     this.items.splice(i, 1);
                     this.pickedItemsCount++;
 
@@ -118,6 +120,7 @@ export class ItemSystem {
             console.log("Delivered item, value: " + player.currentItem.value);
             const deliveredItem = player.deliverItem();
             this.deliveredItems.push(deliveredItem);
+            this.game.playBoxDropSound?.();
 
             if (this.items.length === 0) {
                 this.scheduleNewItem();
