@@ -168,51 +168,80 @@ export class CarSystem {
   }
 
   generateCarInLane(laneType, x, config) {
-      const speed = config.speeds[laneType]; // Use the lane speed from LevelConfig
-  
-      // Determine car direction
-      let direction = 1;
-      if (config.reverseLanes && config.reverseLanes[laneType]) {
-          direction = -1;
-      }
-  
-      // Select car type based on lane type
-      let carTypes;
-      if (laneType === "slow") {
-          carTypes = CAR_CATEGORIES.SLOW_LANE;
-      } else if (laneType === "medium") {
-          carTypes = CAR_CATEGORIES.MEDIUM_LANE;
-      } else if (laneType === "fast") {
-          carTypes = CAR_CATEGORIES.FAST_LANE;
-      }
-      
-      // Randomly select a car type from the appropriate category
-      const carType = carTypes[floor(random(carTypes.length))];
-      const carProperties = CAR_PROPERTIES[carType];
-      
-      // Set starting position based on direction and car height
-      const startY = direction === 1 ? -carProperties.height : height + carProperties.height;
-  
-      // Check if there's enough space for a new car
-      const lastCar = this.cars[laneType][this.cars[laneType].length - 1];
-      if (
+    const speed = config.speeds[laneType]; 
+    
+    // Determine car direction
+    let direction = 1;
+    if (config.reverseLanes && config.reverseLanes[laneType]) {
+        direction = -1;
+    }
+    
+    // Get current level
+    const currentLevel = this.game.currentLevel;
+    
+    // Select car type based on lane type AND current level
+    let carTypes;
+    
+    if (currentLevel === 1) {
+        // Level 1: Normal lane arrangement
+        if (laneType === "slow") {
+            carTypes = CAR_CATEGORIES.SLOW_LANE;
+        } else if (laneType === "medium") {
+            carTypes = CAR_CATEGORIES.MEDIUM_LANE;
+        } else if (laneType === "fast") {
+            carTypes = CAR_CATEGORIES.FAST_LANE;
+        }
+    } else if (currentLevel === 2) {
+        // Level 2: Rearranged lanes
+        if (laneType === "slow") {
+            // Slow lane is now in medium's position, use medium vehicles
+            carTypes = CAR_CATEGORIES.MEDIUM_LANE;
+        } else if (laneType === "medium") {
+            // Medium lane is now in slow's position, use slow vehicles
+            carTypes = CAR_CATEGORIES.SLOW_LANE;
+        } else if (laneType === "fast") {
+            // Fast lane stays the same
+            carTypes = CAR_CATEGORIES.FAST_LANE;
+        }
+    } else {
+        // Level 3+: You can define another arrangement if you want
+        if (laneType === "slow") {
+            carTypes = CAR_CATEGORIES.MEDIUM_LANE;
+        } else if (laneType === "medium") {
+            carTypes = CAR_CATEGORIES.SLOW_LANE;
+        } else if (laneType === "fast") {
+            carTypes = CAR_CATEGORIES.FAST_LANE;
+        }
+    }
+    
+    // Randomly select a car type from the appropriate category
+    const carType = carTypes[floor(random(carTypes.length))];
+    const carProperties = CAR_PROPERTIES[carType];
+    
+    // Set starting position based on direction and car height
+    const startY = direction === 1 ? -carProperties.height : height + carProperties.height;
+
+    // The rest of your code remains the same...
+    // Check if there's enough space for a new car
+    const lastCar = this.cars[laneType][this.cars[laneType].length - 1];
+    if (
         lastCar &&
         ((direction === 1 && lastCar.y < lastCar.height + 25) ||
           (direction === -1 && lastCar.y > height - lastCar.height - 25))
-      ) {
+    ) {
         return false;
-      }
-  
-      // Calculate lane width and center position
-      const laneWidth = this.game.lanes[laneType.toUpperCase()].width;
-      const centerX = x + (laneWidth - carProperties.width) / 2;
-      
-      // Create and add the new car
-      const newCar = new Car(centerX, startY, speed, direction, carType);
-      this.cars[laneType].push(newCar);
-      
-      return true;
-  }
+    }
+
+    // Calculate lane width and center position
+    const laneWidth = this.game.lanes[laneType.toUpperCase()].width;
+    const centerX = x + (laneWidth - carProperties.width) / 2;
+    
+    // Create and add the new car
+    const newCar = new Car(centerX, startY, speed, direction, carType);
+    this.cars[laneType].push(newCar);
+    
+    return true;
+}
 
   updateSizeAndPosition() {
     Object.keys(this.cars).forEach((laneType) => {

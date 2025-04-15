@@ -82,29 +82,25 @@ export function getDeliveryZone() {
 export const CAR_CATEGORIES = {
     // Slow lane vehicles
     SLOW_LANE: [
-      "blueBus", 
-      "darkBluesedan", 
-      "whiteAmbulance", 
-      "yellowBus"
+      "n-blueBus", 
+      "n-darkBluesedan", 
+      "n-whiteAmbulance", 
+      "n-yellowBus"
     ],
     
     // Medium lane vehicles
     MEDIUM_LANE: [
-      "blueVan", 
-      "darkBlueVan", 
-      "yellowVan",
-      "whiteSuv"
+      "s-darkBlueVan", 
+      "s-whiteSaloonWindow", 
     ],
     
     // Fast lane vehicles
     FAST_LANE: [
-      "greySaloon", 
-      "whiteSaloon", 
-      "whiteSaloonAntenna", 
-      "whiteSaloonWindow", 
-      "redPoliceCar", 
-      "yellowPoliceCar", 
-      "redFireEngine"
+      "s-greySaloon", 
+      "s-whiteSaloon", 
+      "s-redPoliceCar", 
+      "s-yellowPoliceCar", 
+      "s-redFireEngine"
     ]
 };
 
@@ -118,23 +114,19 @@ export const ALL_CAR_TYPES = [
   // Define dimensions for each car type
   export const CAR_PROPERTIES = {
     // Slow lane vehicles - large
-    "blueBus": { width: 60, height: 125 },
-    "darkBluesedan": { width: 60, height: 80 },
-    "whiteAmbulance": { width: 60, height: 130 },
-    "yellowBus": { width: 60, height: 150 },
+    "n-blueBus": { width: 60, height: 125 },
+    "n-darkBluesedan": { width: 60, height: 80 },
+    "n-whiteAmbulance": { width: 60, height: 130 },
+    "n-yellowBus": { width: 60, height: 150 },
     
     // Medium lane vehicles - medium size
-    "blueVan": { width: 50, height: 75 },
-    "darkBlueVan": { width: 50, height: 75 },
-    "yellowVan": { width: 50, height: 75 },
-    "whiteSuv": { width: 50, height: 85 },
+    "s-darkBlueVan": { width: 50, height: 75 },
     
     // Fast lane vehicles - small
-    "greySaloon": { width: 45, height: 70 },
-    "whiteSaloon": { width: 45, height: 70 },
-    "whiteSaloonAntenna": { width: 45, height: 70 },
-    "whiteSaloonWindow": { width: 45, height: 70 },
-    "redPoliceCar": { width: 45, height: 80 },
-    "yellowPoliceCar": { width: 45, height: 80 },
-    "redFireEngine": { width: 45, height: 95 }
+    "s-greySaloon": { width: 45, height: 70 },
+    "s-whiteSaloon": { width: 45, height: 70 },
+    "s-whiteSaloonWindow": { width: 45, height: 70 },
+    "s-redPoliceCar": { width: 45, height: 80 },
+    "s-yellowPoliceCar": { width: 45, height: 80 },
+    "s-redFireEngine": { width: 45, height: 95 }
 };

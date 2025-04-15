@@ -16,8 +16,23 @@ export class AssetManager {
       this.images["mainBg"] = loadImage("./assets/scene/Home3.jpg");
       
       // sounds
-      this.sounds["bgMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");
-  
+      this.sounds["menuMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");
+      this.sounds["bgMusic1"] = loadSound("./assets/scene/one.mp3");
+      this.sounds["bgMusic2"] = loadSound("./assets/scene/wheelie.mp3");
+      this.sounds["bgMusic3"] = loadSound("./assets/scene/Simple - 4 (Winter).mp3");
+
+      this.sounds["click"] = loadSound("./assets/scene/click.mp3");
+
+      this.sounds["boxDrop"] = loadSound("./assets/scene/box-drop.mp3");
+
+      this.sounds["boxPick"] = loadSound("./assets/scene/box-pick.ogg");
+
+      this.sounds["collision"] = loadSound("./assets/scene/collision.mp3");
+
+      this.sounds["levelWin"] = loadSound("./assets/scene/level-win.mp3");
+      this.sounds["levelFail"] = loadSound("./assets/scene/level-fail.mp3");
+
+
       // player images
       this.images["player1"] = loadImage("./assets/Character1_Walking.png");
       this.images["player2"] = loadImage("./assets/Character2_Walking.png");
@@ -189,21 +204,18 @@ export class AssetManager {
       // item images
       this.images["cargo1"] = loadImage("./assets/delivery-box-45.png");
       //car images
-      this.images["blueBus"] = loadImage("./assets/n-blue-bus.svg");
-      this.images["darkBluesedan"] = loadImage("./assets/n-darkBlue-sedan.svg");
-      this.images["whiteAmbulance"] = loadImage("./assets/n-white-ambulance.svg");
-      this.images["yellowBus"] = loadImage("./assets/n-yellow-bus.svg");
-      this.images["blueVan"] = loadImage("./assets/s-blue-van.svg");
-      this.images["redFireEngine"] = loadImage("./assets/s-red-fireEngine.svg");
-      this.images["darkBlueVan"] = loadImage("./assets/s-darkBlue-van.svg");
-      this.images["greySaloon"] = loadImage("./assets/s-grey-saloon.svg");
-      this.images["redPoliceCar"] = loadImage("./assets/s-red-policeCar.svg");
-      this.images["whiteSaloon"] = loadImage("./assets/s-white-saloon.svg");
-      this.images["whiteSaloonAntenna"] = loadImage("./assets/s-white-saloon-antenna.svg");
-      this.images["whiteSaloonWindow"] = loadImage("./assets/s-white-saloon-topWindow.svg");
-      this.images["whiteSuv"] = loadImage("./assets/s-white-suv.svg");
-      this.images["yellowPoliceCar"] = loadImage("./assets/s-yellow-policeCar.svg");
-      this.images["yellowVan"] = loadImage("./assets/s-yellow-van.svg");
+      this.images["n-blueBus"] = loadImage("./assets/n-blue-bus.svg");
+      this.images["n-darkBluesedan"] = loadImage("./assets/n-darkBlue-sedan.svg");
+      this.images["n-whiteAmbulance"] = loadImage("./assets/n-white-ambulance.svg");
+      this.images["n-yellowBus"] = loadImage("./assets/n-yellow-bus.svg");
+      this.images["s-redFireEngine"] = loadImage("./assets/s-red-fireEngine.svg");
+      this.images["s-darkBlueVan"] = loadImage("./assets/s-darkBlue-van.svg");
+      this.images["s-greySaloon"] = loadImage("./assets/s-grey-saloon.svg");
+      this.images["s-redPoliceCar"] = loadImage("./assets/s-red-policeCar.svg");
+      this.images["s-whiteSaloon"] = loadImage("./assets/s-white-saloon.svg");
+      this.images["s-whiteSaloonWindow"] = loadImage("./assets/s-white-saloon-topWindow.svg");
+      this.images["s-yellowPoliceCar"] = loadImage("./assets/s-yellow-policeCar.svg");
+
       // cargo images
       this.images["cargoUncollected"] = loadImage("./assets/cargo/delivery-box-45.png");
       // delivery zone images

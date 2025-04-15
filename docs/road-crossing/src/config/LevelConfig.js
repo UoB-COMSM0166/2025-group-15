@@ -25,8 +25,8 @@ export const LevelConfig = {
         speedMultiplier: 1.2,
         hasObstacles: false,
         speeds: {
-            slow: 2.4,
-            medium: 4.8,
+            slow: 4.8,
+            medium: 2.4,
             fast: 7.2
         },
         carSpawnRates: {
@@ -45,8 +45,8 @@ export const LevelConfig = {
         speedMultiplier: 1.2,
         hasObstacles: true,
         speeds: {
-            slow: 2.4,
-            medium: 4.8,
+            slow: 4.8,
+            medium: 2.4,
             fast: 7.2
         },
         carSpawnRates: {

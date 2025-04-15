@@ -21,16 +21,8 @@ export class Car {
         }
 
     draw() {
-        let carImg = assetManager.getImage(this.carType);
-
-        if (this.direction === 1) {
-            image(carImg, this.x, this.y, this.width, this.height); // Down direction
-        } else {
-            push();
-            translate(this.x + this.width / 2, this.y + this.height / 2);
-            image(carImg, -this.width / 2, -this.height / 2, this.width, this.height); // Up direction
-            pop();
-        }
+    let carImg = assetManager.getImage(this.carType);
+    image(carImg, this.x, this.y, this.width, this.height);
     }
 
     isOffScreen() {

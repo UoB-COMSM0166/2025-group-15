@@ -146,17 +146,22 @@ export class UiManager {
 
   handleMainMenuClicks(mx, my) {
     if (this.buttons.mainMenu[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       // choose level 1 by default
       this.game.selectedLevel = 1; 
       this.game.currentState = GameStates.CHARACTER_SELECT;
     } else if (this.buttons.mainMenu[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.LEVEL_SELECT;
       this.updateLevelSelectButtons();
     } else if (this.buttons.mainMenu[2].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.SETTINGS;
     } else if (this.buttons.mainMenu[3].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.HELP;
     } else if (this.buttons.mainMenu[4].isClicked(mx, my)) {
+      this.game.playClickSound();
       if (currentGameMode === GameMode.TESTING) {
           currentGameMode = GameMode.NORMAL;
           console.log("change to: Normal Mode");
@@ -184,6 +189,7 @@ export class UiManager {
   handleLevelSelectClicks(mx, my) {
     for (let i = 0; i < 3; i++) {
       if (this.buttons.levelSelect[i].isClicked(mx, my)) {
+        this.game.playClickSound();
         this.game.selectedLevel = i + 1;
         this.game.currentState = GameStates.CHARACTER_SELECT;
         return;
@@ -191,34 +197,46 @@ export class UiManager {
     }
 
     if (this.buttons.levelSelect[3].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
   handleCharacterSelectClicks(mx, my) {
     if (this.buttons.characterSelect[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.selectedCharacter = "option1";
     } else if (this.buttons.characterSelect[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.selectedCharacter = "option2";
     } else if (this.buttons.characterSelect[2].isClicked(mx, my)) {
+      this.game.playClickSound();
       if (this.selectedCharacter) {
         // Player position will be set in the Player constructor based on canvas size
         this.game.player = new Player(null, null, this.selectedCharacter); // instantiate player
         this.game.startNewGame(this.game.selectedLevel); // start game with selected level
       }
     } else if (this.buttons.characterSelect[3].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
   handlePauseMenuClicks(mx, my) {
     if (this.buttons.pause[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.PLAYING;
     } else if (this.buttons.pause[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.startNewGame(this.game.currentLevel);
     } else if (this.buttons.pause[2].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     } else if (this.buttons.pause[3].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.SETTINGS;
     }
   }
@@ -230,33 +248,45 @@ export class UiManager {
       this.game.currentLevel < 3 &&
       this.buttons.levelComplete[0].isClicked(mx, my)
     ) {
+      this.game.playClickSound();
       this.game.startNewGame(this.game.currentLevel + 1);
     } else if (this.buttons.levelComplete[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.startNewGame(this.game.currentLevel);
     } else if (this.buttons.levelComplete[2].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
   handleGameOverClicks(mx, my) {
     if (this.buttons.gameOver[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.startNewGame(this.game.currentLevel);
     } else if (this.buttons.gameOver[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
   handleHelpScreenClicks(mx, my) {
     if (this.buttons.help[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
   handleSettingsScreenClicks(mx, my) {
     if (this.buttons.settings[0].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.AUDIO;
     } else if (this.buttons.settings[1].isClicked(mx, my)) {
+      this.game.playClickSound();
       this.game.currentState = GameStates.MENU;
+      this.game.stopCurrentMusic();
     }
   }
 
@@ -264,20 +294,42 @@ export class UiManager {
     // Volume slider click
     const sliderX = width / 2 - 150;
     const sliderWidth = 300;
-    
-    if (my >= height / 2 - 10 && my <= height / 2 + 10 && mx >= sliderX && mx <= sliderX + sliderWidth) {
+  
+    if (
+      my >= height / 2 - 10 &&
+      my <= height / 2 + 10 &&
+      mx >= sliderX &&
+      mx <= sliderX + sliderWidth
+    ) {
       this.game.volume = constrain((mx - sliderX) / sliderWidth, 0, 1);
+  
+ 
+      this.game.updateMusicVolume?.();
     }
-
+  
     // Audio toggle click
     const toggleX = width / 2 - 50;
     const toggleY = height / 2 + 60;
-    if (mx >= toggleX && mx <= toggleX + 100 && my >= toggleY - 15 && my <= toggleY + 15) {
+  
+    if (
+      mx >= toggleX &&
+      mx <= toggleX + 100 &&
+      my >= toggleY - 15 &&
+      my <= toggleY + 15
+    ) {
       this.game.isAudioEnabled = !this.game.isAudioEnabled;
+  
+      if (!this.game.isAudioEnabled) {
+        this.game.currentMusic?.stop();
+      } else {
+        this.game.updateMusicVolume?.();     
+        this.game.currentMusic?.play();      
+      }
     }
-
+  
     // Return button
     if (this.buttons.audio[0].isClicked(mx, my)) {
+      this.game.playClickSound?.();
       const prevState = this.game.prevState || GameStates.SETTINGS;
       this.game.currentState = prevState;
     }
@@ -294,8 +346,8 @@ export class UiManager {
 
     //show current model
     if (this.game.currentGameMode === GameMode.TESTING) {
-      fill(0, 128, 0);  // 绿色
-      textSize(30);  // 文字大小
+      fill(0, 128, 0);  
+      textSize(30); 
       text("Testing Mode Enabled: Unlimited Time | All Levels Unlocked", width / 2, height * 0.22);
     }
 
