@@ -263,11 +263,56 @@ Key Components & Flow:
 
 ![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
 
+
+---
+
 ### Implementation
 
-- 15% ~750 words
+Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
 
-- Describe implementation of your game, in particular highlighting the three areas of challenge in developing your game.
+Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them.
+
+#### 1. **Collision Detection Between Player and Vehicles**
+
+**Challenge:**  
+Players may collide with vehicles while crossing the road, so precise collision detection is essential for a smooth gameplay experience. In early versions, collisions were often **missed ("false negatives") or triggered too early ("false positives")**, resulting in unstable and frustrating gameplay.
+
+**Solution:**  
+Initially, both the player and vehicles were treated as rectangles, and we used basic **rectangle overlap detection** to determine collisions. However, this led to unfair situations where even slight contact with a vehicle's edge could eliminate the player. To improve realism and player satisfaction, we refined our detection logic to consider the **direction of the vehicle**:
+
+- For vehicles coming **from the top**, a collision is only registered when the vehicle overlaps with the **lower half of the player**, simulating a front-on impact.
+- For vehicles coming **from the bottom**, a collision occurs as soon as the vehicle touches the **bottom edge** of the player, representing a rear collision.
+
+This **direction-sensitive collision model** not only reduced unfair eliminations but also better matched visual expectations, making the game feel more responsive and fair.
+
+#### 2. **Traffic Flow Design and Generation**
+
+**Challenge:**  
+Designing realistic and challenging traffic patterns was essential. If traffic appeared too randomly, the game could feel either too easy or unfairly difficult. On the other hand, overly predictable patterns made the game repetitive.
+
+**Solution:**
+To maintain a dynamic and unpredictable gameplay experience, our game adopts a **randomized car generation system**. The roads are categorized into three types based on speed: slow, medium, and fast. Each lane manages its own spawning logic independently.
+
+At runtime, the system uses a **frame-based timer** to determine whether a new car should be generated. The time interval between car spawns is randomly selected within a defined range (between 60 and 180 frames, roughly 1 to 3 seconds). After each generation, the interval is reset to a new random value, which prevents predictable traffic patterns.
+
+To avoid long gaps in traffic, we enforce a **maximum waiting threshold of 240 frames** (around 4 seconds). If a lane remains inactive beyond this time, a car will be spawned regardless of the randomized logic. Additionally, each lane is initialized with a random timer offset to further avoid synchronization across lanes.
+
+At the beginning of the game, a limited number of vehicles are also randomly generated on each lane based on probability, to simulate a pre-existing traffic environment.
+
+
+#### 3. **Cargo Generation, Value System, and Refresh Mechanism**
+
+**Challenge:**  
+Our initial idea was to use the number of successfully transported cargo items as the win condition. However, through player testing, we found that this made the game somewhat repetitive and lacked strategic depth.
+
+**Solution:**  
+To improve player engagement and add more decision-making, we introduced a **cargo value system**. Instead of identical cargo items, each item is assigned a random **weight and value**, clearly labeled for the player. The win condition is now based on reaching a **target total value**, not just quantity. This encourages players to make trade-offs—for example, whether to take a heavier, high-value item that slows them down or several lighter, low-value ones.
+
+To reflect the weight difference in gameplay, we also linked the **player's movement speed** to the total weight of the carried cargo. Heavier loads slow down the player significantly, increasing the challenge and adding realism to the gameplay.
+
+We also iterated on the **cargo refresh mechanism**. In early versions, all cargo items were refreshed at once only after the previous batch was completely delivered. Based on tester feedback, we changed this to **immediate single-item respawning**, where a new cargo spawns each time one is delivered. This ensures that the player always has a variety of cargo options to choose from, enhancing the strategic aspect and making the gameplay more dynamic. After implementing this change, we noticed a significant improvement in overall user experience and gameplay flow.
+
+---
 
 ### Evaluation
 
