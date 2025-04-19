@@ -280,7 +280,7 @@ Players may collide with vehicles while crossing the road, so precise collision 
 **Solution:**  
 Initially, both the player and vehicles were treated as rectangles, and we used basic **rectangle overlap detection** to determine collisions. However, this led to unfair situations where even slight contact with a vehicle's edge could eliminate the player. To improve realism and player satisfaction, we refined our detection logic to consider the **direction of the vehicle**:
 
-- For vehicles coming **from the top**, a collision is only registered when the vehicle overlaps with the **lower half of the player**, simulating a front-on impact.
+- For vehicles coming **from the top**, a collision is only registered when the vehicle overlaps with the **lower third of the player's height**. This simulates a realistic impact zone, allowing minor contact with the upper body without triggering failure.
 - For vehicles coming **from the bottom**, a collision occurs as soon as the vehicle touches the **bottom edge** of the player, representing a rear collision.
 
 This **direction-sensitive collision model** not only reduced unfair eliminations but also better matched visual expectations, making the game feel more responsive and fair.
