@@ -3,11 +3,16 @@ import { CarSystem } from "../systems/CarSystem.js";
 import { ItemSystem } from "../systems/ItemSystem.js";
 import { ObstacleSystem } from "../systems/ObstacleSystem.js";
 import { UiManager } from "../ui/UiManager.js";
-import { GameStates, getLaneConfiguration, getGameAreas, getDeliveryZone } from "../config/Constants.js";
+import {
+  GameStates,
+  getLaneConfiguration,
+  getGameAreas,
+  getDeliveryZone,
+} from "../config/Constants.js";
 import { GameMode } from "../config/GameMode.js";
 import { LevelConfig } from "../config/LevelConfig.js";
 import { GameStorage } from "../utils/GameStorage.js";
-import { Item } from "../entities/Item.js";  // Add Item import for use in handleCarCollision
+import { Item } from "../entities/Item.js"; // Add Item import for use in handleCarCollision
 import { AssetManager } from "../ui/AssetManager.js";
 
 export class Game {
@@ -23,8 +28,7 @@ export class Game {
       //this.unlockedLevels = 3;
 
       // Default: Normal Mode
-      this.currentGameMode = GameMode.NORMAL;  
-      
+      this.currentGameMode = GameMode.NORMAL;
     } else {
       // directly call the static method of GameStorage class
       this.unlockedLevels = GameStorage.loadGameProgress();
@@ -45,7 +49,7 @@ export class Game {
     this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
     this.startTime = 0;
     this.keys = {};
-    
+
     // Get dynamic lanes based on canvas size
     this.updateGameDimensions();
   }
@@ -79,42 +83,42 @@ export class Game {
 
   startNewGame(level) {
     this.currentLevel = level;
-  
+
     // Load background image for the current level
     assetManager.loadLevelBackground(this.currentLevel);
-  
+
     // Reset game state and systems
     this.resetGame();
     this.currentState = GameStates.PLAYING;
-  
+
     // Play background music for this level if audio is enabled
     if (this.isAudioEnabled) {
       const musicKey = `bgMusic${this.currentLevel}`;
       const music = assetManager.getSound(musicKey);
-  
+
       // Stop previously playing music, if any
       if (this.currentMusic && this.currentMusic.isPlaying()) {
         this.currentMusic.stop();
       }
-  
+
       if (music) {
-        music.setLoop(true);          // Enable looping
-        music.setVolume(this.volume);       // Set default volume (can be adjusted later)
-        music.play();                 // Start playback
-        this.currentMusic = music;    // Save reference for later control
+        music.setLoop(true); // Enable looping
+        music.setVolume(this.volume); // Set default volume (can be adjusted later)
+        music.play(); // Start playback
+        this.currentMusic = music; // Save reference for later control
       } else {
         console.warn(`Background music not found for key: ${musicKey}`);
       }
     }
   }
-  
+
   stopCurrentMusic() {
     if (this.currentMusic && this.currentMusic.isPlaying()) {
       this.currentMusic.stop();
       this.currentMusic = null;
     }
   }
-  
+
   playClickSound() {
     if (this.isAudioEnabled) {
       const clickSound = assetManager.getSound("click");
@@ -126,12 +130,12 @@ export class Game {
     if (this.isAudioEnabled) {
       const sound = assetManager.getSound("boxDrop");
       if (sound) {
-        sound.setVolume(1.0); 
+        sound.setVolume(1.0);
         sound.play();
       }
     }
   }
-  
+
   playPickupSound() {
     if (this.isAudioEnabled) {
       const sound = assetManager.getSound("boxPick");
@@ -141,7 +145,7 @@ export class Game {
       }
     }
   }
-  
+
   playCollisionSound() {
     if (this.isAudioEnabled) {
       const sound = assetManager.getSound("collision");
@@ -161,7 +165,7 @@ export class Game {
       }
     }
   }
-  
+
   playLevelFailSound() {
     if (this.isAudioEnabled) {
       const sfx = assetManager.getSound("levelFail");
@@ -177,7 +181,7 @@ export class Game {
       this.currentMusic.setVolume(this.volume);
     }
   }
-  
+
   resetGame() {
     this.player.reset();
     this.carSystem.reset();
@@ -186,24 +190,25 @@ export class Game {
 
     //  Make sure the game time is updated correctly each time you switch modes
     if (currentGameMode === GameMode.TESTING) {
-        this.gameTime = 10000;  // Cheating Mode - Infinite time
+      this.gameTime = 10000; // Cheating Mode - Infinite time
     } else {
-        this.gameTime = 60;  //Normal Mode - 60s
+      this.gameTime = 5; //Normal Mode - 60s
     }
 
-    console.log(`reset game - current modek: ${currentGameMode}, setting time: ${this.gameTime}`);
+    console.log(
+      `reset game - current modek: ${currentGameMode}, setting time: ${this.gameTime}`
+    );
 
     this.startTime = millis();
 
     if (this.currentLevel === 3) {
-        this.obstacleSystem.generateObstacles();
+      this.obstacleSystem.generateObstacles();
     }
 
     this.carSystem.generateInitialCars();
-}
+  }
 
   resetGame() {
-
     console.log("Reset the current mode in the game:", this.currentGameMode);
 
     this.player.reset();
@@ -212,7 +217,6 @@ export class Game {
     this.obstacleSystem.reset();
 
     console.log("Reset successfully: current model:", this.currentGameMode);
-
 
     // Set game time based on mode
     this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
@@ -223,12 +227,12 @@ export class Game {
     if (this.currentLevel === 3) {
       this.obstacleSystem.generateObstacles();
     }
-    
+
     // Generate initial cars to ensure there are cars at start
     this.carSystem.generateInitialCars();
   }
 
-update() {
+  update() {
     if (this.currentState !== GameStates.PLAYING) return;
 
     // Update game time
@@ -254,7 +258,7 @@ update() {
 
     // Always update and check obstacles for level 3
     if (this.currentLevel === 3) {
-      this.obstacleSystem.update(); 
+      this.obstacleSystem.update();
       this.obstacleSystem.checkCollisions(this.player);
     }
 
@@ -266,17 +270,16 @@ update() {
     const currentFrame = frameCount || 0;
 
     if (currentFrame - this.lastCollisionFrame > 60) {
-    this.playCollisionSound?.();
-    this.lastCollisionFrame = currentFrame;
+      this.playCollisionSound?.();
+      this.lastCollisionFrame = currentFrame;
     }
 
     if (this.player.hasItem) {
-    this.itemSystem.handleItemPickupDrop(this.player);
+      this.itemSystem.handleItemPickupDrop(this.player);
     }
 
     this.player.resetPosition();
   }
-
 
   checkGameStatus() {
     // Check if time is up
@@ -322,7 +325,8 @@ update() {
     } else {
       background(200); // Default background if image not found
       // try to load background image if it's not already loaded
-      if (!assetManager.loadLevelBackground(this.currentLevel)) {}
+      if (!assetManager.loadLevelBackground(this.currentLevel)) {
+      }
     }
 
     // Update dimensions in case of window resize
@@ -330,7 +334,7 @@ update() {
 
     // // Draw game areas with proportional sizing
     // const areas = this.gameAreas;
-    
+
     // fill(150);
     // rect(0, 0, areas.warehouse.width, height); // Warehouse
     // fill(100);
@@ -356,7 +360,7 @@ update() {
   drawLaneLines() {
     const roadStart = this.gameAreas.road.start;
     const laneWidth = this.lanes.SLOW.width;
-    
+
     stroke(255);
     this.setLineDash([scaler.scale(10), scaler.scale(10)]); // Set dashed line style
     line(roadStart + laneWidth, 0, roadStart + laneWidth, height);
@@ -375,7 +379,13 @@ update() {
     const deliveryZone = getDeliveryZone();
     fill(deliveryZone.color);
     rect(deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
-    image(assetManager.getImage("cargoBase"), deliveryZone.x, deliveryZone.y, deliveryZone.size, deliveryZone.size);
+    image(
+      assetManager.getImage("cargoBase"),
+      deliveryZone.x,
+      deliveryZone.y,
+      deliveryZone.size,
+      deliveryZone.size
+    );
 
     // Draw cars
     this.carSystem.draw();
@@ -405,7 +415,10 @@ update() {
           : GameStates.PLAYING;
     }
 
-    if ((keyCode === 32 || keyCode === 69) && this.currentState === GameStates.PLAYING) {
+    if (
+      (keyCode === 32 || keyCode === 69) &&
+      this.currentState === GameStates.PLAYING
+    ) {
       // Space key or 'E' for item interaction
       const itemDelivered = this.itemSystem.handleItemPickupDrop(this.player);
       if (itemDelivered) {
@@ -419,58 +432,59 @@ update() {
   }
 
   handleMouseClicked() {
-    const btnSize = 24;  // button size
-      const margin = 10;   // button margin
-      const volumeX = width - 70; // Volume button X coordinates
-      const pauseX = width - 35;  // Pause button X coordinates
-      const btnY = 8; //Button Y coordinate (near the top)）
-  
-      //Detect the mouse click directly in the volume button area
-      if (
-          mouseX >= volumeX &&
-          mouseX <= volumeX + btnSize &&
-          mouseY >= btnY &&
-          mouseY <= btnY + btnSize
-      ) {
-          this.isAudioEnabled = !this.isAudioEnabled; // change volume status
-        if (!this.isAudioEnabled && this.currentMusic?.isPlaying()) {
-          this.currentMusic.stop(); 
-        } else if (this.isAudioEnabled && this.currentMusic) {
-            this.currentMusic.setVolume(this.volume); 
-            this.currentMusic.play();                
-          }
-          console.log("Audio button toggled:", this.isAudioEnabled ? "ON" : "OFF");
-          return;
-      }
-  
-      //Detect the mouse click directly in the pause button area
-      if (
-          mouseX >= pauseX &&
-          mouseX <= pauseX + btnSize &&
-          mouseY >= btnY &&
-          mouseY <= btnY + btnSize
-      ) {
-          this.currentState =
-              this.currentState === GameStates.PLAYING
-                  ? GameStates.PAUSED
-                  : GameStates.PLAYING;
-          console.log("Pause button is clicked, current status:", this.currentState);
-          return;
-      }
+    const btnSize = 24; // button size
+    const margin = 10; // button margin
+    const volumeX = width - 70; // Volume button X coordinates
+    const pauseX = width - 35; // Pause button X coordinates
+    const btnY = 8; //Button Y coordinate (near the top)）
 
+    //Detect the mouse click directly in the volume button area
+    if (
+      mouseX >= volumeX &&
+      mouseX <= volumeX + btnSize &&
+      mouseY >= btnY &&
+      mouseY <= btnY + btnSize
+    ) {
+      this.isAudioEnabled = !this.isAudioEnabled; // change volume status
+      if (!this.isAudioEnabled && this.currentMusic?.isPlaying()) {
+        this.currentMusic.stop();
+      } else if (this.isAudioEnabled && this.currentMusic) {
+        this.currentMusic.setVolume(this.volume);
+        this.currentMusic.play();
+      }
+      console.log("Audio button toggled:", this.isAudioEnabled ? "ON" : "OFF");
+      return;
+    }
+
+    //Detect the mouse click directly in the pause button area
+    if (
+      mouseX >= pauseX &&
+      mouseX <= pauseX + btnSize &&
+      mouseY >= btnY &&
+      mouseY <= btnY + btnSize
+    ) {
+      this.currentState =
+        this.currentState === GameStates.PLAYING
+          ? GameStates.PAUSED
+          : GameStates.PLAYING;
+      console.log(
+        "Pause button is clicked, current status:",
+        this.currentState
+      );
+      return;
+    }
 
     // Check if pause button is clicked
     if (this.currentState === GameStates.PLAYING) {
       if (this.uiManager.checkPauseButtonClick(mouseX, mouseY)) {
         return; // If pause button is clicked, do not process other clicks
       }
-      
+
       // Check if audio button is clicked
       if (this.uiManager.checkAudioButtonClick(mouseX, mouseY)) {
         return; // If audio button is clicked, do not process other clicks
       }
     }
-    
 
     switch (this.currentState) {
       case GameStates.MENU:
