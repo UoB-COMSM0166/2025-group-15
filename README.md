@@ -67,7 +67,7 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 
 #### User Stories & Acceptance Criteria
 
-##### 1. Developer-Oriented
+#### Developer-Oriented
 
 **User Stories**  
 As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
@@ -80,7 +80,7 @@ As developers, we aim to ensure the game is **modular**, **immersive**, and **vi
 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
 
-##### 2. Player-Oriented
+#### Player-Oriented
 
 **User Stories**  
 As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
