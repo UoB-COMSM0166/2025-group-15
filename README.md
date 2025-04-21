@@ -48,69 +48,70 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 #### Stakeholder Analysis
 
-We applied the Onion Model to identify and analyze stakeholders involved in our game development:
+To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
-| Layer | Stakeholder | Description |
-|-------|------------|-------------|
-| Core Layer | Development Team | Responsible for game design, programming, art creation, and initial testing |
-| Inner Layer | Project Supervisors | Guide development process and evaluate project quality, providing critical feedback |
-| Middle Layer | Beta Testers | Early players who test gameplay mechanics and provide feedback on user experience |
-| Outer Layer | Target Players | Final users who will play the completed game |
-| Outer Layer | Platform Provider | Distribution platform (e.g., Steam, App Store) hosting the game |
+1. **Core Layer**  
+  - **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
+
+2. **Inner Layer**  
+  - **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
+
+3. **Middle Layer**  
+  - **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
+
+4. **Outer Layer**  
+  - **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
+
+5. **Outer Layer**  
+  - **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
 
 #### User Stories & Acceptance Criteria
-<!-- 【DDL周六晚24点前】格式如下，表格 -->
-| User Story | Acceptance Criteria |
-|------------|---------------------|
-| **As a developer**, I want to break down the game development process into modular components, so that each team member can work independently on different parts of the game. | **Given** a structured game development plan, **when** a team member starts working on a specific module, **then** they should be able to develop, test, and integrate their module without being blocked by dependencies. |
-| **As a developer**, I want to design background music and various sound effects, so that players can experience greater immersion in the game. | **Given** a specific game scene or event, **when** background music and sound effects are played, **then** they should match the atmosphere and enhance the player's engagement. |
-| **As a developer**, I want to implement high-quality artwork and animations, so that players can have a visually engaging and enjoyable experience. | **Given** a game character, object, or environment, **when** an animation or visual transition occurs, **then** it should be smooth, cohesive, and consistent with the game's artistic style. |
-| **As a developer**, I want the game to consume minimal computing resources during idle states, so that it runs more efficiently and reduces unnecessary energy usage. | **Given** the game is paused or in a low-activity state, **when** no major animations or updates are occurring, **then** background processes should reduce activity to save energy. |
-| **As a player**, I want to continue my game from the latest progress I‘ve arrived so that I can play whenever it suits me without losing progress. |**Given** I have made progress in the game, **when** I exit the game, **then** my progress should be saved automatically. |
-| **As a player**, I want the game difficulty to gradually increase from easy to hard so that I can improve my skills step by step while maintaining the challenge and fun of the game. | **Given** that I am playing the game, **when** I complete a level, **then**  the next level should have a higher difficulty compared to the previous one. |
-| **As a player**, I want the game to have help information pages so that I can refer to them whenever I need. | **Given** that I am in the game, **when** I press the help button, **then** I should be able to access the help information pages at any time during the game and the content should be clear and provide relevant instructions on how to play the game. |
-| **As a player**, I want to adjust the background music volume or completely mute it, so that I can focus on the game without being distracted by the music. |**Given** the player is in the game settings menu, **when** the player adjusts the volume slider or clicks the "Mute Music" button, **then** the background music volume should change accordingly or be completely muted until the player enables it again. |
-| **As a player**, I want to understand the game's storyline before starting, so that I can fully immerse myself in the game world and enhance my experience. | **Given** the player enters the game for the first time or selects the "Story Introduction" option, **when** the storyline screen appears, **then** the player should be able to read the background story and have the option to skip it and proceed directly to the game. |
-| **As a player**, I want to customize my character’s appearance, such as clothing, hairstyle, or colors, so that I can create a character that reflects my personal style. | **Given** the player is in the character customization menu, **when** the player selects different hairstyles, clothing colors, or accessories, **then** the character’s appearance should update in real time and retain the selected customization during gameplay. |
-| **As a player**, I want to experience a game where the difficulty level increases over time, so that the game becomes more interesting and soul-stirring as I become accustomed to the current difficulty. | **Given** the game has started, **when** player accumulates points above target threshold, **then** increase traffic density and speed according to difficulty curve.<br><br>**Given** current difficulty level, **when** player performance drops significantly, **then** maintain current difficulty until performance improves.<br><br>**Given** maximum difficulty reached, **when** player continues performing well, **then** maintain challenge without becoming impossible. |
-| **As a player**, I need the ability to pause gameplay at any moment, allowing me to handle real-life interruptions and resume from where I left off. | **Given** active gameplay, **when** pause button pressed, **then** freeze all game elements and display pause menu.<br><br>**Given** game is paused, **when** resume selected, **then** restore exact game state and continue timer.<br><br>**Given** game is paused, **when** quit selected, **then** save current score and return to main menu. |
-| **As a player**, I desire a score tracking and comparison system where I can measure my performance against others, fueling my competitive drive. | **Given** game completion, **when** score submitted, **then** save to leaderboard with player name and timestamp.<br><br>**Given** leaderboard view, **when** filtering options selected, **then** display relevant scores (daily/weekly/all-time).<br><br>**Given** new high score achieved, **when** game ends, **then** highlight achievement and offer sharing options. |
-| **As a player**, I want to see eco-friendly vehicle types in the game, so that I become more aware of green transportation options. | **Given** the game level is loaded, **when** vehicles are rendered on the road, **then** a portion of them should be displayed as bikes, electric cars, or other low-emission vehicles. |
 
+##### Developer-Oriented
+
+**User Stories**  
+As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
+- Breaking the game into independent, well-defined components.
+- Designing immersive sound effects and background music that enhance the gaming experience.
+- Implementing smooth animations that are consistent with the game's artistic style.
+
+**Acceptance Criteria**
+1. Each game module must be independently developed, tested, and integrated following a clear development plan.
+2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
+3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
+
+##### Player-Oriented
+
+**User Stories**  
+As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
+- Experience increasing difficulty levels throughout the game.
+- Be able to pause and resume gameplay at any point.
+- Customize characters and see these changes in real time.
+- Track our scores and compete on leaderboards.
+- Engage with eco-friendly elements within the game.
+
+**Acceptance Criteria**
+1. The game's difficulty should gradually increase with each level to maintain player engagement.
+2. The pause feature must freeze the game at the current state and allow players to resume from the exact point where they paused.
+3. Customizations made to characters should appear instantly and in real-time during gameplay.
+4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
+5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
 ##### Example: Breakdown of Game Difficulty System Design
+1. **Core Difficulty System**  
+   The game’s difficulty is influenced by several parameters, such as character attributes, environmental factors, mission objectives, and random events. Key factors include the player’s movement speed and health points, obstacles, mission goals like target scores or time limits, and dynamic in-game events. These combined elements contribute to the overall challenge level and enhance the player’s experience.
 
-1. Core Difficulty System
+2. **Level Progression System**  
+   The game is divided into unique levels, each with specific completion criteria and progression unlocks. Each level may also include bonus challenges for perfect completion. Achievements are designed to reward players based on progress and skill, incentivizing improvement.
 
-- Character Parameters: movement speed, health points, etc.
-- Environmental Interaction: obstacle movement speed, special terrain effects, etc.
-- Mission Objectives: target score per round, time limits, cargo value multipliers, etc.
-- Randomization Control: spawn point range for cargo, probability of special events, etc.
+3. **Game Feedback System**  
+   The feedback system provides players with clear indicators of difficulty, progress tracking, and real-time feedback. This ensures that players are aware of their current status, enabling them to adjust their strategies and optimize gameplay performance.
 
-2. Level Progression System
+4. **Balance Testing**  
+   Extensive balance testing was conducted to ensure the game remains both challenging and enjoyable. This included internal evaluations and feedback from players of different ages and experience levels. Based on the results, adjustments were made to the difficulty curve to find the right balance between challenge and playability.
 
-- Level Structure: level mapping, unique mechanics for each level
-- Completion Requirements: basic completion criteria and bonus challenges (perfect completion conditions)
-- Progression Unlock System: establishing level prerequisites, defining specific unlock conditions
-- Achievement System: designing an achievement framework to encourage continuous player improvement
-
-3. Game Feedback System
-
-- Difficulty Indicators: clear UI elements showing current difficulty level
-- Level Information Display: providing level previews, objectives, and completion requirements
-- Progress Tracking: implementing detailed game progress and achievement interface
-- Real-time Feedback: offering timely prompts and guidance during gameplay
-
-4. Game Balance Testing
-
-- Internal Testing: conducting in-depth team testing, collecting detailed gameplay data
-- User Group Testing: recruiting players of different age groups and gaming experience levels
-- Data Analysis: establishing data collection and analysis mechanisms to evaluate difficulty curves
-- Balance Adjustments: continuously optimizing parameters based on test feedback
-
-5. Development Sequence
-
-- We could establish a parameter configuration system early in development to facilitate later debugging and balance adjustments.
+5. **Development Sequence**  
+   Early in the development process, a parameter configuration system was established to facilitate debugging and balance adjustments. This system helped streamline the overall development workflow and ensured that balance adjustments could be made efficiently as new challenges and feedback emerged.
 
 ```mermaid
 flowchart LR
@@ -123,17 +124,8 @@ flowchart LR
     H -->|No| J[Development Complete]
 ```
 
-#### Brief Reflection
-
-Through our game development process, our team has gained valuable experience in requirements analysis and project management. In terms of Epics, we learned how to break down large game development tasks into manageable modules, enabling team members to work in parallel. This modular approach improved our development efficiency.
-
-For user stories, we adopted the format 'As a player, I want to adjust the background music volume or completely mute it so that I can focus on the game without being distracted by the music' to capture different stakeholders' needs. In game development, we considered both player requirements (such as game progress saving, difficulty progression, and volume control) and development team's needs (like modular development, sound design, and animation implementation). This comprehensive approach helped us maintain focus on user experience and technical feasibility.
-
-For acceptance criteria, we used the Given-When-Then format to define completion standards. This helped us maintain clear objectives and provided guidelines for testing. In designing the difficulty system, we detailed acceptance criteria for each feature, ensuring testability and verifiability.
-
-In understanding our application's context, we employed the Onion Model for stakeholder analysis, giving us a comprehensive view from core development team to end users. This helped us maintain awareness of various stakeholder needs throughout development.
-
-The iterative process of defining requirements taught us the importance of clear communication and documentation. Well-defined requirements not only guide development but also serve as a foundation for testing and evaluation. This experience has helped us complete the current project and laid a foundation for future development.
+#### Reflection
+Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
 
 ### Sustainability
 
@@ -161,105 +153,43 @@ We have reviewed the Green Software Foundation’s Green Software Patterns and i
 
 
 ### Design
+### Design
 
-#### Class Diagram
+The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
 
-Main Classes and Their Functions:
+#### System Architecture
 
-1. Game: The core class of the game, managing the game state, current level, selected character, game progress, and various systems (such as CarSystem, ItemSystem, ObstacleSystem). It provides methods to handle game logic and draw the game.
+The `Game` class acts as the backbone of the game logic, integrating with several subsystems: `CarSystem`, `ItemSystem`, `ObstacleSystem`, and `UiManager`. It also handles transitions between various game states, defined in the `GameStates` class (e.g., Menu, Playing, Paused, Game Over), and supports different modes such as Normal and Testing via the `GameMode` class.
 
-2. CarSystem: Manages the cars in the game. It generates, updates, and draws the cars, and also handles collision detection with the cars.
+The vehicle logic is managed by the `CarSystem`, which is responsible for generating, updating, and rendering cars in different lanes. It incorporates the `Car` class to define vehicle properties such as speed, position, and direction. Similarly, `ItemSystem` and `ObstacleSystem` manage items and obstacles respectively, both relying on shared collision detection logic provided by the `CollisionDetector` class.
 
-3. ItemSystem: Manages the items in the game, generating, updating, and drawing the items, and handling item pickup and drop.
+The `Player` class represents the player-controlled character, encapsulating attributes like position, speed, score, and collected items. It interacts with the environment and responds to user input, including movement and item pickup/drop actions.
 
-4. ObstacleSystem: Manages the obstacles in the game, responsible for generating obstacles, updating them, checking for collisions, and drawing them.
+The user interface is managed by the `UiManager`, which controls various screens such as the main menu, character selection, help, and pause menu. It works closely with the `Button` and `PauseButtons` classes to render interactive UI elements and handle input events like starting a game or toggling sound.
 
-5. UiManager: Handles the user interface, including the main menu, character selection, pause menu, etc. It manages interactions with buttons and menus.
+To support dynamic content loading, the `AssetManager` class handles resource management, including images and sounds. Game settings such as audio volume and toggles are controlled by the `Settings` class. Game progress persistence is achieved through the `GameStorage` class, which manages saving and loading states depending on the active game mode.
 
-6. Player: The player class, representing the player's state in the game, including position, speed, score, and the items they carry. It is responsible for updating the player state and interacting with items.
+Levels are configured using the `LevelConfig` class, which defines difficulty, goal conditions, and level-specific parameters. Lane behavior is represented by the `Lanes` class, which categorizes traffic flow into speeds such as Slow, Medium, and Fast.
 
-7. Car: Represents a car in the game, with basic properties such as position, speed, direction, etc. It provides methods for updating and drawing the car.
-
-8. Item: Represents an item in the game, with properties like position, value, and size. It is responsible for drawing the item and displaying interaction states.
-
-9. Obstacle: Represents an obstacle in the game, with properties like position, size, etc., and provides a method to draw the obstacle.
-
-10. CollisionDetector: Responsible for detecting collisions in the game, including player-to-obstacle, player-to-item, and player-to-car collisions.
-
-11. Button: Represents a button in the UI, with properties like position, size, and label. It provides methods for drawing and checking if the button has been clicked.
-
-12. AssetManager: Manages the game's resources, such as images and sounds.
-
-13. GameStorage: Manages game progress saving and loading.
-
-14. Settings: Manages game settings, such as whether audio is enabled and the volume level.
-
-15. GameStates: A class representing different game states, such as Menu, Character Select, Playing, Paused, Level Complete, Game Over, Level Select, Help, and Audio.
-
-16. Lanes: Represents the lanes in the game, defining different lane speeds (such as Slow, Medium, Fast).
-
-17. PauseButtons: Buttons in the pause menu, providing functions like resume, restart, return to the main menu, and toggle audio.
-
-18. GameMode: Defines the game's modes, such as Normal and Testing mode.
-
-19. LevelConfig: Game level configuration, defining settings for different levels (such as levels 1, 2, 3).
-
-Relationships Between Classes:
-
-- Game is the central class and connects to several subsystems: CarSystem, ItemSystem, ObstacleSystem, UiManager, and GameStorage. It controls game states (GameStates), modes (GameMode), and levels (LevelConfig).
-  
-- CarSystem, ItemSystem, and ObstacleSystem are associated with their respective entities (Car, Item, Obstacle) and all depend on CollisionDetector for collision detection.
-
-- UiManager manages the game's user interface elements (such as Button), and interacts with the game state, mode (GameStates, GameMode), and player (Player).
-
-- GameStorage is tightly coupled with GameMode to provide game saving and loading functionality.
-
-- AssetManager manages game resources and connects to the main game (main) and GameMode.
+This architecture supports code reusability and parallel development by dividing responsibilities among self-contained modules.
 
 ![classDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true)
 
-#### Sequence Diagram
+#### Behavioural Design
 
-This sequence diagram represents the game flow and interactions between different components of the game. It covers the major events from game startup, level selection, gameplay mechanics, game over conditions, and additional features like help, pause, and cheating mode.
+The game follows a well-defined sequence of interactions, illustrated in the sequence diagram.
 
-Key Components & Flow:
+At startup, the game initializes the main menu, where players can start a game, select a level, read help instructions, or activate cheating mode. The `UiManager` handles UI display and routes input to the correct action.
 
-1. Game Startup
+Starting a new game takes the player to the character selection screen (`CharacterSelectPage`). Once a character is chosen, a new `Game` instance is created, and the appropriate level configuration is loaded.
 
-	•	The player opens the game, which initializes the menu (MenuPage).  
-	•	UiManager sets up the UI and displays buttons such as "Start Game", "Select Level", "Help", and "Cheating Mode".
+During gameplay, the system updates in real time, handling player input and environmental changes. Movement commands are processed, and collisions are detected. If the player collides with an obstacle or vehicle, the game transitions to a "Game Over" state and returns to the main menu. If the player completes the level objectives, they are promoted to the next stage.
 
-2. Starting a Game
+Players may pause the game using the escape key, which brings up the `PauseMenu`. Here, they can resume the game, restart the level, or return to the main menu. Audio can also be toggled on or off. Cheating mode, when enabled, activates debug features and displays a confirmation message on the screen.
 
-	•	When the player clicks "Start Game", they are navigated to the CharacterSelectPage to choose a character.  
-	•	After selection, the game starts by creating a new game instance in GamePage and initializing the level.
+Help instructions are accessible from the main menu. When selected, the player is navigated to the `HelpPage`, which provides gameplay guidance and interface descriptions. Players may return to the menu after viewing the instructions.
 
-3. In-Game Interactions
-
-	•	The game listens for player input (move(direction)).  
-	•	Collision detection is performed against obstacles and cars:  
-	 - If a collision occurs, the game triggers a "Game Over" state and returns to the menu.  
-	 - If no collision occurs, the game updates the score and checks for level completion.  
-	 - If the player completes the level, they advance to the next level.  
-
-4. Level Selection
-
-	•	Players can also choose "Select Level" from the main menu.  
-	•	This leads to LevelSelectPage, where the player picks a level before selecting a character.  
-	•	The game then starts at the selected level.  
-
-5. Game Help
-
-	•	If the player selects "Help", they are taken to the HelpPage to read instructions.  
-	•	After viewing, they return to the main menu.  
-
-6. Pause Menu
-
-	•	Pressing the "Esc" key opens the PauseMenu, allowing the player to resume the game.
-
-7. Cheating Mode
-
-	•	If the player activates "Cheating Mode", UiManager enables cheats in GamePage, displaying a message confirming activation.
+The modular structure and clearly defined sequences support smooth user interactions and maintain high responsiveness across the game loop.
 
 ![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
 
@@ -458,40 +388,44 @@ In conclusion, our system successfully establishes meaningful differentiation be
 
 ### Process
 
-Our team's collaborative journey throughout this project combined structured face-to-face interaction with efficient digital coordination. We prioritized in-person engagement through bi-weekly team discussions while maintaining digital tools to track progress between meetings. This balanced approach leveraged the benefits of direct communication while ensuring consistent documentation and task management.
+Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
 
-Communication was our foundation from the start. We established clear response expectations across different channels—committing to 24-hour maximum response times for important matters while allowing focus time for deep work. For conflict resolution, we developed a structured approach of documenting perspectives, evaluating options against project objectives, and making decisions through consensus where possible, with a voting system for more complex issues.
+#### Team Collaboration
 
-#### Kanban Board
+We held in-person team meetings twice a week to discuss ongoing progress, solve blockers, and coordinate responsibilities. These meetings followed a consistent format: each member provided updates, raised questions, and participated in collaborative problem-solving. One team member was responsible for recording meeting minutes, which were stored in a shared repository on GitHub. This ensured that key decisions, deadlines, and action points were properly documented and accessible to all members, including those occasionally absent due to scheduling conflicts.
 
-In our project, we use a Kanban Board as our project management methodology due to its key advantages:
+For day-to-day communication, we used WhatsApp for quick updates and clarifications, while email was used for more formal or non-urgent matters. We established clear communication expectations early on, including a 24-hour response guideline for critical topics, which helped keep discussions timely and project momentum consistent.
 
-1.**Visual Workflow Management:** Kanban provides clear visualization of work progress through columns (Todo, lagging behind, In Progress, Done), allowing team members to understand project status at a glance.
+#### Tools and Workflow
 
-2.**Work-in-Progress Limits:** Our Kanban implementation includes WIP limits for each column, preventing bottlenecks and ensuring steady workflow throughout the project lifecycle.
+To manage our tasks and track overall project progress, we used a GitHub-based **Kanban board**, structured with columns: “Todo,” “In Progress,” “Lagging,” and “Done.” Each task card included a detailed description, deadlines, priority level, and assigned team member. This visual workflow made it easy for everyone to track the status of work at a glance and identify bottlenecks early.
 
-3.**Flexible Prioritization:** Kanban allows us to reprioritize tasks without disrupting the entire workflow, making it adaptable to changing project requirements.
-Additionally, our Kanban board integrates task assignments, deadlines, and priority indicators for each card, providing comprehensive information for team coordination. Overall, Kanban's visual approach and flexibility make it an ideal choice for our project management.
+We implemented **Work-in-Progress (WIP) limits** on active tasks to reduce overload and maintain a steady flow across development stages. The Kanban board’s flexibility also enabled us to reprioritize tasks efficiently in response to changing project needs, such as debugging or design revisions.
+
+Code collaboration was facilitated through **Git and GitHub**, which we used for version control, pull request reviews, and issue tracking. For document collaboration—including this report—we used **Google Docs**, which allowed for simultaneous editing and real-time commenting during report drafting sessions.
+
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true)
 
-#### Bi-Weekly Team Discussions
+#### Roles and Responsibilities
 
-We conduct face-to-face team meetings twice a week to facilitate collaboration and project coordination due to several benefits:
+Although our team structure was relatively flat to encourage mutual support, we assigned informal roles based on individual strengths and preferences:
+**Team Coordinator**: Scheduled meetings, tracked deadlines, and maintained overall alignment.
+**Lead Developer**: Took responsibility for core game logic and system architecture.
+**UI/UX Designer**: Led the interface design and user experience considerations.
+**Quality Assurance Lead**: Focused on bug testing, performance evaluation, and validation of game features.
+**Documentation Specialist**: Maintained records, prepared reports, and ensured clarity in written materials.
 
-1.**Enhanced Communication:** In-person discussions allow for immediate feedback, nuanced conversation, and non-verbal cues that improve understanding among team members.
+Despite these roles, our team practiced flexibility. Members regularly contributed outside their primary area, whether helping with debugging, writing documentation, or preparing assets. This cross-functional support improved efficiency and strengthened our understanding of the entire project.
 
-2.**Structured Problem-Solving:** Our bi-weekly sessions follow a consistent format with designated time for progress updates, blockers discussion, and collaborative solution development.
+#### Reflection and Lessons Learned
 
-3.**Team Cohesion:** Regular face-to-face interaction strengthens team relationships and builds trust, leading to more effective collaboration throughout the project.
-Additionally, these discussions are documented with meeting minutes shared in our common repository, ensuring that decisions and action items are tracked systematically. Overall, our twice-weekly in-person meetings serve as critical touchpoints for alignment and momentum in our project execution.
+Throughout the project, our collaboration matured significantly. In the early stages, we encountered challenges such as scheduling conflicts, unclear task boundaries, and varied working styles. For example, one of the main challenges was that one member was unable to attend the face-to-face discussion because he was temporarily home. To address this, we began recording meetings and implementing asynchronous feedback loops via shared documents and chat summaries.
 
-#### Reflection on Our Collaborative Experience
+We also encountered occasional miscommunication, especially regarding expectations and deadlines. These were resolved through more explicit documentation, frequent check-ins, and open discussions about preferred working styles. Over time, we became more effective at anticipating potential issues and proactively redistributing work as needed.
 
-Our collaboration revealed several key insights:
-Our diverse backgrounds provided rich problem-solving perspectives, while transparent communication built trust among team members. Our adaptive planning helped navigate unexpected challenges effectively.
-Initially, time zone differences complicated synchronous communication for team members studying abroad. We addressed this by recording meetings and implementing asynchronous decision-making when appropriate. Cultural differences occasionally led to misunderstandings about expectations, which we resolved through explicit conversations about working styles.
-As the project progressed, we improved in documenting decisions and their rationales, creating valuable context for future reference. We became more efficient at determining when to work individually versus collaboratively, optimizing our collective productivity.
-This collaborative experience strengthened both our project outcomes and individual capabilities. The attention we paid to establishing clear processes, utilizing appropriate tools, and maintaining open communication created a foundation for effective teamwork. The skills developed extend beyond the project itself, providing valuable professional competencies for our future endeavors.
+One key improvement was in our decision-making process. Initially, discussions sometimes stalled due to differing opinions. Later, we introduced a lightweight decision model—first discussing pros and cons of each approach, then voting or assigning final say based on area of expertise. This balanced structure with inclusiveness and speed.
+
+Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project’s outcome but also gave us transferrable teamwork skills for future academic and professional environments.
 
 ### Conclusion
 
