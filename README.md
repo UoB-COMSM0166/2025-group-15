@@ -51,23 +51,23 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
 1. **Core Layer**  
-   **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
+- **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
 
 2. **Inner Layer**  
-   **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
+- **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
 
 3. **Middle Layer**  
-   **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
+- **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
 
 4. **Outer Layer**  
-   **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
+- **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
 
 5. **Outer Layer**  
-   **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
+- **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
 
 #### User Stories & Acceptance Criteria
 
-##### Developer-Oriented
+##### 1. Developer-Oriented
 
 **User Stories**  
 As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
@@ -80,7 +80,7 @@ As developers, we aim to ensure the game is **modular**, **immersive**, and **vi
 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
 
-##### Player-Oriented
+##### 2. Player-Oriented
 
 **User Stories**  
 As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
@@ -97,7 +97,7 @@ As players, we expect a **progressively challenging** experience with options fo
 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
-###### Example: Breakdown of Game Difficulty System Design
+##### Example: Breakdown of Game Difficulty System Design
 1. **Core Difficulty System**  
    The game’s difficulty is influenced by several parameters, such as character attributes, environmental factors, mission objectives, and random events. Key factors include the player’s movement speed and health points, obstacles, mission goals like target scores or time limits, and dynamic in-game events. These combined elements contribute to the overall challenge level and enhance the player’s experience.
 
