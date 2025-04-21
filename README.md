@@ -47,30 +47,23 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 ### Requirements
 
 #### Stakeholder Analysis
-当然可以！以下是你提供内容的 Markdown 格式版本，非常适合用于 GitHub 项目的文档，例如放在 `requirements.md` 或 `README.md` 中的“需求”部分：
-
----
-
-### Requirements
-
-#### Stakeholder Analysis
 
 To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
 1. **Core Layer**  
-   - **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
+   **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
 
 2. **Inner Layer**  
-   - **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
+   **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
 
 3. **Middle Layer**  
-   - **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
+   **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
 
 4. **Outer Layer**  
-   - **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
+   **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
 
 5. **Outer Layer**  
-   - **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
+   **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
 
 #### User Stories & Acceptance Criteria
 
