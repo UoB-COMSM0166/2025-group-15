@@ -6,7 +6,7 @@
 
 [Introduction](#introduction)  
 [Requirement](#requirements)  
-[Sustainability](#sustainability)  
+[Sustainability, ethics and accessibility](#sustainability-ethics-and-accessibility)  
 [Design](#design)  
 [Implementation](#implementation)  
 [Evaluation](#evaluation)  
@@ -41,8 +41,13 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 ### Introduction
 
-- 5% ~250 words
-- Describe your game, what is based on, what makes it novel?
+Our game, Road Crossing Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you’re not just crossing a road—you’re on a mission to deliver.
+
+As a delivery runner, your goal is to carry cargo safely across chaotic, fast-moving roads. Every package comes with weight, and that weight directly affects your speed. Carry something light for a quick escape, or haul heavier loads for bigger rewards—it’s a constant trade-off between risk and payoff.
+
+To keep each run fresh, we implemented a dynamic traffic system that generates varied vehicle patterns and pacing. Each level is set in a different visual scene, accompanied by music that matches the atmosphere—adding an almost rhythmic tension to the crossing. What looks like a simple arcade game quickly turns into a challenge of split-second decisions, timing, and planning.
+
+What makes our game novel is its weight-based movement mechanic, which creates a direct connection between risk and reward. The more you carry, the harder it gets—but the greater the payoff. This, combined with shifting environments, layered difficulty, and rhythmic pacing, transforms a familiar arcade formula into a delivery challenge that’s both strategic and reflex-driven.
 
 ### Requirements
 
@@ -127,7 +132,7 @@ flowchart LR
 #### Reflection
 Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
 
-### Sustainability
+### Sustainability, ethics and accessibility
 
 #### 1. Sustainability Analysis
 
@@ -136,9 +141,7 @@ Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's 
 | **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
 |------------------------------|----------------------|--------------------------|
 | **Individual** | Does the game promote personal health, growth, or learning? | The game trains players’ reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
-| **Social** | Does the game support community or inclusivity? | The character customization feature can increase player sense of belonging. Adding diverse character appearances may help players from different backgrounds feel more included. |
-| **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | Vehicles in the game can be designed as bicycles, electric cars, or other low-emission transport options. This can subtly promote awareness of green transportation and carbon reduction. |
-| **Economic** | Does the game promote economic value or efficient resource use? | While not directly tied to real-world economics, the game encourages efficient transport behavior (e.g., avoiding collisions and optimizing paths), which mirrors efficient resource use. |
+| **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimizes carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
 | **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
 
 #### 2. Green Software Patterns
@@ -429,9 +432,17 @@ Overall, this project greatly enhanced our collaborative abilities. We learned t
 
 ### Conclusion
 
-- 10% ~500 words
+The development of Road Crossing Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that’s easy to pick up but rich in moment-to-moment decision making.
 
-- Reflect on project as a whole. Lessons learned. Reflect on challenges. Future work.
+One of our key innovations was the weight-based movement system—each cargo item slows the player differently, requiring real-time strategic trade-offs between speed and potential score. Combined with the randomly generated traffic flow, this made each playthrough feel dynamic and engaging. From a development perspective, building a custom vehicle generation system taught us to balance randomness with fairness, ensuring challenge without frustration.
+
+Our game also evolves visually and rhythmically. With distinct environments and background music for each level, we aimed to create a sense of progression and variety. This introduced technical challenges in synchronizing audio and visual transitions, which we solved through modular scene management.
+
+Teamwork was central to our progress. We split responsibilities across coding, UI design, asset preparation, and sound design—iterating frequently and sharing feedback in real-time. Through this collaborative process, we not only improved the game but also strengthened our communication and problem-solving skills.
+
+While the project met most of our initial goals, some aspects—such as more diverse obstacles or level-based difficulty scaling—remained on our wish list due to time constraints. Nonetheless, we are proud of the final product. Informal playtests revealed players quickly grasped the mechanics and enjoyed the high-risk, high-reward decision-making under pressure.
+
+Looking ahead, Road Crossing Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
 
 ### Contribution Statement
 
