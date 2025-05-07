@@ -111,12 +111,24 @@ export class Player {
       return; // Can't move in hit state
     }
 
+    // Calculate relative boundaries (based on 1000x750 reference)
+    const leftBoundary = 0.3; // 300/1000
+    const rightBoundary = 0.7; // 700/1000
+    const topBoundaryLeft = 0.333; // 250/750
+    const bottomBoundaryLeft = 0.7;
+    const topBoundaryRight = 0.3;
+    const bottomBoundaryRight = 0.7;
+
     // Check both arrow keys and WASD keys
     if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
       const newX = this.x - (width * this.speed);
+      const newRelativeX = newX / width;
+      const currentRelativeY = this.y / height;
       // Check if new position is in restricted area
-      if (!((newX < 300 && this.y < 250) || (newX < 300 && this.y > 580) || 
-            (newX > 700 && this.y < 280) || (newX > 700 && this.y > 580))) {
+      if (!((newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) || 
+            (newRelativeX < leftBoundary && currentRelativeY > bottomBoundaryLeft) || 
+            (newRelativeX > rightBoundary && currentRelativeY < topBoundaryRight) || 
+            (newRelativeX > rightBoundary && currentRelativeY > bottomBoundaryRight))) {
         this.relativeX = Math.max(0, this.relativeX - this.speed);
         this.x = width * this.relativeX;
         this.isFlipped = false;
@@ -124,9 +136,13 @@ export class Player {
     }
     if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
       const newX = this.x + (width * this.speed);
+      const newRelativeX = newX / width;
+      const currentRelativeY = this.y / height;
       // Check if new position is in restricted area
-      if (!((newX < 300 && this.y < 250) || (newX < 300 && this.y > 580) || 
-            (newX > 700 && this.y < 280) || (newX > 700 && this.y > 580))) {
+      if (!((newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) || 
+            (newRelativeX < leftBoundary && currentRelativeY > bottomBoundaryLeft) || 
+            (newRelativeX > rightBoundary && currentRelativeY < topBoundaryRight) || 
+            (newRelativeX > rightBoundary && currentRelativeY > bottomBoundaryRight))) {
         this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed);
         this.x = width * this.relativeX;
         this.isFlipped = true;
@@ -134,18 +150,26 @@ export class Player {
     }
     if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
       const newY = this.y - (height * this.speed);
+      const newRelativeY = newY / height;
+      const currentRelativeX = this.x / width;
       // Check if new position is in restricted area
-      if (!((this.x < 300 && newY < 250) || (this.x < 300 && newY > 580) || 
-            (this.x > 700 && newY < 280) || (this.x > 700 && newY > 580))) {
+      if (!((currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) || 
+            (currentRelativeX < leftBoundary && newRelativeY > bottomBoundaryLeft) || 
+            (currentRelativeX > rightBoundary && newRelativeY < topBoundaryRight) || 
+            (currentRelativeX > rightBoundary && newRelativeY > bottomBoundaryRight))) {
         this.relativeY = Math.max(0, this.relativeY - this.speed);
         this.y = height * this.relativeY;
       }
     }
     if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
       const newY = this.y + (height * this.speed);
+      const newRelativeY = newY / height;
+      const currentRelativeX = this.x / width;
       // Check if new position is in restricted area
-      if (!((this.x < 300 && newY < 250) || (this.x < 300 && newY > 580) || 
-            (this.x > 700 && newY < 280) || (this.x > 700 && newY > 580))) {
+      if (!((currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) || 
+            (currentRelativeX < leftBoundary && newRelativeY > bottomBoundaryLeft) || 
+            (currentRelativeX > rightBoundary && newRelativeY < topBoundaryRight) || 
+            (currentRelativeX > rightBoundary && newRelativeY > bottomBoundaryRight))) {
         this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed);
         this.y = height * this.relativeY;
       }

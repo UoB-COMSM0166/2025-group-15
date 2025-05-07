@@ -29,13 +29,15 @@ export class ItemSystem {
     generateInitialItems() {
         this.items = [];
         const warehouseWidth = width * 0.3;
+        const warehouseHeightStart = height * (280 / 750);
+        const warehouseHeightEnd = height * (570 / 750);
 
         for (let i = 0; i < this.maxItems; i++) {
             let newItem;
             let attempts = 0;
             do {
                 let newX = random(50, warehouseWidth - 50);
-                let newY = random(280, 570);
+                let newY = random(warehouseHeightStart, warehouseHeightEnd);
                 newItem = new Item(newX, newY);
                 attempts++;
             } while (this.isOverlapping(newItem) && attempts < 10);
@@ -65,12 +67,14 @@ export class ItemSystem {
     spawnItem() {
         if (this.items.length < this.maxItems) { 
             const warehouseWidth = width * 0.3;
+            const warehouseHeightStart = height * (280 / 750);
+            const warehouseHeightEnd = height * (570 / 750);
             let newItem;
             let attempts = 0;
 
             do {
                 let newX = random(50, warehouseWidth - 50);
-                let newY = random(280, 570); 
+                let newY = random(warehouseHeightStart, warehouseHeightEnd);
                 newItem = new Item(newX, newY);
                 attempts++;
             } while (this.isOverlapping(newItem) && attempts < 10);
@@ -152,7 +156,7 @@ export class ItemSystem {
     update() {
         // update item position based on canvas size, size auto-updated in Item.draw()
         for (const item of this.items) {
-        item.update();
+            item.update();
         }
     }
 }
