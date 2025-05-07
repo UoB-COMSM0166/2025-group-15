@@ -354,40 +354,40 @@ export class UiManager {
 
     // 左上
     text(
-      "Road Crossing Game",
+      "Crazy Delivery",
       scaler.centerX - outlineOffset,
       titleY - outlineOffset
     );
     // 右上
     text(
-      "Road Crossing Game",
+      "Crazy Delivery",
       scaler.centerX + outlineOffset,
       titleY - outlineOffset
     );
     // 左下
     text(
-      "Road Crossing Game",
+      "Crazy Delivery",
       scaler.centerX - outlineOffset,
       titleY + outlineOffset
     );
     // 右下
     text(
-      "Road Crossing Game",
+      "Crazy Delivery",
       scaler.centerX + outlineOffset,
       titleY + outlineOffset
     );
     // 上
-    text("Road Crossing Game", scaler.centerX, titleY - outlineOffset);
+    text("Crazy Delivery", scaler.centerX, titleY - outlineOffset);
     // 右
-    text("Road Crossing Game", scaler.centerX + outlineOffset, titleY);
+    text("Crazy Delivery", scaler.centerX + outlineOffset, titleY);
     // 左
-    text("Road Crossing Game", scaler.centerX - outlineOffset, titleY);
+    text("Crazy Delivery", scaler.centerX - outlineOffset, titleY);
     // 下
-    text("Road Crossing Game", scaler.centerX, titleY + outlineOffset);
+    text("Crazy Delivery", scaler.centerX, titleY + outlineOffset);
 
     // 最后绘制金黄色文字
     fill(238, 173, 14); // #EEAD0E 金黄色
-    text("Road Crossing Game", scaler.centerX, titleY);
+    text("Crazy Delivery", scaler.centerX, titleY);
 
     // 重置字体为默认值，以便后续文字正常显示
     textFont("Arial, sans-serif");
@@ -723,15 +723,15 @@ export class UiManager {
       "Avoid cars and carry items from left to right",
       "Heavier items (higher value) slow you down",
       "If hit by a car, you'll return to start position",
-      "Reach the target score to complete the level"
+      "Reach the target score to complete the level",
     ];
 
     // draw each instruction
-    instructions.forEach(instruction => {
+    instructions.forEach((instruction) => {
       // draw a spot
       fill(139, 69, 19); // brown colour
       ellipse(leftMargin - 15, y + 5, 8, 8);
-      
+
       // draw text
       fill(0);
       text(instruction, leftMargin, y);
@@ -742,7 +742,11 @@ export class UiManager {
     if (currentGameMode === GameMode.TESTING) {
       fill(0, 128, 0); // Green
       textSize(scaler.getFontSize(20)); // same font-size as normal instruction
-      text("Testing Mode: Unlimited Time (10000s) | All Levels Unlocked", leftMargin, y);
+      text(
+        "Testing Mode: Unlimited Time (10000s) | All Levels Unlocked",
+        leftMargin,
+        y
+      );
     }
 
     // Draw return button
