@@ -710,35 +710,39 @@ export class UiManager {
     textSize(scaler.getFontSize(20));
     fill(0);
 
-    const leftMargin = scaler.scale(100);
-    const lineHeight = scaler.scale(30);
-    // 将起始位置下移50个单位
-    let y = scaler.scale(250); // 原来是150，下移到250
+    // update left margin of text
+    const leftMargin = scaler.scale(250);
+    const lineHeight = scaler.scale(35);
+    let y = scaler.scale(250);
 
-    text("- Use arrow keys or WASD to move character", leftMargin, y);
-    y += lineHeight;
-    text("- Press SPACE or E to pick up/drop items", leftMargin, y);
-    y += lineHeight;
-    text("- Press ESC to pause the game", leftMargin, y);
-    y += lineHeight;
-    text("- Avoid cars and carry items from left to right", leftMargin, y);
-    y += lineHeight;
-    text("- Heavier items (higher value) slow you down", leftMargin, y);
-    y += lineHeight;
-    text("- If hit by a car, you'll return to start position", leftMargin, y);
-    y += lineHeight;
-    text("- Reach the target score to complete the level", leftMargin, y);
-    y += lineHeight;
+    // update display of instruction text
+    const instructions = [
+      "Use arrow keys or WASD to move character",
+      "Press SPACE or E to pick up/drop items",
+      "Press ESC to pause the game",
+      "Avoid cars and carry items from left to right",
+      "Heavier items (higher value) slow you down",
+      "If hit by a car, you'll return to start position",
+      "Reach the target score to complete the level"
+    ];
+
+    // draw each instruction
+    instructions.forEach(instruction => {
+      // draw a spot
+      fill(139, 69, 19); // brown colour
+      ellipse(leftMargin - 15, y + 5, 8, 8);
+      
+      // draw text
+      fill(0);
+      text(instruction, leftMargin, y);
+      y += lineHeight;
+    });
 
     // Testing mode features
     if (currentGameMode === GameMode.TESTING) {
-      y += lineHeight;
       fill(0, 128, 0); // Green
-      text("Testing Mode Features:", leftMargin, y);
-      y += lineHeight;
-      text("- Game Time: 10000 seconds", leftMargin, y);
-      y += lineHeight;
-      text("- All levels unlocked", leftMargin, y);
+      textSize(scaler.getFontSize(20)); // same font-size as normal instruction
+      text("Testing Mode: Unlimited Time (10000s) | All Levels Unlocked", leftMargin, y);
     }
 
     // Draw return button
@@ -750,16 +754,16 @@ export class UiManager {
     // Use guibg image as background
     image(assetManager.getImage("guibg"), 0, 0, width, height);
 
-    // 使用与角色选择界面相同的标题样式
+    // use the same title style as character choosing screen
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(36));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // brown colour
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Settings", scaler.centerX, scaler.scale(90));
 
-    // 重置描边
+    // reset stroke
     strokeWeight(0);
 
     // 在Audio Settings按钮上方添加soundicon图像
