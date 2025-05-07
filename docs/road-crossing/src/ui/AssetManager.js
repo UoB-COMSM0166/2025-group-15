@@ -290,22 +290,22 @@ export class AssetManager {
     // item images
     this.images["cargo1"] = loadImage("./assets/delivery-box-45.png");
     //car images
-    this.images["n-blueBus"] = loadImage("./assets/n-blue-bus.svg");
-    this.images["n-darkBluesedan"] = loadImage("./assets/n-darkBlue-sedan.svg");
+    this.images["n-blueBus"] = loadImage("./assets/n-blue-bus.png");
+    this.images["n-darkBluesedan"] = loadImage("./assets/n-darkBlue-sedan.png");
     this.images["n-whiteAmbulance"] = loadImage(
-      "./assets/n-white-ambulance.svg"
+      "./assets/n-white-ambulance.png"
     );
-    this.images["n-yellowBus"] = loadImage("./assets/n-yellow-bus.svg");
-    this.images["s-redFireEngine"] = loadImage("./assets/s-red-fireEngine.svg");
-    this.images["s-darkBlueVan"] = loadImage("./assets/s-darkBlue-van.svg");
-    this.images["s-greySaloon"] = loadImage("./assets/s-grey-saloon.svg");
-    this.images["s-redPoliceCar"] = loadImage("./assets/s-red-policeCar.svg");
-    this.images["s-whiteSaloon"] = loadImage("./assets/s-white-saloon.svg");
+    this.images["n-yellowBus"] = loadImage("./assets/n-yellow-bus.png");
+    this.images["s-redFireEngine"] = loadImage("./assets/s-red-fireEngine.png");
+    this.images["s-darkBlueVan"] = loadImage("./assets/s-darkBlue-van.png");
+    this.images["s-greySaloon"] = loadImage("./assets/s-grey-saloon.png");
+    this.images["s-redPoliceCar"] = loadImage("./assets/s-red-policeCar.png");
+    this.images["s-whiteSaloon"] = loadImage("./assets/s-white-saloon.png");
     this.images["s-whiteSaloonWindow"] = loadImage(
-      "./assets/s-white-saloon-topWindow.svg"
+      "./assets/s-white-saloon-topWindow.png"
     );
     this.images["s-yellowPoliceCar"] = loadImage(
-      "./assets/s-yellow-policeCar.svg"
+      "./assets/s-yellow-policeCar.png"
     );
 
     // cargo images
@@ -318,10 +318,10 @@ export class AssetManager {
     );
 
     //volume images
-    this.images["volumeOn"] = loadImage("./assets/speaker_normal.svg");
-    this.images["volumeOff"] = loadImage("./assets/speaker-off_normal.svg");
+    this.images["volumeOn"] = loadImage("./assets/speaker_normal.png");
+    this.images["volumeOff"] = loadImage("./assets/speaker-off_normal.png");
     //pause image
-    this.images["pause"] = loadImage("./assets/pause-button_normal.svg");
+    this.images["pause"] = loadImage("./assets/pause-button_normal.png");
   }
 
   // loadLevelBackground(level) {
