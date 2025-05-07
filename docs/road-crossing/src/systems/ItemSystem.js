@@ -35,7 +35,7 @@ export class ItemSystem {
             let attempts = 0;
             do {
                 let newX = random(50, warehouseWidth - 50);
-                let newY = random(100, 400);
+                let newY = random(280, 570);
                 newItem = new Item(newX, newY);
                 attempts++;
             } while (this.isOverlapping(newItem) && attempts < 10);
@@ -70,7 +70,7 @@ export class ItemSystem {
 
             do {
                 let newX = random(50, warehouseWidth - 50);
-                let newY = random(100, 400); 
+                let newY = random(280, 570); 
                 newItem = new Item(newX, newY);
                 attempts++;
             } while (this.isOverlapping(newItem) && attempts < 10);

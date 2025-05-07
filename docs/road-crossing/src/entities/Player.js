@@ -113,22 +113,42 @@ export class Player {
 
     // Check both arrow keys and WASD keys
     if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
-      this.relativeX = Math.max(0, this.relativeX - this.speed);
-      this.x = width * this.relativeX;
-      this.isFlipped = false;
+      const newX = this.x - (width * this.speed);
+      // Check if new position is in restricted area
+      if (!((newX < 300 && this.y < 250) || (newX < 300 && this.y > 580) || 
+            (newX > 700 && this.y < 280) || (newX > 700 && this.y > 580))) {
+        this.relativeX = Math.max(0, this.relativeX - this.speed);
+        this.x = width * this.relativeX;
+        this.isFlipped = false;
+      }
     }
     if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
-      this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed);
-      this.x = width * this.relativeX;
-      this.isFlipped = true;
+      const newX = this.x + (width * this.speed);
+      // Check if new position is in restricted area
+      if (!((newX < 300 && this.y < 250) || (newX < 300 && this.y > 580) || 
+            (newX > 700 && this.y < 280) || (newX > 700 && this.y > 580))) {
+        this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed);
+        this.x = width * this.relativeX;
+        this.isFlipped = true;
+      }
     }
     if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
-      this.relativeY = Math.max(0, this.relativeY - this.speed);
-      this.y = height * this.relativeY;
+      const newY = this.y - (height * this.speed);
+      // Check if new position is in restricted area
+      if (!((this.x < 300 && newY < 250) || (this.x < 300 && newY > 580) || 
+            (this.x > 700 && newY < 280) || (this.x > 700 && newY > 580))) {
+        this.relativeY = Math.max(0, this.relativeY - this.speed);
+        this.y = height * this.relativeY;
+      }
     }
     if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
-      this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed);
-      this.y = height * this.relativeY;
+      const newY = this.y + (height * this.speed);
+      // Check if new position is in restricted area
+      if (!((this.x < 300 && newY < 250) || (this.x < 300 && newY > 580) || 
+            (this.x > 700 && newY < 280) || (this.x > 700 && newY > 580))) {
+        this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed);
+        this.y = height * this.relativeY;
+      }
     }
 
     // Detect whether moving
