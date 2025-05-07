@@ -2,6 +2,7 @@ export class AssetManager {
   constructor() {
     this.images = {};
     this.sounds = {};
+    this.fonts = {};
 
     // map of all the levels and their background images
     this.levelBackgrounds = {
@@ -12,8 +13,34 @@ export class AssetManager {
   }
 
   preload() {
+    // Set up fonts
+    // We'll use system fonts instead of loading specific fonts
+    // This avoids the need to include font files
+    window.loadedFonts = {};
+
+    // Load Chewy font for cartoon text if available
+    try {
+      this.fonts["chewy"] = loadFont("./assets/fonts/Chewy-Regular.ttf");
+      window.loadedFonts.chewy = this.fonts["chewy"];
+      console.log("Chewy font loaded successfully");
+    } catch (e) {
+      console.warn("Could not load Chewy font:", e);
+      // Fall back to system fonts
+    }
+
+    // The button class will use system fonts
+
     // background image
-    this.images["mainBg"] = loadImage("./assets/scene/Home3.jpg");
+    this.images["mainBg"] = loadImage("./assets/scene/Home4.png");
+    this.images["guibg"] = loadImage("./assets/gui/gui_bg.jpg");
+    this.images["diagboxBg"] = loadImage("./assets/gui/diagbox_bg1.png");
+
+    //load icon
+    this.images["soundicon"] = loadImage("./assets/gui/soundicon.png");
+    this.images["homeicon"] = loadImage("./assets/gui/homeicon.png");
+    this.images["level1icon"] = loadImage("./assets/gui/level1icon.png");
+    this.images["level2icon"] = loadImage("./assets/gui/level2icon.png");
+    this.images["level3icon"] = loadImage("./assets/gui/level3icon.png");
 
     // sounds
     this.sounds["menuMusic"] = loadSound("./assets/Cute and chu-2 byo.mp3");
@@ -37,6 +64,12 @@ export class AssetManager {
     // player images
     this.images["player1"] = loadImage("./assets/Character1_Walking.png");
     this.images["player2"] = loadImage("./assets/Character2_Walking.png");
+    this.images["playerSelect1"] = loadImage(
+      "./assets/character 1/Character1_Front_View.png"
+    );
+    this.images["playerSelect2"] = loadImage(
+      "./assets/character 2/Character2_Front_View.png"
+    );
 
     // Load left-facing walking image
     loadImage("./assets/character 1/Character1_Walking.png", (img) => {
