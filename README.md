@@ -49,6 +49,8 @@ To keep each run fresh, we implemented a dynamic traffic system that generates v
 
 What makes our game novel is its weight-based movement mechanic, which creates a direct connection between risk and reward. The more you carry, the harder it gets—but the greater the payoff. This, combined with shifting environments, layered difficulty, and rhythmic pacing, transforms a familiar arcade formula into a delivery challenge that’s both strategic and reflex-driven.
 
+---
+
 ### Requirements
 
 #### Stakeholder Analysis
@@ -132,6 +134,8 @@ flowchart LR
 #### Reflection
 Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
 
+---
+
 ### Sustainability, ethics and accessibility
 
 #### 1. Sustainability Analysis
@@ -154,8 +158,8 @@ We have reviewed the Green Software Foundation’s Green Software Patterns and i
 
 3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
 
+---
 
-### Design
 ### Design
 
 The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
@@ -379,6 +383,8 @@ The results of our study indicate:
 
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
 
+---
+
 ### Process
 
 Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
@@ -419,6 +425,8 @@ We also encountered occasional miscommunication, especially regarding expectatio
 One key improvement was in our decision-making process. Initially, discussions sometimes stalled due to differing opinions. Later, we introduced a lightweight decision model—first discussing pros and cons of each approach, then voting or assigning final say based on area of expertise. This balanced structure with inclusiveness and speed.
 
 Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project’s outcome but also gave us transferrable teamwork skills for future academic and professional environments.
+
+---
 
 ### Conclusion
 
