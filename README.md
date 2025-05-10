@@ -30,15 +30,14 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 </p>
 
 
-<div align="center">
 | Name         | E-mail                  | Username       |
-|--------------|-------------------------|----------------|
-| Lu Li        | <tu24288@bristol.ac.uk>   | cactus562      |
-| Wei Liu      | <ir24727@bristol.ac.uk>   | ir24727        |
-| Shuxiao Shi  | <ux24132@bristol.ac.uk>   | Wentaa         |
-| Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
-| Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
-</div>
+|:------------:|:-----------------------:|:--------------:|
+| Lu Li        | <tu24288@bristol.ac.uk> | cactus562      |
+| Wei Liu      | <ir24727@bristol.ac.uk> | ir24727        |
+| Shuxiao Shi  | <ux24132@bristol.ac.uk> | Wentaa         |
+| Qinyuan Lu   | <he24343@bristol.ac.uk> | mdfcsC         |
+| Ruirui Jia   | <bl24729@bristol.ac.uk> | alpenglow1     |
+
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
@@ -62,16 +61,15 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
-| **Layer**        | **Stakeholders**                                           |
-|------------------|------------------------------------------------------------|
-| Core             | Development Team – design, code, test, and create assets   |
-| Inner            | Project Supervisors – provide direction and feedback       |
-| Middle           | Beta Testers – test features and report usability issues   |
-| Outer (Players)  | Target Players – ultimate end-users who shape game success |
-| Outer (Platform) | Platform Providers – ensure delivery & accessibility       |
+| **Layer**          | **Stakeholders**                                                   |
+|--------------------|---------------------------------------------------------------------|
+| **Core**           | Development Team – design, code, test, and create assets           |
+| **Inner**          | Project Supervisors – provide direction and feedback               |
+| **Middle**         | Beta Testers – test features and report usability issues           |
+| **Outer (Players)**| Target Players – ultimate end-users who shape game success         |
+| **Outer (Platform)**| Platform Providers – ensure delivery and accessibility             |
 
 
----
 
 
 ### User Stories & Acceptance Criteria
@@ -90,7 +88,6 @@ As developers, we aim to ensure the game is **modular**, **immersive**, and **vi
 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
 
 
----
 
 
 #### Player-Oriented
@@ -110,8 +107,6 @@ As players, we expect a **progressively challenging** experience with options fo
 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
-
---
 
 
 #### Example: Breakdown of Game Difficulty System Design
@@ -141,7 +136,6 @@ flowchart LR
     H -->|No| J[Development Complete]
 ```
 
----
 
 
 ### Reflection
