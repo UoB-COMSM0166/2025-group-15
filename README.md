@@ -12,20 +12,25 @@
   </a>
 </p>
 
-Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
+Link to our game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
 Our game lives in the [docs](/docs) folder, and is published using Github pages to the link above.
 
-Watch the demp video [here]()
+Watch the demo video [here]()
 
 
 ## Development Team
 
 <p align="center">
+<br><i> Figure 1: Group photo of the team</i></br>
 <img width="90%" src="./Images/WechatIMG84.jpg">
 </p>
 
+<p align="center">
+    <i>Table 1: Team members</i>
+</p>
 
+<div align="center">
 | Name         | E-mail                  | Username       |
 |:------------:|:-----------------------:|:--------------:|
 | Lu Li        | <tu24288@bristol.ac.uk> | cactus562      |
@@ -33,7 +38,7 @@ Watch the demp video [here]()
 | Shuxiao Shi  | <ux24132@bristol.ac.uk> | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk> | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk> | alpenglow1     |
-
+</div>
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
@@ -67,6 +72,11 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 ### Stakeholder Analysis
 
 To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
+
+<p align="center">
+    <i>Table 2: Stakeholder Layers Based on the Onion Model</i>
+</p>
+
 
 | **Layer**          | **Stakeholders**                                                   |
 |--------------------|---------------------------------------------------------------------|
@@ -157,6 +167,10 @@ Our team gained valuable insights into requirements analysis and project managem
 ### 1. Sustainability Analysis
 
 Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's potential sustainability impacts across five key dimensions:
+
+<p align="center">
+    <i>Table 3: Game Sustainability Analysis Based on the SusAF Framework</i>
+</p>
 
 | **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
 |------------------------------|----------------------|--------------------------|
@@ -298,6 +312,10 @@ We also iterated on the **cargo refresh mechanism**. In early versions, all carg
 
 We also analysed and evaluated the testers' feedback based on Nielsen's heuristic principles and documented our findings in the Heuristic Evaluation Table below.
 
+<p align="center">
+    <i>Table 4: Heuristic Evaluation of Usability Issues Based on Nielsen's Principles</i>
+</p>
+
 | Interface | Issue | Heuristic(s) | Frequency 0(rare) to 4(common) | Impact 0(easy) to difficult(4) | Persistence 0(once) to 4(repeat) | Severity = (F+I+P)/3 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Collision Detection | Ambiguous collision boundaries result in unpredictable gameplay outcomes | Visibility of System Status, Error Prevention | 4 | 4 | 4 | 4 |
@@ -332,6 +350,11 @@ We use NASA TLX and SUS to measure separately, and use the [Wilcoxon signed-rank
 
 The table below presents participants' ratings across six dimensions of workload, as well as calculated overall workload scores:
 
+<p align="center">
+    <i>Table 5: NASA-TLX Workload Ratings for Easy and Difficult Gameplay Conditions</i>
+</p>
+
+
 |User|Difficulty|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|Score|
 |---|---|---|---|---|---|---|---|---|
 |User 1|Easy|13|6|12|13|10|6|45.00|
@@ -361,6 +384,10 @@ The table below presents participants' ratings across six dimensions of workload
 > All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
 
 #### [System Usability Survey](./Images/SUS-template.png)
+
+<p align="center">
+    <i>Table 6: SUS Ratings by User and Difficulty Level</i>
+</p>
 
 |User|Difficulty|Q1|Q2|Q3|Q4|Q5|Q6|Q7|Q8|Q9|Q10|Score|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
