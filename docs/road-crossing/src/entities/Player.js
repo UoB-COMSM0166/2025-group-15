@@ -3,13 +3,13 @@ import { getDeliveryZone } from "../config/Constants.js";
 export class Player {
   // reference value in ideal design
   static designWidth = 30;
-  static designHeight = 97 / 42 * Player.designWidth; // 970/420 is the aspect ratio of the player image
+  static designHeight = (97 / 42) * Player.designWidth; // 970/420 is the aspect ratio of the player image
   static designBaseSpeed = 0.0035; // relative speed, based on the width of the screen
 
   constructor(x, y, playerOption = "option1") {
     //if no position available, set player at the right side of delivery area
     if (x !== null && y !== null) {
-      this.relativeX = x / width;  // store relative position
+      this.relativeX = x / width; // store relative position
       this.relativeY = y / height;
       this.x = x;
       this.y = y;
@@ -120,64 +120,102 @@ export class Player {
     const bottomBoundaryRight = 0.7;
 
     // Check both arrow keys and WASD keys
-    if (keys[LEFT_ARROW] || keys[65]) { // LEFT_ARROW or 'A'
-      const newX = this.x - (width * this.speed);
+    if (keys[LEFT_ARROW] || keys[65]) {
+      // LEFT_ARROW or 'A'
+      const newX = this.x - width * this.speed;
       const newRelativeX = newX / width;
       const currentRelativeY = this.y / height;
       // Check if new position is in restricted area
-      if (!((newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) || 
-            (newRelativeX < leftBoundary && currentRelativeY > bottomBoundaryLeft) || 
-            (newRelativeX > rightBoundary && currentRelativeY < topBoundaryRight) || 
-            (newRelativeX > rightBoundary && currentRelativeY > bottomBoundaryRight))) {
+      if (
+        !(
+          (newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) ||
+          (newRelativeX < leftBoundary &&
+            currentRelativeY > bottomBoundaryLeft) ||
+          (newRelativeX > rightBoundary &&
+            currentRelativeY < topBoundaryRight) ||
+          (newRelativeX > rightBoundary &&
+            currentRelativeY > bottomBoundaryRight)
+        )
+      ) {
         this.relativeX = Math.max(0, this.relativeX - this.speed);
         this.x = width * this.relativeX;
         this.isFlipped = false;
       }
     }
-    if (keys[RIGHT_ARROW] || keys[68]) { // RIGHT_ARROW or 'D'
-      const newX = this.x + (width * this.speed);
+    if (keys[RIGHT_ARROW] || keys[68]) {
+      // RIGHT_ARROW or 'D'
+      const newX = this.x + width * this.speed;
       const newRelativeX = newX / width;
       const currentRelativeY = this.y / height;
       // Check if new position is in restricted area
-      if (!((newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) || 
-            (newRelativeX < leftBoundary && currentRelativeY > bottomBoundaryLeft) || 
-            (newRelativeX > rightBoundary && currentRelativeY < topBoundaryRight) || 
-            (newRelativeX > rightBoundary && currentRelativeY > bottomBoundaryRight))) {
-        this.relativeX = Math.min(1 - this.width / width, this.relativeX + this.speed);
+      if (
+        !(
+          (newRelativeX < leftBoundary && currentRelativeY < topBoundaryLeft) ||
+          (newRelativeX < leftBoundary &&
+            currentRelativeY > bottomBoundaryLeft) ||
+          (newRelativeX > rightBoundary &&
+            currentRelativeY < topBoundaryRight) ||
+          (newRelativeX > rightBoundary &&
+            currentRelativeY > bottomBoundaryRight)
+        )
+      ) {
+        this.relativeX = Math.min(
+          1 - this.width / width,
+          this.relativeX + this.speed
+        );
         this.x = width * this.relativeX;
         this.isFlipped = true;
       }
     }
-    if (keys[UP_ARROW] || keys[87]) { // UP_ARROW or 'W'
-      const newY = this.y - (height * this.speed);
+    if (keys[UP_ARROW] || keys[87]) {
+      // UP_ARROW or 'W'
+      const newY = this.y - height * this.speed;
       const newRelativeY = newY / height;
       const currentRelativeX = this.x / width;
       // Check if new position is in restricted area
-      if (!((currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) || 
-            (currentRelativeX < leftBoundary && newRelativeY > bottomBoundaryLeft) || 
-            (currentRelativeX > rightBoundary && newRelativeY < topBoundaryRight) || 
-            (currentRelativeX > rightBoundary && newRelativeY > bottomBoundaryRight))) {
+      if (
+        !(
+          (currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) ||
+          (currentRelativeX < leftBoundary &&
+            newRelativeY > bottomBoundaryLeft) ||
+          (currentRelativeX > rightBoundary &&
+            newRelativeY < topBoundaryRight) ||
+          (currentRelativeX > rightBoundary &&
+            newRelativeY > bottomBoundaryRight)
+        )
+      ) {
         this.relativeY = Math.max(0, this.relativeY - this.speed);
         this.y = height * this.relativeY;
       }
     }
-    if (keys[DOWN_ARROW] || keys[83]) { // DOWN_ARROW or 'S'
-      const newY = this.y + (height * this.speed);
+    if (keys[DOWN_ARROW] || keys[83]) {
+      // DOWN_ARROW or 'S'
+      const newY = this.y + height * this.speed;
       const newRelativeY = newY / height;
       const currentRelativeX = this.x / width;
       // Check if new position is in restricted area
-      if (!((currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) || 
-            (currentRelativeX < leftBoundary && newRelativeY > bottomBoundaryLeft) || 
-            (currentRelativeX > rightBoundary && newRelativeY < topBoundaryRight) || 
-            (currentRelativeX > rightBoundary && newRelativeY > bottomBoundaryRight))) {
-        this.relativeY = Math.min(1 - this.height / height, this.relativeY + this.speed);
+      if (
+        !(
+          (currentRelativeX < leftBoundary && newRelativeY < topBoundaryLeft) ||
+          (currentRelativeX < leftBoundary &&
+            newRelativeY > bottomBoundaryLeft) ||
+          (currentRelativeX > rightBoundary &&
+            newRelativeY < topBoundaryRight) ||
+          (currentRelativeX > rightBoundary &&
+            newRelativeY > bottomBoundaryRight)
+        )
+      ) {
+        this.relativeY = Math.min(
+          1 - this.height / height,
+          this.relativeY + this.speed
+        );
         this.y = height * this.relativeY;
       }
     }
 
     // Detect whether moving
-    this.isMoving = (this.x !== this.lastX || this.y !== this.lastY);
-    
+    this.isMoving = this.x !== this.lastX || this.y !== this.lastY;
+
     // Update animation frame
     if (this.isMoving) {
       const currentTime = millis();
@@ -198,24 +236,23 @@ export class Player {
         // Use inverted images and keep the aspect ratio
         const drawWidth = this.lyingWidth;
         const drawHeight = this.lyingHeight;
-        
+
         // Drawing using CORNER mode, consistent with walking pictures
 
         imageMode(CORNER);
-        
+
         if (this.isFlipped) {
           push();
           scale(-1, 1);
           image(
             assetManager.getImage("player1Lying"),
-            -this.x - drawWidth, 
+            -this.x - drawWidth,
             this.y,
             drawWidth,
             drawHeight
           );
           pop();
         } else {
-
           image(
             assetManager.getImage("player1Lying"),
             this.x,
@@ -225,19 +262,18 @@ export class Player {
           );
         }
       } else if (this.playerOption === "option2") {
-
-        const lyingScale = this.width / 30; 
+        const lyingScale = this.width / 30;
         const drawWidth = this.lyingWidth * lyingScale;
         const drawHeight = this.lyingHeight * lyingScale;
-        
+
         imageMode(CORNER);
-        
+
         if (this.isFlipped) {
           push();
-          scale(-1, 1); 
+          scale(-1, 1);
           image(
             assetManager.getImage("player2Lying"),
-            -this.x - drawWidth, 
+            -this.x - drawWidth,
             this.y,
             drawWidth,
             drawHeight
@@ -254,17 +290,21 @@ export class Player {
         }
       }
     } else if (this.playerOption === "option1") {
-      imageMode(CORNER); 
-      
+      imageMode(CORNER);
+
       // Get aspect ratio information for both image types
-      const walkingRatio = assetManager.images["player1WalkingRatio"] || { ratio: 97/42 };
-      const sideViewRatio = assetManager.images["player1SideViewRatio"] || { ratio: walkingRatio.ratio };
-      
+      const walkingRatio = assetManager.images["player1WalkingRatio"] || {
+        ratio: 97 / 42,
+      };
+      const sideViewRatio = assetManager.images["player1SideViewRatio"] || {
+        ratio: walkingRatio.ratio,
+      };
+
       // Choose different images based on whether player is holding an item
       if (this.hasItem) {
         if (this.isFlipped) {
           scale(-1, 1); // Horizontal Flip
-          
+
           // Select different images according to the animation frame
           if (this.isMoving && this.animationFrame === 1) {
             image(
@@ -284,7 +324,6 @@ export class Player {
             );
           }
         } else {
-          
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player1WalkingWithCargo"),
@@ -313,7 +352,7 @@ export class Player {
               // First frame - use right-facing image
               const drawHeight = this.height;
               const drawWidth = drawHeight * sideViewRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player1SideView"),
                 this.x,
@@ -325,13 +364,13 @@ export class Player {
               // Second frame - use flipped left-facing walking image
               push();
               scale(-1, 1); // Horizontal flip
-              
+
               const drawHeight = this.height;
               const drawWidth = drawHeight * walkingRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player1Walking"),
-                -this.x - drawWidth, 
+                -this.x - drawWidth,
                 this.y,
                 drawWidth,
                 drawHeight
@@ -342,7 +381,7 @@ export class Player {
             // Static - use right-facing standing image
             const drawHeight = this.height;
             const drawWidth = drawHeight * sideViewRatio.ratio;
-            
+
             image(
               assetManager.getImage("player1SideView"),
               this.x,
@@ -359,7 +398,7 @@ export class Player {
               // First frame - use walking image
               const drawHeight = this.height;
               const drawWidth = drawHeight * walkingRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player1Walking"),
                 this.x,
@@ -371,11 +410,11 @@ export class Player {
               // Second frame - flip right-facing image
               push();
               scale(-1, 1); // Horizontal flip
-              
+
               // Calculate size based on SideView image ratio
               const drawHeight = this.height;
               const drawWidth = drawHeight * sideViewRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player1SideView"),
                 -this.x - drawWidth, // Adjust the flip coordinates according to the actual width
@@ -389,13 +428,13 @@ export class Player {
             // Static - use right-facing standing image, but flipped
             push();
             scale(-1, 1); // Horizontal flip
-            
+
             const drawHeight = this.height;
             const drawWidth = drawHeight * sideViewRatio.ratio;
-            
+
             image(
               assetManager.getImage("player1SideView"),
-              -this.x - drawWidth, 
+              -this.x - drawWidth,
               this.y,
               drawWidth,
               drawHeight
@@ -405,18 +444,21 @@ export class Player {
         }
       }
     } else if (this.playerOption === "option2") {
-      imageMode(CORNER); 
-      
+      imageMode(CORNER);
+
       // Get aspect ratio information for both image types
-      const walkingRatio = assetManager.images["player2WalkingRatio"] || { ratio: 97/42 };
-      const sideViewRatio = assetManager.images["player2SideViewRatio"] || { ratio: walkingRatio.ratio };
-      
+      const walkingRatio = assetManager.images["player2WalkingRatio"] || {
+        ratio: 97 / 42,
+      };
+      const sideViewRatio = assetManager.images["player2SideViewRatio"] || {
+        ratio: walkingRatio.ratio,
+      };
+
       // Choose different images based on whether player is holding an item
       if (this.hasItem) {
         if (this.isFlipped) {
-          scale(-1, 1); 
-          
-          
+          scale(-1, 1);
+
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player2WalkingWithCargo"),
@@ -435,7 +477,6 @@ export class Player {
             );
           }
         } else {
-          
           if (this.isMoving && this.animationFrame === 1) {
             image(
               assetManager.getImage("player2WalkingWithCargo"),
@@ -464,7 +505,7 @@ export class Player {
               // First frame - use right-facing image
               const drawHeight = this.height;
               const drawWidth = drawHeight * sideViewRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player2SideView"),
                 this.x,
@@ -476,10 +517,10 @@ export class Player {
               // Second frame - use flipped left-facing walking image
               push();
               scale(-1, 1); // Horizontal flip
-              
+
               const drawHeight = this.height;
               const drawWidth = drawHeight * walkingRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player2Walking"),
                 -this.x - drawWidth, // 根据实际宽度调整翻转坐标
@@ -493,7 +534,7 @@ export class Player {
             // Static - use right-facing standing image
             const drawHeight = this.height;
             const drawWidth = drawHeight * sideViewRatio.ratio;
-            
+
             image(
               assetManager.getImage("player2SideView"),
               this.x,
@@ -510,7 +551,7 @@ export class Player {
               // First frame - use walking image
               const drawHeight = this.height;
               const drawWidth = drawHeight * walkingRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player2Walking"),
                 this.x,
@@ -522,14 +563,14 @@ export class Player {
               // Second frame - flip right-facing image
               push();
               scale(-1, 1); // Horizontal flip
-              
+
               // Calculate size based on SideView image ratio
               const drawHeight = this.height;
               const drawWidth = drawHeight * sideViewRatio.ratio;
-              
+
               image(
                 assetManager.getImage("player2SideView"),
-                -this.x - drawWidth, 
+                -this.x - drawWidth,
                 this.y,
                 drawWidth,
                 drawHeight
@@ -540,13 +581,13 @@ export class Player {
             // Static - use right-facing standing image, but flipped
             push();
             scale(-1, 1); // Horizontal flip
-            
+
             const drawHeight = this.height;
             const drawWidth = drawHeight * sideViewRatio.ratio;
-            
+
             image(
               assetManager.getImage("player2SideView"),
-              -this.x - drawWidth, 
+              -this.x - drawWidth,
               this.y,
               drawWidth,
               drawHeight

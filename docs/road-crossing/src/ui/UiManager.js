@@ -332,64 +332,64 @@ export class UiManager {
   drawMainMenu() {
     image(assetManager.getImage("mainBg"), 0, 0, width, height);
 
-    // 绘制卡通风格的标题
+    // Draw cartoon style title
     textAlign(CENTER, CENTER);
 
-    // 如果Chewy字体已加载，则使用它，否则使用默认字体
+    // If Chewy font is loaded, use it, otherwise use default font
     if (window.loadedFonts && window.loadedFonts.chewy) {
       textFont(window.loadedFonts.chewy);
     }
 
-    // 设置字体大小
+    // Set font size
     const titleSize = scaler.getFontSize(64);
     textSize(titleSize);
 
-    // 标题位置 - 下移50个单位
-    const titleY = scaler.scale(162); // 原来是112，下移50
+    // Title position - moved down 50 units
+    const titleY = scaler.scale(162); // Originally 112, moved down by 50
 
-    // 先绘制棕色边框（8个方向）
-    const outlineColor = color(139, 69, 19); // #8b4513 棕色
+    // First draw brown outline (8 directions)
+    const outlineColor = color(139, 69, 19); // #8b4513 brown
     const outlineOffset = scaler.scale(2);
     fill(outlineColor);
 
-    // 左上
+    // Top left
     text(
       "Crazy Delivery",
       scaler.centerX - outlineOffset,
       titleY - outlineOffset
     );
-    // 右上
+    // Top right
     text(
       "Crazy Delivery",
       scaler.centerX + outlineOffset,
       titleY - outlineOffset
     );
-    // 左下
+    // Bottom left
     text(
       "Crazy Delivery",
       scaler.centerX - outlineOffset,
       titleY + outlineOffset
     );
-    // 右下
+    // Bottom right
     text(
       "Crazy Delivery",
       scaler.centerX + outlineOffset,
       titleY + outlineOffset
     );
-    // 上
+    // Top
     text("Crazy Delivery", scaler.centerX, titleY - outlineOffset);
-    // 右
+    // Right
     text("Crazy Delivery", scaler.centerX + outlineOffset, titleY);
-    // 左
+    // Left
     text("Crazy Delivery", scaler.centerX - outlineOffset, titleY);
-    // 下
+    // Bottom
     text("Crazy Delivery", scaler.centerX, titleY + outlineOffset);
 
-    // 最后绘制金黄色文字
-    fill(238, 173, 14); // #EEAD0E 金黄色
+    // Finally draw golden yellow text
+    fill(238, 173, 14); // #EEAD0E golden yellow
     text("Crazy Delivery", scaler.centerX, titleY);
 
-    // 重置字体为默认值，以便后续文字正常显示
+    // Reset font to default value for subsequent text display
     textFont("Arial, sans-serif");
     textSize(scaler.getFontSize(20));
 
@@ -402,7 +402,7 @@ export class UiManager {
       text(
         "Testing Mode Enabled: Unlimited Time | All Levels Unlocked",
         scaler.centerX,
-        titleY + scaler.scale(65) // 跟随标题一起下移
+        titleY + scaler.scale(65) // Move along with the title
       );
     }
 
@@ -419,7 +419,7 @@ export class UiManager {
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(36));
     //fill(0);
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
@@ -483,16 +483,16 @@ export class UiManager {
     // Use guibg image as background
     image(assetManager.getImage("guibg"), 0, 0, width, height);
 
-    // 标题样式
+    // Title style
     textAlign(CENTER, CENTER);
     textSize(scaler.scale(36));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Select Level", scaler.centerX, scaler.scale(90));
 
-    // 重置描边
+    // Reset stroke
     strokeWeight(0);
 
     // Testing mode indicator
@@ -506,26 +506,26 @@ export class UiManager {
       );
     }
 
-    // 获取level1icon图片
+    // Get level1icon image
     const level1Icon = assetManager.getImage("level1icon");
     const level2Icon = assetManager.getImage("level2icon");
     const level3Icon = assetManager.getImage("level3icon");
 
-    // 绘制关卡选择按钮
+    // Draw level selection buttons
     for (let i = 0; i < this.buttons.levelSelect.length; i++) {
-      // 对于Level 1按钮，使用level1icon作为背景
+      // For Level 1 button, use level1icon as background
       if (i === 0 && level1Icon) {
         this.buttons.levelSelect[i].drawWithBackground(level1Icon);
       }
-      // 对于Level 2按钮，如果有图标则使用level2icon作为背景
+      // For Level 2 button, if icon exists use level2icon as background
       else if (i === 1 && level2Icon) {
         this.buttons.levelSelect[i].drawWithBackground(level2Icon);
       }
-      // 对于Level 3按钮，如果有图标则使用level3icon作为背景
+      // For Level 3 button, if icon exists use level3icon as background
       else if (i === 2 && level3Icon) {
         this.buttons.levelSelect[i].drawWithBackground(level3Icon);
       }
-      // 其他按钮正常绘制
+      // Draw other buttons normally
       else {
         this.buttons.levelSelect[i].draw();
       }
@@ -543,27 +543,27 @@ export class UiManager {
     const menuX = scaler.scale(325);
     const menuY = scaler.scale(150);
 
-    // 使用diagboxBg图像替代白色矩形背景
+    // Use diagboxBg image instead of white rectangle background
     const diagBoxImg = assetManager.getImage("diagboxBg");
     if (diagBoxImg) {
-      // 在同样的位置绘制暂停菜单背景图像
+      // Draw pause menu background image at the same position
       image(diagBoxImg, menuX, menuY, menuWidth, menuHeight);
     } else {
-      // 如果图像加载失败，回退到原来的白色矩形
+      // If image fails to load, fall back to original white rectangle
       fill(255);
       rect(menuX, menuY, menuWidth, menuHeight);
     }
 
-    // 使用与角色选择界面相同的标题样式
+    // Use the same title style as character selection screen
     textAlign(CENTER, CENTER);
     textSize(scaler.scale(28));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Game Paused", scaler.centerX, scaler.scale(270));
 
-    // 重置描边
+    // Reset stroke
     strokeWeight(0);
 
     // Draw buttons
@@ -584,10 +584,10 @@ export class UiManager {
     const boxWidth = scaler.scale(400);
     const boxHeight = scaler.scale(420);
 
-    // 使用diagboxBg图像替代白色矩形背景
+    // Use diagboxBg image instead of white rectangle background
     const diagBoxImg = assetManager.getImage("diagboxBg");
     if (diagBoxImg) {
-      // 在同样的位置绘制对话框背景图像
+      // Draw dialog box background image at the same position
       image(
         diagBoxImg,
         scaler.centerX - boxWidth / 2,
@@ -596,7 +596,7 @@ export class UiManager {
         boxHeight
       );
     } else {
-      // 如果图像加载失败，回退到原来的白色矩形
+      // If image fails to load, fall back to original white rectangle
       fill(255);
       rect(
         scaler.centerX - boxWidth / 2,
@@ -606,16 +606,16 @@ export class UiManager {
       );
     }
 
-    // 使用与角色选择界面相同的标题样式
+    // Use the same title style as character selection screen
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(28));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Level Complete!", scaler.centerX, scaler.scale(275));
 
-    // 重置描边和字体样式
+    // Reset stroke and font style
     strokeWeight(0);
     textSize(scaler.getFontSize(24));
     fill(0);
@@ -636,10 +636,10 @@ export class UiManager {
     const boxWidth = scaler.scale(400);
     const boxHeight = scaler.scale(400);
 
-    // 使用diagboxBg图像替代白色矩形背景
+    // Use diagboxBg image instead of white rectangle background
     const diagBoxImg = assetManager.getImage("diagboxBg");
     if (diagBoxImg) {
-      // 在同样的位置绘制对话框背景图像
+      // Draw dialog box background image at the same position
       image(
         diagBoxImg,
         scaler.centerX - boxWidth / 2,
@@ -648,7 +648,7 @@ export class UiManager {
         boxHeight
       );
     } else {
-      // 如果图像加载失败，回退到原来的白色矩形
+      // If image fails to load, fall back to original white rectangle
       fill(255);
       rect(
         scaler.centerX - boxWidth / 2,
@@ -658,16 +658,16 @@ export class UiManager {
       );
     }
 
-    // 使用与角色选择界面相同的标题样式
+    // Use the same title style as character selection screen
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(28));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Game Over", scaler.centerX, scaler.scale(287));
 
-    // 重置描边和字体样式
+    // Reset stroke and font style
     strokeWeight(0);
     textSize(scaler.getFontSize(20));
     fill(0);
@@ -693,16 +693,16 @@ export class UiManager {
     // Use guibg image as background
     image(assetManager.getImage("guibg"), 0, 0, width, height);
 
-    // 使用与角色选择界面相同的标题样式
+    // Use the same title style as character selection screen
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(36));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Game Instructions", scaler.centerX, scaler.scale(90));
 
-    // 重置描边和字体样式
+    // Reset stroke and font style
     strokeWeight(0);
 
     // Instructions
@@ -770,20 +770,20 @@ export class UiManager {
     // reset stroke
     strokeWeight(0);
 
-    // 在Audio Settings按钮上方添加soundicon图像
+    // Add soundicon image above the Audio Settings button
     const soundIcon = assetManager.getImage("soundicon");
     const homeIcon = assetManager.getImage("homeicon");
     if (soundIcon) {
-      // 调整图标大小和位置
-      const iconSize = scaler.scale(120); // 增加图标大小
-      const btnX = window.scaler.scale(280); // Audio Settings按钮的x坐标
-      const btnY = window.scaler.scale(290); // Audio Settings按钮的y坐标
+      // Adjust icon size and position
+      const iconSize = scaler.scale(120); // Increase icon size
+      const btnX = window.scaler.scale(280); // Audio Settings button x-coordinate
+      const btnY = window.scaler.scale(290); // Audio Settings button y-coordinate
 
       image(soundIcon, btnX, btnY, iconSize, iconSize);
     }
 
     if (homeIcon) {
-      // 调整图标大小和位置
+      // Adjust icon size and position
       const iconSize = scaler.scale(120);
       const btnX = window.scaler.scale(600);
       const btnY = window.scaler.scale(290);
@@ -807,20 +807,20 @@ export class UiManager {
     // Use guibg image as background
     image(assetManager.getImage("guibg"), 0, 0, width, height);
 
-    // 使用与角色选择界面相同的标题样式
+    // Use the same title style as character selection screen
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(36));
-    stroke(139, 69, 19); // 改为棕色描边
+    stroke(139, 69, 19); // Change to brown stroke
     strokeWeight(6);
     fill("rgb(240, 213, 155)");
     textFont("Arial");
     text("Audio Settings", scaler.centerX, scaler.scale(90));
 
-    // 绘制音量文本
+    // Draw volume text
     textAlign(CENTER, CENTER);
     textSize(scaler.getFontSize(24));
-    strokeWeight(0); // 取消描边
-    fill(0); // 黑色
+    strokeWeight(0); // Remove stroke
+    fill(0); // Black
     text(
       "Volume: " + floor(this.game.volume * 100) + "%",
       scaler.centerX,
@@ -915,7 +915,5 @@ export class UiManager {
     if (pauseImg) {
       image(pauseImg, width - 35, 8, buttonSize, buttonSize);
     }
-
-    // textAlign(LEFT, BASELINE);
   }
 }
