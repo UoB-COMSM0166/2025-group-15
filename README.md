@@ -249,14 +249,6 @@ We also iterated on the **cargo refresh mechanism**. In early versions, all carg
 
 ### Evaluation
 
-- 15% ~750 words
-
-- One qualitative evaluation (your choice)
-
-- One quantitative evaluation (of your choice)
-
-- Description of how code was tested.
-
 #### Qualitative Evaluations
 
 After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game’s design and playability.
@@ -386,8 +378,6 @@ The results of our study indicate:
 - Individual differences in adaptability were observed, with some users (particularly User 9) showing dramatic changes in both workload and usability metrics, highlighting varying resilience to increased difficulty among users.
 
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
-
-#### Code Testing
 
 ### Process
 
