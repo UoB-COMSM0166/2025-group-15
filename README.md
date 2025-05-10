@@ -75,15 +75,15 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 ### User Stories & Acceptance Criteria
 To address both technical implementation and player experience, we divided the user stories and acceptance criteria into two categories: <Developer-Oriented> and <Player-Oriented>.
 
-#### 1.Developer-Oriented
+#### 1. Developer-Oriented
 
-**User Stories**  
+User Stories：
 > As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
 > - Breaking the game into independent, well-defined components.
 > - Designing immersive sound effects and background music that enhance the > gaming experience.
 > - Implementing smooth animations that are consistent with the game's artistic style.
 
-**Acceptance Criteria**
+Acceptance Criteria：
 > 1. Each game module must be independently developed, tested, and integrated following a clear development plan.
 > 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
 > 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
@@ -91,9 +91,9 @@ To address both technical implementation and player experience, we divided the u
 
 
 
-#### 2.Player-Oriented
+#### 2. Player-Oriented
 
-**User Stories**  
+User Stories：
 > As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
 > - Experience increasing difficulty levels throughout the game.
 > - Be able to pause and resume gameplay at any point.
@@ -101,7 +101,7 @@ To address both technical implementation and player experience, we divided the u
 > - Track our scores and compete on leaderboards.
 > - Engage with eco-friendly elements within the game.
 
-**Acceptance Criteria**
+Acceptance Criteria：
 > 1. The game's difficulty should gradually increase with each level to maintain player engagement.
 > 2. The pause feature must freeze the game at the current state and allow players to resume from the exact point where they paused.
 > 3. Customizations made to characters should appear instantly and in real-time during gameplay.
