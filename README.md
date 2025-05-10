@@ -31,6 +31,7 @@ Watch the demo video [here]()
 </p>
 
 <div align="center">
+
 | Name         | E-mail                  | Username       |
 |:------------:|:-----------------------:|:--------------:|
 | Lu Li        | <tu24288@bristol.ac.uk> | cactus562      |
@@ -38,6 +39,7 @@ Watch the demo video [here]()
 | Shuxiao Shi  | <ux24132@bristol.ac.uk> | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk> | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk> | alpenglow1     |
+
 </div>
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
