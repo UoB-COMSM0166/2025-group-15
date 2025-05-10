@@ -146,6 +146,8 @@ Acceptance Criteria：
 5. **Development Sequence**  
    Early in the development process, a parameter configuration system was established to facilitate debugging and balance adjustments. This system helped streamline the overall development workflow and ensured that balance adjustments could be made efficiently as new challenges and feedback emerged.
 
+
+<p align="center"><i>Figure 2: Game Difficulty System Flowchart</i></p>
 ```mermaid
 flowchart LR
     B[Core Difficulty System] --> E[Add Feedback System Features]
@@ -212,7 +214,13 @@ Levels are configured using the `LevelConfig` class, which defines difficulty, g
 
 This architecture supports code reusability and parallel development by dividing responsibilities among self-contained modules.
 
-![classDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true)
+
+
+<p align="center"><i>Figure 3: Class Diagram</i></p>
+<div align="center">
+  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true" width="1100">
+</div>
+
 
 
 ### Behavioural Design
@@ -231,7 +239,11 @@ Help instructions are accessible from the main menu. When selected, the player i
 
 The modular structure and clearly defined sequences support smooth user interactions and maintain high responsiveness across the game loop.
 
-![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
+<p align="center"><i>Figure 4: Sequence diagram</i></p>
+
+<p align="center">
+  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true" width="800">
+</p>
 
 
 
@@ -449,7 +461,12 @@ We implemented **Work-in-Progress (WIP) limits** on active tasks to reduce overl
 
 Code collaboration was facilitated through **Git and GitHub**, which we used for version control, pull request reviews, and issue tracking. For document collaboration—including this report—we used **Google Docs**, which allowed for simultaneous editing and real-time commenting during report drafting sessions.
 
-![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true)
+<p align="center"><i>Figure 5: Kanban Board</i></p>
+
+<p align="center">
+  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true" width="800">
+</p>
+
 
 ### Roles and Responsibilities
 
