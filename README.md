@@ -171,7 +171,7 @@ We have reviewed the Green Software Foundation’s Green Software Patterns and i
 
 ## Design
 
-The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
+> The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
 
 ### System Architecture
 
@@ -214,9 +214,9 @@ The modular structure and clearly defined sequences support smooth user interact
 
 ## Implementation
 
-Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
+> Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
 
-Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them.
+> Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them.
 
 ### 1. **Collision Detection Between Player and Vehicles**
 
@@ -236,7 +236,7 @@ This **direction-sensitive collision model** not only reduced unfair elimination
 **Challenge:**  
 Designing realistic and challenging traffic patterns was essential. If traffic appeared too randomly, the game could feel either too easy or unfairly difficult. On the other hand, overly predictable patterns made the game repetitive.
 
-**Solution:**
+**Solution:**  
 To maintain a dynamic and unpredictable gameplay experience, our game adopts a **randomized car generation system**. The roads are categorized into three types based on speed: slow, medium, and fast. Each lane manages its own spawning logic independently.
 
 At runtime, the system uses a **frame-based timer** to determine whether a new car should be generated. The time interval between car spawns is randomly selected within a defined range (between 60 and 180 frames, roughly 1 to 3 seconds). After each generation, the interval is reset to a new random value, which prevents predictable traffic patterns.
@@ -264,7 +264,7 @@ We also iterated on the **cargo refresh mechanism**. In early versions, all carg
 
 ### Qualitative Evaluations
 
-After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game’s design and playability.
+> After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game’s design and playability.
 
 #### Key Areas of Improvement
 
@@ -396,7 +396,7 @@ In conclusion, our system successfully establishes meaningful differentiation be
 
 ## Process
 
-Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
+> Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
 
 ### Team Collaboration
 
