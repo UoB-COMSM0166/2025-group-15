@@ -8,7 +8,7 @@
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
-Our game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
+Our game lives in the [docs](/docs) folder, and is published using Github pages to the link above.
 
 Watch the demp video [here]()
 
