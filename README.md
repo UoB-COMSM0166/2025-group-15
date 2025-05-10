@@ -49,7 +49,7 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 [1. Introduction](#introduction)  
 [2. Requirement](#requirements)  
-[3. Sustainability, ethics and accessibility](#sustainability-ethics-and-accessibility)  
+[3. Sustainability, Ethics and Accessibility](#sustainability-ethics-and-accessibility)  
 [4. Design](#design)  
 [5. Implementation](#implementation)  
 [6. Evaluation](#evaluation)  
@@ -168,7 +168,7 @@ Our team gained valuable insights into requirements analysis and project managem
 
 
 
-## Sustainability, ethics and accessibility
+## Sustainability, Ethics and Accessibility
 
 ### 1. Sustainability Analysis
 
