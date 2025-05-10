@@ -66,6 +66,9 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 | Outer (Platform) | Platform Providers – ensure delivery & accessibility       |
 
 
+---
+
+
 ### User Stories & Acceptance Criteria
 
 #### Developer-Oriented
@@ -80,6 +83,9 @@ As developers, we aim to ensure the game is **modular**, **immersive**, and **vi
 1. Each game module must be independently developed, tested, and integrated following a clear development plan.
 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
+
+
+---
 
 
 #### Player-Oriented
@@ -98,6 +104,9 @@ As players, we expect a **progressively challenging** experience with options fo
 3. Customizations made to characters should appear instantly and in real-time during gameplay.
 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
+
+
+--
 
 
 #### Example: Breakdown of Game Difficulty System Design
@@ -126,6 +135,9 @@ flowchart LR
     I --> G
     H -->|No| J[Development Complete]
 ```
+
+---
+
 
 ### Reflection
 Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
