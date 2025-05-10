@@ -1,26 +1,16 @@
 # 2025-group-15
 
 2025 COMSM0166 group 15
-
-## Contents of The Report
-
-[1. Introduction](#introduction)  
-[2. Requirement](#requirements)  
-[3. Sustainability, ethics and accessibility](#sustainability-ethics-and-accessibility)  
-[4. Design](#design)  
-[5. Implementation](#implementation)  
-[6. Evaluation](#evaluation)  
-[7. Process](#process)  
-[8. Conclution](#conclusion)  
+  
 
 
 ## Crazy Delivery
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
-Your game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
+Our game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
 
-Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
+Watch the demp video [here]()
 
 
 ## Development Team
@@ -41,6 +31,17 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
+
+## Contents of The Report
+
+[1. Introduction](#introduction)  
+[2. Requirement](#requirements)  
+[3. Sustainability, ethics and accessibility](#sustainability-ethics-and-accessibility)  
+[4. Design](#design)  
+[5. Implementation](#implementation)  
+[6. Evaluation](#evaluation)  
+[7. Process](#process)  
+[8. Conclution](#conclusion)
 
 
 ## Introduction
