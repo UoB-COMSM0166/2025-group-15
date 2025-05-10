@@ -79,6 +79,7 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
     <i>Table 2: Stakeholder Layers Based on the Onion Model</i>
 </p>
 
+<div align="center">
 
 | **Layer**          | **Stakeholders**                                                   |
 |--------------------|---------------------------------------------------------------------|
@@ -88,7 +89,7 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 | **Outer (Players)**| Target Players – ultimate end-users who shape game success         |
 | **Outer (Platform)**| Platform Providers – ensure delivery and accessibility             |
 
-
+</div>
 
 
 ### User Stories & Acceptance Criteria
