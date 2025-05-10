@@ -13,7 +13,7 @@
 [Process](#process)  
 [Conclution](#conclusion)  
 
-## Your Game
+## Crazy Delivery
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
@@ -21,7 +21,7 @@ Your game lives in the [/docs](/docs) folder, and is published using Github page
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 
-## Your Group
+## Develoopment Team
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/WechatIMG84.jpg)
 
@@ -37,9 +37,10 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
-## Project Report
 
-### Introduction
+---
+
+## Introduction
 
 Our game, Road Crossing Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you’re not just crossing a road—you’re on a mission to deliver.
 
@@ -49,32 +50,27 @@ To keep each run fresh, we implemented a dynamic traffic system that generates v
 
 What makes our game novel is its weight-based movement mechanic, which creates a direct connection between risk and reward. The more you carry, the harder it gets—but the greater the payoff. This, combined with shifting environments, layered difficulty, and rhythmic pacing, transforms a familiar arcade formula into a delivery challenge that’s both strategic and reflex-driven.
 
+
 ---
 
-### Requirements
+## Requirements
 
-#### Stakeholder Analysis
+### Stakeholder Analysis
 
 To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
-1. **Core Layer**  
-  - **Development Team**: Responsible for game design, programming, artwork creation, and initial testing.
+| **Layer**        | **Stakeholders**                                           |
+|------------------|------------------------------------------------------------|
+| Core             | Development Team – design, code, test, and create assets   |
+| Inner            | Project Supervisors – provide direction and feedback       |
+| Middle           | Beta Testers – test features and report usability issues   |
+| Outer (Players)  | Target Players – ultimate end-users who shape game success |
+| Outer (Platform) | Platform Providers – ensure delivery & accessibility       |
 
-2. **Inner Layer**  
-  - **Project Supervisors**: Guide the development process, evaluate project quality, and provide critical feedback.
 
-3. **Middle Layer**  
-  - **Beta Testers**: Early players who test gameplay mechanics and offer feedback on user experience.
+### User Stories & Acceptance Criteria
 
-4. **Outer Layer**  
-  - **Target Players**: Final users who play the completed game, influencing gameplay and satisfaction.
-
-5. **Outer Layer**  
-  - **Platform Providers**: Distribution platforms (e.g., Steam, App Store) that ensure accessibility and delivery.
-
-#### User Stories & Acceptance Criteria
-
-##### Developer-Oriented
+#### Developer-Oriented
 
 **User Stories**  
 As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
@@ -87,7 +83,8 @@ As developers, we aim to ensure the game is **modular**, **immersive**, and **vi
 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
 
-##### Player-Oriented
+
+#### Player-Oriented
 
 **User Stories**  
 As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
@@ -104,7 +101,8 @@ As players, we expect a **progressively challenging** experience with options fo
 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
-##### Example: Breakdown of Game Difficulty System Design
+
+#### Example: Breakdown of Game Difficulty System Design
 1. **Core Difficulty System**  
    The game’s difficulty is influenced by several parameters, such as character attributes, environmental factors, mission objectives, and random events. Key factors include the player’s movement speed and health points, obstacles, mission goals like target scores or time limits, and dynamic in-game events. These combined elements contribute to the overall challenge level and enhance the player’s experience.
 
@@ -131,14 +129,15 @@ flowchart LR
     H -->|No| J[Development Complete]
 ```
 
-#### Reflection
+### Reflection
 Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
+
 
 ---
 
-### Sustainability, ethics and accessibility
+## Sustainability, ethics and accessibility
 
-#### 1. Sustainability Analysis
+### 1. Sustainability Analysis
 
 Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's potential sustainability impacts across five key dimensions:
 
@@ -148,7 +147,7 @@ Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's 
 | **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimizes carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
 | **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
 
-#### 2. Green Software Patterns
+### 2. Green Software Patterns
 
 We have reviewed the Green Software Foundation’s Green Software Patterns and identified the following three that apply to our game:
 
@@ -158,13 +157,14 @@ We have reviewed the Green Software Foundation’s Green Software Patterns and i
 
 3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
 
+
 ---
 
-### Design
+## Design
 
 The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
 
-#### System Architecture
+### System Architecture
 
 The `Game` class acts as the backbone of the game logic, integrating with several subsystems: `CarSystem`, `ItemSystem`, `ObstacleSystem`, and `UiManager`. It also handles transitions between various game states, defined in the `GameStates` class (e.g., Menu, Playing, Paused, Game Over), and supports different modes such as Normal and Testing via the `GameMode` class.
 
@@ -182,7 +182,8 @@ This architecture supports code reusability and parallel development by dividing
 
 ![classDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true)
 
-#### Behavioural Design
+
+### Behavioural Design
 
 The game follows a well-defined sequence of interactions, illustrated in the sequence diagram.
 
@@ -203,13 +204,13 @@ The modular structure and clearly defined sequences support smooth user interact
 
 ---
 
-### Implementation
+## Implementation
 
 Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
 
 Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them.
 
-#### 1. **Collision Detection Between Player and Vehicles**
+### 1. **Collision Detection Between Player and Vehicles**
 
 **Challenge:**  
 Players may collide with vehicles while crossing the road, so precise collision detection is essential for a smooth gameplay experience. In early versions, collisions were often **missed ("false negatives") or triggered too early ("false positives")**, resulting in unstable and frustrating gameplay.
@@ -222,7 +223,7 @@ Initially, both the player and vehicles were treated as rectangles, and we used 
 
 This **direction-sensitive collision model** not only reduced unfair eliminations but also better matched visual expectations, making the game feel more responsive and fair.
 
-#### 2. **Traffic Flow Design and Generation**
+### 2. **Traffic Flow Design and Generation**
 
 **Challenge:**  
 Designing realistic and challenging traffic patterns was essential. If traffic appeared too randomly, the game could feel either too easy or unfairly difficult. On the other hand, overly predictable patterns made the game repetitive.
@@ -237,7 +238,7 @@ To avoid long gaps in traffic, we enforce a **maximum waiting threshold of 240 f
 At the beginning of the game, a limited number of vehicles are also randomly generated on each lane based on probability, to simulate a pre-existing traffic environment.
 
 
-#### 3. **Cargo Generation, Value System, and Refresh Mechanism**
+### 3. **Cargo Generation, Value System, and Refresh Mechanism**
 
 **Challenge:**  
 Our initial idea was to use the number of successfully transported cargo items as the win condition. However, through player testing, we found that this made the game somewhat repetitive and lacked strategic depth.
@@ -249,15 +250,16 @@ To reflect the weight difference in gameplay, we also linked the **player's move
 
 We also iterated on the **cargo refresh mechanism**. In early versions, all cargo items were refreshed at once only after the previous batch was completely delivered. Based on tester feedback, we changed this to **immediate single-item respawning**, where a new cargo spawns each time one is delivered. This ensures that the player always has a variety of cargo options to choose from, enhancing the strategic aspect and making the gameplay more dynamic. After implementing this change, we noticed a significant improvement in overall user experience and gameplay flow.
 
+
 ---
 
-### Evaluation
+## Evaluation
 
-#### Qualitative Evaluations
+### Qualitative Evaluations
 
 After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game’s design and playability.
 
-##### Key Areas of Improvement
+#### Key Areas of Improvement
 
 1. **Lack of Instructions:** Our initial game menu included a "Help" option, but it was not prominent enough. As a result, testers were unaware of the key controls (e.g., pressing the spacebar to pick up cargo) when starting the game. To optimize this, we will implement a brief tutorial pop-up before entering the first level to help players quickly understand the controls.  
 
@@ -277,7 +279,7 @@ After developing the core mechanics of the game, we conducted user evaluations b
 
 9. **Weight and Speed Relationship:** Currently, cargo weight does not affect movement speed, leading players to prioritize high-value cargos and resulting in a lack of strategic diversity. It is recommended to introduce a weight-speed correlation mechanism, where heavier cargos slow down movement speed, and add weight indicators (e.g., color coding) to increase strategic depth and gameplay variety.
 
-##### Heuristic Evaluation
+#### Heuristic Evaluation
 
 We also analysed and evaluated the testers' feedback based on Nielsen's heuristic principles and documented our findings in the Heuristic Evaluation Table below.
 
@@ -305,13 +307,13 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
 
   - Controversial Design: For counterintuitive lane speed differences (Severity = 2.3), enhance user onboarding (e.g., add a warning: "Caution: High-speed right lane!") or recalibrate speeds to balance challenge and rationality.
 
-#### Quantitative Evaluations
+### Quantitative Evaluations
 
 We collected data from 10 participants who completed tasks under both easy and difficult conditions, to exam how task difficulty affects both user workload and system usability.
 
 We use NASA TLX and SUS to measure separately, and use the [Wilcoxon signed-rank test](https://www.statology.org/wilcoxon-signed-rank-test-calculator/) to determine statistical significance of differences between conditions, with α=0.05 as the threshold for significance.
 
-##### [The NASA Task Load Index](./Images/NASA_TLX-template.png)
+#### [The NASA Task Load Index](./Images/NASA_TLX-template.png)
 
 The table below presents participants' ratings across six dimensions of workload, as well as calculated overall workload scores:
 
@@ -343,7 +345,7 @@ The table below presents participants' ratings across six dimensions of workload
 
 > All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
 
-##### [System Usability Survey](./Images/SUS-template.png)
+#### [System Usability Survey](./Images/SUS-template.png)
 
 |User|Difficulty|Q1|Q2|Q3|Q4|Q5|Q6|Q7|Q8|Q9|Q10|Score|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -373,7 +375,7 @@ The table below presents participants' ratings across six dimensions of workload
 
 > Values for Q1-Q10 represent ratings on the 5-point SUS scale. The Score column is calculated according to SUS methodology: (score-1) for odd-numbered items, (5-score) for even-numbered items, sum multiplied by 2.5.
 
-##### Findings
+#### Findings
 
 The results of our study indicate:
 
@@ -383,19 +385,20 @@ The results of our study indicate:
 
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
 
+
 ---
 
-### Process
+## Process
 
 Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
 
-#### Team Collaboration
+### Team Collaboration
 
 We held in-person team meetings twice a week to discuss ongoing progress, solve blockers, and coordinate responsibilities. These meetings followed a consistent format: each member provided updates, raised questions, and participated in collaborative problem-solving. One team member was responsible for recording meeting minutes, which were stored in a shared repository on GitHub. This ensured that key decisions, deadlines, and action points were properly documented and accessible to all members, including those occasionally absent due to scheduling conflicts.
 
 For day-to-day communication, we used WhatsApp for quick updates and clarifications, while email was used for more formal or non-urgent matters. We established clear communication expectations early on, including a 24-hour response guideline for critical topics, which helped keep discussions timely and project momentum consistent.
 
-#### Tools and Workflow
+### Tools and Workflow
 
 To manage our tasks and track overall project progress, we used a GitHub-based **Kanban board**, structured with columns: “Todo,” “In Progress,” “Lagging,” and “Done.” Each task card included a detailed description, deadlines, priority level, and assigned team member. This visual workflow made it easy for everyone to track the status of work at a glance and identify bottlenecks early.
 
@@ -405,7 +408,7 @@ Code collaboration was facilitated through **Git and GitHub**, which we used for
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true)
 
-#### Roles and Responsibilities
+### Roles and Responsibilities
 
 Although our team structure was relatively flat to encourage mutual support, we assigned informal roles based on individual strengths and preferences:
 **Team Coordinator**: Scheduled meetings, tracked deadlines, and maintained overall alignment.
@@ -416,7 +419,7 @@ Although our team structure was relatively flat to encourage mutual support, we 
 
 Despite these roles, our team practiced flexibility. Members regularly contributed outside their primary area, whether helping with debugging, writing documentation, or preparing assets. This cross-functional support improved efficiency and strengthened our understanding of the entire project.
 
-#### Reflection and Lessons Learned
+### Reflection and Lessons Learned
 
 Throughout the project, our collaboration matured significantly. In the early stages, we encountered challenges such as scheduling conflicts, unclear task boundaries, and varied working styles. For example, one of the main challenges was that one member was unable to attend the face-to-face discussion because he was temporarily home. To address this, we began recording meetings and implementing asynchronous feedback loops via shared documents and chat summaries.
 
@@ -426,9 +429,10 @@ One key improvement was in our decision-making process. Initially, discussions s
 
 Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project’s outcome but also gave us transferrable teamwork skills for future academic and professional environments.
 
+
 ---
 
-### Conclusion
+## Conclusion
 
 The development of Road Crossing Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that’s easy to pick up but rich in moment-to-moment decision making.
 
@@ -442,18 +446,8 @@ While the project met most of our initial goals, some aspects—such as more div
 
 Looking ahead, Road Crossing Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
 
+---
 ### Contribution Statement
 
 - Provide a table of everyone's contribution, which may be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Let us know as soon as possible if there are any issues with teamwork as soon as they are apparent.
 
-### Additional Marks
-
-You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
-
-- **Quality** of report writing, presentation, use of figures and visual material (5%)
-  - Please write in a clear concise manner suitable for an interested layperson. Write as if this repo was publicly available.
-
-- **Documentation** of code (5%)
-
-  - Is your repo clearly organised?
-  - Is code well commented throughout?
