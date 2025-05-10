@@ -3,7 +3,7 @@
 ### Game Overview
 Traffic Theft is a fast-paced minigame from Pummel Party where players have 3 minutes to collect cash and gold bars from a building, cross a dangerous street with constant traffic, and deposit their loot in a scoring machine on the opposite side. Each cash pile is worth 1 point, and each gold bar is worth 2 points. The game's challenge comes from the movement penalty - the more items you carry, the slower you move, making it harder to dodge traffic. This balance of risk and reward, combined with ever-changing traffic conditions, makes it an engaging game that's easy to learn but rich in strategy.  
 
-<img src="./Images/traffic-theft.png" width=800 alt="traffic theft screenshot">
+<img src="../../Images/traffic-theft.png" width=800 alt="traffic theft screenshot">
 <img src="Images/traffic-theft-concept.png" width=800 alt="traffic theft concept">
 
 ### Our Version
