@@ -25,12 +25,12 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Development Team
 
-![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/WechatIMG84.jpg)
-
 <p align="center">
 <img width="90%" src="./Images/WechatIMG84.jpg">
 </p>
 
+
+<div align="center">
 | Name         | E-mail                  | Username       |
 |--------------|-------------------------|----------------|
 | Lu Li        | <tu24288@bristol.ac.uk>   | cactus562      |
@@ -38,7 +38,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Shuxiao Shi  | <ux24132@bristol.ac.uk>   | Wentaa         |
 | Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
-
+</div>
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
