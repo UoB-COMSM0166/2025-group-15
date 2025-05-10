@@ -6,6 +6,12 @@
 
 ## Crazy Delivery
 
+<p align="center">
+  <a href="https://uob-comsm0166.github.io/2025-group-15/">
+    <img src="./assets_for_README/crazy delivery.png" alt="Game Screen" width="700" />
+  </a>
+</p>
+
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
 Our game lives in the [docs](/docs) folder, and is published using Github pages to the link above.
