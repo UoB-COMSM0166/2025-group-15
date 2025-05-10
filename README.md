@@ -13,6 +13,7 @@
 [Process](#process)  
 [Conclution](#conclusion)  
 
+
 ## Crazy Delivery
 
 Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
@@ -21,9 +22,14 @@ Your game lives in the [/docs](/docs) folder, and is published using Github page
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 
+
 ## Development Team
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/WechatIMG84.jpg)
+
+<p align="center">
+<img width="90%" src="./Images/WechatIMG84.jpg">
+</p>
 
 | Name         | E-mail                  | Username       |
 |--------------|-------------------------|----------------|
@@ -33,7 +39,6 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Qinyuan Lu   | <he24343@bristol.ac.uk>   | mdfcsC         |
 | Ruirui Jia   | <bl24729@bristol.ac.uk>   | alpenglow1     |
 
-## Your Board
 
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
