@@ -21,7 +21,7 @@ Your game lives in the [/docs](/docs) folder, and is published using Github page
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 
-## Develoopment Team
+## Development Team
 
 ![Group 15](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/WechatIMG84.jpg)
 
@@ -38,7 +38,6 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 
----
 
 ## Introduction
 
@@ -51,7 +50,6 @@ To keep each run fresh, we implemented a dynamic traffic system that generates v
 What makes our game novel is its weight-based movement mechanic, which creates a direct connection between risk and reward. The more you carry, the harder it gets—but the greater the payoff. This, combined with shifting environments, layered difficulty, and rhythmic pacing, transforms a familiar arcade formula into a delivery challenge that’s both strategic and reflex-driven.
 
 
----
 
 ## Requirements
 
@@ -133,7 +131,6 @@ flowchart LR
 Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
 
 
----
 
 ## Sustainability, ethics and accessibility
 
@@ -158,7 +155,6 @@ We have reviewed the Green Software Foundation’s Green Software Patterns and i
 3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
 
 
----
 
 ## Design
 
@@ -202,7 +198,6 @@ The modular structure and clearly defined sequences support smooth user interact
 ![sequenceDiagram](https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true)
 
 
----
 
 ## Implementation
 
@@ -251,7 +246,6 @@ To reflect the weight difference in gameplay, we also linked the **player's move
 We also iterated on the **cargo refresh mechanism**. In early versions, all cargo items were refreshed at once only after the previous batch was completely delivered. Based on tester feedback, we changed this to **immediate single-item respawning**, where a new cargo spawns each time one is delivered. This ensures that the player always has a variety of cargo options to choose from, enhancing the strategic aspect and making the gameplay more dynamic. After implementing this change, we noticed a significant improvement in overall user experience and gameplay flow.
 
 
----
 
 ## Evaluation
 
@@ -386,7 +380,6 @@ The results of our study indicate:
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
 
 
----
 
 ## Process
 
@@ -430,7 +423,6 @@ One key improvement was in our decision-making process. Initially, discussions s
 Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project’s outcome but also gave us transferrable teamwork skills for future academic and professional environments.
 
 
----
 
 ## Conclusion
 
