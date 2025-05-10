@@ -215,6 +215,7 @@ The modular structure and clearly defined sequences support smooth user interact
 ## Implementation
 
 > Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
+> 
 > Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them.
 
 ### 1. **Collision Detection Between Player and Vehicles**
