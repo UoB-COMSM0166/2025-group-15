@@ -148,6 +148,8 @@ Acceptance Criteria：
 
 
 <p align="center"><i>Figure 2: Game Difficulty System Flowchart</i></p>
+
+
 ```mermaid
 flowchart LR
     B[Core Difficulty System] --> E[Add Feedback System Features]
