@@ -73,43 +73,45 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 
 
 ### User Stories & Acceptance Criteria
+To address both technical implementation and player experience, we divided the user stories and acceptance criteria into two categories: <Developer-Oriented> and <Player-Oriented>.
 
 #### Developer-Oriented
 
-**User Stories**  
-As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
-- Breaking the game into independent, well-defined components.
-- Designing immersive sound effects and background music that enhance the gaming experience.
-- Implementing smooth animations that are consistent with the game's artistic style.
+> **User Stories**  
+> As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
+> - Breaking the game into independent, well-defined components.
+> - Designing immersive sound effects and background music that enhance the > gaming experience.
+> - Implementing smooth animations that are consistent with the game's artistic style.
 
-**Acceptance Criteria**
-1. Each game module must be independently developed, tested, and integrated following a clear development plan.
-2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
-3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
+> **Acceptance Criteria**
+> 1. Each game module must be independently developed, tested, and integrated following a clear development plan.
+> 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
+> 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
 
 
 
 
 #### Player-Oriented
 
-**User Stories**  
-As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
-- Experience increasing difficulty levels throughout the game.
-- Be able to pause and resume gameplay at any point.
-- Customize characters and see these changes in real time.
-- Track our scores and compete on leaderboards.
-- Engage with eco-friendly elements within the game.
+> **User Stories**  
+> As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
+> - Experience increasing difficulty levels throughout the game.
+> - Be able to pause and resume gameplay at any point.
+> - Customize characters and see these changes in real time.
+> - Track our scores and compete on leaderboards.
+> - Engage with eco-friendly elements within the game.
 
-**Acceptance Criteria**
-1. The game's difficulty should gradually increase with each level to maintain player engagement.
-2. The pause feature must freeze the game at the current state and allow players to resume from the exact point where they paused.
-3. Customizations made to characters should appear instantly and in real-time during gameplay.
-4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
-5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
+> **Acceptance Criteria**
+> 1. The game's difficulty should gradually increase with each level to maintain player engagement.
+> 2. The pause feature must freeze the game at the current state and allow players to resume from the exact point where they paused.
+> 3. Customizations made to characters should appear instantly and in real-time during gameplay.
+> 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
+> 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
 
 
 #### Example: Breakdown of Game Difficulty System Design
+
 1. **Core Difficulty System**  
    The game’s difficulty is influenced by several parameters, such as character attributes, environmental factors, mission objectives, and random events. Key factors include the player’s movement speed and health points, obstacles, mission goals like target scores or time limits, and dynamic in-game events. These combined elements contribute to the overall challenge level and enhance the player’s experience.
 
