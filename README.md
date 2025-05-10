@@ -451,8 +451,13 @@ While the project met most of our initial goals, some aspects—such as more div
 
 Looking ahead, Road Crossing Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
 
----
-### Contribution Statement
 
-- Provide a table of everyone's contribution, which may be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Let us know as soon as possible if there are any issues with teamwork as soon as they are apparent.
+### Contribution Statement
+|        Name (Username)        | Contribution |
+|:-----------------------------:|:------------:|
+| Lu Li (**cactus562**)         |     1.00     |
+| Wei Liu (**ir24727**)         |     1.00     |
+| Shuxiao Shi (**Wentaa**)      |     1.00     |
+| Qinyuan Lu (**mdfcsC**)       |     1.00     |
+| Ruirui Jia (**alpenglow1**)   |     1.00     |
 
