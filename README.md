@@ -7,11 +7,11 @@
 ## Crazy Delivery
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+  <a href="https://youtu.be/Cy6Q-PFSI70" target="_blank">
     <img src="./assets_for_README/crazy delivery.png" alt="Demo Video Thumbnail" width="700" />
   </a>
   <br>
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+  <a href="https://youtu.be/Cy6Q-PFSI70" target="_blank">
     🚌🚛🚓🚕🚗Click the image above to watch our demo video📦🏃‍♂️📦📦📦
   </a>
 </p>
@@ -62,9 +62,9 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 
 ## Introduction
 
-Our game, Crazy Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you’re not just crossing a road—you’re on a mission to deliver.
+Our game, Crazy Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you're not just crossing a road—you're on a mission to deliver.
 
-As a delivery runner, your goal is to carry cargo safely across chaotic, fast-moving roads. Every package comes with weight, and that weight directly affects your speed. Carry something light for a quick escape, or haul heavier loads for bigger rewards—it’s a constant trade-off between risk and payoff.
+As a delivery runner, your goal is to carry cargo safely across chaotic, fast-moving roads. Every package comes with weight, and that weight directly affects your speed. Carry something light for a quick escape, or haul heavier loads for bigger rewards—it's a constant trade-off between risk and payoff.
 
 To keep each run fresh, we implemented a dynamic traffic system that generates varied vehicle patterns and pacing. Each level is set in a different visual scene, accompanied by music that matches the atmosphere—adding an almost rhythmic tension to the crossing. What looks like a simple arcade game quickly turns into a challenge of split-second decisions, timing, and planning.
 
@@ -73,6 +73,21 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 
 ## Requirements
+
+### Ideation Process
+
+Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts.To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
+
+**Figure 1: Paper Prototype for [Haystacking](https://github.com/UoB-COMSM0166/2025-group-15/issues/1#issue-2827646287)**
+
+![Haystacking Prototype](https://github.com/UoB-COMSM0166/2025-group-15/issues/1#issue-2827646287)
+
+**Figure 2: Paper Prototype for [Fireboy & Watergirl](https://github.com/user-attachments/assets/0de531af-5797-4578-9241-6d03e68b9135)**
+
+![Fireboy & Watergirl Prototype](https://github.com/user-attachments/assets/0de531af-5797-4578-9241-6d03e68b9135)
+
+During this process, our team members all showed a clear preference for **fast-paced**, **easy-to-play**, and **interactive** games. Compared to complex, heavy gameplay, we favored lightweight, level-based games with score or time limits. These types of games offer both **challenge** and **relaxation**, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
+Based on this, we selected Traffic Theft as our final concept. Its simple yet strategic mechanics and relaxed tone fit our goal of delivering a fun, accessible, and easy-to-learn experience.
 
 ### Stakeholder Analysis
 
@@ -86,11 +101,11 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 
 | **Layer**          | **Stakeholders**                                                   |
 |--------------------|---------------------------------------------------------------------|
-| **Core**           | Development Team – design, code, test, and create assets           |
-| **Inner**          | Project Supervisors – provide direction and feedback               |
-| **Middle**         | Beta Testers – test features and report usability issues           |
-| **Outer (Players)**| Target Players – ultimate end-users who shape game success         |
-| **Outer (Platform)**| Platform Providers – ensure delivery and accessibility             |
+| **Core**           | Development Team - design, code, test, and create assets           |
+| **Inner**          | Project Supervisors - provide direction and feedback               |
+| **Middle**         | Beta Testers - test features and report usability issues           |
+| **Outer (Players)**| Target Players - ultimate end-users who shape game success         |
+| **Outer (Platform)**| Platform Providers - ensure delivery and accessibility             |
 
 </div>
 
@@ -100,35 +115,35 @@ To address both technical implementation and player experience, we divided the u
 
 #### 1. Developer-Oriented
 
-User Stories：
-> As developers, we aim to ensure the game is **modular**, **immersive**, and **visually polished**. This includes:
+User Stories:
+> As developers, we want a modular, immersive, and visually polished game:
 > - Breaking the game into independent, well-defined components.
-> - Designing immersive sound effects and background music that enhance the > gaming experience.
-> - Implementing smooth animations that are consistent with the game's artistic style.
+> - Designing sound effects and background music that enhance immersion.
+> - Implementing smooth animations consistent with the game's style.
 
-Acceptance Criteria：
-> 1. Each game module must be independently developed, tested, and integrated following a clear development plan.
-> 2. Sound effects and background music should be appropriate for each scene, enhancing immersion.
-> 3. Animations must be fluid, seamless, and visually aligned with the game's design and artistic vision.
+Acceptance Criteria:
+> 1. Each game module must be independently developed, tested, and integrated as planned
+> 2. Audio should suit each scene and enhance the experience.
+> 3. Animations must be fluid, seamless, and visually match the game's visual style.
 
 
 
 
 #### 2. Player-Oriented
 
-User Stories：
+User Stories:
 > As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
 > - Experience increasing difficulty levels throughout the game.
-> - Be able to pause and resume gameplay at any point.
-> - Customize characters and see these changes in real time.
-> - Track our scores and compete on leaderboards.
+> - Pause and resume gameplay at any point.
+> - Customize characters and see changes in real time.
+> - Track scores and compete on leaderboards.
 > - Engage with eco-friendly elements within the game.
 
-Acceptance Criteria：
-> 1. The game's difficulty should gradually increase with each level to maintain player engagement.
-> 2. The pause feature must freeze the game at the current state and allow players to resume from the exact point where they paused.
-> 3. Customizations made to characters should appear instantly and in real-time during gameplay.
-> 4. Players' scores should be recorded with timestamps, and high scores should trigger celebratory feedback.
+Acceptance Criteria:
+> 1. Difficulty should increase steadily to maintain player engagement.
+> 2. The pause feature must freeze the current state and allow exact resumption.
+> 3. Character customizations should appear instantly in real time.
+> 4. Players' scores should be timestamped, and high scores trigger celebratory.
 > 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
 
@@ -136,19 +151,19 @@ Acceptance Criteria：
 ### Example: Breakdown of Game Difficulty System Design
 
 1. **Core Difficulty System**  
-   The game’s difficulty is influenced by several parameters, such as character attributes, environmental factors, mission objectives, and random events. Key factors include the player’s movement speed and health points, obstacles, mission goals like target scores or time limits, and dynamic in-game events. These combined elements contribute to the overall challenge level and enhance the player’s experience.
+   Game difficulty is shaped by character stats, environment, mission goals, and random events. Key elements include movement speed, health, obstacles, and time or score targets. These factors shape challenge and enhance players experience.
 
 2. **Level Progression System**  
-   The game is divided into unique levels, each with specific completion criteria and progression unlocks. Each level may also include bonus challenges for perfect completion. Achievements are designed to reward players based on progress and skill, incentivizing improvement.
+   Levels have specific completion criteria and progression unlocks, with optional bonus challenges. Achievements reward progress and skill, encouraging player improvement.
 
 3. **Game Feedback System**  
-   The feedback system provides players with clear indicators of difficulty, progress tracking, and real-time feedback. This ensures that players are aware of their current status, enabling them to adjust their strategies and optimize gameplay performance.
+   Real-time feedback and progress indicators keep players informed, helping them adjust strategies and improve performance.
 
 4. **Balance Testing**  
-   Extensive balance testing was conducted to ensure the game remains both challenging and enjoyable. This included internal evaluations and feedback from players of different ages and experience levels. Based on the results, adjustments were made to the difficulty curve to find the right balance between challenge and playability.
+   Balance testing ensured the game remained challenging and enjoyable through internal evaluations and feedback from players of different ages and experience levels. Adjustments were made to the difficulty curve to maintain a balance between challenge and playability.
 
 5. **Development Sequence**  
-   Early in the development process, a parameter configuration system was established to facilitate debugging and balance adjustments. This system helped streamline the overall development workflow and ensured that balance adjustments could be made efficiently as new challenges and feedback emerged.
+   A parameter configuration system was set up early in development to support debugging and balance tuning, streamlining the workflow and enabling quick adjustments based on emerging challenges and feedback.
 
 
 <p align="center"><i>Figure 2: Game Difficulty System Flowchart</i></p>
@@ -168,7 +183,7 @@ flowchart LR
 
 
 ### Reflection
-Our team gained valuable insights into requirements analysis and project management. By breaking large tasks into manageable modules, we improved efficiency. Defining user stories with clear acceptance criteria using the Given-When-Then format helped us set precise expectations and ensured testability. We used the Onion Model to maintain an understanding of stakeholders' perspectives, which helped us keep user experience and technical feasibility aligned. Overall, the iterative process of refining requirements taught us the importance of clear communication and documentation, which will guide future developments.
+Our team gained valuable insights into requirements analysis and project management. Breaking tasks into modules improved efficiency, while clear user stories with Given-When-Then criteria ensured precise, testable expectations. The Onion Model clarified stakeholder roles, aligning user needs with technical goals. Overall, the iterative process highlighted the value of clear communication and documentation for future work.
 
 
 
@@ -184,19 +199,19 @@ Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's 
 
 | **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
 |------------------------------|----------------------|--------------------------|
-| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players’ reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
+| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players' reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
 | **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimizes carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
 | **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
 
 ### 2. Green Software Patterns
 
-We have reviewed the Green Software Foundation’s Green Software Patterns and identified the following three that apply to our game:
+We have reviewed the Green Software Foundation's Green Software Patterns and identified the following three that apply to our game:
 
-1. **Avoid Polling** – Instead of using continuous polling techniques (such as `setInterval` or checking conditions on every frame), our game uses efficient, frame-based updates. For example, cars are only generated every 60 frames (`frameCount % 60 === 0`) instead of every frame, which reduces unnecessary CPU usage and improves energy efficiency.
+1. **Avoid Polling** - Instead of using continuous polling techniques (such as `setInterval` or checking conditions on every frame), our game uses efficient, frame-based updates. For example, cars are only generated every 60 frames (`frameCount % 60 === 0`) instead of every frame, which reduces unnecessary CPU usage and improves energy efficiency.
 
-2. **Green Defaults** – The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
+2. **Green Defaults** - The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
 
-3. **Avoid Tracking Unnecessary Data** – Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
+3. **Avoid Tracking Unnecessary Data** - Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
 
 
 
@@ -273,7 +288,7 @@ Initially, both the player and vehicles were treated as rectangles, and we used 
 
 This **direction-sensitive collision model** not only reduced unfair eliminations but also better matched visual expectations, making the game feel more responsive and fair.
 
-### 2. **Traffic Flow Design and Generation**
+### 2. **Traffic Flow Design and Generation**
 
 **Challenge:**  
 Designing realistic and challenging traffic patterns was essential. If traffic appeared too randomly, the game could feel either too easy or unfairly difficult. On the other hand, overly predictable patterns made the game repetitive.
@@ -306,7 +321,7 @@ We also iterated on the **cargo refresh mechanism**. In early versions, all carg
 
 ### Qualitative Evaluations
 
-> After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game’s design and playability.
+> After developing the core mechanics of the game, we conducted user evaluations by inviting members from other teams to test our game. Through Think Aloud sessions, we gathered feedback on gameplay, difficulty, and overall user experience. This helped us identify key areas for improvement and make necessary adjustments to enhance the game's design and playability.
 
 #### Key Areas of Improvement
 
@@ -347,7 +362,7 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
 
 - The scoring is based on the following criteria:
 
-  - Frequency: Scores reflect the likelihood of problem recurrence. For example, the lack of a help button received a score of 3/4 because, while new players consistently miss key controls (e.g., pressing Spacebar to pick up cargo), experienced players may intuit the mechanic given the game’s relatively simple controls.
+  - Frequency: Scores reflect the likelihood of problem recurrence. For example, the lack of a help button received a score of 3/4 because, while new players consistently miss key controls (e.g., pressing Spacebar to pick up cargo), experienced players may intuit the mechanic given the game's relatively simple controls.
 
   - Impact: Measures disruption to core tasks. For instance, ambiguous collision boundaries severely hinder gameplay by causing repeated player deaths (4/4).
 
@@ -398,8 +413,8 @@ The table below presents participants' ratings across six dimensions of workload
 |User 10|Easy|3|8|14|18|9|1|39.17|
 |User 10|Difficult|5|9|15|17|9|3|43.33|
 
-*W test statistic = 0*  
-*Number of non-tied pairs (n) = 10*
+*W test statistic = 0*  
+*Number of non-tied pairs (n) = 10*
 
 > All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
 
@@ -432,8 +447,8 @@ The table below presents participants' ratings across six dimensions of workload
 |User 10|Easy|2|1|5|1|3|2|4|3|5|1|77.5|
 |User 10|Difficult|1|1|5|1|3|2|5|3|5|1|77.5|
 
-*W test statistic = 4*  
-*Number of non-tied pairs (n) = 6*
+*W test statistic = 4*  
+*Number of non-tied pairs (n) = 6*
 
 > Values for Q1-Q10 represent ratings on the 5-point SUS scale. The Score column is calculated according to SUS methodology: (score-1) for odd-numbered items, (5-score) for even-numbered items, sum multiplied by 2.5.
 
@@ -493,13 +508,13 @@ We also encountered occasional miscommunication, especially regarding expectatio
 
 One key improvement was in our decision-making process. Initially, discussions sometimes stalled due to differing opinions. Later, we introduced a lightweight decision model—first discussing pros and cons of each approach, then voting or assigning final say based on area of expertise. This balanced structure with inclusiveness and speed.
 
-Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project’s outcome but also gave us transferrable teamwork skills for future academic and professional environments.
+Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project's outcome but also gave us transferrable teamwork skills for future academic and professional environments.
 
 
 
 ## Conclusion
 
-The development of Crazy Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that’s easy to pick up but rich in moment-to-moment decision making.
+The development of Crazy Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that's easy to pick up but rich in moment-to-moment decision making.
 
 One of our key innovations was the weight-based movement system—each cargo item slows the player differently, requiring real-time strategic trade-offs between speed and potential score. Combined with the randomly generated traffic flow, this made each playthrough feel dynamic and engaging. From a development perspective, building a custom vehicle generation system taught us to balance randomness with fairness, ensuring challenge without frustration.
 
