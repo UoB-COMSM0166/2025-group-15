@@ -20,25 +20,11 @@ Watch the demo video [here]()
 
 
 <p align="center">
-  <!-- Play Game -->
-  <a href="https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html" target="_blank" style="text-decoration: none;">
-    <img src="https://img.icons8.com/fluency/96/play-button-circled.png" alt="Play Game" width="70"/><br>
-    <sub><strong>Play Game</strong></sub>
-  </a>
+  🎮 <a href="https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html" target="_blank"><strong>Play Game</strong></a>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  
-  <!-- GitHub Docs Folder -->
-  <a href="https://github.com/UoB-COMSM0166/2025-group-15/tree/main/docs/road-crossing/" target="_blank" style="text-decoration: none;">
-    <img src="https://img.icons8.com/ios-filled/100/github.png" alt="GitHub Docs" width="70"/><br>
-    <sub><strong>GitHub Docs</strong></sub>
-  </a>
+  📁 <a href="https://github.com/UoB-COMSM0166/2025-group-15/tree/main/docs/road-crossing/" target="_blank"><strong>GitHub Docs</strong></a>
   &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <!-- Demo Video -->
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" style="text-decoration: none;">
-    <img src="https://img.icons8.com/color/96/youtube-play.png" alt="Watch Demo" width="70"/><br>
-    <sub><strong>Watch Demo</strong></sub>
-  </a>
+  ▶️ <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"><strong>Watch Demo</strong></a>
 </p>
 
 
