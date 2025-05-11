@@ -400,7 +400,7 @@ export class UiManager {
       textSize(scaler.getFontSize(20));
       fill(0, 128, 0); // Green
       text(
-        "Testing Mode Enabled: Unlimited Time | All Levels Unlocked",
+        "Unlimited Time | All Levels Unlocked",
         scaler.centerX,
         titleY + scaler.scale(65) // Move along with the title
       );
@@ -500,7 +500,7 @@ export class UiManager {
       textSize(30);
       fill(0, 128, 0); // Green
       text(
-        "Testing Mode Enabled: Unlimited Time | All Levels Unlocked",
+        "Unlimited Time | All Levels Unlocked",
         scaler.centerX,
         scaler.scale(180)
       );
