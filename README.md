@@ -7,10 +7,9 @@
 ## Crazy Delivery
 
 <p align="center">
-  <a href="https://uob-comsm0166.github.io/2025-group-15/">
-    <img src="./assets_for_README/crazy delivery.png" alt="Game Screen" width="700" />
-  </a>
+  <img src="./assets_for_README/crazy delivery.png" alt="Game Screen" width="800" />
 </p>
+
 
 Link to our game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
