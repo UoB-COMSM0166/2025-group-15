@@ -362,6 +362,7 @@ export class Game {
     const laneWidth = this.lanes.SLOW.width;
 
     stroke(255);
+    strokeWeight(3);
     this.setLineDash([scaler.scale(10), scaler.scale(10)]); // Set dashed line style
     line(roadStart + laneWidth, 0, roadStart + laneWidth, height);
     line(roadStart + laneWidth * 2, 0, roadStart + laneWidth * 2, height);
