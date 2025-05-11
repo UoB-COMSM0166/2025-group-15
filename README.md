@@ -78,13 +78,14 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts.To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
 
-**Figure 1: Paper Prototype for [Haystacking](https://github.com/UoB-COMSM0166/2025-group-15/issues/1#issue-2827646287)**
+**Figure 1: Paper Prototype for [Traffic Theft](https://github.com/UoB-COMSM0166/2025-group-15/issues/1#issue-2827646287)**
 
-![Haystacking Prototype](https://user-images.githubusercontent.com/xxxxxx/filename.png)
+[![Watch Traffic Theft Prototype](https://img.youtube.com/vi/THedwWczyRc/hqdefault.jpg)](https://youtu.be/THedwWczyRc)
 
-**Figure 2: Paper Prototype for [Fireboy & Watergirl](https://github.com/user-attachments/assets/0de531af-5797-4578-9241-6d03e68b9135)**
+**Figure 2: Paper Prototype for [Vector](https://github.com/user-attachments/assets/0de531af-5797-4578-9241-6d03e68b9135)**
 
-![Fireboy & Watergirl Prototype](https://user-images.githubusercontent.com/xxxxxx/filename.png)
+[![Watch Vector Prototype](https://img.youtube.com/vi/n6CF0MapgSA/hqdefault.jpg)](https://youtu.be/n6CF0MapgSA)
+
 
 During this process, our team members all showed a clear preference for **fast-paced**, **easy-to-play**, and **interactive** games. Compared to complex, heavy gameplay, we favored lightweight, level-based games with score or time limits. These types of games offer both **challenge** and **relaxation**, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
 Based on this, we selected Traffic Theft as our final concept. Its simple yet strategic mechanics and relaxed tone fit our goal of delivering a fun, accessible, and easy-to-learn experience.
