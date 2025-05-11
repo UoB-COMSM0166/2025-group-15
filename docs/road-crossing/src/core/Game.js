@@ -66,15 +66,15 @@ export class Game {
     if (this.player) {
       this.player.updateSizeAndPosition();
     }
-    if (this.carSystem) {
-      this.carSystem.updateSizeAndPosition();
-    }
+    // if (this.carSystem) {
+    //   this.carSystem.updateSizeAndPosition();
+    // }
     if (this.itemSystem) {
       this.itemSystem.update();
     }
-    if (this.obstacleSystem) {
-      this.obstacleSystem.update();
-    }
+    // if (this.obstacleSystem) {
+    //   this.obstacleSystem.update();
+    // }
   }
 
   saveGameProgress() {
