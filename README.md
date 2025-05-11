@@ -7,22 +7,26 @@
 ## Crazy Delivery
 
 <p align="center">
-  <img src="./assets_for_README/crazy delivery.png" alt="Game Screen" width="800" />
+  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+    <img src="./assets_for_README/crazy delivery.png" alt="Demo Video Thumbnail" width="700" />
+  </a>
+  <br>
+  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+    🚌🚛🚓🚕🚗Click the image above to watch our demo video📦🏃‍♂️📦📦📦
+  </a>
 </p>
 
 
 Link to our game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
-Our game lives in the [docs](/docs) folder, and is published using Github pages to the link above.
-
-Watch the demo video [here]()
+Our game lives in the [docs](/docs/road-crossing/) folder, and is published using Github pages to the link above.
 
 
 ## Development Team
 
 <p align="center">
 <br><i> Figure 1: Group photo of the team</i></br>
-<img width="90%" src="./Images/WechatIMG84.jpg">
+<img width="90%" src="./assets_for_README/Group Photo.jpg">
 </p>
 
 <p align="center">
@@ -53,12 +57,12 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 [5. Implementation](#implementation)  
 [6. Evaluation](#evaluation)  
 [7. Process](#process)  
-[8. Conclution](#conclusion)
+[8. Conclusion](#conclusion)
 
 
 ## Introduction
 
-Our game, Road Crossing Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you’re not just crossing a road—you’re on a mission to deliver.
+Our game, Crazy Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you’re not just crossing a road—you’re on a mission to deliver.
 
 As a delivery runner, your goal is to carry cargo safely across chaotic, fast-moving roads. Every package comes with weight, and that weight directly affects your speed. Carry something light for a quick escape, or haul heavier loads for bigger rewards—it’s a constant trade-off between risk and payoff.
 
@@ -220,7 +224,7 @@ This architecture supports code reusability and parallel development by dividing
 
 <p align="center"><i>Figure 3: Class Diagram</i></p>
 <div align="center">
-  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/classDiagram.png?raw=true" width="1100">
+  <img src="./assets_for_README/classDiagram.png" width="1100">
 </div>
 
 
@@ -244,7 +248,7 @@ The modular structure and clearly defined sequences support smooth user interact
 <p align="center"><i>Figure 4: Sequence diagram</i></p>
 
 <p align="center">
-  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/sequenceDiagram.png?raw=true" width="800">
+  <img src="./assets_for_README/sequenceDiagram.png" width="1000">
 </p>
 
 
@@ -466,7 +470,7 @@ Code collaboration was facilitated through **Git and GitHub**, which we used for
 <p align="center"><i>Figure 5: Kanban Board</i></p>
 
 <p align="center">
-  <img src="https://github.com/UoB-COMSM0166/2025-group-15/blob/main/Images/kanban.jpg?raw=true" width="800">
+  <img src="./assets_for_README/kanban.png" width="900">
 </p>
 
 
@@ -495,7 +499,7 @@ Overall, this project greatly enhanced our collaborative abilities. We learned t
 
 ## Conclusion
 
-The development of Road Crossing Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that’s easy to pick up but rich in moment-to-moment decision making.
+The development of Crazy Delivery began with a simple yet compelling idea: reimagining a classic mechanic from Frogger, but giving it a purpose—delivery under pressure. Over the course of the project, we took this concept and built around it a game that’s easy to pick up but rich in moment-to-moment decision making.
 
 One of our key innovations was the weight-based movement system—each cargo item slows the player differently, requiring real-time strategic trade-offs between speed and potential score. Combined with the randomly generated traffic flow, this made each playthrough feel dynamic and engaging. From a development perspective, building a custom vehicle generation system taught us to balance randomness with fairness, ensuring challenge without frustration.
 
@@ -505,7 +509,7 @@ Teamwork was central to our progress. We split responsibilities across coding, U
 
 While the project met most of our initial goals, some aspects—such as more diverse obstacles or level-based difficulty scaling—remained on our wish list due to time constraints. Nonetheless, we are proud of the final product. Informal playtests revealed players quickly grasped the mechanics and enjoyed the high-risk, high-reward decision-making under pressure.
 
-Looking ahead, Road Crossing Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
+Looking ahead, Crazy Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
 
 
 ### Contribution Statement
