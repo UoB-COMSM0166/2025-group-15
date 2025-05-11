@@ -19,6 +19,24 @@ Our game lives in the [docs](/docs) folder, and is published using Github pages 
 Watch the demo video [here]()
 
 
+<p align="center">
+  <a href="https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html" target="_blank">
+    <img src="https://img.icons8.com/fluency/96/play-button-circled.png" alt="Play Game" width="80"/><br>
+    <sub>Play Game</sub>
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/UoB-COMSM0166/2025-group-15/tree/main/docs/road-crossing/" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/100/github.png" alt="GitHub Docs" width="80"/><br>
+    <sub>GitHub Docs</sub>
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+    <img src="https://img.icons8.com/color/96/youtube-play.png" alt="Watch Demo" width="80"/><br>
+    <sub>Watch Demo</sub>
+  </a>
+</p>
+
+
 ## Development Team
 
 <p align="center">
