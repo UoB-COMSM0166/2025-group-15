@@ -78,11 +78,16 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts.To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
 
-**Figure 1: Paper Prototype for [Traffic Theft](https://youtu.be/THedwWczyRc)**  
-[![Watch Traffic Theft Prototype](https://img.youtube.com/vi/THedwWczyRc/hqdefault.jpg)](https://youtu.be/THedwWczyRc)
+<p align="center">
+  <strong>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></strong><br>
+  <img src="./assets_for_README/traffic_theft_demo.gif" width="600" alt="Traffic Theft Prototype">
+</p>
 
-**Figure 2: Paper Prototype for [Vector](https://youtu.be/n6CF0MapgSA)**  
-[![Watch Vector Prototype](https://img.youtube.com/vi/n6CF0MapgSA/hqdefault.jpg)](https://youtu.be/n6CF0MapgSA)
+<p align="center">
+  <strong>Figure 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></strong><br>
+  <img src="./assets_for_README/vector_demo.gif" width="600" alt="Vector Prototype">
+</p>
+
 
 During this process, our team members all showed a clear preference for **fast-paced**, **easy-to-play**, and **interactive** games. Compared to complex, heavy gameplay, we favored lightweight, level-based games with score or time limits. These types of games offer both **challenge** and **relaxation**, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
 Based on this, we selected Traffic Theft as our final concept. Its simple yet strategic mechanics and relaxed tone fit our goal of delivering a fun, accessible, and easy-to-learn experience.
