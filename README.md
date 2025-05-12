@@ -80,12 +80,16 @@ Our team initially proposed seven game ideas across genres like puzzle survival,
 
 <p align="center"><i>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></i></p>
 <p align="center">
-  <img src="./assets_for_README/traffic_theft_demo.gif" width="600" alt="Traffic Theft Prototype">
+  <a href="https://youtu.be/THedwWczyRc">
+    <img src="./assets_for_README/traffic_theft_demo.gif" width="600" alt="Traffic Theft Prototype">
+  </a>
 </p>
 
 <p align="center"><i>Figure 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></i></p>
 <p align="center">
-  <img src="./assets_for_README/vector_demo.gif" width="600" alt="Vector Prototype">
+  <a href="https://youtu.be/n6CF0MapgSA">
+    <img src="./assets_for_README/vector_demo.gif" width="600" alt="Vector Prototype">
+  </a>
 </p>
 
 
