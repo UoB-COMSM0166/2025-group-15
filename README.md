@@ -78,13 +78,13 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts.To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
 
+<p align="center"><i>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></i></p>
 <p align="center">
-  <strong>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></strong><br>
   <img src="./assets_for_README/traffic_theft_demo.gif" width="600" alt="Traffic Theft Prototype">
 </p>
 
+<p align="center"><i>Figure 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></i></p>
 <p align="center">
-  <strong>Figure 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></strong><br>
   <img src="./assets_for_README/vector_demo.gif" width="600" alt="Vector Prototype">
 </p>
 
