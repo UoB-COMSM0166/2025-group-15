@@ -222,6 +222,12 @@ export class UiManager {
   handlePauseMenuClicks(mx, my) {
     if (this.buttons.pause[0].isClicked(mx, my)) {
       this.game.playClickSound();
+
+      if (this.game.pauseStartTime) {
+        this.game.pausedTime += millis() - this.game.pauseStartTime;
+        this.game.pauseStartTime = 0;
+      }
+
       this.game.currentState = GameStates.PLAYING;
     } else if (this.buttons.pause[1].isClicked(mx, my)) {
       this.game.playClickSound();

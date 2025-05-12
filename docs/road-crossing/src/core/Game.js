@@ -46,8 +46,11 @@ export class Game {
     this.obstacleSystem = new ObstacleSystem();
     this.uiManager = new UiManager(this);
 
-    this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
+    this.gameTime = currentGameMode === GameMode.TESTING ? Infinity : 60;
     this.startTime = 0;
+    this.pausedTime = 0; // Accumulated time during game pause
+    this.isPaused = false; // Whether the game is pause
+
     this.keys = {};
 
     // Get dynamic lanes based on canvas size
@@ -183,32 +186,6 @@ export class Game {
   }
 
   resetGame() {
-    this.player.reset();
-    this.carSystem.reset();
-    this.itemSystem.reset();
-    this.obstacleSystem.reset();
-
-    //  Make sure the game time is updated correctly each time you switch modes
-    if (currentGameMode === GameMode.TESTING) {
-      this.gameTime = 10000; // Cheating Mode - Infinite time
-    } else {
-      this.gameTime = 5; //Normal Mode - 60s
-    }
-
-    console.log(
-      `reset game - current modek: ${currentGameMode}, setting time: ${this.gameTime}`
-    );
-
-    this.startTime = millis();
-
-    if (this.currentLevel === 3) {
-      this.obstacleSystem.generateObstacles();
-    }
-
-    this.carSystem.generateInitialCars();
-  }
-
-  resetGame() {
     console.log("Reset the current mode in the game:", this.currentGameMode);
 
     this.player.reset();
@@ -216,12 +193,12 @@ export class Game {
     this.itemSystem.reset();
     this.obstacleSystem.reset();
 
-    console.log("Reset successfully: current model:", this.currentGameMode);
-
-    // Set game time based on mode
-    this.gameTime = currentGameMode === GameMode.TESTING ? 10000 : 60;
-
+    this.gameTime = currentGameMode === GameMode.TESTING ? Infinity : 60;
     this.startTime = millis();
+    this.pausedTime = 0;
+    this.pauseStartTime = 0;
+
+    console.log("Reset successfully: current model:", this.currentGameMode);
 
     // Generate obstacles for level 3
     if (this.currentLevel === 3) {
@@ -235,11 +212,16 @@ export class Game {
   update() {
     if (this.currentState !== GameStates.PLAYING) return;
 
-    // Update game time
+    // Calculate elapsed time (excluding pause duration)
+    const currentTime = millis();
+
+    const elapsedTime = (currentTime - this.startTime - this.pausedTime) / 1000;
+
+    // Update remaining time
     this.gameTime =
       currentGameMode === GameMode.TESTING
-        ? 10000
-        : 60 - floor((millis() - this.startTime) / 1000);
+        ? Infinity
+        : Math.max(0, 60 - floor(elapsedTime));
 
     // Generate cars every frame instead of every 60 frames
     // This is more reliable and ensures the car generator is called frequently
@@ -405,15 +387,17 @@ export class Game {
   handleKeyPressed(keyCode) {
     this.keys[keyCode] = true;
 
-    if (
-      keyCode === ESCAPE &&
-      (this.currentState === GameStates.PLAYING ||
-        this.currentState === GameStates.PAUSED)
-    ) {
-      this.currentState =
-        this.currentState === GameStates.PLAYING
-          ? GameStates.PAUSED
-          : GameStates.PLAYING;
+    if (keyCode === ESCAPE) {
+      if (this.currentState === GameStates.PLAYING) {
+        this.pauseStartTime = millis();
+        this.currentState = GameStates.PAUSED;
+      } else if (this.currentState === GameStates.PAUSED) {
+        if (this.pauseStartTime) {
+          this.pausedTime += millis() - this.pauseStartTime;
+          this.pauseStartTime = 0;
+        }
+        this.currentState = GameStates.PLAYING;
+      }
     }
 
     if (
@@ -464,14 +448,16 @@ export class Game {
       mouseY >= btnY &&
       mouseY <= btnY + btnSize
     ) {
-      this.currentState =
-        this.currentState === GameStates.PLAYING
-          ? GameStates.PAUSED
-          : GameStates.PLAYING;
-      console.log(
-        "Pause button is clicked, current status:",
-        this.currentState
-      );
+      if (this.currentState === GameStates.PLAYING) {
+        this.pauseStartTime = millis();
+        this.currentState = GameStates.PAUSED;
+      } else if (this.currentState === GameStates.PAUSED) {
+        if (this.pauseStartTime) {
+          this.pausedTime += millis() - this.pauseStartTime;
+          this.pauseStartTime = 0;
+        }
+        this.currentState = GameStates.PLAYING;
+      }
       return;
     }
 
