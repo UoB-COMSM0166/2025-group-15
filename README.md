@@ -1,14 +1,12 @@
 # 2025-group-15
 
 2025 COMSM0166 group 15
-  
-
 
 ## Crazy Delivery
 
 <p align="center">
   <a href="https://youtu.be/Cy6Q-PFSI70" target="_blank">
-    <img src="./assets_for_README/crazy delivery.png" alt="Demo Video Thumbnail" width="700" />
+    <img src="./assets_for_README/crazy delivery.png" alt="Demo Video Thumbnail" style="width: 95%; max-width:800px"/>
   </a>
   <br>
   <a href="https://youtu.be/Cy6Q-PFSI70" target="_blank">
@@ -16,17 +14,15 @@
   </a>
 </p>
 
-
-Link to our game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
+Try to [PLAY HERE](https://uob-comsm0166.github.io/2025-group-15/road-crossing/Road-Crossing-Game.html)
 
 Our game lives in the [docs](/docs/road-crossing/) folder, and is published using Github pages to the link above.
-
 
 ## Development Team
 
 <p align="center">
-<br><i> Figure 1: Group photo of the team</i></br>
-<img width="90%" src="./assets_for_README/Group Photo.jpg">
+  <br><i>Figure 1: Group photo of the team</i></br>
+  <img src="./assets_for_README/Group Photo.jpg" alt="Figure 1: Group photo of the team" style="width: 80%; max-width:600px">
 </p>
 
 <p align="center">
@@ -45,9 +41,6 @@ Our game lives in the [docs](/docs/road-crossing/) folder, and is published usin
 
 </div>
 
-See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
-
-
 ## Contents of The Report
 
 [1. Introduction](#introduction)  
@@ -59,7 +52,6 @@ See our [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117).
 [7. Process](#process)  
 [8. Conclusion](#conclusion)
 
-
 ## Introduction
 
 Our game, Crazy Delivery, builds on the classic mechanics of Frogger—players weave through busy traffic, timing their every move to survive. But unlike traditional arcade titles, you're not just crossing a road—you're on a mission to deliver.
@@ -70,28 +62,25 @@ To keep each run fresh, we implemented a dynamic traffic system that generates v
 
 What makes our game novel is its weight-based movement mechanic, which creates a direct connection between risk and reward. The more you carry, the harder it gets—but the greater the payoff. This, combined with shifting environments, layered difficulty, and rhythmic pacing, transforms a familiar arcade formula into a delivery challenge that’s both strategic and reflex-driven.
 
-
-
 ## Requirements
 
 ### Ideation Process
 
 Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts. To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
 
-<p align="center"><i>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></i></p>
+<p align="center"><i>Animation 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></i></p>
 <p align="center">
   <a href="https://youtu.be/THedwWczyRc">
-    <img src="./assets_for_README/traffic_theft_demo.gif" width="600" alt="Traffic Theft Prototype">
+    <img src="./assets_for_README/traffic_theft_demo.gif" alt="Traffic Theft Prototype" style="width: 80%; max-width:600px">
   </a>
 </p>
 
-<p align="center"><i>Figure 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></i></p>
+<p align="center"><i>Animation 2: Paper Prototype for <a href="https://youtu.be/n6CF0MapgSA">Vector</a></i></p>
 <p align="center">
   <a href="https://youtu.be/n6CF0MapgSA">
-    <img src="./assets_for_README/vector_demo.gif" width="600" alt="Vector Prototype">
+    <img src="./assets_for_README/vector_demo.gif" alt="Vector Prototype" style="width: 80%; max-width:600px">
   </a>
 </p>
-
 
 During this process, our team members all showed a clear preference for fast-paced, easy-to-play, and interactive games. Compared to complex, heavy gameplay, we favoured lightweight, level-based games with score or time limits. These types of games offer both challenge and relaxation, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
 
@@ -117,65 +106,64 @@ To ensure comprehensive project development, we applied the **Onion Model** to a
 
 </div>
 
-
 ### User Stories & Acceptance Criteria
-To address both technical implementation and player experience, we divided the user stories and acceptance criteria into two categories: <Developer-Oriented> and <Player-Oriented>.
+
+To address both technical implementation and player experience, we divided the user stories and acceptance criteria into two categories: [Developer-Oriented](#1-developer-oriented) and [Player-Oriented](#2-player-oriented).
 
 #### 1. Developer-Oriented
 
-User Stories:
-> As developers, we want a modular, immersive, and visually polished game:
-> - Breaking the game into independent, well-defined components.
-> - Designing sound effects and background music that enhance immersion.
-> - Implementing smooth animations consistent with the game's style.
+**User Stories:**
 
-Acceptance Criteria:
-> 1. Each game module must be independently developed, tested, and integrated as planned
-> 2. Audio should suit each scene and enhance the experience.
-> 3. Animations must be fluid, seamless, and visually match the game's visual style.
+As developers, we want a modular, immersive, and visually polished game:
 
+1. Breaking the game into independent, well-defined components.
+2. Designing sound effects and background music that enhance immersion.
+3. Implementing smooth animations consistent with the game's style.
 
+**Acceptance Criteria:**
 
+1. Each game module must be independently developed, tested, and integrated as planned
+2. Audio should suit each scene and enhance the experience.
+3. Animations must be fluid, seamless, and visually match the game's visual style.
 
 #### 2. Player-Oriented
 
-User Stories:
-> As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
-> - Experience increasing difficulty levels throughout the game.
-> - Pause and resume gameplay at any point.
-> - Customise characters and see changes in real time.
-> - Track scores and compete on leaderboards.
-> - Engage with eco-friendly elements within the game.
+**User Stories:**
 
-Acceptance Criteria:
-> 1. Difficulty should increase steadily to maintain player engagement.
-> 2. The pause feature must freeze the current state and allow exact resumption.
-> 3. Character customisations should appear instantly in real time.
-> 4. Players' scores should be timestamped, and high scores trigger celebratory.
-> 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
+As players, we expect a progressively challenging experience with options for customization. Specifically, we want to:
 
+1. Experience increasing difficulty levels throughout the game.
+2. Pause and resume gameplay at any point.
+3. Customise characters and see changes in real time.
+4. Track scores and compete on leaderboards.
+5. Engage with eco-friendly elements within the game.
 
+**Acceptance Criteria:**
+
+1. Difficulty should increase steadily to maintain player engagement.
+2. The pause feature must freeze the current state and allow exact resumption.
+3. Character customisations should appear instantly in real time.
+4. Players' scores should be timestamped, and high scores trigger celebratory.
+5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
 ### Example: Breakdown of Game Difficulty System Design
 
 1. **Core Difficulty System**  
-   Game difficulty is shaped by character stats, environment, mission goals, and random events. Key elements include movement speed, health, obstacles, and time or score targets. These factors shape challenge and enhance players experience.
+  Game difficulty is shaped by character stats, environment, mission goals, and random events. Key elements include movement speed, health, obstacles, and time or score targets. These factors shape challenge and enhance players experience.
 
 2. **Level Progression System**  
-   Levels have specific completion criteria and progression unlocks, with optional bonus challenges. Achievements reward progress and skill, encouraging player improvement.
+  Levels have specific completion criteria and progression unlocks, with optional bonus challenges. Achievements reward progress and skill, encouraging player improvement.
 
 3. **Game Feedback System**  
-   Real-time feedback and progress indicators keep players informed, helping them adjust strategies and improve performance.
+  Real-time feedback and progress indicators keep players informed, helping them adjust strategies and improve performance.
 
 4. **Balance Testing**  
-   Balance testing ensured the game remained challenging and enjoyable through internal evaluations and feedback from players of different ages and experience levels. Adjustments were made to the difficulty curve to maintain a balance between challenge and playability.
+  Balance testing ensured the game remained challenging and enjoyable through internal evaluations and feedback from players of different ages and experience levels. Adjustments were made to the difficulty curve to maintain a balance between challenge and playability.
 
 5. **Development Sequence**  
-   A parameter configuration system was set up early in development to support debugging and balance tuning, streamlining the workflow and enabling quick adjustments based on emerging challenges and feedback.
-
+  A parameter configuration system was set up early in development to support debugging and balance tuning, streamlining the workflow and enabling quick adjustments based on emerging challenges and feedback.
 
 <p align="center"><i>Figure 2: Game Difficulty System Flowchart</i></p>
-
 
 ```mermaid
 flowchart LR
@@ -188,12 +176,9 @@ flowchart LR
     H -->|No| J[Development Complete]
 ```
 
-
-
 ### Reflection
+
 Our team gained valuable insights into requirements analysis and project management. Breaking tasks into modules improved efficiency, while clear user stories with Given-When-Then criteria ensured precise, testable expectations. The Onion Model clarified stakeholder roles, aligning user needs with technical goals. Overall, the iterative process highlighted the value of clear communication and documentation for future work.
-
-
 
 ## Sustainability, Ethics and Accessibility
 
@@ -206,7 +191,7 @@ Based on the Sustainability Awareness Framework (SusAF), we analysed our game's 
 </p>
 
 | **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
-|------------------------------|----------------------|--------------------------|
+|:------------------------------:|----------------------|--------------------------|
 | **Individual** | Does the game promote personal health, growth, or learning? | The game trains players' reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behaviour. |
 | **Environmental** | Does the game encourage environmentally friendly behaviour or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimises carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
 | **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
@@ -220,8 +205,6 @@ We have reviewed the Green Software Foundation's Green Software Patterns and ide
 2. **Green Defaults** - The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
 
 3. **Avoid Tracking Unnecessary Data** - Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimises storage and energy costs associated with data processing.
-
-
 
 ## Design
 
@@ -243,14 +226,10 @@ Levels are configured using the `LevelConfig` class, which defines difficulty, g
 
 This architecture supports code reusability and parallel development by dividing responsibilities among self-contained modules.
 
-
-
 <p align="center"><i>Figure 3: Class Diagram</i></p>
 <div align="center">
-  <img src="./assets_for_README/classDiagram.png" width="1100">
+  <img src="./assets_for_README/classDiagram.png" alt="Figure 3: Class Diagram" style="width: 90%; max-width:1100px">
 </div>
-
-
 
 ### Behavioural Design
 
@@ -271,15 +250,12 @@ The modular structure and clearly defined sequences support smooth user interact
 <p align="center"><i>Figure 4: Sequence diagram</i></p>
 
 <p align="center">
-  <img src="./assets_for_README/sequenceDiagram.png" width="1000">
+  <img src="./assets_for_README/sequenceDiagram.png" alt="Figure 4: Sequence diagram" style="width: 90%; max-width:1100px">
 </p>
-
-
 
 ## Implementation
 
 > Our game is a 2D top-down arcade-style game in which the player is tasked with transporting cargo from the left side of the road to the right, while avoiding incoming traffic. The game was implemented using JavaScript, and we focused on delivering smooth movement, realistic traffic behavior, and increasing difficulty over time.
-> 
 
 Throughout the development process, we encountered several technical and gameplay design challenges. We highlight three major areas of difficulty and how we addressed them:  
 
@@ -310,7 +286,6 @@ To avoid long gaps in traffic, we enforce a **maximum waiting threshold of 240 f
 
 At the beginning of the game, a limited number of vehicles are also randomly generated on each lane based on probability, to simulate a pre-existing traffic environment.
 
-
 ### 3. **Cargo Generation, Value System, and Refresh Mechanism**
 
 **Challenge:**  
@@ -322,8 +297,6 @@ To improve player engagement and add more decision-making, we introduced a **car
 To reflect the weight difference in gameplay, we also linked the **player's movement speed** to the total weight of the carried cargo. Heavier loads slow down the player significantly, increasing the challenge and adding realism to the gameplay.
 
 We also iterated on the **cargo refresh mechanism**. In early versions, all cargo items were refreshed at once only after the previous batch was completely delivered. Based on tester feedback, we changed this to **immediate single-item respawning**, where a new cargo spawns each time one is delivered. This ensures that the player always has a variety of cargo options to choose from, enhancing the strategic aspect and making the gameplay more dynamic. After implementing this change, we noticed a significant improvement in overall user experience and gameplay flow.
-
-
 
 ## Evaluation
 
@@ -356,11 +329,11 @@ We also iterated on the **cargo refresh mechanism**. In early versions, all carg
 We also analysed and evaluated the testers' feedback based on Nielsen's heuristic principles and documented our findings in the Heuristic Evaluation Table below.
 
 <p align="center">
-    <i>Table 4: Heuristic Evaluation of Usability Issues Based on Nielsen's Principles</i>
+  <i>Table 4: Heuristic Evaluation of Usability Issues Based on Nielsen's Principles</i>
 </p>
 
 | Interface | Issue | Heuristic(s) | Frequency 0(rare) to 4(common) | Impact 0(easy) to difficult(4) | Persistence 0(once) to 4(repeat) | Severity = (F+I+P)/3 |
-| --- | --- | --- | --- | --- | --- | --- |
+| :------------------------------: | ------------------------------ | ------------------------------ | :------------------------------: | :------------------------------: | :------------------------------: | :------------------------------: |
 | Collision Detection | Ambiguous collision boundaries result in unpredictable gameplay outcomes | Visibility of System Status, Error Prevention | 4 | 4 | 4 | 4 |
 | Game Background | Poor color contrast between interactive elements (vehicles/cargo) and background | Aesthetic and Minimalist Design, Match Between System and Real World | 4 | 3 | 4 | 3.7 |
 | Main Menu | No in-game access to control instructions for help | Recognition Rather Than Recall, Help and Documentation | 3 | 3 | 2 | 2.7 |
@@ -387,19 +360,20 @@ We also analysed and evaluated the testers' feedback based on Nielsen's heuristi
 
 We collected data from 10 participants who completed tasks under both easy and difficult conditions, to exam how task difficulty affects both user workload and system usability.
 
-We use NASA TLX and SUS to measure separately, and use the [Wilcoxon signed-rank test](https://www.statology.org/wilcoxon-signed-rank-test-calculator/) to determine statistical significance of differences between conditions, with α=0.05 as the threshold for significance.
+We use [NASA TLX](/assets_for_README/NASA_TLX-template.png) and [SUS](/assets_for_README/SUS-template.png) (click for details) to measure separately, and use the [Wilcoxon signed-rank test](https://www.statology.org/wilcoxon-signed-rank-test-calculator/) to determine statistical significance of differences between conditions, with α=0.05 as the threshold for significance.
 
-#### [The NASA Task Load Index](./Images/NASA_TLX-template.png)
+#### The NASA Task Load Index
 
 The table below presents participants' ratings across six dimensions of workload, as well as calculated overall workload scores:
 
 <p align="center">
-    <i>Table 5: NASA-TLX Workload Ratings for Easy and Difficult Gameplay Conditions</i>
+  <i>Table 5: NASA-TLX Workload Ratings for Easy and Difficult Gameplay Conditions</i>
 </p>
 
+<div align="center">
 
-|User|Difficulty|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|Score|
-|---|---|---|---|---|---|---|---|---|
+| User | Difficulty | Mental Demand | Physical Demand | Temporal Demand | Performance | Effort | Frustration | Score |
+|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |User 1|Easy|13|6|12|13|10|6|45.00|
 |User 1|Difficult|14|7|15|7|13|6|46.67|
 |User 2|Easy|11|9|5|14|16|7|46.67|
@@ -421,19 +395,23 @@ The table below presents participants' ratings across six dimensions of workload
 |User 10|Easy|3|8|14|18|9|1|39.17|
 |User 10|Difficult|5|9|15|17|9|3|43.33|
 
+</div>
+
 *W test statistic = 0*  
 *Number of non-tied pairs (n) = 10*
 
 > All values except the Score column represent ratings on the NASA TLX scale. The Score column represents the non-weighted average score calculated using (scaleValue - 1) * 5.
 
-#### [System Usability Survey](./Images/SUS-template.png)
+#### System Usability Survey
 
 <p align="center">
-    <i>Table 6: SUS Ratings by User and Difficulty Level</i>
+  <i>Table 6: SUS Ratings by User and Difficulty Level</i>
 </p>
 
-|User|Difficulty|Q1|Q2|Q3|Q4|Q5|Q6|Q7|Q8|Q9|Q10|Score|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
+<div align="center">
+
+| User | Difficulty | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 | Q7 | Q8 | Q9 | Q10 | Score |
+|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |User 1|Easy|4|2|4|1|5|1|5|1|4|2|87.5|
 |User 1|Difficult|4|2|5|1|5|1|5|1|5|1|95.0|
 |User 2|Easy|4|3|5|2|2|1|4|2|4|1|75.0|
@@ -455,6 +433,8 @@ The table below presents participants' ratings across six dimensions of workload
 |User 10|Easy|2|1|5|1|3|2|4|3|5|1|77.5|
 |User 10|Difficult|1|1|5|1|3|2|5|3|5|1|77.5|
 
+</div>
+
 *W test statistic = 4*  
 *Number of non-tied pairs (n) = 6*
 
@@ -470,8 +450,6 @@ The results of our study indicate:
 
 In conclusion, our system successfully establishes meaningful differentiation between difficulty levels while maintaining a solid foundation of user experience quality.  
 
-
-
 ## Process
 
 > Our team's collaborative strategy for this project was based on a hybrid model that combined structured face-to-face meetings with digital tools for asynchronous coordination. This approach allowed us to maintain high levels of engagement and accountability while accommodating individual work preferences and time constraints.
@@ -484,7 +462,7 @@ For day-to-day communication, we used WhatsApp for quick updates and clarificati
 
 ### Tools and Workflow
 
-To manage our tasks and track overall project progress, we used a GitHub-based **Kanban board**, structured with columns: “Todo,” “In Progress,” “Lagging,” and “Done.” Each task card included a detailed description, deadlines, priority level, and assigned team member. This visual workflow made it easy for everyone to track the status of work at a glance and identify bottlenecks early.
+To manage our tasks and track overall project progress, we used a GitHub-based [Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/117), structured with columns: “Todo,” “In Progress,” “Lagging,” and “Done.” Each task card included a detailed description, deadlines, priority level, and assigned team member. This visual workflow made it easy for everyone to track the status of work at a glance and identify bottlenecks early.
 
 We implemented **Work-in-Progress (WIP) limits** on active tasks to reduce overload and maintain a steady flow across development stages. The Kanban board’s flexibility also enabled us to reprioritize tasks efficiently in response to changing project needs, such as debugging or design revisions.
 
@@ -493,18 +471,18 @@ Code collaboration was facilitated through **Git and GitHub**, which we used for
 <p align="center"><i>Figure 5: Kanban Board</i></p>
 
 <p align="center">
-  <img src="./assets_for_README/kanban.png" width="900">
+  <img src="./assets_for_README/kanban.png" alt="Figure 5: Kanban Board" style="width: 90%; max-width:900px">
 </p>
-
 
 ### Roles and Responsibilities
 
 Although our team structure was relatively flat to encourage mutual support, we assigned informal roles based on individual strengths and preferences:
-**Team Coordinator**: Scheduled meetings, tracked deadlines, and maintained overall alignment.
-**Lead Developer**: Took responsibility for core game logic and system architecture.
-**UI/UX Designer**: Led the interface design and user experience considerations.
-**Quality Assurance Lead**: Focused on bug testing, performance evaluation, and validation of game features.
-**Documentation Specialist**: Maintained records, prepared reports, and ensured clarity in written materials.
+
+- **Team Coordinator**: Scheduled meetings, tracked deadlines, and maintained overall alignment.  
+- **Lead Developer**: Took responsibility for core game logic and system architecture.  
+- **UI/UX Designer**: Led the interface design and user experience considerations.  
+- **Quality Assurance Lead**: Focused on bug testing, performance evaluation, and validation of game features.  
+- **Documentation Specialist**: Maintained records, prepared reports, and ensured clarity in written materials.  
 
 Despite these roles, our team practiced flexibility. Members regularly contributed outside their primary area, whether helping with debugging, writing documentation, or preparing assets. This cross-functional support improved efficiency and strengthened our understanding of the entire project.
 
@@ -517,8 +495,6 @@ We also encountered occasional miscommunication, especially regarding expectatio
 One key improvement was in our decision-making process. Initially, discussions sometimes stalled due to differing opinions. Later, we introduced a lightweight decision model—first discussing pros and cons of each approach, then voting or assigning final say based on area of expertise. This balanced structure with inclusiveness and speed.
 
 Overall, this project greatly enhanced our collaborative abilities. We learned the value of structured communication, flexible planning, and respectful team dynamics. The systems we developed—such as routine meeting minutes, Kanban tracking, and clear role definitions—not only improved this project's outcome but also gave us transferrable teamwork skills for future academic and professional environments.
-
-
 
 ## Conclusion
 
@@ -534,8 +510,10 @@ While the project met most of our initial goals, some aspects—such as more div
 
 Looking ahead, Crazy Delivery could be expanded with competitive multiplayer features or adaptive AI behaviors. More importantly, this project gave us hands-on experience applying iterative development, user-centered design, and technical debugging in a real-world setting. It was a game about crossing roads, but also about crossing the threshold from idea to execution—and learning to work as a team every step of the way.
 
-
 ### Contribution Statement
+
+<div align="center">
+
 |        Name (Username)        | Contribution |
 |:-----------------------------:|:------------:|
 | Lu Li (**cactus562**)         |     1.00     |
@@ -544,3 +522,4 @@ Looking ahead, Crazy Delivery could be expanded with competitive multiplayer fea
 | Qinyuan Lu (**mdfcsC**)       |     1.00     |
 | Ruirui Jia (**alpenglow1**)   |     1.00     |
 
+</div>
