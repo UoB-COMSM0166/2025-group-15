@@ -76,7 +76,7 @@ What makes our game novel is its weight-based movement mechanic, which creates a
 
 ### Ideation Process
 
-Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts.To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
+Our team initially proposed seven game ideas across genres like puzzle survival, parkour action, and shooting. After evaluating feasibility, appeal, and development potential, we narrowed them down to two promising concepts. To explore these ideas, we created paper prototypes to simulate and assess core mechanics.
 
 <p align="center"><i>Figure 1: Paper Prototype for <a href="https://youtu.be/THedwWczyRc">Traffic Theft</a></i></p>
 <p align="center">
@@ -89,13 +89,13 @@ Our team initially proposed seven game ideas across genres like puzzle survival,
 </p>
 
 
-During this process, our team members all showed a clear preference for **fast-paced**, **easy-to-play**, and **interactive** games. Compared to complex, heavy gameplay, we favored lightweight, level-based games with score or time limits. These types of games offer both **challenge** and **relaxation**, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
+During this process, our team members all showed a clear preference for fast-paced, easy-to-play, and interactive games. Compared to complex, heavy gameplay, we favoured lightweight, level-based games with score or time limits. These types of games offer both challenge and relaxation, requiring minimal effort and cognitive load—ideal for casual play anytime, anywhere.
 
 Based on this, we selected Traffic Theft as our final concept. Its simple yet strategic mechanics and relaxed tone fit our goal of delivering a fun, accessible, and easy-to-learn experience.
 
 ### Stakeholder Analysis
 
-To ensure comprehensive project development, we applied the **Onion Model** to analyze stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
+To ensure comprehensive project development, we applied the **Onion Model** to analyse stakeholders involved in our game. The model helped us identify key groups at varying levels of influence:
 
 <p align="center">
     <i>Table 2: Stakeholder Layers Based on the Onion Model</i>
@@ -139,14 +139,14 @@ User Stories:
 > As players, we expect a **progressively challenging** experience with options for **customization**. Specifically, we want to:
 > - Experience increasing difficulty levels throughout the game.
 > - Pause and resume gameplay at any point.
-> - Customize characters and see changes in real time.
+> - Customise characters and see changes in real time.
 > - Track scores and compete on leaderboards.
 > - Engage with eco-friendly elements within the game.
 
 Acceptance Criteria:
 > 1. Difficulty should increase steadily to maintain player engagement.
 > 2. The pause feature must freeze the current state and allow exact resumption.
-> 3. Character customizations should appear instantly in real time.
+> 3. Character customisations should appear instantly in real time.
 > 4. Players' scores should be timestamped, and high scores trigger celebratory.
 > 5. The game should include eco-friendly vehicle options such as bikes, electric cars, or other sustainable alternatives.
 
@@ -195,7 +195,7 @@ Our team gained valuable insights into requirements analysis and project managem
 
 ### 1. Sustainability Analysis
 
-Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's potential sustainability impacts across five key dimensions:
+Based on the Sustainability Awareness Framework (SusAF), we analysed our game's potential sustainability impacts across five key dimensions:
 
 <p align="center">
     <i>Table 3: Game Sustainability Analysis Based on the SusAF Framework</i>
@@ -203,8 +203,8 @@ Based on the Sustainability Awareness Framework (SusAF), we analyzed our game's 
 
 | **Sustainability Dimension** | **Guiding Question** | **Game-Related Impact** |
 |------------------------------|----------------------|--------------------------|
-| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players' reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behavior. |
-| **Environmental** | Does the game encourage environmentally friendly behavior or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimizes carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
+| **Individual** | Does the game promote personal health, growth, or learning? | The game trains players' reaction time, coordination, and planning skills. By increasing difficulty and simulating real-life traffic situations, it helps raise awareness about the dangers of crossing roads and encourages safe behaviour. |
+| **Environmental** | Does the game encourage environmentally friendly behaviour or reduce energy/resource use? | The game is lightweight and browser-based, requiring minimal computational power and no installation. This allows it to run smoothly even on older or low-spec devices, reducing energy use and electronic waste. By avoiding server-side processing and cloud storage, the game minimises carbon footprint during play. Its use of static 2D assets and low-bandwidth requirements also supports greener digital distribution.|
 | **Technical** | Is the software efficient, maintainable, and low in energy/resource consumption? | The game adopts a modular architecture that supports maintainability and future extension. Its lightweight design ensures smooth performance even on low-end devices, which helps reduce energy consumption. |
 
 ### 2. Green Software Patterns
@@ -215,13 +215,13 @@ We have reviewed the Green Software Foundation's Green Software Patterns and ide
 
 2. **Green Defaults** - The game's audio settings default to moderate volume, and players have the option to toggle audio off entirely. This provides a lower energy footprint by default and empowers users to reduce energy usage during gameplay, especially on mobile or battery-powered devices.
 
-3. **Avoid Tracking Unnecessary Data** - Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimizes storage and energy costs associated with data processing.
+3. **Avoid Tracking Unnecessary Data** - Our game does not collect any player analytics or behavior tracking data. We only store essential progress locally using `localStorage`, which ensures user privacy and minimises storage and energy costs associated with data processing.
 
 
 
 ## Design
 
-> The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialization and update cycles of key subsystems, ensuring seamless interaction among components.
+> The system design of the game adopts a modular and object-oriented architecture to ensure maintainability, scalability, and ease of debugging. Each core component is encapsulated within a dedicated class, responsible for managing a distinct aspect of gameplay. The central controller, the `Game` class, maintains the overall game state, including the selected level, player character, and current progress. It coordinates the initialisation and update cycles of key subsystems, ensuring seamless interaction among components.
 
 ### System Architecture
 
@@ -235,7 +235,7 @@ The user interface is managed by the `UiManager`, which controls various screens
 
 To support dynamic content loading, the `AssetManager` class handles resource management, including images and sounds. Game settings such as audio volume and toggles are controlled by the `Settings` class. Game progress persistence is achieved through the `GameStorage` class, which manages saving and loading states depending on the active game mode.
 
-Levels are configured using the `LevelConfig` class, which defines difficulty, goal conditions, and level-specific parameters. Lane behavior is represented by the `Lanes` class, which categorizes traffic flow into speeds such as Slow, Medium, and Fast.
+Levels are configured using the `LevelConfig` class, which defines difficulty, goal conditions, and level-specific parameters. Lane behaviour is represented by the `Lanes` class, which categorises traffic flow into speeds such as Slow, Medium, and Fast.
 
 This architecture supports code reusability and parallel development by dividing responsibilities among self-contained modules.
 
@@ -252,7 +252,7 @@ This architecture supports code reusability and parallel development by dividing
 
 The game follows a well-defined sequence of interactions, illustrated in the sequence diagram.
 
-At startup, the game initializes the main menu, where players can start a game, select a level, read help instructions, or activate cheating mode. The `UiManager` handles UI display and routes input to the correct action.
+At startup, the game initialises the main menu, where players can start a game, select a level, read help instructions, or activate cheating mode. The `UiManager` handles UI display and routes input to the correct action.
 
 Starting a new game takes the player to the character selection screen (`CharacterSelectPage`). Once a character is chosen, a new `Game` instance is created, and the appropriate level configuration is loaded.
 
